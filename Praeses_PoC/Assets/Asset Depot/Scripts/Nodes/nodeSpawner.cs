@@ -22,7 +22,7 @@ namespace HoloToolkit.Unity
         Vector3 lookPos;
         Quaternion lookRot;
 
-        formFieldController linkedField;
+        public formFieldController linkedField;
 
         void Start()
         {
@@ -117,10 +117,8 @@ namespace HoloToolkit.Unity
 
             spawnMiniNode(spawnedNode, spawnedIndex);
 
-            spawnedNode.GetComponent<nodeMediaHolder>().NodeIndex = JU_databaseMan.Instance.nodesManager.nodes.Count;
-
-            databaseMan.Instance.addAnnotation(spawnedNode);
-
+            spawnedNode.GetComponent<nodeMediaHolder>().NodeIndex = JU_databaseMan.Instance.nodesManager.nodes.Count+1;
+            
             //spawnedNode.GetComponent<nodeMediaHolder>().NodeIndex = mediaManager.Instance.nodeIndex;
             //mediaManager.Instance.nodeIndex += 1;
 
@@ -155,13 +153,17 @@ namespace HoloToolkit.Unity
                 //get content holder of masterform
                 spawnedNode.GetComponent<nodeController>().contentHolder = fieldSpawner.Instance.MasterForm.GetComponent<formController>().contentHolder;
                 fieldSpawner.Instance.MasterForm.GetComponent<formController>().fieldNodes.Add(spawnedNode);
-
+                spawnedNode.GetComponent<nodeController>().linkedField = linkedField.gameObject;
                 //activate media to store user and date
                 mediaManager.Instance.activateMedia();
 
+                print(linkedField);
+
                 //link field and node then enable attachment capture
+
                 linkedField.linkedNode = spawnedNode;
                 linkedField.enableAttachmentCapture();
+
             }
             //print("locPos, X: " + spawnedNode.transform.localPosition.x + ", Y: " + spawnedNode.transform.localPosition.y + ", Z: " + spawnedNode.transform.localPosition.z);
             //print("locRot, X: " + spawnedNode.transform.localRotation.x + ", Y: " + spawnedNode.transform.localRotation.y + ", Z: " + spawnedNode.transform.localRotation.z + ", W: " + spawnedNode.transform.localRotation.w);
@@ -176,7 +178,11 @@ namespace HoloToolkit.Unity
         //get linked form field
         public void getLinkedField(formFieldController curField)
         {
+
             linkedField = curField;
+
+            print("1");
+
         }
 
     }

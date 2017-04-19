@@ -210,8 +210,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         
     }
 
-    void loadViolationsCmd()
+    public void loadViolationsCmd()
     {
+        violationsManager.violations.Clear();
         foreach (databaseMan.ViolationsClass violation in databaseMan.Instance.values.Location.Equipment[0].Violations)
         {
             violationsManager.violations.Add(violationParser(violation));

@@ -27,7 +27,6 @@ GameObject:
   - component: {fileID: 114225261672719506}
   - component: {fileID: 114785160556704878}
   - component: {fileID: 114036393833897532}
-  - component: {fileID: 114282309710185152}
   - component: {fileID: 114826231605057396}
   m_Layer: 5
   m_Name: simpleThumb
@@ -98,6 +97,7 @@ GameObject:
   - component: {fileID: 222459696670523960}
   - component: {fileID: 114103592904664656}
   - component: {fileID: 114353306870644986}
+  - component: {fileID: 114913058405615734}
   m_Layer: 5
   m_Name: simpleInputField
   m_TagString: inputField
@@ -175,6 +175,10 @@ MonoBehaviour:
   playIcon: {fileID: 0}
   pauseIcon: {fileID: 0}
   mediaPlayer: {fileID: 0}
+  vidThumbnail: {fileID: 0}
+  vidMat: {fileID: 0}
+  vidThumbMat: {fileID: 0}
+  thumbMat: {fileID: 0}
 --- !u!114 &114103592904664656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,24 +326,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Nina Garcia 3/14/2017 10:56:09 PM
---- !u!114 &114282309710185152
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1086963000631786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea7ab22245e6484ea4838e4c1ff0bc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainInputField: {fileID: 114353306870644986}
-  panelResize: 0
-  recCharSize: 0
-  charPanel: {fileID: 0}
-  scaleMult: 0
-  useKeypad: 1
-  useNumpad: 0
 --- !u!114 &114353306870644986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,6 +487,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114913058405615734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621471037504616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea7ab22245e6484ea4838e4c1ff0bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainInputField: {fileID: 114353306870644986}
+  panelResize: 0
+  recCharSize: 0
+  charPanel: {fileID: 0}
+  scaleMult: 0
+  useKeypad: 1
+  useNumpad: 0
+  formItem: {fileID: 0}
+  nodeInfo: {fileID: 0}
+  commentNode: {fileID: 0}
 --- !u!114 &114921870576927848
 MonoBehaviour:
   m_ObjectHideFlags: 1

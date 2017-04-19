@@ -1772,7 +1772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1724072333761590
 GameObject:
   m_ObjectHideFlags: 1
@@ -1809,7 +1809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1740780857661080
 GameObject:
   m_ObjectHideFlags: 1
@@ -4944,6 +4944,9 @@ MonoBehaviour:
   scaleMult: 0
   useKeypad: 1
   useNumpad: 0
+  formItem: {fileID: 0}
+  nodeInfo: {fileID: 0}
+  commentNode: {fileID: 0}
 --- !u!114 &114084717159567156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5394,6 +5397,9 @@ MonoBehaviour:
   scaleMult: 0
   useKeypad: 1
   useNumpad: 0
+  formItem: {fileID: 0}
+  nodeInfo: {fileID: 0}
+  commentNode: {fileID: 0}
 --- !u!114 &114163281013968538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6571,7 +6577,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114863242822072632}
         m_MethodName: onEditChangeUpdateJSon
         m_Mode: 1
         m_Arguments:
@@ -8612,6 +8618,9 @@ MonoBehaviour:
   scaleMult: 0.3
   useKeypad: 1
   useNumpad: 0
+  formItem: {fileID: 0}
+  nodeInfo: {fileID: 0}
+  commentNode: {fileID: 0}
 --- !u!114 &114635644117726706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10005,6 +10014,9 @@ MonoBehaviour:
   scaleMult: 0.3
   useKeypad: 0
   useNumpad: 1
+  formItem: {fileID: 0}
+  nodeInfo: {fileID: 0}
+  commentNode: {fileID: 0}
 --- !u!114 &114867473432946320
 MonoBehaviour:
   m_ObjectHideFlags: 1

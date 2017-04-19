@@ -60,6 +60,7 @@ namespace HoloToolkit.Unity
                 //send photo file path to be stored and loaded on node
                 nodeMedia.activeFilepath = photoRecorder.filePath;
                 nodeMedia.loadPhoto(photoRecorder.filePath);
+
             }
             if (nodeMedia.videoNode)
             {
@@ -67,6 +68,7 @@ namespace HoloToolkit.Unity
                 //using filename instead of path because the media player is set to persistent data path
                 nodeMedia.activeFilepath = vidRecorder.filename;
                 nodeMedia.LoadVideo();
+
             }
             
             //reenable selection so it's clickable
@@ -76,21 +78,49 @@ namespace HoloToolkit.Unity
             nodeMedia.User = metaManager.Instance.user;
             nodeMedia.Date = System.DateTime.Now.ToString();
             currentNode.GetComponent<nodeController>().setUpNode();
-            
+
+            print(currentNode);
+            databaseMan.Instance.addAnnotation(currentNode);
+
         }
 
         public void activateComment()
         {
+            GameObject spawnedComment = new GameObject(); ;
+            int nodeInd =0;
+            commentContents com = new commentContents();
+            databaseMan.tempComment commentClass = new databaseMan.tempComment();
+
             if (commentManager.capturingPhoto)
             {
-                commentManager.spawnPhotoComment();
+                spawnedComment = commentManager.spawnPhotoComment();
+                com = spawnedComment.GetComponent<commentContents>();
+                commentClass.type = 2;
+
             }
-            if (commentManager.capturingVideo)
+            else if (commentManager.capturingVideo)
             {
 
-                commentManager.spawnVideoComment();
+                spawnedComment = commentManager.spawnVideoComment();
+                com = spawnedComment.GetComponent<commentContents>();
 
+                commentClass.type = 3;
             }
+
+            if (com.linkedComponent.GetComponent<violationController>() != null)
+            {
+                nodeInd = com.linkedComponent.GetComponent<violationController>().linkedNode.GetComponent<nodeMediaHolder>().NodeIndex;
+            }
+            if (com.linkedComponent.GetComponent<formFieldController>() != null)
+            {
+                nodeInd = com.linkedComponent.GetComponent<formFieldController>().linkedNode.GetComponent<nodeMediaHolder>().NodeIndex;
+            }
+
+            commentClass.user = com.user;
+            commentClass.date = com.Date;
+            commentClass.path = com.filepath;
+
+            databaseMan.Instance.commentToClassValueSync(nodeInd, commentClass);
         }
         
         public void enablePhotoCapture()
@@ -145,7 +175,6 @@ namespace HoloToolkit.Unity
             recordingIndicator.SetActive(false);
             recordingInProgress = false;
             isCapturing = false;
-            activateMedia();
         }
 
         public void setStatusIndicator(string curStatus)

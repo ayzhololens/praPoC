@@ -20,7 +20,8 @@ namespace HoloToolkit.Unity
         public bool useNumpad;
         public formFieldController formItem;
         public nodeMediaHolder nodeInfo;
-        
+        public nodeMediaHolder commentNode;
+
         private void Update()
         {
             if (engaged && sourceManager.Instance.sourcePressed)
@@ -138,6 +139,39 @@ namespace HoloToolkit.Unity
                     valueType = 1;
                 }
                 databaseMan.Instance.nodeToClassValueSync(nodeIndex, mainInputField.text, valueType);
+            }
+        }
+
+        public void onEditChangeAddComment(commentContents comment) 
+        {
+
+
+            if (commentNode != null)
+            {
+                int nodeIndex;
+                nodeIndex = commentNode.NodeIndex;
+                databaseMan.tempComment newComment = new databaseMan.tempComment();
+
+                if (comment.isSimple)
+                {                   
+                    newComment.user = comment.user;
+                    newComment.date = comment.Date;
+                    newComment.content = comment.commentMain.text;
+                    newComment.type = 1;            
+                }else
+                {
+                    newComment.user = comment.user;
+                    newComment.date = comment.Date;
+                    newComment.path = comment.filepath;
+                    if (comment.isPhoto)
+                    {
+                        newComment.type = 2;
+                    }else if (comment.isVideo)
+                    {
+                        newComment.type = 3;
+                    }
+                }
+                databaseMan.Instance.commentToClassValueSync(nodeIndex, newComment);
             }
 
         }

@@ -3029,6 +3029,7 @@ MonoBehaviour:
   useNumpad: 0
   formItem: {fileID: 0}
   nodeInfo: {fileID: 114190061367997334}
+  commentNode: {fileID: 0}
 --- !u!114 &114052611893869384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3123,6 +3124,7 @@ MonoBehaviour:
   useNumpad: 0
   formItem: {fileID: 0}
   nodeInfo: {fileID: 0}
+  commentNode: {fileID: 0}
 --- !u!114 &114129374492273494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3514,18 +3516,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114692247778960496}
-        m_MethodName: onEditChangeUpdateJSon
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -4107,18 +4098,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114017609977721486}
-        m_MethodName: onEditChangeUpdateJSon
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -4417,6 +4397,7 @@ MonoBehaviour:
   useNumpad: 0
   formItem: {fileID: 0}
   nodeInfo: {fileID: 114190061367997334}
+  commentNode: {fileID: 0}
 --- !u!114 &114721147248484030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4993,6 +4974,7 @@ MonoBehaviour:
   vidThumbnail: {fileID: 0}
   vidMat: {fileID: 0}
   vidThumbMat: {fileID: 0}
+  thumbMat: {fileID: 0}
 --- !u!114 &114959383657534552
 MonoBehaviour:
   m_ObjectHideFlags: 1

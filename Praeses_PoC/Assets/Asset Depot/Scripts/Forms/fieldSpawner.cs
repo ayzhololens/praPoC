@@ -130,7 +130,9 @@ namespace HoloToolkit.Unity
                     spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
                     spawnedField.GetComponent<formFieldController>().populateButtons(2);
                     spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonText.text = "yes";
+                    spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonIndex = 1;
                     spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonText.text = "no";
+                    spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonIndex = 0;
                 }
                 else if (JU_databaseMan.Instance.definitions.InspectionFields.fields[i].FieldType == 14)
                 {

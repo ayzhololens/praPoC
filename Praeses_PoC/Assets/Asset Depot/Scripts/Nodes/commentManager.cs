@@ -54,7 +54,26 @@ public class commentManager : MonoBehaviour {
 
         //define the comment type and open the keyboard
         spawnedComment.GetComponent<commentContents>().isSimple = true;
-        spawnedComment.GetComponent<inputFieldManager>().activateField();
+        spawnedComment.GetComponent<commentContents>().commentMain.GetComponent<inputFieldManager>().activateField();
+
+        //is node
+        if (GetComponent<nodeMediaHolder>() != null)
+        {
+            spawnedComment.GetComponent<commentContents>().commentMain.GetComponent<inputFieldManager>().commentNode = GetComponent<nodeMediaHolder>();
+        }
+
+        //is field
+        if (GetComponent<formFieldController>() != null)
+        {
+            spawnedComment.GetComponent<commentContents>().commentMain.GetComponent<inputFieldManager>().commentNode = GetComponent<formFieldController>().linkedNode.GetComponent<nodeMediaHolder>();
+        }
+
+        //is violation
+        if (GetComponent<violationController>() != null)
+        {
+            spawnedComment.GetComponent<commentContents>().commentMain.GetComponent<inputFieldManager>().commentNode = GetComponent<violationController>().linkedNode.GetComponent<nodeMediaHolder>();
+
+        }
 
     }
 
@@ -89,6 +108,7 @@ public class commentManager : MonoBehaviour {
         
         //link comment to gameObject
         newComment.linkedComponent = this.gameObject;
+
     }
     
     void repositionComments()
@@ -117,7 +137,7 @@ public class commentManager : MonoBehaviour {
 
     void startVideoCapture()
     {
-        mediaManager.Instance.vidRecorder.startRecordingVideo();
+        //mediaManager.Instance.vidRecorder.startRecordingVideo();
         recordingEnabled = false;
         mediaManager.Instance.commentManager = GetComponent<commentManager>();
         mediaManager.Instance.setStatusIndicator("Recording in progress. Tap to stop");
@@ -131,7 +151,7 @@ public class commentManager : MonoBehaviour {
     void stopVideoRecording()
     {
         //stop recording, finish encoding then spawn video frame when done
-        mediaManager.Instance.vidRecorder.StopRecordingVideo(false);
+        //mediaManager.Instance.vidRecorder.StopRecordingVideo(false);
         Debug.Log("before status disable");
         mediaManager.Instance.disableStatusIndicator();
         mediaManager.Instance.recordingIndicator.SetActive(false);
@@ -141,7 +161,7 @@ public class commentManager : MonoBehaviour {
 
     }
 
-    public void spawnVideoComment()
+    public virtual GameObject spawnVideoComment()
     {
 
         fovHider.Instance.toggleFOVHider(false);
@@ -164,7 +184,7 @@ public class commentManager : MonoBehaviour {
 
         videoContent.filepath = mediaManager.Instance.vidRecorder.filename;
         videoContent.LoadVideo();
-
+        return spawnedComment;
 
     }
 
@@ -217,7 +237,7 @@ public class commentManager : MonoBehaviour {
         mediaManager.Instance.photoRecorder.CapturePhoto();
     }
 
-    public void spawnPhotoComment()
+    public virtual GameObject spawnPhotoComment()
     {
         fovHider.Instance.toggleFOVHider(false);
 
@@ -237,6 +257,7 @@ public class commentManager : MonoBehaviour {
 
         photoContent.filepath = mediaManager.Instance.photoRecorder.filePath;
         photoContent.loadPhoto();
+        return spawnedComment;
     }
 
     public virtual GameObject spawnPhotoCommentFromJSON()

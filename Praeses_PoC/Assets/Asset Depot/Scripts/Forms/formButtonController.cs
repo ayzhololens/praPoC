@@ -35,6 +35,7 @@ namespace HoloToolkit.Unity
                 }
             }
             transform.parent.gameObject.GetComponent<formFieldController>().Value.text = buttonIndex.ToString();
+            databaseMan.Instance.formToClassValueSync(transform.parent.gameObject.GetComponent<formFieldController>().trueName, transform.parent.gameObject.GetComponent<formFieldController>().Value.text);
             GetComponent<gazeLeaveEvent>().enabled = false;
         }
     }
