@@ -30,12 +30,13 @@ namespace HoloToolkit.Unity
         public bool hands;
         radialHands radHands;
         public GameObject Cursor;
-
+        public bool canOpen { get; set; }
 
 
         //// Use this for initialization
         void Start()
         {
+            canOpen = true;
             sourceManager = sourceManager.Instance;
             gazeManager = GazeManager.Instance;
             radHands = GetComponent<radialHands>();
@@ -47,69 +48,74 @@ namespace HoloToolkit.Unity
         // Update is called once per frame
         void FixedUpdate()
         {
-
-            //radial turn on counter
-            if (sourceManager.sourcePressed && !isActive)
+            if (canOpen)
             {
-                if (gazeManager.HitObject != null)
+
+
+                //radial turn on counter
+                if (sourceManager.sourcePressed && !isActive)
                 {
-                    if (gazeManager.HitObject.tag == "SpatialMapping" || gazeManager.HitObject.tag == "boilerPrefab")
+                    if (gazeManager.HitObject != null)
+                    {
+                        if (gazeManager.HitObject.tag == "SpatialMapping" || gazeManager.HitObject.tag == "boilerPrefab")
+                        {
+                            timerManager.Instance.radialCountDown();
+                        }
+                    }
+                    else
                     {
                         timerManager.Instance.radialCountDown();
                     }
+                    //radialCounter -= Time.deltaTime;
+                    //Debug.Log("shoulddaa");
+                    //if (!counting)
+                    //{
+                    //    startRadialCounter();
+                    //    counting = true;
+                    //}
+
+
+                    //if (radialCounter < .1f)
+                    //{
+
+                    //}
+
+                    //if (radialCounter < 0)
+                    //{
+                    //    turnOnRadialMenu();
+                    //    //radialCountIndicator.transform.GetChild(0).GetComponent<Animator>().SetTrigger("radialStop");
+                    //}
+
                 }
-                else
+                else if (!sourceManager.sourcePressed)
                 {
-                    timerManager.Instance.radialCountDown();
+                    timerManager.Instance.CountInterrupt();
+
+                    //if (counting)
+                    //{
+                    //    radialCounter = countMax;
+                    //    radialCountIndicator.GetComponent<tumblerRadialCounter>().radialCounterInterrupt();
+                    //    //radialCountIndicator.GetComponent<tumblerRadialCounter>().toggleAnim();
+
+                    //    counting = false;
+                    //}
+
+                    //radialCountIndicator.transform.GetChild(0).GetComponent<Animator>().SetTrigger("radialStop");
+
                 }
-                //radialCounter -= Time.deltaTime;
-                //Debug.Log("shoulddaa");
-                //if (!counting)
-                //{
-                //    startRadialCounter();
-                //    counting = true;
-                //}
+
+                if (!hands)
+                {
+                    GazeRadial();
+                }
 
 
-                //if (radialCounter < .1f)
-                //{
-
-                //}
-
-                //if (radialCounter < 0)
-                //{
-                //    turnOnRadialMenu();
-                //    //radialCountIndicator.transform.GetChild(0).GetComponent<Animator>().SetTrigger("radialStop");
-                //}
-
-            }else if (!sourceManager.sourcePressed)
-            {
-                timerManager.Instance.CountInterrupt();
-
-                //if (counting)
-                //{
-                //    radialCounter = countMax;
-                //    radialCountIndicator.GetComponent<tumblerRadialCounter>().radialCounterInterrupt();
-                //    //radialCountIndicator.GetComponent<tumblerRadialCounter>().toggleAnim();
-                    
-                //    counting = false;
-                //}
-
-                //radialCountIndicator.transform.GetChild(0).GetComponent<Animator>().SetTrigger("radialStop");
+                if (hands)
+                {
+                    HandRadial();
+                }
 
             }
-
-            if (!hands)
-            {
-                GazeRadial();
-            }
-
-
-            if (hands)
-            {
-                HandRadial();
-            }
-
         }
 
         void GazeRadial()

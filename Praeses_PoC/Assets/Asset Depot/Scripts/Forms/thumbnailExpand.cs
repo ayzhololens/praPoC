@@ -143,7 +143,7 @@ namespace HoloToolkit.Unity
                 }
                 transform.localPosition = startPos;
 
-                GetComponent<commentContents>().commentMeta.gameObject.SetActive(false);
+                GetComponent<commentContents>().commentMetaUser.gameObject.SetActive(false);
             }   
 
         }
@@ -190,7 +190,7 @@ namespace HoloToolkit.Unity
                 }
 
                 transform.localScale = transform.localScale * breakOutScale;
-                GetComponent<commentContents>().commentMeta.gameObject.SetActive(true);
+                GetComponent<commentContents>().commentMetaUser.gameObject.SetActive(true);
 
                 if (GetComponent<commentContents>().isVideo)
                 {

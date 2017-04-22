@@ -48,6 +48,8 @@ public class commentManager : MonoBehaviour {
 
         //spawn simple comment
         spawnedComment = Instantiate(simpleCommentPrefab, transform.position, Quaternion.identity);
+        spawnedComment.transform.localEulerAngles = new Vector3(0, 0, 0);
+
         activeComments.Add(spawnedComment);
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
@@ -104,8 +106,9 @@ public class commentManager : MonoBehaviour {
         //define comment metas
         newComment.Date = System.DateTime.Now.ToString();
         newComment.user = metaManager.Instance.user;
-        newComment.commentMeta.text = (newComment.user + " " + newComment.Date);
-        
+        newComment.commentMetaUser.text = newComment.user;
+        newComment.commentMetaDate.text = newComment.Date;
+
         //link comment to gameObject
         newComment.linkedComponent = this.gameObject;
 

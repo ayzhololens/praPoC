@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 0d08dd59087697b44a68a02cc9a7c3a2, type: 3}
   m_ShaderKeywords: _EMISSION _USECOLOR_ON _USEEMISSIONTEX_ON
   m_LightmapFlags: 1
-  m_CustomRenderQueue: 1998
+  m_CustomRenderQueue: 1001
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2

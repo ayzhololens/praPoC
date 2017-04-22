@@ -7,11 +7,13 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     public UnityEvent Event;
 
 
+    bool canClick;
     bool focused;
     public bool gazeExit;
     void Start()
     {
 
+        canClick = true;
     }
 
     public void OnSelect()
@@ -41,8 +43,12 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     {
         if (GazeManager.Instance.HitObject == this.gameObject)
         {
-
-            OnSelect();
+            if (canClick)
+            {
+                OnSelect();
+                canClick = false;
+                Invoke("ClickReseter", .2f);
+            }
         }
         
     }
@@ -55,6 +61,11 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     public void OnFocusExit()
     {
         focused = false;
+    }
+
+    void ClickReseter()
+    {
+        canClick = true;
     }
 
 }

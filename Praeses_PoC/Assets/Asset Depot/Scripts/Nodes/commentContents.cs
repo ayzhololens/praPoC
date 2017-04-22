@@ -15,7 +15,8 @@ namespace HoloToolkit.Unity
         public bool isPhoto;
         public bool isVideo;
         public InputField commentMain;
-        public Text commentMeta;
+        public Text commentMetaUser;
+        public Text commentMetaDate;
         public string Date;
         public string user;
         public GameObject editButton;
@@ -42,6 +43,8 @@ namespace HoloToolkit.Unity
             {
                 videoChecker();
             }
+
+            transform.localEulerAngles = new Vector3(0, 0, 0);
 
         }
 

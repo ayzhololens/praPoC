@@ -16,6 +16,7 @@ namespace HoloToolkit.Unity
         GameObject spawnedNode;
         int spawnedIndex;
         bool placingInProgress;
+        bool reposInProgress;
         int offsetCounter;
 
         //gaze position and rotation
@@ -35,6 +36,10 @@ namespace HoloToolkit.Unity
             if (placingInProgress)
             {
                 nodePlacement();
+            }
+            if (reposInProgress)
+            {
+                repositionNode(spawnedNode);
             }
 
         }
@@ -185,5 +190,59 @@ namespace HoloToolkit.Unity
 
         }
 
+        public void repositionNode(GameObject node)
+        {
+            if(spawnedNode!=node || !reposInProgress)
+            {
+
+                node.GetComponent<nodeController>().closeNode();
+                node.GetComponent<BoxCollider>().enabled = false;
+                spawnedNode = node;
+                reposInProgress = true;
+
+            }
+            //update node placement
+            spawnedNode.transform.position = getNodeLoc(lookPos);
+            spawnedNode.transform.rotation = getNodeRot(lookRot);
+
+            //wait a short while before they can lock placement so it doesnt autolock
+            offsetCounter += 1;
+            if (sourceManager.Instance.sourcePressed && offsetCounter >= 40)
+            {
+                reposInProgress = false;
+                reposMiniNode(spawnedNode);
+                node.GetComponent<nodeController>().openNode();
+                node.GetComponent<BoxCollider>().enabled = true;
+                offsetCounter = 0;
+            }
+        }
+
+        void reposMiniNode(GameObject node)
+        {
+            //get minimap components, scale and offset it to real space
+            minimapSpawn miniMapComponent = minimapSpawn.Instance;
+            Vector3 boilerPos = miniMapComponent.boilerPivot;
+            Transform miniMap = miniMapComponent.miniMapHolder.transform;
+            Transform rotatorGroup = miniMap.parent;
+            rotatorGroup.localScale = Vector3.one * (1 / miniMapComponent.scaleOffset);
+            rotatorGroup.position = boilerPos;
+
+            //spawn miniNode and parent it correctly
+            GameObject miniNode = node.GetComponent<nodeController>().miniNode;
+            miniNode.transform.position = node.transform.position;
+            miniNode.transform.rotation = node.transform.rotation;
+
+
+            //reset rotator group to position miniNode
+            miniNode.transform.SetParent(miniMap);
+            rotatorGroup.localPosition = Vector3.zero;
+            rotatorGroup.localScale = Vector3.one;
+        }
+
+
+    
+
     }
+
+
 }

@@ -10,13 +10,22 @@ public class buttonHightlight : MonoBehaviour {
     public bool isPanel;
     Color panelMain;
     public Color panelHighlight;
+    public GameObject objectOverride;
 
     // Use this for initialization
     void Start () {
         //mat = GetComponent<Renderer>().material;
         if (!isPanel)
         {
-            GetComponent<Renderer>().material = mainMat;
+            if(objectOverride != null)
+            {
+                objectOverride.GetComponent<Renderer>().material = mainMat;
+            }
+            else
+            {
+                GetComponent<Renderer>().material = mainMat;
+
+            }
         }
         if (isPanel)
         {
@@ -33,7 +42,15 @@ public class buttonHightlight : MonoBehaviour {
     {
         if (!isPanel)
         {
-            GetComponent<Renderer>().material = highlightMat;
+            if (objectOverride != null)
+            {
+                objectOverride.GetComponent<Renderer>().material = highlightMat;
+            }
+            else
+            {
+                GetComponent<Renderer>().material = highlightMat;
+
+            }
         }
         if (isPanel)
         {
@@ -44,7 +61,11 @@ public class buttonHightlight : MonoBehaviour {
 
     public void unHighlight()
     {
-        if (!isPanel)
+        if (objectOverride != null)
+        {
+            objectOverride.GetComponent<Renderer>().material = mainMat;
+        }
+        else if(!isPanel)
         {
             GetComponent<Renderer>().material = mainMat;
         }
