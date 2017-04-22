@@ -83,8 +83,6 @@ namespace HoloToolkit.Unity
             {
                 currentField.gameObject.GetComponent<inputFieldManager>().onEditChangeUpdateJSon();
             }
-
-            print("done is pressed");
         }
 
         void textSync()
