@@ -7013,8 +7013,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 4394078253578712}
-  sensitivity: 15
-  dampening: 50
+  sensitivity: 10
+  dampening: 1
   lerp: 0.1
   BoundingBox: {fileID: 1482015511199446}
   MoveButton: {fileID: 1455097865808342}

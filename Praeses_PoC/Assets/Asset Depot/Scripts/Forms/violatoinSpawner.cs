@@ -15,7 +15,6 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
     public GameObject violationFieldPrefab;
     public GameObject violationPreview;
     public GameObject violationPreviewField;
-    public int amount;
     public int rowLengthBox;
     public float hOffsetBox;
     public float vOffsetBox;
@@ -79,14 +78,14 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
         Vector3 spawnPos = new Vector3(startPos.x, startPos.y, startPos.z);
         int rLength = rowLengthBox;
 
-        for (int i = 0; i<VioCat.Count; i++)
+        for (int i = 0; i < VioCat.Count; i++)
         {
             if (i == rLength)
             {
 
                 vOff = vOff + vOffsetBox;
                 hCount = 0;
-                rLength *= 2;
+                rLength += rowLengthBox;
             }
 
 
@@ -99,7 +98,8 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
             spawnedViolation.GetComponent<violationComponent>().Index = i;
-            spawnedViolation.GetComponent<violationComponent>().optionTitle.text = VioCat[i];
+            spawnedViolation.GetComponent<violationComponent>().optionTitle.text =
+                VioCat[i];
             hCount += 1;
 
         }
@@ -123,7 +123,7 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
                 vOff = vOff + vOffsetBox;
                 hCount = 0;
-                rLength *= 2;
+                rLength += rowLengthBox;
             }
 
 
@@ -136,7 +136,8 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
             spawnedViolation.GetComponent<violationComponent>().Index = cat;
-            spawnedViolation.GetComponent<violationComponent>().optionTitle.text = vioLib.violationsCategory[cat];
+            spawnedViolation.GetComponent<violationComponent>().optionTitle.text = 
+                vioLib.violationsCategory[cat];
             hCount += 1;
 
         }
@@ -172,7 +173,7 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
                 vOff = vOff + vOffsetBox;
                 hCount = 0;
-                rLength *= 2;
+                rLength += rowLengthBox;
             }
 
             GameObject spawnedViolation = Instantiate(violationSubCategoryPrefab, spawnPos, Quaternion.identity);
@@ -183,7 +184,7 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             spawnedViolation.transform.localPosition = spawnPos;
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
             spawnedViolation.GetComponent<violationComponent>().Index = i;
-            spawnedViolation.GetComponent<violationComponent>().optionTitle.text = VioSubCat[i];
+            spawnedViolation.GetComponent<violationComponent>().optionTitle.text =  VioSubCat[i];
             hCount += 1;
 
         }
@@ -252,14 +253,9 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             spawnedViolation.transform.localPosition = spawnPos;
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
             spawnedViolation.GetComponent<violationComponent>().Index = i;
-            
 
-            string violatioName = "NB# " +
-                +activeViolationController.violationIndices[0] + "."
-                + activeViolationController.violationIndices[1] + "."
-                + i + " | " 
-                + activeViolationController.violationData[0] + " -"
-                + activeViolationController.violationData[1] + " ";
+
+            string violatioName = Vios[i];
 
             spawnedViolation.GetComponent<violationComponent>().optionTitle.text = violatioName;
             vCount += 1;
