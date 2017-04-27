@@ -195,6 +195,7 @@ namespace HoloToolkit.Sharing.Tests
 
         private void Start()
         {
+            
             // SharingStage should be valid at this point.
             SharingStage.Instance.SharingManagerConnected += Connected;
         }

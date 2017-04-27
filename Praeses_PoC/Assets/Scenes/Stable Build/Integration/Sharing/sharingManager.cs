@@ -5,17 +5,32 @@ using HoloToolkit.Unity;
 using HoloToolkit.Sharing;
 using HoloToolkit.Unity.InputModule;
 using System;
+using UnityEngine.VR.WSA;
+using UnityEngine.VR.WSA.Sharing;
 
 public class sharingManager : MonoBehaviour {
 
     SharingStage sharingStage;
+
     SharingManager sharingMgr;
+
     RoomManager roomMgr;
+
+    public GameObject anchoredObject;
+
+    private WorldAnchor worldAnchor;
+
     private RoomManagerAdapter listener;
 
     private static string ROOM_NAME = "AYZ";
 
+    private static string ANCHOR_NAME = "GameRootAnchor";
+
     private SessionManager sessionMgr;
+
+    private int retryCount = 10;
+
+    private List<byte> exportingAnchorBytes = new List<byte>();
 
     // Use this for initialization
     void Start () {
@@ -23,7 +38,7 @@ public class sharingManager : MonoBehaviour {
         sharingStage = SharingStage.Instance;
         sharingMgr = sharingStage.Manager; 
         roomMgr = sharingMgr.GetRoomManager();
-
+        worldAnchor = anchoredObject.AddComponent<WorldAnchor>();
 
         if (roomMgr != null)
         {
@@ -106,10 +121,43 @@ public class sharingManager : MonoBehaviour {
         if (successful)
         {
             Debug.LogFormat("Anchors download succeeded for Room {0}", request.GetRoom().GetName().GetString());
+            byte[] anchorData = new byte[0];
+            int dataSize = request.GetDataSize();
+            if (request.GetData(anchorData, dataSize))
+            {
+                Debug.Log("Importing anchor");
+                WorldAnchorTransferBatch.ImportAsync(anchorData, OnImportComplete);
+            } else
+            {
+                Debug.Log("Failed to get anchor data");
+            }
         }
         else
         {
             Debug.LogFormat("Anchors download failed: {0}", failureReason.GetString());
+        }
+    }
+
+    private void OnImportComplete(SerializationCompletionReason completionReason, WorldAnchorTransferBatch deserializedTransferBatch)
+    {
+        if (completionReason != SerializationCompletionReason.Succeeded)
+        {
+            Debug.Log("Serialization failed");
+            return;
+        } else
+        {
+            string[] ids = deserializedTransferBatch.GetAllIds();
+            foreach (string id in ids)
+            {
+                if (gameObject != null)
+                {
+                    deserializedTransferBatch.LockObject(id, anchoredObject);
+                }
+                else
+                {
+                    Debug.Log("Failed to find object for anchor id: " + id);
+                }
+            }
         }
     }
 
@@ -125,6 +173,44 @@ public class sharingManager : MonoBehaviour {
         }
     }
 
+    /*
+     * Anchor export / importing
+     *
+     */
+    public void ExportWorldAnchor()
+    {
+        WorldAnchorTransferBatch transferBatch = new WorldAnchorTransferBatch();
+        transferBatch.AddWorldAnchor(ANCHOR_NAME, worldAnchor);
+        WorldAnchorTransferBatch.ExportAsync(transferBatch, OnExportDataAvailable, OnExportComplete);
+    }
+
+    public void ImportWorldAnchor()
+    {
+        roomMgr.DownloadAnchor(roomMgr.GetCurrentRoom(), ANCHOR_NAME);
+    }
+
+    private void OnExportComplete(SerializationCompletionReason completionReason)
+    {
+        if (completionReason != SerializationCompletionReason.Succeeded)
+        {
+            // If we have been transferring data and it failed, 
+            // tell the client to discard the data
+            Debug.Log("Failed to export anchor");
+        }
+        else
+        {
+            // Tell the client that serialization has succeeded.
+            // The client can start importing once all the data is received.
+            Debug.Log("Uploading anchor");
+            roomMgr.UploadAnchor(roomMgr.GetCurrentRoom(), ANCHOR_NAME, exportingAnchorBytes.ToArray(), exportingAnchorBytes.Count);
+        }
+    }
+
+    private void OnExportDataAvailable(byte[] data)
+    {
+        // Send the bytes to the client.  Data may also be buffered.
+        exportingAnchorBytes.AddRange(data);
+    }
     // Update is called once per frame
     void Update () {
 		
