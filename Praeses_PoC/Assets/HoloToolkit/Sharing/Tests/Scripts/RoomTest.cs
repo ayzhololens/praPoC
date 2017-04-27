@@ -202,7 +202,10 @@ namespace HoloToolkit.Sharing.Tests
         private void OnUserJoinedRoom(Room room, int user)
         {
             User joinedUser = SharingStage.Instance.SessionUsersTracker.GetUserById(user);
-            Debug.LogFormat("User {0} joined Room {1}", joinedUser.GetName(), room.GetName().GetString());
+            Debug.LogFormat("User {0} joined Room {1}", 
+                joinedUser.GetName(), 
+                room.GetName()
+                .GetString());
         }
 
         private void OnUserLeftRoom(Room room, int user)
