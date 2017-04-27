@@ -27,13 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Stable Build/Integration/preHAcademy.unity
   - enabled: 0
     path: Assets/Scenes/Stable Build/Integration/betaBegin2.unity
-  - enabled: 0
-    path: Assets/Scenes/Working Prototypes/Jeff/sharingWithUnet/scenes/sharing.unity
-  - enabled: 0
-    path: Assets/HoloToolkit-Examples/SharingWithUNET/Scenes/sharingwithunet.unity
-  - enabled: 0
-    path: Assets/HoloToolkit/Sharing/Tests/Scenes/SharingTest.unity
-  - enabled: 0
-    path: Assets/HoloToolkit/Sharing/Tests/Scenes/RoomAndAnchorTest.unity
   - enabled: 1
-    path: Assets/Scenes/Working Prototypes/Jeff/sharingService/scene/roomAndAnchorTestModified.unity
+    path: Assets/Scenes/Stable Build/Integration/minimapTumbleBugFix.unity
+  - enabled: 0
+    path: Assets/Scenes/Stable Build/Integration/offsiteScene.unity

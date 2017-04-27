@@ -142,10 +142,10 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         }
         #endregion
         //h
-        else if (nodeClass.type == 3)
+        else if (nodeClass.type == 3)// type = 3 violation
         {
             violatoinSpawner.Instance.spawnViolationFromJSON(spawnedNode);
-
+            nodeSpawner.Instance.spawnMiniNode(spawnedNode, 3);
 
 
             List<databaseMan.tempComment> tempList = new List<databaseMan.tempComment>();

@@ -403,26 +403,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114579420009079492, guid: e28c6b88ca910ac42ba84dfc6e02f1cf,
-        type: 2}
-      propertyPath: cameraTra
-      value: 
-      objectReference: {fileID: 1139740787}
-    - target: {fileID: 114680167930100306, guid: e28c6b88ca910ac42ba84dfc6e02f1cf,
-        type: 2}
-      propertyPath: cursorOri
-      value: 
-      objectReference: {fileID: 1613055825}
     - target: {fileID: 114817019560543872, guid: e28c6b88ca910ac42ba84dfc6e02f1cf,
         type: 2}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 756932298}
-    - target: {fileID: 114034420187923466, guid: e28c6b88ca910ac42ba84dfc6e02f1cf,
+    - target: {fileID: 114680167930100306, guid: e28c6b88ca910ac42ba84dfc6e02f1cf,
         type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: cursorOri
+      value: 
+      objectReference: {fileID: 1613055825}
+    - target: {fileID: 114579420009079492, guid: e28c6b88ca910ac42ba84dfc6e02f1cf,
+        type: 2}
+      propertyPath: cameraTra
+      value: 
+      objectReference: {fileID: 1139740787}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e28c6b88ca910ac42ba84dfc6e02f1cf, type: 2}
   m_IsPrefabParent: 0
@@ -998,7 +993,7 @@ Prefab:
     - target: {fileID: 114000011154029958, guid: 2ed75ffdf9031c94e8bce4b3d17b9928,
         type: 2}
       propertyPath: autoStartObserver
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000011154029958, guid: 2ed75ffdf9031c94e8bce4b3d17b9928,
         type: 2}
@@ -1050,7 +1045,13 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 756932294}
   m_Script: {fileID: 11500000, guid: 8568a4574ac4dd04e895b697e932fdd3, type: 3}
---- !u!114 &756932300
+--- !u!114 &756932301 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011154029958, guid: 2ed75ffdf9031c94e8bce4b3d17b9928,
+    type: 2}
+  m_PrefabInternal: {fileID: 756932294}
+  m_Script: {fileID: 11500000, guid: d587b71ba3b55e44f9654cec8898c32f, type: 3}
+--- !u!114 &756932303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1058,17 +1059,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 756932295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d20430be1ab5304baba371bcb14c2e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fa78181291c2cb40b39e9bcc3eea277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshPos: []
-  meshRot: []
---- !u!114 &756932301 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000011154029958, guid: 2ed75ffdf9031c94e8bce4b3d17b9928,
-    type: 2}
-  m_PrefabInternal: {fileID: 756932294}
-  m_Script: {fileID: 11500000, guid: d587b71ba3b55e44f9654cec8898c32f, type: 3}
+  mat: {fileID: 2100000, guid: ea40a1e19f8444b4592e987d29b8288d, type: 2}
 --- !u!1 &773697822 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1346368193807876, guid: 917c59906c8034444ac9cf70470d67fd,
@@ -2229,7 +2223,7 @@ Prefab:
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[14].Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 756932300}
+      objectReference: {fileID: 756932303}
     - target: {fileID: 114955019297564206, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[18].Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2310,6 +2304,16 @@ Prefab:
       propertyPath: violationPreview
       value: 
       objectReference: {fileID: 933379419}
+    - target: {fileID: 114955019297564206, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[14].Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: exportCmd
+      objectReference: {fileID: 0}
+    - target: {fileID: 114955019297564206, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[14].Keyword
+      value: export room
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
   m_IsPrefabParent: 0
@@ -2894,7 +2898,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1691820577}
-  - component: {fileID: 1691820578}
   m_Layer: 31
   m_Name: boiler
   m_TagString: boilerPrefab
@@ -2932,21 +2935,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1691820578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1691820576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 430a3dcc0ffd20e48a49a377f9823b86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSensitivity: 0.01
-  rotateSensitivity: 0.2
-  ratchetSensitivity: 0.02
-  mainMenuContent: {fileID: 568049870}
 --- !u!1 &1694856253
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,12 +3062,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114433847372678930, guid: ce2303ddb3eb7b54ab0d9566c9257652,
+    - target: {fileID: 114744965108322706, guid: ce2303ddb3eb7b54ab0d9566c9257652,
         type: 2}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1321159826}
     - target: {fileID: 114710065887400722, guid: ce2303ddb3eb7b54ab0d9566c9257652,
+        type: 2}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1321159826}
+    - target: {fileID: 114433847372678930, guid: ce2303ddb3eb7b54ab0d9566c9257652,
         type: 2}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

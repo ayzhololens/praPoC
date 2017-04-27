@@ -46,8 +46,10 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
     {
         if (sourceManager.Instance.sourcePressed && GazeManager.Instance.HitObject)
         {
-            if (GazeManager.Instance.HitObject.tag == "miniMapMesh") { 
-            timerManager.Instance.tumbleCountDown();
+            if (GazeManager.Instance.HitObject.tag == "miniMapMesh") {
+                //timerManager.Instance.tumbleCountDown();
+                colliderOn();
+                menuOn();
             }
         }
         else if (!sourceManager.Instance.sourcePressed)

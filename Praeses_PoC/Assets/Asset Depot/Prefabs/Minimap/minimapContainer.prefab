@@ -2065,7 +2065,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0}
+  m_Size: {x: 2, y: 2, z: 0}
   m_Center: {x: 0, y: 0, z: -0.93}
 --- !u!65 &65128665798221826
 BoxCollider:
@@ -2253,7 +2253,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1584053904401758}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
   m_Name: 
@@ -2340,6 +2340,7 @@ MonoBehaviour:
   lockSprites:
   - {fileID: 1391915296356984}
   - {fileID: 1411550752208264}
+  locked: 0
 --- !u!114 &114266282396069912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2596,7 +2597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PivotAxis: 1
+  PivotAxis: 0
 --- !u!114 &114673931878621774
 MonoBehaviour:
   m_ObjectHideFlags: 1

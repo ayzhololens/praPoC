@@ -860,6 +860,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 141798891}
+  - component: {fileID: 141798892}
   m_Layer: 0
   m_Name: rotator
   m_TagString: Untagged
@@ -884,6 +885,18 @@ Transform:
   m_Father: {fileID: 629706936}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &141798892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 141798890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa78181291c2cb40b39e9bcc3eea277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: ea40a1e19f8444b4592e987d29b8288d, type: 2}
 --- !u!1 &143720539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,6 +1291,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectText: {fileID: 1499196003}
   NetworkManagerNull: {fileID: 2144381946}
+  connnectHost: 0
+  disconnectHost: 0
+  offsiteWindow: {fileID: 0}
+  sharedWindow: {fileID: 0}
 --- !u!1 &175845484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4515,6 +4532,7 @@ MonoBehaviour:
   mediaWindow: {fileID: 893040412}
   mediaPlane: {fileID: 0}
   nodesMinimapCam: {fileID: 0}
+  mainWindow: {fileID: 0}
   closer: 1
   photoMaterial: {fileID: 0}
   videoMaterial: {fileID: 0}
@@ -4601,6 +4619,24 @@ MonoBehaviour:
         - m_Target: {fileID: 1441332815}
           m_MethodName: focus
           m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Keyword: loadMap
+    KeyCode: 46
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 141798892}
+          m_MethodName: importCmd
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11549,7 +11585,6 @@ MonoBehaviour:
         State: 
         Zip: 
       Equipment: []
-  testItem: {fileID: 0}
 --- !u!4 &2100857527
 Transform:
   m_ObjectHideFlags: 0
@@ -11597,6 +11632,7 @@ MonoBehaviour:
   commentHolder: []
   commentBox: {fileID: 1939982631}
   offsiteMediaWindow: {fileID: 893040412}
+  mainWindow: {fileID: 0}
   mediaPlane: {fileID: 2092079020}
   videoMaterial: {fileID: 2100000, guid: 73e470de24564124dbf5fba202ad5664, type: 2}
   videoPlayer: {fileID: 0}
@@ -11605,7 +11641,6 @@ MonoBehaviour:
   descObject: {fileID: 187407435}
   nodesMinimapCam: {fileID: 343203814}
   metaObject: {fileID: 2088927370}
-  isViewing: 0
 --- !u!114 &2100857529
 MonoBehaviour:
   m_ObjectHideFlags: 0
