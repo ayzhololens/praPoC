@@ -71,6 +71,14 @@ public class pocSharingManager : MonoBehaviour {
 
     }
 
+    public void SetSlaveColor()
+    {
+        if (isMaster)
+        {
+            PocSharingMessages.Instance.ChangeColor();
+        }
+    }
+
     private void ChangeColor(NetworkInMessage msg)
     {
         if (!isMaster)

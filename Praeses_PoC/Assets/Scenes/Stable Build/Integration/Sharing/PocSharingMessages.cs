@@ -107,7 +107,7 @@ public class PocSharingMessages : Singleton<PocSharingMessages>
         return msg;
     }
 
-    public void SendHeadTransform(Vector3 position, Quaternion rotation)
+    public void ChangeColor()
     {
         // If we are connected to a session, broadcast our head info
         if (serverConnection != null && serverConnection.IsConnected())
@@ -115,7 +115,7 @@ public class PocSharingMessages : Singleton<PocSharingMessages>
             // Create an outgoing network message to contain all the info we want to send
             NetworkOutMessage msg = CreateMessage((byte)TestMessageID.ChangeColor);
 
-            AppendTransform(msg, position, rotation);
+            msg.Write("red");
 
             // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
             serverConnection.Broadcast(
