@@ -7,8 +7,9 @@ using HoloToolkit.Unity.InputModule;
 using System;
 using UnityEngine.VR.WSA;
 using UnityEngine.VR.WSA.Sharing;
+using UnityEngine.VR.WSA.Persistence;
 
-public class sharingManager : MonoBehaviour {
+public class pocSharingManager : MonoBehaviour {
 
     SharingStage sharingStage;
 
@@ -16,7 +17,7 @@ public class sharingManager : MonoBehaviour {
 
     RoomManager roomMgr;
 
-    public GameObject anchoredObject;
+    public GameObject anchorObject;
 
     private WorldAnchor worldAnchor;
 
@@ -32,13 +33,17 @@ public class sharingManager : MonoBehaviour {
 
     private List<byte> exportingAnchorBytes = new List<byte>();
 
+    private WorldAnchorStore anchorStore = null;
+
+    private bool isMaster = false;
+
     // Use this for initialization
     void Start () {
 
         sharingStage = SharingStage.Instance;
         sharingMgr = sharingStage.Manager; 
         roomMgr = sharingMgr.GetRoomManager();
-        worldAnchor = anchoredObject.AddComponent<WorldAnchor>();
+        worldAnchor = anchorObject.AddComponent<WorldAnchor>();
 
         if (roomMgr != null)
         {
@@ -59,12 +64,36 @@ public class sharingManager : MonoBehaviour {
         SessionManagerAdapter sessListener = new SessionManagerAdapter();
         sessListener.UserJoinedSessionEvent += UserJoinedSession;
         sessionMgr.AddListener(sessListener);
+
+        WorldAnchorStore.GetAsync(AnchorStoreReady);
+
+        PocSharingMessages.Instance.MessageHandlers[PocSharingMessages.TestMessageID.ChangeColor] = ChangeColor;
+
+    }
+
+    private void ChangeColor(NetworkInMessage msg)
+    {
+        if (!isMaster)
+        {
+            GetComponent<Renderer>().material.color = Color.red;
+        }
+    }
+
+    private void AnchorStoreReady(WorldAnchorStore store)
+    {
+        Debug.Log("Anchor store initialized");
+        anchorStore = store;
     }
 
     private void UserJoinedSession(Session arg1, User arg2)
     {
         Debug.Log("User joined session");
         Invoke("CreateOrJoinRoom", 3);
+    }
+
+    public void TestYo()
+    {
+        anchorObject.transform.localScale *= 2;
     }
 
 
@@ -121,8 +150,10 @@ public class sharingManager : MonoBehaviour {
         if (successful)
         {
             Debug.LogFormat("Anchors download succeeded for Room {0}", request.GetRoom().GetName().GetString());
-            byte[] anchorData = new byte[0];
+            byte[] anchorData = new byte[request.GetDataSize()];
+            Debug.Log("Created array");
             int dataSize = request.GetDataSize();
+            Debug.Log("Array size " + dataSize.ToString());
             if (request.GetData(anchorData, dataSize))
             {
                 Debug.Log("Importing anchor");
@@ -151,7 +182,7 @@ public class sharingManager : MonoBehaviour {
             {
                 if (gameObject != null)
                 {
-                    deserializedTransferBatch.LockObject(id, anchoredObject);
+                    deserializedTransferBatch.LockObject(id, anchorObject);
                 }
                 else
                 {
@@ -179,9 +210,20 @@ public class sharingManager : MonoBehaviour {
      */
     public void ExportWorldAnchor()
     {
-        WorldAnchorTransferBatch transferBatch = new WorldAnchorTransferBatch();
-        transferBatch.AddWorldAnchor(ANCHOR_NAME, worldAnchor);
-        WorldAnchorTransferBatch.ExportAsync(transferBatch, OnExportDataAvailable, OnExportComplete);
+        isMaster = true;
+        Debug.Log("Exporting world anchor.");
+        if (anchorStore != null)
+        {
+            anchorStore.Save(ANCHOR_NAME, worldAnchor);
+            Debug.Log("export world anchor voice sent");
+            WorldAnchorTransferBatch transferBatch = new WorldAnchorTransferBatch();
+            transferBatch.AddWorldAnchor(ANCHOR_NAME, worldAnchor);
+            WorldAnchorTransferBatch.ExportAsync(transferBatch, OnExportDataAvailable, OnExportComplete);
+        }
+        else
+        {
+            Debug.Log("Anchor store not ready.");
+        }
     }
 
     public void ImportWorldAnchor()
