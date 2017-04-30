@@ -17,10 +17,17 @@ public class cubeBehavior : NetworkBehaviour {
     [SyncVar]
     public bool followHead;
 
+    Transform holoCollection;
+
     // Use this for initialization
     void Start () {
-        //transform.SetParent(parentIdentifier.Instance.gameObject.transform);
-		if (isServer)
+
+        holoCollection = parentIdentifier.Instance.gameObject.transform;
+        transform.SetParent(holoCollection);
+
+        //holoCollection.GetComponent<NetworkTransformChild>().target = gameObject.transform;
+
+        if (isServer)
         {
             Debug.Log("i am a server");
         }
@@ -31,23 +38,24 @@ public class cubeBehavior : NetworkBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
-        ////server defines sync values
-        //if (isServer)
-        //{
-        //    mainCameraSync();
-        //    tra = transform.localPosition;
-        //    rot = transform.localRotation;
-        //    sca = transform.localScale;
-        //}else
+        //server defines sync values
+        if (isServer)
+        {
+            mainCameraSync();
+            //tra = transform.localPosition;
+            //rot = transform.localRotation;
+            //sca = transform.localScale;
+        }
+        else
 
-        ////client picks up sync values
-        //{
-        //    transform.localPosition = tra;
-        //    transform.localRotation = rot;
-        //    transform.localScale = sca;
-        //}
+        //client picks up sync values
+        {
+            //transform.localPosition = tra;
+            //transform.localRotation = rot;
+            //transform.localScale = sca;
+        }
     }
 
     public void mainCameraSync()
@@ -72,6 +80,9 @@ public class cubeBehavior : NetworkBehaviour {
                 followHead = false;
                 Debug.Log("cube stopped following device on server");
             }
+        }else
+        {
+            Debug.Log("You are not the server");
         }
     }
 }

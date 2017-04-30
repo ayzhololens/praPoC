@@ -37,6 +37,7 @@ public class pocSharingManager : MonoBehaviour {
 
     private bool isMaster = false;
 
+
     // Use this for initialization
     void Start () {
 
@@ -61,9 +62,9 @@ public class pocSharingManager : MonoBehaviour {
 
         sessionMgr = SharingStage.Instance.Manager.GetSessionManager();
 
-        SessionManagerAdapter sessListener = new SessionManagerAdapter();
-        sessListener.UserJoinedSessionEvent += UserJoinedSession;
-        sessionMgr.AddListener(sessListener);
+        //SessionManagerAdapter sessListener = new SessionManagerAdapter();
+        //sessListener.UserJoinedSessionEvent += UserJoinedSession;
+        //sessionMgr.AddListener(sessListener);
 
         WorldAnchorStore.GetAsync(AnchorStoreReady);
 
@@ -85,11 +86,11 @@ public class pocSharingManager : MonoBehaviour {
         anchorStore = store;
     }
 
-    private void UserJoinedSession(Session arg1, User arg2)
-    {
-        Debug.Log("User joined session");
-        Invoke("CreateOrJoinRoom", 3);
-    }
+    //private void UserJoinedSession(Session arg1, User arg2)
+    //{
+    //    Debug.Log("User joined session");
+    //    Invoke("CreateOrJoinRoom", 3);
+    //}
 
     //public void TestYo()
     //{
@@ -220,6 +221,7 @@ public class pocSharingManager : MonoBehaviour {
      * Anchor export / importing
      *
      */
+
     public void ExportWorldAnchor()
     {
         isMaster = true;
