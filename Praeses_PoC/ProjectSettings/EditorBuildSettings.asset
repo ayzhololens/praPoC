@@ -31,3 +31,5 @@ EditorBuildSettings:
     path: Assets/HoloToolkit/Sharing/Tests/Scenes/RoomAndAnchorTest.unity
   - enabled: 1
     path: Assets/Scenes/Stable Build/Integration/Sharing/spectatorSetup.unity
+  - enabled: 0
+    path: Assets/Scenes/Stable Build/Integration/Sharing/unet/spectatorSetupUNet.unity

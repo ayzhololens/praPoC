@@ -67,17 +67,17 @@ public class pocSharingManager : MonoBehaviour {
 
         WorldAnchorStore.GetAsync(AnchorStoreReady);
 
-        PocSharingMessages.Instance.MessageHandlers[PocSharingMessages.TestMessageID.ChangeColor] = ChangeColor;
+        //PocSharingMessages.Instance.MessageHandlers[PocSharingMessages.TestMessageID.ChangeColor] = ChangeColor;
 
     }
 
-    private void ChangeColor(NetworkInMessage msg)
-    {
-        if (!isMaster)
-        {
-            GetComponent<Renderer>().material.color = Color.red;
-        }
-    }
+    //private void ChangeColor(NetworkInMessage msg)
+    //{
+    //    if (!isMaster)
+    //    {
+    //        GetComponent<Renderer>().material.color = Color.red;
+    //    }
+    //}
 
     private void AnchorStoreReady(WorldAnchorStore store)
     {
@@ -91,28 +91,39 @@ public class pocSharingManager : MonoBehaviour {
         Invoke("CreateOrJoinRoom", 3);
     }
 
-    public void TestYo()
-    {
-        anchorObject.transform.localScale *= 2;
-    }
+    //public void TestYo()
+    //{
+    //    anchorObject.transform.localScale *= 2;
+    //}
 
 
     public void CreateOrJoinRoom()
     {
-        System.Random rnd = new System.Random();
 
         if (roomMgr.GetRoomCount() < 1)
         {
-            Room newRoom = roomMgr.CreateRoom(ROOM_NAME, rnd.Next(), false);
+            createRoom();
+        } else
+        {
+            joinRoom();
+        }
+    }
+    
+    public void createRoom()
+        {
+        System.Random rnd = new System.Random();
+
+        Room newRoom = roomMgr.CreateRoom(ROOM_NAME, rnd.Next(), false);
             if (newRoom == null)
             {
                 Debug.LogWarning("Cannot create room");
             }
-        } else
-        {
-            Room room = roomMgr.GetRoom(0);
-            roomMgr.JoinRoom(room);
         }
+
+    public void joinRoom()
+    {
+        Room room = roomMgr.GetRoom(0);
+        roomMgr.JoinRoom(room);
     }
 
     private void OnRoomAdded(Room newRoom)
@@ -183,6 +194,7 @@ public class pocSharingManager : MonoBehaviour {
                 if (gameObject != null)
                 {
                     deserializedTransferBatch.LockObject(id, anchorObject);
+                    Debug.Log("Import anchor complete!");
                 }
                 else
                 {

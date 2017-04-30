@@ -22,6 +22,9 @@ GameObject:
   - component: {fileID: 33344741139810158}
   - component: {fileID: 65294127366397332}
   - component: {fileID: 23744287245925628}
+  - component: {fileID: 114632653359166698}
+  - component: {fileID: 114883107385417352}
+  - component: {fileID: 114257361483153054}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -92,3 +95,78 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114257361483153054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407368288900050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930d5889c57417143a0f55a18dbe0620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114883107385417352}
+        m_MethodName: tapActivate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  gazeExit: 0
+--- !u!114 &114632653359166698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407368288900050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 103
+    i1: 20
+    i2: 217
+    i3: 141
+    i4: 4
+    i5: 211
+    i6: 99
+    i7: 132
+    i8: 88
+    i9: 249
+    i10: 52
+    i11: 207
+    i12: 117
+    i13: 4
+    i14: 70
+    i15: 104
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114883107385417352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407368288900050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1798ae3135425408d860b224e143d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tra: {x: 0, y: 0, z: 0}
+  rot: {x: 0, y: 0, z: 0, w: 0}
+  sca: {x: 0, y: 0, z: 0}
+  followHead: 0

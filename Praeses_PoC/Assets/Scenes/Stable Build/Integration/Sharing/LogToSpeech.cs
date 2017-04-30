@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LogToSpeech : MonoBehaviour
 {
-
+#if !UNITY_EDITOR
     private TextToSpeechManager textToSpeech;
 
     private Queue<string> logs = new Queue<string>();
@@ -48,5 +48,5 @@ public class LogToSpeech : MonoBehaviour
             logs.Enqueue(logString);
         }
     }
-
+#endif
 }
