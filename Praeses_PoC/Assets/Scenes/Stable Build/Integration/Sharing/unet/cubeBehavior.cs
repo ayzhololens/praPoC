@@ -44,17 +44,17 @@ public class cubeBehavior : NetworkBehaviour {
         if (isServer)
         {
             mainCameraSync();
-            //tra = transform.localPosition;
-            //rot = transform.localRotation;
-            //sca = transform.localScale;
+            tra = transform.localPosition;
+            rot = transform.localRotation;
+            sca = transform.localScale;
         }
         else
 
         //client picks up sync values
         {
-            //transform.localPosition = tra;
-            //transform.localRotation = rot;
-            //transform.localScale = sca;
+            transform.localPosition = tra;
+            transform.localRotation = rot;
+            transform.localScale = sca;
         }
     }
 
