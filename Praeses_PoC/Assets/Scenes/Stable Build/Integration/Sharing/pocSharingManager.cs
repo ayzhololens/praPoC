@@ -114,7 +114,7 @@ public class pocSharingManager : MonoBehaviour {
         {
         System.Random rnd = new System.Random();
 
-        Room newRoom = roomMgr.CreateRoom(ROOM_NAME, rnd.Next(), false);
+        Room newRoom = roomMgr.CreateRoom(ROOM_NAME, rnd.Next(), true);
             if (newRoom == null)
             {
                 Debug.LogWarning("Cannot create room");

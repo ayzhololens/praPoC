@@ -119,7 +119,7 @@ namespace HoloToolkit.Unity
                 {
                     if (boiler.transform.GetChild(u).gameObject.activeSelf && boiler.transform.GetChild(u).gameObject.GetComponent<MeshRenderer>() != null)
                     {
-                        boiler.transform.GetChild(u).gameObject.GetComponent<Renderer>().material = occlusionMat;
+                        //boiler.transform.GetChild(u).gameObject.GetComponent<Renderer>().material = occlusionMat;
 
                     }
                 }
