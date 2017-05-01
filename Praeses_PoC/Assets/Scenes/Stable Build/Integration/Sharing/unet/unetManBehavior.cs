@@ -10,7 +10,7 @@ public class unetManBehavior : MonoBehaviour {
     private NetworkStartPosition[] spawnPoints;
     private int spawnPointIndex;
     public GameObject hologramCollection;
-    public InputField ipAddressField;
+    //public InputField ipAddressField;
 
     private void Start()
     {
@@ -26,7 +26,7 @@ public class unetManBehavior : MonoBehaviour {
 
     public void joinRoom()
     {
-        man.networkAddress = ipAddressField.text;
+        //man.networkAddress = ipAddressField.text;
         man.StartClient();
     }
 
