@@ -37,6 +37,7 @@ public class pocSharingManager : MonoBehaviour {
 
     private bool isMaster = false;
 
+
     // Use this for initialization
     void Start () {
 
@@ -61,31 +62,23 @@ public class pocSharingManager : MonoBehaviour {
 
         sessionMgr = SharingStage.Instance.Manager.GetSessionManager();
 
-        SessionManagerAdapter sessListener = new SessionManagerAdapter();
-        sessListener.UserJoinedSessionEvent += UserJoinedSession;
-        sessionMgr.AddListener(sessListener);
+        //SessionManagerAdapter sessListener = new SessionManagerAdapter();
+        //sessListener.UserJoinedSessionEvent += UserJoinedSession;
+        //sessionMgr.AddListener(sessListener);
 
         WorldAnchorStore.GetAsync(AnchorStoreReady);
 
-        PocSharingMessages.Instance.MessageHandlers[PocSharingMessages.TestMessageID.ChangeColor] = ChangeColor;
+        //PocSharingMessages.Instance.MessageHandlers[PocSharingMessages.TestMessageID.ChangeColor] = ChangeColor;
 
     }
 
-    public void SetSlaveColor()
-    {
-        if (isMaster)
-        {
-            PocSharingMessages.Instance.ChangeColor();
-        }
-    }
-
-    private void ChangeColor(NetworkInMessage msg)
-    {
-        if (!isMaster)
-        {
-            GetComponent<Renderer>().material.color = Color.red;
-        }
-    }
+    //private void ChangeColor(NetworkInMessage msg)
+    //{
+    //    if (!isMaster)
+    //    {
+    //        GetComponent<Renderer>().material.color = Color.red;
+    //    }
+    //}
 
     private void AnchorStoreReady(WorldAnchorStore store)
     {
@@ -93,34 +86,45 @@ public class pocSharingManager : MonoBehaviour {
         anchorStore = store;
     }
 
-    private void UserJoinedSession(Session arg1, User arg2)
-    {
-        Debug.Log("User joined session");
-        Invoke("CreateOrJoinRoom", 3);
-    }
+    //private void UserJoinedSession(Session arg1, User arg2)
+    //{
+    //    Debug.Log("User joined session");
+    //    Invoke("CreateOrJoinRoom", 3);
+    //}
 
-    public void TestYo()
-    {
-        anchorObject.transform.localScale *= 2;
-    }
+    //public void TestYo()
+    //{
+    //    anchorObject.transform.localScale *= 2;
+    //}
 
 
     public void CreateOrJoinRoom()
     {
-        System.Random rnd = new System.Random();
 
         if (roomMgr.GetRoomCount() < 1)
         {
-            Room newRoom = roomMgr.CreateRoom(ROOM_NAME, rnd.Next(), false);
+            createRoom();
+        } else
+        {
+            joinRoom();
+        }
+    }
+    
+    public void createRoom()
+        {
+        System.Random rnd = new System.Random();
+
+        Room newRoom = roomMgr.CreateRoom(ROOM_NAME, rnd.Next(), false);
             if (newRoom == null)
             {
                 Debug.LogWarning("Cannot create room");
             }
-        } else
-        {
-            Room room = roomMgr.GetRoom(0);
-            roomMgr.JoinRoom(room);
         }
+
+    public void joinRoom()
+    {
+        Room room = roomMgr.GetRoom(0);
+        roomMgr.JoinRoom(room);
     }
 
     private void OnRoomAdded(Room newRoom)
@@ -191,6 +195,7 @@ public class pocSharingManager : MonoBehaviour {
                 if (gameObject != null)
                 {
                     deserializedTransferBatch.LockObject(id, anchorObject);
+                    Debug.Log("Import anchor complete!");
                 }
                 else
                 {
@@ -216,6 +221,7 @@ public class pocSharingManager : MonoBehaviour {
      * Anchor export / importing
      *
      */
+
     public void ExportWorldAnchor()
     {
         isMaster = true;
