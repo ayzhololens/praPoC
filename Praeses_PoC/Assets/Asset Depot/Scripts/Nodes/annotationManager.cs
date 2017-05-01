@@ -120,14 +120,14 @@ namespace HoloToolkit.Unity
             {
                 if (currentAnnotation.GetComponent<nodeMediaHolder>().fieldNode)
                 {
-                    if (activeField.GetComponent<formFieldController>().capturingPhoto)
-                    {
-                        //activeField.GetComponent<formFieldController>().loadPhotoMedia();
-                    }
-                    if (activeField.GetComponent<formFieldController>().capturingVideo)
-                    {
-                        //activeField.GetComponent<formFieldController>().loadVideoMedia();
-                    }
+                    //if (activeField.GetComponent<formFieldController>().capturingPhoto)
+                    //{
+                    //    //activeField.GetComponent<formFieldController>().loadPhotoMedia();
+                    //}
+                    //if (activeField.GetComponent<formFieldController>().capturingVideo)
+                    //{
+                    //    //activeField.GetComponent<formFieldController>().loadVideoMedia();
+                    //}
                 }
 
 

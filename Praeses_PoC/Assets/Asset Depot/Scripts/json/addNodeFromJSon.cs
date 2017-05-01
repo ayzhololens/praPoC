@@ -158,6 +158,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 databaseMan.tempComment newItem = new databaseMan.tempComment();
                 newItem.date = commentJU.date;
                 newItem.type = 1;
+                newItem.user = commentJU.user;
                 newItem.content = commentJU.content;
                 tempList.Add(newItem);
             }

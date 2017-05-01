@@ -34,6 +34,7 @@ namespace HoloToolkit.Unity
 
         // Use this for initialization
         void Start() {
+
         }
 
         // Update is called once per frame
@@ -43,7 +44,7 @@ namespace HoloToolkit.Unity
             {
                 videoChecker();
             }
-
+            
             transform.localEulerAngles = new Vector3(0, 0, 0);
 
         }

@@ -13,10 +13,7 @@ namespace HoloToolkit.Unity
         public GameObject[] resolutions;
         public GameObject ReviewHolder;
         public GameObject submittedViolationHolder;
-        public GameObject commentHolder;
         public GameObject SubmittedMainHolder;
-        public float headerOffset;
-        Vector3 headerStartPos;
         GameObject copiedViolationContent;
 
     // Use this for initialization
@@ -31,29 +28,73 @@ namespace HoloToolkit.Unity
 
         public void loadReview()
         {
-            for(int i=0; i < violationControl.violationData.Count; i++)
+            for(int i=0; i < violationControl.violationData.Count+1; i++)
             {
-                violationData[i].text = violationControl.violationData[i];
+                if(i!= violationControl.violationData.Count)
+                {
+                    violationData[i].text = violationControl.violationData[i];
+                }
+                else
+                {
+                    int sCounter = 0;
+                    int pCounter = 0;
+                    int vCounter = 0;
+                    string tempString = "";
+                    foreach(GameObject activeComment in violationControl.gameObject.GetComponent<commentManager>().activeComments)
+                    {
+                        if (activeComment.GetComponent<commentContents>().isSimple)
+                        {
+                            sCounter += 1;
+                        }
+                        if (activeComment.GetComponent<commentContents>().isVideo)
+                        {
+                            vCounter += 1;
+                        }
+                        if (activeComment.GetComponent<commentContents>().isPhoto)
+                        {
+                            pCounter += 1;
+                        }
+
+                    }
+                    if (pCounter > 0)
+                    {
+                        tempString = tempString + "Photo Notes" + "(" + pCounter + ")";
+                        if (sCounter > 0)
+                        {
+                            tempString = tempString + ", ";
+                        }
+                        if (vCounter > 0)
+                        {
+                            tempString = tempString + ", ";
+                        }
+                    }
+                    if (sCounter > 0)
+                    {
+                        tempString = tempString + "Simple Notes" + "(" + sCounter + ")";
+                        if (vCounter > 0)
+                        {
+                            tempString = tempString + ", ";
+                        }
+                    }
+                    if (vCounter > 0)
+                    {
+                        tempString = tempString + "Video Notes" + "(" + vCounter + ")";
+                    }
+                    violationData[i].text = tempString;
+                }
             }
         }
 
         public void submitReview(bool fromJson)
         {
-            commentHolder.transform.SetParent(submittedViolationHolder.transform.parent);
-
 
             copiedViolationContent = Instantiate(this.gameObject, transform.position, Quaternion.identity);
             copiedViolationContent.transform.SetParent(submittedViolationHolder.transform);
             copiedViolationContent.transform.localScale = transform.localScale;
             copiedViolationContent.transform.localRotation = transform.localRotation;
-            copiedViolationContent.transform.localPosition = new Vector3(copiedViolationContent.transform.localPosition.x, copiedViolationContent.transform.localPosition.y +(headerOffset*800), copiedViolationContent.transform.localPosition.z);
             violationControl.showTabs(false);
 
             violationControl.violationHeader.text = violationControl.violationData[2];
-            Transform header = violationControl.violationHeader.transform.parent.parent;
-            headerStartPos = header.localPosition;
-            header.localPosition = new Vector3(header.localPosition.x, header.localPosition.y- headerOffset, header.localPosition.z);
-
             SubmittedMainHolder.SetActive(true);
             ReviewHolder.SetActive(false);
 
@@ -67,10 +108,7 @@ namespace HoloToolkit.Unity
 
         public void enableEditing()
         {
-            commentHolder.transform.SetParent(ReviewHolder.transform);
             violationControl.violationHeader.text = "Edit Violation";
-            Transform header = violationControl.violationHeader.transform.parent.parent;
-            header.localPosition = headerStartPos;
             DestroyImmediate(copiedViolationContent);
             violationControl.showTabs(true);
             SubmittedMainHolder.SetActive(false);

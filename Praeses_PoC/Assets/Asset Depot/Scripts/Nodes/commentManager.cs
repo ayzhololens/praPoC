@@ -19,12 +19,14 @@ public class commentManager : MonoBehaviour {
     public GameObject photoCommentPrefab;
     GameObject spawnedComment;
     public float offsetDist;
+    public bool xOffset;
     InputField activeInputField;
     public bool capturingPhoto { get; set; }
     public bool capturingVideo { get; set; }
     bool recordingEnabled;
     bool recordingInProgress;
     bool photoCaptureEnabled;
+
 
 
     // Use this for initialization
@@ -53,6 +55,7 @@ public class commentManager : MonoBehaviour {
         activeComments.Add(spawnedComment);
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
+        spawnedComment.transform.localScale = simpleCommentPrefab.transform.localScale;
 
         //define the comment type and open the keyboard
         spawnedComment.GetComponent<commentContents>().isSimple = true;
@@ -80,15 +83,18 @@ public class commentManager : MonoBehaviour {
     }
 
     public virtual GameObject spawnSimpleCommentFromJSON()
-    {
-        //shift all comments down
+    {        //shift all comments down
         repositionComments();
 
         //spawn simple comment
         spawnedComment = Instantiate(simpleCommentPrefab, transform.position, Quaternion.identity);
+        spawnedComment.transform.localEulerAngles = new Vector3(0, 0, 0);
+
         activeComments.Add(spawnedComment);
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
+        spawnedComment.transform.localScale = simpleCommentPrefab.transform.localScale;
+
 
         //define the comment type and open the keyboard
         spawnedComment.GetComponent<commentContents>().isSimple = true;
@@ -119,9 +125,18 @@ public class commentManager : MonoBehaviour {
 
         for (int i = 0; i < activeComments.Count; i++)
         {
-            activeComments[i].transform.position = new Vector3(activeComments[i].transform.position.x,
-                                                                activeComments[i].transform.position.y - offsetDist,
-                                                                activeComments[i].transform.position.z);
+            if (!xOffset)
+            {
+                activeComments[i].transform.localPosition = new Vector3(activeComments[i].transform.localPosition.x,
+                                                                    activeComments[i].transform.localPosition.y - offsetDist,
+                                                                    activeComments[i].transform.localPosition.z);
+            }
+            else
+            {
+                activeComments[i].transform.localPosition = new Vector3(activeComments[i].transform.localPosition.x- offsetDist,
+                                                                    activeComments[i].transform.localPosition.y,
+                                                                    activeComments[i].transform.localPosition.z);
+            }
         }
     }
 
@@ -140,7 +155,7 @@ public class commentManager : MonoBehaviour {
 
     void startVideoCapture()
     {
-        //mediaManager.Instance.vidRecorder.startRecordingVideo();
+        mediaManager.Instance.vidRecorder.startRecordingVideo();
         recordingEnabled = false;
         mediaManager.Instance.commentManager = GetComponent<commentManager>();
         mediaManager.Instance.setStatusIndicator("Recording in progress. Tap to stop");
@@ -154,7 +169,7 @@ public class commentManager : MonoBehaviour {
     void stopVideoRecording()
     {
         //stop recording, finish encoding then spawn video frame when done
-        //mediaManager.Instance.vidRecorder.StopRecordingVideo(false);
+        mediaManager.Instance.vidRecorder.StopRecordingVideo(false);
         Debug.Log("before status disable");
         mediaManager.Instance.disableStatusIndicator();
         mediaManager.Instance.recordingIndicator.SetActive(false);
@@ -163,6 +178,7 @@ public class commentManager : MonoBehaviour {
         mediaManager.Instance.activateComment();
 
     }
+
 
     public virtual GameObject spawnVideoComment()
     {
@@ -177,6 +193,7 @@ public class commentManager : MonoBehaviour {
         activeComments.Add(spawnedComment);
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
+        spawnedComment.transform.localScale = videoCommentPrefab.transform.localScale;
 
 
 
@@ -202,6 +219,7 @@ public class commentManager : MonoBehaviour {
         activeComments.Add(spawnedComment);
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
+        spawnedComment.transform.localScale = videoCommentPrefab.transform.localScale;
 
 
 
@@ -240,6 +258,29 @@ public class commentManager : MonoBehaviour {
         mediaManager.Instance.photoRecorder.CapturePhoto();
     }
 
+    public void spawnPComment()
+    {
+        fovHider.Instance.toggleFOVHider(false);
+
+        //shift all comments down
+        repositionComments();
+
+        //spawn simple comment
+        spawnedComment = Instantiate(photoCommentPrefab, transform.position, Quaternion.identity);
+        activeComments.Add(spawnedComment);
+
+        commentSetup(spawnedComment.GetComponent<commentContents>());
+        spawnedComment.transform.localScale = photoCommentPrefab.transform.localScale;
+
+        //define the comment type
+        commentContents photoContent = spawnedComment.GetComponent<commentContents>();
+        photoContent.isPhoto = true;
+        capturingPhoto = false;
+
+        //photoContent.filepath = mediaManager.Instance.photoRecorder.filePath;
+        //photoContent.loadPhoto();
+    }
+
     public virtual GameObject spawnPhotoComment()
     {
         fovHider.Instance.toggleFOVHider(false);
@@ -252,6 +293,7 @@ public class commentManager : MonoBehaviour {
         activeComments.Add(spawnedComment);
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
+        spawnedComment.transform.localScale = photoCommentPrefab.transform.localScale;
 
         //define the comment type
         commentContents photoContent = spawnedComment.GetComponent<commentContents>();
@@ -274,6 +316,7 @@ public class commentManager : MonoBehaviour {
         activeComments.Add(spawnedComment);
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
+        spawnedComment.transform.localScale = photoCommentPrefab.transform.localScale;
 
         //define the comment type
         commentContents photoContent = spawnedComment.GetComponent<commentContents>();

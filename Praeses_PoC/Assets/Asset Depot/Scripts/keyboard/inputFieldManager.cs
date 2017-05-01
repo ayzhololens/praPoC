@@ -84,7 +84,11 @@ namespace HoloToolkit.Unity
             keyboardScript.Instance.currentField = mainInputField;
             keyboardScript.Instance.useNumpad = true;
             keyboardScript.Instance.keyboardToggle();
-            keyboardScript.Instance.previousValue.text = formItem.previousValue.text;
+            if(formItem!= null)
+            {
+                keyboardScript.Instance.previousValue.text = formItem.previousValue.text;
+
+            }
         }
 
         public void deactivateField()

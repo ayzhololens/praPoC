@@ -245,6 +245,8 @@ namespace HoloToolkit.Unity
                     focusedButton = null;
                 }
 
+                //focusedButton = GazeManager.Instance.HitObject;
+
             }
             if (!isActive)
             {
@@ -306,8 +308,8 @@ namespace HoloToolkit.Unity
             {
 
 
-                BroadcastMessage("OnFocusExit");
                 focusedButton.SendMessage("OnSelect", SendMessageOptions.DontRequireReceiver);
+                BroadcastMessage("OnFocusExit");
                 Debug.Log("sent");
                 RadialMenu.SetActive(false);
                 RadialMenu.transform.position = RadialHolder.position;

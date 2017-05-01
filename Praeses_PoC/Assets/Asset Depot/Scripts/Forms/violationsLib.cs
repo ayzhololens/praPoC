@@ -91,13 +91,12 @@ public class violationsLib : Singleton<violationsLib> {
         }
 
         //specific
-        violationsSpecific41.Add(1, "Water Leaks");
-        violationsSpecific41.Add(2, "Baffles/refactory");
-        violationsSpecific41.Add(3, "Furnace");
-        violationsSpecific41.Add(4, "Waterside");
-        violationsSpecific41.Add(5, "Superheaters");
-        violationsSpecific41.Add(6, "Economizer");
-        violationsSpecific41.Add(7, "Installation");
+        violationsSpecific41.Add(1, "Handhole or gasket or gasket seat installation is not satisfactory");
+        violationsSpecific41.Add(2, "Head is not installed or installed incorrectly or inoperable or damaged or leaking.");
+        violationsSpecific41.Add(3, "Shell is not installed or installed incorrectly or inoperable or damaged or leaking.");
+        violationsSpecific41.Add(4, "Tubesheet is not installed or installed incorrectly or inoperable or damaged or leaking");
+        violationsSpecific41.Add(5, "Tube/tube ends is not installed or installed incorrectly or inoperable or damaged or leaking");
+        violationsSpecific41.Add(6, "Manway gasket is not installed or installed incorrectly or inoperable or damaged or leaking");
 
         foreach (int cat in violationsSpecific41.Keys)
         {

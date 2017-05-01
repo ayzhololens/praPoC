@@ -80,9 +80,9 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
         for (int i = 0; i < VioCat.Count; i++)
         {
+            
             if (i == rLength)
             {
-
                 vOff = vOff + vOffsetBox;
                 hCount = 0;
                 rLength += rowLengthBox;
@@ -98,8 +98,10 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
             spawnedViolation.GetComponent<violationComponent>().Index = i;
-            spawnedViolation.GetComponent<violationComponent>().optionTitle.text =
+            spawnedViolation.GetComponent<violationComponent>().displayText.text =
+                i + ") " +
                 VioCat[i];
+            spawnedViolation.GetComponent<violationComponent>().value = VioCat[i];
             hCount += 1;
 
         }
@@ -113,14 +115,14 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
         Vector3 startPos = activeViolationController.boxStartPos.localPosition;
         float vOff = 0;
         float hCount = 0;
+        int i = 0;
         Vector3 spawnPos = new Vector3(startPos.x, startPos.y, startPos.z);
         int rLength = rowLengthBox;
-
-        foreach(int cat in vioLib.violationsCategory.Keys)
+        foreach (int cat in vioLib.violationsCategory.Keys)
         {
-            if (hCount == rLength)
-            {
 
+            if (i == rLength)
+            {
                 vOff = vOff + vOffsetBox;
                 hCount = 0;
                 rLength += rowLengthBox;
@@ -136,8 +138,14 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
             spawnedViolation.GetComponent<violationComponent>().Index = cat;
-            spawnedViolation.GetComponent<violationComponent>().optionTitle.text = 
+
+            spawnedViolation.GetComponent<violationComponent>().displayText.text =
+                cat + ") " +
                 vioLib.violationsCategory[cat];
+
+            spawnedViolation.GetComponent<violationComponent>().value = 
+                vioLib.violationsCategory[cat];
+            i += 1;
             hCount += 1;
 
         }
@@ -149,10 +157,6 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             activeViolationController.violationIndices.Add(JU_databaseMan.Instance.violationsManager.violations[0].category);
         }
         populateSubCategoriesFromJSON();
-
-        Text linkedText = activeViolationController.violationTabButtons[0].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
-        linkedText.text = JU_databaseMan.Instance.categoryStringer(JU_databaseMan.Instance.violationsManager.violations[0])[0];
-        linkedText.color = Color.white;
 
 
     }
@@ -184,7 +188,13 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             spawnedViolation.transform.localPosition = spawnPos;
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
             spawnedViolation.GetComponent<violationComponent>().Index = i;
-            spawnedViolation.GetComponent<violationComponent>().optionTitle.text =  VioSubCat[i];
+
+            spawnedViolation.GetComponent<violationComponent>().displayText.text = 
+                activeViolationController.violationIndices[0] + "." +
+                i + " " +
+                VioSubCat[i];
+            spawnedViolation.GetComponent<violationComponent>().value =  VioSubCat[i];
+
             hCount += 1;
 
         }
@@ -197,17 +207,18 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
         Vector3 startPos = activeViolationController.boxStartPos.localPosition;
         float vOff = 0;
         float hCount = 0;
+        int i = 0;
         Vector3 spawnPos = new Vector3(startPos.x, startPos.y, startPos.z);
         int rLength = rowLengthBox;
 
         foreach (int cat in vioLib.violationsSubCategory4.Keys)
         {
-            if (hCount == rLength)
+            if (i == rLength)
             {
 
                 vOff = vOff + vOffsetBox;
                 hCount = 0;
-                rLength *= 2;
+                rLength += rowLengthBox;
             }
 
             GameObject spawnedViolation = Instantiate(violationSubCategoryPrefab, spawnPos, Quaternion.identity);
@@ -218,8 +229,15 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             spawnedViolation.transform.localPosition = spawnPos;
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
             spawnedViolation.GetComponent<violationComponent>().Index = cat;
-            spawnedViolation.GetComponent<violationComponent>().optionTitle.text = vioLib.violationsSubCategory4[cat];
+            spawnedViolation.GetComponent<violationComponent>().displayText.text =
+            
+                activeViolationController.violationIndices[0] + "." +
+            cat + " " +
+            vioLib.violationsSubCategory4[cat];
+
+            spawnedViolation.GetComponent<violationComponent>().value = vioLib.violationsSubCategory4[cat];
             hCount += 1;
+            i += 1;
 
         }
         //set the value
@@ -229,11 +247,6 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             activeViolationController.violationIndices.Add(JU_databaseMan.Instance.violationsManager.violations[0].subCategory);
         }
         populateViolationsFromJSON();
-
-        Text linkedText = activeViolationController.violationTabButtons[1].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
-        linkedText.text = JU_databaseMan.Instance.categoryStringer(JU_databaseMan.Instance.violationsManager.violations[0])[1];
-        linkedText.color = Color.white;
-
     }
 
     public void populateViolations(int violationIndex)
@@ -257,7 +270,11 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
             string violatioName = Vios[i];
 
-            spawnedViolation.GetComponent<violationComponent>().optionTitle.text = violatioName;
+            spawnedViolation.GetComponent<violationComponent>().value = violatioName;
+            spawnedViolation.GetComponent<violationComponent>().displayText.text =
+            activeViolationController.violationIndices[0] + "." +
+            activeViolationController.violationIndices[1] + "." +
+             i + " " + violatioName;
             vCount += 1;
         }
 
@@ -281,40 +298,38 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
             spawnedViolation.GetComponent<violationComponent>().Index = cat;
 
-            //string violationName = vioLib.violationsSpecific41[cat];
-            string violationName = "NB# " +
-                +activeViolationController.violationIndices[0] + "."
-                + activeViolationController.violationIndices[1] + "."
-                + vCount + " | "
-                + activeViolationController.violationData[0] + " -"
-                + activeViolationController.violationData[1] + " ";
 
-            spawnedViolation.GetComponent<violationComponent>().optionTitle.text = violationName;
+            spawnedViolation.GetComponent<violationComponent>().displayText.text =
+            activeViolationController.violationIndices[0] + "." +
+            activeViolationController.violationIndices[1] + "." +
+             cat + " " + JU_databaseMan.Instance.categoryStringer(JU_databaseMan.Instance.violationsManager.violations[0])[2];
+
+            //string violationName = vioLib.violationsSpecific41[cat];
+            //string violationName = "NB# " +
+            //    +activeViolationController.violationIndices[0] + "."
+            //    + activeViolationController.violationIndices[1] + "."
+            //    + vCount + " | "
+            //    + activeViolationController.violationData[0] + " -"
+            //    + activeViolationController.violationData[1] + " ";
+
+            spawnedViolation.GetComponent<violationComponent>().value = JU_databaseMan.Instance.categoryStringer(JU_databaseMan.Instance.violationsManager.violations[0])[2];
             vCount += 1;
         }
 
         if (activeViolationController.violationData.Count == 2)
         {
-            activeViolationController.violationData.Add("NB# " +
-                +activeViolationController.violationIndices[0] + "."
-                + activeViolationController.violationIndices[1] + "."
-                + JU_databaseMan.Instance.violationsManager.violations[0].specific + " | "
-                + activeViolationController.violationData[0] + " -"
-                + activeViolationController.violationData[1] + " ");
+            //activeViolationController.violationData.Add("NB# " +
+            //    +activeViolationController.violationIndices[0] + "."
+            //    + activeViolationController.violationIndices[1] + "."
+            //    + JU_databaseMan.Instance.violationsManager.violations[0].specific + " | "
+            //    + activeViolationController.violationData[0] + " -"
+            //    + activeViolationController.violationData[1] + " ");
 
-
+            activeViolationController.violationData.Add(JU_databaseMan.Instance.categoryStringer(JU_databaseMan.Instance.violationsManager.violations[0])[2]);
             activeViolationController.violationIndices.Add(JU_databaseMan.Instance.violationsManager.violations[0].specific);
         }
         populateSeverityFromJSON();
-        Text linkedText = activeViolationController.violationTabButtons[2].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
 
-        linkedText.text = "NB# " +
-                +activeViolationController.violationIndices[0] + "."
-                + activeViolationController.violationIndices[1] + "."
-                + JU_databaseMan.Instance.violationsManager.violations[0].specific + " | "
-                + activeViolationController.violationData[0] + " -"
-                + activeViolationController.violationData[1] + " "; 
-        linkedText.color = Color.white;
     }
 
     void populateSeverityFromJSON()
@@ -325,9 +340,6 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             activeViolationController.violationIndices.Add(JU_databaseMan.Instance.violationsManager.violations[0].severity);
         }
         populateDueDateFromJSON();
-        Text linkedText = activeViolationController.violationTabButtons[3].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
-        linkedText.text = vioLib.violationsSeverity[JU_databaseMan.Instance.violationsManager.violations[0].severity];
-        linkedText.color = Color.white;
     }
 
     void populateDueDateFromJSON()
@@ -338,9 +350,6 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             activeViolationController.violationIndices.Add(0);
         }
 
-        Text linkedText = activeViolationController.violationTabButtons[4].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
-        linkedText.text = JU_databaseMan.Instance.violationsManager.violations[0].resolveDate;
-        linkedText.color = Color.white;
 
         populateConditionsFromJSON();
     }
@@ -353,9 +362,6 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             activeViolationController.violationIndices.Add(0);
         }
 
-        Text linkedText = activeViolationController.violationTabButtons[5].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
-        linkedText.text = JU_databaseMan.Instance.violationsManager.violations[0].conditions;
-        linkedText.color = Color.white;
 
         populateRequirementsFromJSON();
 
@@ -369,12 +375,10 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             activeViolationController.violationIndices.Add(0);
         }
 
-        Text linkedText = activeViolationController.violationTabButtons[6].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
-        linkedText.text = JU_databaseMan.Instance.violationsManager.violations[0].requirements;
-        linkedText.color = Color.white;
+
         activeViolationController.vioReview.loadReview();
-        activeViolationController.vioReview.submitReview(true);
-        populatePreviewField();
+        //activeViolationController.vioReview.submitReview(true);
+        //populatePreviewField();
     }
 
 

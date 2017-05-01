@@ -30,7 +30,7 @@ public class popForward : MonoBehaviour {
     {
         if (scale)
         {
-            transform.localScale = largeScale;
+            transform.localScale *= scaleMult;
         }
 
 

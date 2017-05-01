@@ -250,13 +250,20 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
     {
         foreach (databaseMan.fieldItem fieldItem in databaseMan.Instance.definitions.EquipmentInspectionFields.threeNine)
         {
-            fieldItem newFieldItem = new fieldItem();
-            newFieldItem.DisplayName = fieldItem.DisplayName;
-            newFieldItem.FieldType = fieldItem.FieldType;
-            newFieldItem.Name = fieldItem.Name;
-            newFieldItem.Required = fieldItem.Required;
-            newFieldItem.Options = fieldItem.Options;
-            definitions.InspectionFields.fields.Add(newFieldItem);
+
+            if (fieldItem.Name == "intActivityTypeID" || fieldItem.Name == "dtActivityDate" || fieldItem.Name == "blnIssueCertOK")
+            { 
+            }
+            else
+            {
+                fieldItem newFieldItem = new fieldItem();
+                newFieldItem.DisplayName = fieldItem.DisplayName;
+                newFieldItem.FieldType = fieldItem.FieldType;
+                newFieldItem.Name = fieldItem.Name;
+                newFieldItem.Required = fieldItem.Required;
+                newFieldItem.Options = fieldItem.Options;
+                definitions.InspectionFields.fields.Add(newFieldItem);
+            }
         }
     }
 
@@ -278,12 +285,19 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
     {
         foreach (databaseMan.ItemClass item in databaseMan.Instance.values.Location.Equipment[0].PreviousInspection[0].InspectionData)
         {
-            valueItem newValueItem = new valueItem();
-            newValueItem.name = item.name;
-            newValueItem.value = item.value;
-            newValueItem.nodeIndex = item.nodeIndex;
 
-            values.historicData.Add(newValueItem);
+            if (item.name == "intActivityTypeID" || item.name == "dtActivityDate" || item.name == "blnIssueCertOK")
+            {
+            }
+            else
+            {
+                valueItem newValueItem = new valueItem();
+                newValueItem.name = item.name;
+                newValueItem.value = item.value;
+                newValueItem.nodeIndex = item.nodeIndex;
+
+                values.historicData.Add(newValueItem);
+            }
         }
     }
 

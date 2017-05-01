@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class buttonHightlight : MonoBehaviour {
 
     public Material mainMat;
+    Material mainMatTemp;
     public Material highlightMat;
+    public Material altMat;
     public bool isPanel;
     Color panelMain;
     public Color panelHighlight;
@@ -14,7 +16,6 @@ public class buttonHightlight : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //mat = GetComponent<Renderer>().material;
         if (!isPanel)
         {
             if(objectOverride != null)
@@ -37,6 +38,22 @@ public class buttonHightlight : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void updateMat()
+    {
+        mainMatTemp = mainMat;
+        mainMat = altMat;
+        //altMat = mainMatTemp;
+        if (objectOverride != null)
+        {
+            objectOverride.GetComponent<Renderer>().material = mainMat;
+        }
+        else
+        {
+            GetComponent<Renderer>().material = mainMat;
+
+        }
+    }
 
     public void highlight()
     {

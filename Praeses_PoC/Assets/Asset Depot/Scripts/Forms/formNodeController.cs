@@ -82,16 +82,16 @@ public class formNodeController : MonoBehaviour {
         masterForm.GetComponent<formController>().openForm();
         //masterForm.GetComponent<formController>().contentHolder.transform.position = contentLoc.position;
         //masterForm.transform.position = contentLoc.position;
-        for (int i = 0; i < linkedField.transform.parent.childCount; i++)
-        {
-            if (linkedField.transform.parent.GetChild(i).gameObject != linkedField && linkedField.transform.parent.GetChild(i).gameObject.GetComponent<subMenu>()!=null)
-            {
+        //for (int i = 0; i < linkedField.transform.parent.childCount; i++)
+        //{
+        //    if (linkedField.transform.parent.GetChild(i).gameObject != linkedField && linkedField.transform.parent.GetChild(i).gameObject.GetComponent<subMenu>()!=null)
+        //    {
 
-                linkedField.transform.parent.GetChild(i).gameObject.GetComponent<subMenu>().turnOffCounter();
-                linkedField.transform.parent.GetChild(i).gameObject.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(false);
-            }
-        }
-        linkedField.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(true);
+        //        linkedField.transform.parent.GetChild(i).gameObject.GetComponent<subMenu>().turnOffCounter();
+        //        linkedField.transform.parent.GetChild(i).gameObject.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(false);
+        //    }
+        //}
+        //linkedField.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(true);
     }
 
 

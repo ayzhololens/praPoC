@@ -15,6 +15,7 @@ namespace HoloToolkit.Unity
         public List<int> violationIndices;
         public GameObject[] violationTabs;
         public GameObject[] violationTabButtons;
+        public Text[] violationSectionTitles;
         public Text violationHeader;
         public Text violationContent;
         public Transform boxStartPos;
@@ -23,6 +24,7 @@ namespace HoloToolkit.Unity
         public violationReview vioReview;
         public GameObject linkedPreview;
         public Transform frontHolder;
+
         // Use this for initialization
         void Start()
         {
@@ -35,6 +37,26 @@ namespace HoloToolkit.Unity
 
         }
 
+        
+        public void goToTab(int tab)
+        {
+            print(violationTabs[tab].name);
+            for (int i = 0; i < violationTabs.Length; i++)
+            {
+                if (i != tab)
+                {
+                    if (violationTabs[i].activeSelf)
+                    {
+                        violationTabs[i].SetActive(false);
+                    }
+
+                }
+                else
+                {
+                    violationTabs[i].SetActive(true);
+                }
+            }
+        }
 
         //enablements here
         #region
@@ -165,7 +187,7 @@ namespace HoloToolkit.Unity
             }
         }
 
-        public void enableRequirements()
+        public void enableComments()
         {
             if(violationData.Count > 6)
             {
@@ -188,6 +210,7 @@ namespace HoloToolkit.Unity
 
         public void enableReview()
         {
+            print("review");
             if (violationData.Count > 7)
             {
 
