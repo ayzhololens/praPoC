@@ -15,7 +15,7 @@ public class viewViolationController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        frontHolder = Camera.main.transform.GetChild(0);
+        frontHolder = ActorSingleton.Actor.transform.GetChild(0);
 		
 	}
 	

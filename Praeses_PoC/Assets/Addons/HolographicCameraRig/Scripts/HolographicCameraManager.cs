@@ -156,7 +156,7 @@ namespace SpectatorView
             }
 
             // Change audio listener to the holographic camera.
-            AudioListener listener = Camera.main.GetComponent<AudioListener>();
+            AudioListener listener = ActorSingleton.Actor.GetComponent<AudioListener>();
             if (listener != null)
             {
                 GameObject.DestroyImmediate(listener);

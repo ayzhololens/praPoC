@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity;
 
-public class ActorSingleton : Singleton<ActorSingleton> {
+public class ActorSingleton : MonoBehaviour {
 
-    public bool isServer = false;
+    private static bool _isServer = true;
 
-    private Camera _actor;
+    private static Camera _actor;
 
-    public Camera Actor
+    public static Camera Actor
     {
         get
         {
-            if (isServer)
+            if (_isServer)
             {
                 return Camera.main;
             }
@@ -33,6 +33,19 @@ public class ActorSingleton : Singleton<ActorSingleton> {
         set
         {
             _actor = value;
+        }
+    }
+
+    public static bool isServer
+    {
+        get
+        {
+            return _isServer;
+        }
+
+        set
+        {
+            _isServer = value;
         }
     }
 

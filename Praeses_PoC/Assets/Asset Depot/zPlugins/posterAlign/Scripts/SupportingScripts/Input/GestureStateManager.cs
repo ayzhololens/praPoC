@@ -345,7 +345,7 @@ namespace PosterAlignment.InputUtilities
             }
 
             this.worldDelta = delta;
-            this.screenDelta = Camera.main.WorldToScreenPoint(this.worldDelta);
+            this.screenDelta = ActorSingleton.Actor.WorldToScreenPoint(this.worldDelta);
         }
     }
 }

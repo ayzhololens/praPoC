@@ -23,15 +23,15 @@ public class formNodeController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        //camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        //camDistance = Vector3.Distance(transform.position, ActorSingleton.Actor.transform.position);
         //if (contentOpen)
         //{
         //    if (camDistance > distanceThreshold)
         //    {
-        //        contentDistance = Vector3.Distance(masterForm.GetComponent<formController>().contentHolder.transform.position, Camera.main.transform.position);
+        //        contentDistance = Vector3.Distance(masterForm.GetComponent<formController>().contentHolder.transform.position, ActorSingleton.Actor.transform.position);
         //        if (contentDistance > 2 && masterForm.GetComponent<formController>().contentHolder.GetComponent<SimpleTagalong>().enabled != true)
         //        {
-        //            masterForm.GetComponent<formController>().contentHolder.transform.position = Vector3.MoveTowards(masterForm.GetComponent<formController>().contentHolder.transform.position, Camera.main.transform.position, speed / 1.5f);
+        //            masterForm.GetComponent<formController>().contentHolder.transform.position = Vector3.MoveTowards(masterForm.GetComponent<formController>().contentHolder.transform.position, ActorSingleton.Actor.transform.position, speed / 1.5f);
         //        }
 
         //        if (contentDistance < 2 && masterForm.GetComponent<formController>().contentHolder.GetComponent<SimpleTagalong>().enabled != true)

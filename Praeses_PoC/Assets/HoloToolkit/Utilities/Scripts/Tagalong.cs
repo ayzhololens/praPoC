@@ -58,9 +58,9 @@ namespace HoloToolkit.Unity
             // If the specified minimum distance for the tagalong would be within the
             // camera's near clipping plane, adjust it to be 10% beyond the near
             // clipping plane.
-            if (Camera.main.nearClipPlane > MinimumTagalongDistance)
+            if (ActorSingleton.Actor.nearClipPlane > MinimumTagalongDistance)
             {
-                MinimumTagalongDistance = Camera.main.nearClipPlane * 1.1f;
+                MinimumTagalongDistance = ActorSingleton.Actor.nearClipPlane * 1.1f;
             }
 
             // The EnforceDistance functionality of the SimmpleTagalong has a
@@ -89,7 +89,7 @@ namespace HoloToolkit.Unity
                 {
                     interpolator.PositionPerSecond = DepthUpdateSpeed;
                     interpolator.SetTargetPosition(newPosition);
-                    TagalongDistance = Mathf.Min(defaultTagalongDistance, Vector3.Distance(Camera.main.transform.position, newPosition));
+                    TagalongDistance = Mathf.Min(defaultTagalongDistance, Vector3.Distance(ActorSingleton.Actor.transform.position, newPosition));
                 }
             }
         }
@@ -101,7 +101,7 @@ namespace HoloToolkit.Unity
             toPosition = fromPosition;
 
             // Cache some things that we will need later.
-            Transform cameraTransform = Camera.main.transform;
+            Transform cameraTransform = ActorSingleton.Actor.transform;
             Vector3 cameraPosition = cameraTransform.position;
 
             // Get the bounds of the Tagalong's collider.
@@ -209,7 +209,7 @@ namespace HoloToolkit.Unity
         private Vector3 CalculateTargetPosition(bool isHorizontal, Vector3 centermostEdge, Vector3 vectorTowardCenter, float width,
             Vector3 center, Plane frustumPlane, bool invertAngle)
         {
-            Transform cameraTransform = Camera.main.transform;
+            Transform cameraTransform = ActorSingleton.Actor.transform;
             Vector3 cameraPosition = cameraTransform.position;
 
             // The target overlap can't be less than the minimum overlap. Pick
@@ -262,7 +262,7 @@ namespace HoloToolkit.Unity
             float width = tagalongCollider.size.x * transform.lossyScale.x;
             float height = tagalongCollider.size.y * transform.lossyScale.y;
 
-            Vector3 cameraPosition = Camera.main.transform.position;
+            Vector3 cameraPosition = ActorSingleton.Actor.transform.position;
 
             // Find the lower-left corner of the Tagalong's BoxCollider.
             Vector3 lowerLeftCorner = transform.position - (transform.right * (width / 2)) - (transform.up * (height / 2));

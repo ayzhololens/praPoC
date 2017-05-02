@@ -74,7 +74,7 @@ namespace PosterAlignment.InputUtilities
         {
             if (CursorPrefab)
             {
-                normalCursorObj = Instantiate(CursorPrefab, Camera.main.transform.position + Camera.main.transform.forward * DefaultCursorDistance, Quaternion.identity) as GameObject;
+                normalCursorObj = Instantiate(CursorPrefab, ActorSingleton.Actor.transform.position + ActorSingleton.Actor.transform.forward * DefaultCursorDistance, Quaternion.identity) as GameObject;
             }
 
             if (normalCursorObj == null)
@@ -84,7 +84,7 @@ namespace PosterAlignment.InputUtilities
 
             if (PressedCursorPrefab)
             {
-                pressedCursorObj = Instantiate(PressedCursorPrefab, Camera.main.transform.position + Camera.main.transform.forward * DefaultCursorDistance, Quaternion.identity) as GameObject;
+                pressedCursorObj = Instantiate(PressedCursorPrefab, ActorSingleton.Actor.transform.position + ActorSingleton.Actor.transform.forward * DefaultCursorDistance, Quaternion.identity) as GameObject;
             }
 
             if (pressedCursorObj == null)
@@ -120,7 +120,7 @@ namespace PosterAlignment.InputUtilities
             Vector3 bv = this.CursorLocation;
             Quaternion bq = this.CursorRotation;
 
-            var totalDistance = ((bv - Camera.main.transform.position) - (av - Camera.main.transform.position)).sqrMagnitude;
+            var totalDistance = ((bv - ActorSingleton.Actor.transform.position) - (av - ActorSingleton.Actor.transform.position)).sqrMagnitude;
             if (totalDistance < Threshold && totalDistance > -Threshold)
             {
                 av = bv = this.CursorLocation;
@@ -129,7 +129,7 @@ namespace PosterAlignment.InputUtilities
 
             // position & rotation to match normal
             currentCursorObj.transform.position = UseLerp ? Vector3.Lerp(av, bv, LerpAmount) : this.CursorLocation;
-            currentCursorObj.transform.position += CursorObjectOffset * raycast.worldNormal;// Vector3.Normalize(currentCursorObj.transform.position - Camera.main.transform.position);
+            currentCursorObj.transform.position += CursorObjectOffset * raycast.worldNormal;// Vector3.Normalize(currentCursorObj.transform.position - ActorSingleton.Actor.transform.position);
             currentCursorObj.transform.rotation = UseLerp ? Quaternion.Slerp(aq, bq, LerpAmount) : this.CursorRotation;
 
             if (pressedCursorObj.activeInHierarchy)

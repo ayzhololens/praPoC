@@ -73,7 +73,7 @@ namespace HoloToolkit.Unity.InputModule
                 return;
             }
 
-            var cameraTransform = Camera.main.transform;
+            var cameraTransform = ActorSingleton.Actor.transform;
 
             //Rotate
             var noRotateModifier = string.IsNullOrEmpty(RotateModifierButtonName);

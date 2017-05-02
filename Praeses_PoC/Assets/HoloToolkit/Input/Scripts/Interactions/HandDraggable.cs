@@ -63,7 +63,7 @@ namespace HoloToolkit.Unity.InputModule
                 HostTransform = transform;
             }
 
-            mainCamera = Camera.main;
+            mainCamera = ActorSingleton.Actor;
         }
 
         private void OnDestroy()
@@ -144,7 +144,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <returns>Pivot position for the hand.</returns>
         private Vector3 GetHandPivotPosition()
         {
-            Vector3 pivot = Camera.main.transform.position + new Vector3(0, -0.2f, 0) - Camera.main.transform.forward * 0.2f; // a bit lower and behind
+            Vector3 pivot = ActorSingleton.Actor.transform.position + new Vector3(0, -0.2f, 0) - ActorSingleton.Actor.transform.forward * 0.2f; // a bit lower and behind
             return pivot;
         }
 

@@ -114,10 +114,10 @@ namespace HoloToolkit.Unity
 
             // For influencers that take effect only when between the emitter and the user, perform a raycast
             // from the user toward the object.
-            Vector3 direction = (gameObject.transform.position - Camera.main.transform.position).normalized;
-            float distance = Vector3.Distance(Camera.main.transform.position, gameObject.transform.position);
+            Vector3 direction = (gameObject.transform.position - ActorSingleton.Actor.transform.position).normalized;
+            float distance = Vector3.Distance(ActorSingleton.Actor.transform.position, gameObject.transform.position);
 
-            int count = Physics.RaycastNonAlloc(Camera.main.transform.position,
+            int count = Physics.RaycastNonAlloc(ActorSingleton.Actor.transform.position,
                                                 direction,
                                                 hits,
                                                 distance,

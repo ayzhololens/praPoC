@@ -62,8 +62,8 @@ public class cubeBehavior : NetworkBehaviour {
     {
         if (followHead)
         {
-            transform.position = Camera.main.transform.position;
-            transform.localRotation = Camera.main.transform.rotation;
+            transform.position = ActorSingleton.Actor.transform.position;
+            transform.localRotation = ActorSingleton.Actor.transform.rotation;
         }
     }
 

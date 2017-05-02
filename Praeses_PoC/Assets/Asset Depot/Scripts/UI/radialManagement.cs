@@ -255,7 +255,7 @@ namespace HoloToolkit.Unity
             //Cursor.SetActive(false);
             RadialMenu.SetActive(true);
             RadialMenu.transform.position = RadialHolder.position;
-            RadialMenu.transform.LookAt(Camera.main.transform);
+            RadialMenu.transform.LookAt(ActorSingleton.Actor.transform);
             RadialMenu.GetComponent<BoxCollider>().enabled = false;
             isActive = true;
             lineCenter.SetActive(true);
@@ -269,7 +269,7 @@ namespace HoloToolkit.Unity
         {
             radialCountIndicator.SetActive(true);
             //radialCountIndicator.transform.position = Cursor.transform.position;
-            //radialCountIndicator.transform.LookAt(Camera.main.transform);
+            //radialCountIndicator.transform.LookAt(ActorSingleton.Actor.transform);
             //radialCountIndicator.GetComponent<tumblerRadialCounter>().toggleAnim();
             radialCountIndicator.GetComponent<tumblerRadialCounter>().radialCounterOn();
             //counting = true;
@@ -288,7 +288,7 @@ namespace HoloToolkit.Unity
                 BroadcastMessage("OnFocusExit", SendMessageOptions.DontRequireReceiver);
                 RadialMenu.SetActive(false);
                 RadialMenu.transform.position = RadialHolder.position;
-                RadialMenu.transform.LookAt(Camera.main.transform);
+                RadialMenu.transform.LookAt(ActorSingleton.Actor.transform);
                 isActive = false;
                 lineCenter.GetComponent<LineTest>().line.transform.localScale = new Vector3(lineScale, lineScale, lineScale);
                 lineCenter.SetActive(false);
@@ -305,7 +305,7 @@ namespace HoloToolkit.Unity
                 Debug.Log("sent");
                 RadialMenu.SetActive(false);
                 RadialMenu.transform.position = RadialHolder.position;
-                RadialMenu.transform.LookAt(Camera.main.transform);
+                RadialMenu.transform.LookAt(ActorSingleton.Actor.transform);
                 focusedButton = null;
                 isActive = false;
                 lineCenter.GetComponent<LineTest>().line.transform.localScale = new Vector3(lineScale, lineScale, lineScale);

@@ -90,14 +90,14 @@ namespace HoloToolkit.Unity.SpatialMapping
             if (IsBeingPlaced)
             {
                 // Do a raycast into the world that will only hit the Spatial Mapping mesh.
-                Vector3 headPosition = Camera.main.transform.position;
-                Vector3 gazeDirection = Camera.main.transform.forward;
+                Vector3 headPosition = ActorSingleton.Actor.transform.position;
+                Vector3 gazeDirection = ActorSingleton.Actor.transform.forward;
 
                 RaycastHit hitInfo;
                 if (Physics.Raycast(headPosition, gazeDirection, out hitInfo, 30.0f, spatialMappingManager.LayerMask))
                 {
                     // Rotate this object to face the user.
-                    Quaternion toQuat = Camera.main.transform.localRotation;
+                    Quaternion toQuat = ActorSingleton.Actor.transform.localRotation;
                     toQuat.x = 0;
                     toQuat.z = 0;
 

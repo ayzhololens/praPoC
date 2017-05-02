@@ -14,7 +14,7 @@ public class scrollOverrider : Singleton<scrollOverrider> {
 
     private void Update()
     {
-        ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+        ray = ActorSingleton.Actor.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider.gameObject.tag == "Button"){}

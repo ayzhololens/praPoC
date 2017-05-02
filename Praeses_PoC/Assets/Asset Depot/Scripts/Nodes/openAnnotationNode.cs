@@ -44,7 +44,7 @@ namespace HoloToolkit.Unity
         // Update is called once per frame
         void Update() {
 
-            camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
+            camDistance = Vector3.Distance(transform.position, ActorSingleton.Actor.transform.position);
             //Debug.Log(camDistance);
 
             if (!reviewState)
@@ -53,10 +53,10 @@ namespace HoloToolkit.Unity
                 {
                     if (camDistance > distanceThreshold)
                     {
-                        contentDistance = Vector3.Distance(contentHoler.transform.position, Camera.main.transform.position);
+                        contentDistance = Vector3.Distance(contentHoler.transform.position, ActorSingleton.Actor.transform.position);
                         if (contentDistance > 2 && contentHoler.GetComponent<SimpleTagalong>().enabled != true)
                         {
-                            contentHoler.transform.position = Vector3.MoveTowards(contentHoler.transform.position, Camera.main.transform.position, speed / 1.5f);
+                            contentHoler.transform.position = Vector3.MoveTowards(contentHoler.transform.position, ActorSingleton.Actor.transform.position, speed / 1.5f);
                         }
 
                         if (contentDistance < 2 && contentHoler.GetComponent<SimpleTagalong>().enabled != true)

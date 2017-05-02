@@ -59,19 +59,19 @@ namespace PosterAlignment.InputUtilities
 
             emptyResult = new RaycastResult();
 
-            if (null == Camera.main)
+            if (null == ActorSingleton.Actor)
             {
                 return;
             }
 
             // main camera needs a 3d raycaster
-            var raycaster = Camera.main.gameObject.GetComponentInParent<PhysicsRaycaster>();
+            var raycaster = ActorSingleton.Actor.gameObject.GetComponentInParent<PhysicsRaycaster>();
             if (null == raycaster)
             {
-                Camera.main.gameObject.AddComponent<PhysicsRaycaster>();
+                ActorSingleton.Actor.gameObject.AddComponent<PhysicsRaycaster>();
 
                 // remove Ignore Raycast layer
-                raycaster = Camera.main.gameObject.GetComponent<PhysicsRaycaster>();
+                raycaster = ActorSingleton.Actor.gameObject.GetComponent<PhysicsRaycaster>();
                 if (null != raycaster)
                 {
                     raycaster.eventMask = raycaster.eventMask & ~(1 << LayerMask.NameToLayer("Ignore Raycast"));
@@ -556,7 +556,7 @@ namespace PosterAlignment.InputUtilities
                 // for UI objects raycast.worldPosition == Vector3.zero, have to raycast the screenPosition
                 if (raycast.worldPosition == Vector3.zero)
                 {
-                    Ray ray = Camera.main.ScreenPointToRay(raycast.screenPosition);
+                    Ray ray = ActorSingleton.Actor.ScreenPointToRay(raycast.screenPosition);
                     raycast.worldPosition = eventData.worldPosition + (ray.direction * raycast.distance);
                 }
 
@@ -567,8 +567,8 @@ namespace PosterAlignment.InputUtilities
             }
             else
             {
-                Ray ray = Camera.main.ScreenPointToRay(eventData.position);
-                raycast.worldPosition = Camera.main.transform.position + ray.direction;
+                Ray ray = ActorSingleton.Actor.ScreenPointToRay(eventData.position);
+                raycast.worldPosition = ActorSingleton.Actor.transform.position + ray.direction;
                 raycast.worldNormal = -ray.direction;
             }
 

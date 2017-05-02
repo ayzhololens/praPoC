@@ -144,8 +144,8 @@ namespace HoloToolkit.Unity
         {
             //get user's distance from the node
             Vector3 contentPos = contentHolder.transform.position;
-            Vector3 camPos = Camera.main.transform.position;
-            float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
+            Vector3 camPos = ActorSingleton.Actor.transform.position;
+            float camDistance = Vector3.Distance(transform.position, ActorSingleton.Actor.transform.position);
 
             if (camDistance > distanceThreshold )
             {

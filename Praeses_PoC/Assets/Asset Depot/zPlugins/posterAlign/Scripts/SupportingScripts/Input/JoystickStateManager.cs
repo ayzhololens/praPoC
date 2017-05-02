@@ -60,7 +60,7 @@ namespace PosterAlignment.InputUtilities
         {
             var lastScreenPosition = this.screenPosition;
             var lastWorldScreenPosition = this.worldScreenPosition;
-            float screenZ = Camera.main.nearClipPlane;
+            float screenZ = ActorSingleton.Actor.nearClipPlane;
 
             var joyOffset = this.GetRawMoveVector(Stick.Left);
             joyOffset.x *= StateManager.ScreenWidth * 0.5f;
@@ -68,7 +68,7 @@ namespace PosterAlignment.InputUtilities
 
             this.screenPosition = StateManager.ScreenCenter + joyOffset;
             this.worldScreenPosition
-                = Camera.main.ScreenToWorldPoint(new Vector3(this.screenPosition.x, this.screenPosition.y, screenZ));
+                = ActorSingleton.Actor.ScreenToWorldPoint(new Vector3(this.screenPosition.x, this.screenPosition.y, screenZ));
 
             if (UnityEngine.Input.GetButton(this.LeftButton))
             {

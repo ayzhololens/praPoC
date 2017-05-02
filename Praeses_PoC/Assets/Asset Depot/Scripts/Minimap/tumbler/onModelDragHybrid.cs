@@ -79,7 +79,7 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
                 if (!navigating)
                 {
                     
-                    tempDist = Vector3.Distance(Camera.main.transform.position, GazeManager.Instance.HitPosition);
+                    tempDist = Vector3.Distance(ActorSingleton.Actor.transform.position, GazeManager.Instance.HitPosition);
 
                     initHandPos = HandsManager.Instance.ManipulationHandPosition;
                     editState = true;
@@ -120,10 +120,10 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
         if (editState)
         {
             Vector3 up = oriParent.up;
-            Vector3 forward = Vector3.ProjectOnPlane(Camera.main.transform.forward, up).normalized;
+            Vector3 forward = Vector3.ProjectOnPlane(ActorSingleton.Actor.transform.forward, up).normalized;
 
             buttonsGrp.SetActive(true);
-            buttonsGrp.transform.SetParent(Camera.main.transform);
+            buttonsGrp.transform.SetParent(ActorSingleton.Actor.transform);
             buttonsGrp.transform.localPosition = new Vector3(0, 0, tempDist);
             buttonsGrp.transform.rotation = Quaternion.LookRotation(forward, up);
             buttonsGrp.transform.SetParent(oriParent);

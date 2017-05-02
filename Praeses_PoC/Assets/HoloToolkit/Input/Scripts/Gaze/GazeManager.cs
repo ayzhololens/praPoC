@@ -76,7 +76,7 @@ namespace HoloToolkit.Unity.InputModule
         /// Transform that should be used as the source of the gaze position and orientation.
         /// Defaults to the main camera.
         /// </summary>
-        [Tooltip("Transform that should be used to represent the gaze position and orientation. Defaults to Camera.Main")]
+        [Tooltip("Transform that should be used to represent the gaze position and orientation. Defaults to ActorSingleton.Actor")]
         public Transform GazeTransform;
 
         /// <summary>
@@ -109,9 +109,9 @@ namespace HoloToolkit.Unity.InputModule
 
             if (GazeTransform == null)
             {
-                if (Camera.main != null)
+                if (ActorSingleton.Actor != null)
                 {
-                    GazeTransform = Camera.main.transform;
+                    GazeTransform = ActorSingleton.Actor.transform;
                 }
                 else
                 {
@@ -215,7 +215,7 @@ namespace HoloToolkit.Unity.InputModule
             }
 
             // 2D cursor position
-            Vector2 cursorScreenPos = Camera.main.WorldToScreenPoint(HitPosition);
+            Vector2 cursorScreenPos = ActorSingleton.Actor.WorldToScreenPoint(HitPosition);
             UnityUIPointerEvent.delta = cursorScreenPos - UnityUIPointerEvent.position;
             UnityUIPointerEvent.position = cursorScreenPos;
 
@@ -229,7 +229,7 @@ namespace HoloToolkit.Unity.InputModule
             if (uiRaycastResult.gameObject != null)
             {
                 // Add the near clip distance since this is where the raycast is from
-                float uiRaycastDistance = uiRaycastResult.distance + Camera.main.nearClipPlane;
+                float uiRaycastDistance = uiRaycastResult.distance + ActorSingleton.Actor.nearClipPlane;
 
                 bool superseded3DObject = false;
                 if (IsGazingAtObject)
@@ -266,11 +266,11 @@ namespace HoloToolkit.Unity.InputModule
                 if (!IsGazingAtObject || superseded3DObject)
                 {
                     IsGazingAtObject = true;
-                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(uiRaycastResult.screenPosition.x, uiRaycastResult.screenPosition.y, uiRaycastDistance));
+                    Vector3 worldPos = ActorSingleton.Actor.ScreenToWorldPoint(new Vector3(uiRaycastResult.screenPosition.x, uiRaycastResult.screenPosition.y, uiRaycastDistance));
                     hitInfo = new RaycastHit()
                     {
                         distance = uiRaycastDistance,
-                        normal = -Camera.main.transform.forward,
+                        normal = -ActorSingleton.Actor.transform.forward,
                         point = worldPos
                     };
 

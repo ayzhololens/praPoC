@@ -22,7 +22,7 @@ public class spawnVideoFrame : MonoBehaviour {
 
     public void spawnMediaPlayer()
     {
-        spawnPos = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.x + 1);
+        spawnPos = new Vector3(ActorSingleton.Actor.transform.position.x, ActorSingleton.Actor.transform.position.y, ActorSingleton.Actor.transform.position.x + 1);
         activeVideoFrame = Instantiate(videoFrame, spawnPos, videoFrame.transform.rotation) as GameObject;
 
     }
