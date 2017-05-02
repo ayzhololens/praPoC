@@ -22,8 +22,8 @@ public class cubeBehavior : NetworkBehaviour {
     // Use this for initialization
     void Start () {
 
-        holoCollection = parentIdentifier.Instance.gameObject.transform;
-        transform.SetParent(holoCollection);
+        //holoCollection = parentIdentifier.Instance.gameObject.transform;
+        //transform.SetParent(holoCollection);
 
         //holoCollection.GetComponent<NetworkTransformChild>().target = gameObject.transform;
 
