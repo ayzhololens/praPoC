@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity;
 using HoloToolkit.Unity.InputModule;
+using UnityEngine.VR.WSA.Input;
 using UnityEngine.Networking;
 
 public class ActorBehavior : NetworkBehaviour
@@ -18,8 +20,9 @@ public class ActorBehavior : NetworkBehaviour
     
 
     Transform holoCollection;
-    
 
+    [SyncVar]
+    public Vector3 syncHandPos;
 
     // Use this for initialization
     void Start()
@@ -39,6 +42,7 @@ public class ActorBehavior : NetworkBehaviour
             Debug.Log("i am a client");
             ActorSingleton.isServer = false;
             GazeManager.Instance.GazeTransform = this.gameObject.transform;
+            radialHands.Instance.isClient = true;
         }
     }
 
@@ -82,7 +86,6 @@ public class ActorBehavior : NetworkBehaviour
             {
                 GazeManager.Instance.HitObject.SendMessage("OnSelect", SendMessageOptions.DontRequireReceiver);
             }
-            Debug.Log("actor input down");
         }
 
 
@@ -91,8 +94,15 @@ public class ActorBehavior : NetworkBehaviour
     [ClientRpc]
     public void RpcUpdateSource(bool sourcePressed)
     {
-        Debug.Log("actor source update");
         sourceManager.Instance.sourcePressed = sourcePressed;
+    }
+
+    [ClientRpc]
+    public void RpcUpdateHandPos(Vector3 handPos)
+    {
+        syncHandPos = handPos;
+        radialHands.Instance.actorHandPos = syncHandPos;
+
     }
 
 
