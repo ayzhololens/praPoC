@@ -95,8 +95,12 @@ namespace HoloToolkit.Unity
             Vector3 boilerPos = miniMapComponent.boilerPivot;
             Transform miniMap = miniMapComponent.miniMapHolder.transform;
             Transform rotatorGroup = miniMap.parent;
-            rotatorGroup.localScale = Vector3.one * (1 / miniMapComponent.scaleOffset);
+            Transform scalerGroup = rotatorGroup.parent.parent;
+            Quaternion initRot = rotatorGroup.rotation;
+
+            rotatorGroup.localScale = Vector3.one * (1 / miniMapComponent.scaleOffset) * (1/scalerGroup.localScale.x);
             rotatorGroup.position = boilerPos;
+            rotatorGroup.rotation = new Quaternion(0,0,0,0);
 
             //spawn miniNode and parent it correctly
             GameObject miniNode = Instantiate(miniNodePrefab[spawnIndex], parentNode.transform.position, parentNode.transform.rotation);
@@ -107,6 +111,7 @@ namespace HoloToolkit.Unity
             miniNode.transform.SetParent(miniMap);
             rotatorGroup.localPosition = Vector3.zero;
             rotatorGroup.localScale = Vector3.one;
+            rotatorGroup.rotation = initRot;
             miniNode.SetActive(miniMapToggle.Instance.active);
 
             parentNode.GetComponent<nodeController>().miniNode = miniNode;

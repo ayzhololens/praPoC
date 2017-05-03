@@ -23,8 +23,6 @@ public class databaseMan : Singleton<databaseMan>
     public MainForm definitions;
     public ValuesClass values;
 
-    public GameObject testItem;
-
     public Dictionary<string, GameObject> formPairs = new Dictionary<string, GameObject>();
 
     private void Start()
