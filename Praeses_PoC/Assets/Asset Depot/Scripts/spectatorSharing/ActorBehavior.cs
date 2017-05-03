@@ -22,6 +22,7 @@ public class ActorBehavior : NetworkBehaviour
     Transform holoCollection;
     Transform person;
     Transform boiler;
+    Transform actorWorld;
 
     [SyncVar]
     public Vector3 syncHandPos;
@@ -37,6 +38,8 @@ public class ActorBehavior : NetworkBehaviour
         transform.SetParent(holoCollection);
         boiler = GameObject.Find("boiler").transform;
         boiler.GetComponent<boilerIdentifier>().Actor = this;
+        actorWorld = GameObject.Find("ActorWorld").transform;
+        actorWorld.SetParent(null);
 
         if (isServer)
         {
@@ -72,6 +75,10 @@ public class ActorBehavior : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        actorWorld.localPosition = tra;
+        actorWorld.localRotation = rot;
+        actorWorld.localScale = sca;
+
         //server defines sync values
         if (isServer)
         {

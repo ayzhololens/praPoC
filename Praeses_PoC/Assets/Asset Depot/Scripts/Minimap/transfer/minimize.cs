@@ -46,6 +46,7 @@ public class minimize : MonoBehaviour, IInputClickHandler {
                 }
             }
         }
+
         minimapTransferObject.Instance.transferObject(miniCopy);
         done = true;
         foreach(GameObject mesh in meshesHide)
