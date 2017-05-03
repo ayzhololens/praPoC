@@ -5658,6 +5658,10 @@ Prefab:
       propertyPath: violationPreview
       value: 
       objectReference: {fileID: 933379419}
+    - target: {fileID: 1421365408267060, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
   m_IsPrefabParent: 0
@@ -11697,6 +11701,7 @@ MonoBehaviour:
   rotateSensitivity: 0.2
   ratchetSensitivity: 0.02
   mainMenuContent: {fileID: 568049870}
+  useController: 0
 --- !u!1 &1694856253
 GameObject:
   m_ObjectHideFlags: 0
