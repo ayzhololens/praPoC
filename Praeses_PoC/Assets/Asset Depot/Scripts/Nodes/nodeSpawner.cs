@@ -211,9 +211,9 @@ namespace HoloToolkit.Unity
             {
                 reposInProgress = false;
                 reposMiniNode(spawnedNode);
-                node.GetComponent<nodeController>().openNode();
                 node.GetComponent<BoxCollider>().enabled = true;
                 offsetCounter = 0;
+                node.GetComponent<nodeController>().openNode();
             }
         }
 

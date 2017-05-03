@@ -474,8 +474,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829860473298434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0099, z: 0}
-  m_LocalScale: {x: 6.860118, y: 6.8601184, z: 6.8601184}
+  m_LocalPosition: {x: 0, y: 0.0101, z: 0}
+  m_LocalScale: {x: 6.2790613, y: 6.2790613, z: 6.2790613}
   m_Children:
   - {fileID: 4237905737803624}
   m_Father: {fileID: 4709776793866078}
@@ -494,7 +494,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a84ffeb26acdaab4385d66641664b3e8, type: 2}
+  - {fileID: 2100000, guid: f93713688c6ad5a499308802f90607b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -735,7 +735,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1358476112321214}
-  m_Mesh: {fileID: 4300000, guid: e9faa0fa41181044ebc02d8be5ae04de, type: 3}
+  m_Mesh: {fileID: 4300002, guid: e9faa0fa41181044ebc02d8be5ae04de, type: 3}
 --- !u!33 &33102849155349392
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -763,21 +763,21 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829860473298434}
-  m_Mesh: {fileID: 4300002, guid: a4591f2cebf30874c9ae91daabe0f456, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 8c7664eac1290bc4099ead57e4f3aac3, type: 3}
 --- !u!33 &33610814325816596
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1084425767433630}
-  m_Mesh: {fileID: 4300000, guid: e9faa0fa41181044ebc02d8be5ae04de, type: 3}
+  m_Mesh: {fileID: 4300002, guid: e9faa0fa41181044ebc02d8be5ae04de, type: 3}
 --- !u!33 &33801073999364794
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1044312834035554}
-  m_Mesh: {fileID: 4300002, guid: a4591f2cebf30874c9ae91daabe0f456, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 8c7664eac1290bc4099ead57e4f3aac3, type: 3}
 --- !u!33 &33913997830887392
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TagalongDistance: 2
-  EnforceDistance: 1
+  EnforceDistance: 0
   PositionUpdateSpeed: 9.8
   SmoothMotion: 1
   SmoothingFactor: 0.75

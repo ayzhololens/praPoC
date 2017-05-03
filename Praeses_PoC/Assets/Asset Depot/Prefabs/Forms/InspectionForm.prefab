@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1125081353419224
 GameObject:
   m_ObjectHideFlags: 1
@@ -1952,7 +1952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1756500696166906
 GameObject:
   m_ObjectHideFlags: 1
@@ -2909,7 +2909,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510156589278450}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.029217733, y: 0.07840521, z: 0.002827461}
+  m_LocalPosition: {x: -0.049, y: 0.07840521, z: 0.002827461}
   m_LocalScale: {x: 4.1792, y: 3.1717155, z: 3.1717155}
   m_Children: []
   m_Father: {fileID: 4424925107055532}
@@ -3383,7 +3383,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1712326347924770}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0}
-  m_LocalPosition: {x: 0.02, y: 0.1013, z: -0.0109}
+  m_LocalPosition: {x: -0.026, y: 0.0802, z: -0.004}
   m_LocalScale: {x: 0.34897694, y: 0.039153844, z: 0.0014846154}
   m_Children: []
   m_Father: {fileID: 4473048301072892}
@@ -5858,7 +5858,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1064886062336054}
-  m_Mesh: {fileID: 4300000, guid: e9faa0fa41181044ebc02d8be5ae04de, type: 3}
+  m_Mesh: {fileID: 4300002, guid: e9faa0fa41181044ebc02d8be5ae04de, type: 3}
 --- !u!33 &33456555303267564
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -8344,7 +8344,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  gazeExit: 0
+  gazeExit: 1
   clickMotion: 0
   moveSpeed: 0
   moveDist: 0
@@ -8916,8 +8916,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inspectionTab: {fileID: 1248937452463380}
-  equipmentTab: {fileID: 0}
-  locationTab: {fileID: 0}
+  equipmentTab: {fileID: 1722459107817586}
+  locationTab: {fileID: 1382062522605358}
   contentHolder: {fileID: 1734258115892488}
   Sumbit: {fileID: 1438919231231532}
   fieldStatus: {fileID: 114845889884305664}
@@ -10119,7 +10119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc04de91ab286cd499184a04de6d3364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMat: {fileID: 2100000, guid: 24164f3fefd3a4b4a9206fc4be02982d, type: 2}
+  mainMat: {fileID: 2100000, guid: e24c9798eb0aa1840ac8a6ea1a0552f6, type: 2}
   highlightMat: {fileID: 2100000, guid: ed3a45b58b6c7174eb0896d47aaf95f1, type: 2}
   altMat: {fileID: 2100000, guid: e24c9798eb0aa1840ac8a6ea1a0552f6, type: 2}
   isPanel: 0
@@ -11257,7 +11257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TagalongDistance: 2
-  EnforceDistance: 1
+  EnforceDistance: 0
   PositionUpdateSpeed: 9.8
   SmoothMotion: 1
   SmoothingFactor: 0.75
