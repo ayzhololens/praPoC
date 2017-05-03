@@ -4519,6 +4519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d20430be1ab5304baba371bcb14c2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshPos: []
+  meshRot: []
 --- !u!1 &772655525
 GameObject:
   m_ObjectHideFlags: 0
