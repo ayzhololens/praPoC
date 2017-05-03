@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 09c6eaa6450b54944853469bd9f91d95
-timeCreated: 1493420878
-=======
-guid: 64bf88650bf8b1248aee768b6dd88892
-timeCreated: 1493160816
->>>>>>> commentsJson
-licenseType: Free
 PluginImporter:
   serializedVersion: 1
   iconMap: {}
