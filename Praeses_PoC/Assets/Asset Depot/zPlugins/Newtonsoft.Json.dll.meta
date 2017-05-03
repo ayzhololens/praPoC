@@ -1,11 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 09c6eaa6450b54944853469bd9f91d95
-=======
-guid: dfc691e928379ed4099b0c572b1209e8
-timeCreated: 1493824699
-licenseType: Free
->>>>>>> spectatorViewSetup
 PluginImporter:
   serializedVersion: 1
   iconMap: {}
