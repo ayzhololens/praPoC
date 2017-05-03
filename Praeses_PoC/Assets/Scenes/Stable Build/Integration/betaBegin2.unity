@@ -342,7 +342,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1012395230765410, guid: 1a5c3b12e0673024bb9beea1e7b5b616, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a5c3b12e0673024bb9beea1e7b5b616, type: 2}
@@ -4519,8 +4519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d20430be1ab5304baba371bcb14c2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshPos: []
-  meshRot: []
 --- !u!1 &772655525
 GameObject:
   m_ObjectHideFlags: 0
@@ -9101,7 +9099,7 @@ MonoBehaviour:
   buttonFieldPrefab: {fileID: 1766372532663484, guid: 51a5c582111ccae44a461ac8da55abc3,
     type: 2}
   fieldStartPos: {fileID: 2047826815}
-  offsetDist: 0.046
+  offsetDist: 0.09
   IFCollection: []
   EDCollection: []
   LDCollection: []
@@ -9597,6 +9595,40 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000012943254746, guid: b2db04283121ca74495c2ee000fb4243,
     type: 2}
   m_PrefabInternal: {fileID: 1613055824}
+--- !u!108 &1613055828
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1613055825}
+  m_Enabled: 1
+  serializedVersion: 7
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 0.049999997
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.049999997
+    m_NormalBias: 0.39999998
+    m_NearPlane: 0.19999999
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1615799477
 GameObject:
   m_ObjectHideFlags: 0
