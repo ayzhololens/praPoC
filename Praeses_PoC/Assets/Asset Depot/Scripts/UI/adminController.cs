@@ -19,18 +19,6 @@ public class adminController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Debug.Log("pressed AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            toggleMenu();
-
-        }
-
-        //if (controllerInput.GetButtonDown(ControllerButton.LeftThumbstick))
-        //{
-        //    toggleMenu();
-        //}
-
     }
 
     public void toggleMenu()

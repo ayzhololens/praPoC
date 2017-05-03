@@ -34,19 +34,21 @@ public class subMenu : MonoBehaviour {
 
     public void turnOffCounter()
     {
-        Invoke("turnOffSubButtons", timeOutCounter);
         subButtonsOn = false;
+        Invoke("turnOffSubButtons", timeOutCounter);
+    }
+
+    public void keepOn()
+    {
+        subButtonsOn = true;
+        CancelInvoke("turnOffSubButtons");
     }
 
     public void turnOffSubButtons()
     {
-
+        
         if (!subButtonsOn)
         {
-            for (int i = 0; i < subButtons.Length; i++)
-            {
-                subButtons[i].SetActive(false);
-            }
             if (gameObject.GetComponent<popForward>() != null)
             {
                 gameObject.GetComponent<popForward>().moveBackward();
@@ -55,6 +57,11 @@ public class subMenu : MonoBehaviour {
             {
                 gameObject.GetComponent<buttonHightlight>().unHighlight();
             }
+            for (int i = 0; i < subButtons.Length; i++)
+            {
+                subButtons[i].SetActive(false);
+            }
+
 
 
             if (hide.Length > 0)

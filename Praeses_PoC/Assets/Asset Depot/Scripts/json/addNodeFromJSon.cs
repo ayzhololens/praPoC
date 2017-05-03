@@ -109,7 +109,8 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
                             comment3D.GetComponent<commentContents>().Date = comment.date;
                             comment3D.GetComponent<commentContents>().user = comment.user;
-                            comment3D.GetComponent<commentContents>().commentMeta.text = (comment.user + " " + comment.date);
+                            comment3D.GetComponent<commentContents>().commentMetaUser.text = comment.user;
+                            comment3D.GetComponent<commentContents>().commentMetaDate.text = comment.date;
                             comment3D.GetComponent<commentContents>().commentMain.text = comment.content;
                         }
                         else if (comment.type == 2 && spawnedNode.GetComponent<nodeController>().linkedField != null)
@@ -119,7 +120,8 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
                             comment3D.GetComponent<commentContents>().Date = comment.date;
                             comment3D.GetComponent<commentContents>().user = comment.user;
-                            comment3D.GetComponent<commentContents>().commentMeta.text = (comment.user + " " + comment.date);
+                            comment3D.GetComponent<commentContents>().commentMetaUser.text = comment.user;
+                            comment3D.GetComponent<commentContents>().commentMetaDate.text = comment.date;
                             comment3D.GetComponent<commentContents>().filepath = System.IO.Path.Combine(Application.persistentDataPath, comment.path);
                             comment3D.GetComponent<commentContents>().loadPhoto();
                         }
@@ -129,7 +131,8 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
                             comment3D.GetComponent<commentContents>().Date = comment.date;
                             comment3D.GetComponent<commentContents>().user = comment.user;
-                            comment3D.GetComponent<commentContents>().commentMeta.text = (comment.user + " " + comment.date);
+                            comment3D.GetComponent<commentContents>().commentMetaUser.text = comment.user;
+                            comment3D.GetComponent<commentContents>().commentMetaDate.text = comment.date;
                             comment3D.GetComponent<commentContents>().filepath = comment.path;
                             comment3D.GetComponent<commentContents>().LoadVideo();
                         }
@@ -155,6 +158,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 databaseMan.tempComment newItem = new databaseMan.tempComment();
                 newItem.date = commentJU.date;
                 newItem.type = 1;
+                newItem.user = commentJU.user;
                 newItem.content = commentJU.content;
                 tempList.Add(newItem);
             }
@@ -185,7 +189,8 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
                     comment3D.GetComponent<commentContents>().Date = comment.date;
                     comment3D.GetComponent<commentContents>().user = comment.user;
-                    comment3D.GetComponent<commentContents>().commentMeta.text = (comment.user + " " + comment.date);
+                    comment3D.GetComponent<commentContents>().commentMetaUser.text = comment.user;
+                    comment3D.GetComponent<commentContents>().commentMetaDate.text = comment.date;
                     comment3D.GetComponent<commentContents>().commentMain.text = comment.content;
                 }
                 else if (comment.type == 2 && spawnedNode.GetComponent<nodeController>().linkedField != null)
@@ -195,7 +200,8 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
                     comment3D.GetComponent<commentContents>().Date = comment.date;
                     comment3D.GetComponent<commentContents>().user = comment.user;
-                    comment3D.GetComponent<commentContents>().commentMeta.text = (comment.user + " " + comment.date);
+                    comment3D.GetComponent<commentContents>().commentMetaUser.text = comment.user;
+                    comment3D.GetComponent<commentContents>().commentMetaDate.text = comment.date;
                     comment3D.GetComponent<commentContents>().filepath = System.IO.Path.Combine(Application.persistentDataPath, comment.path);
                     comment3D.GetComponent<commentContents>().loadPhoto();
                 }
@@ -205,7 +211,8 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
                     comment3D.GetComponent<commentContents>().Date = comment.date;
                     comment3D.GetComponent<commentContents>().user = comment.user;
-                    comment3D.GetComponent<commentContents>().commentMeta.text = (comment.user + " " + comment.date);
+                    comment3D.GetComponent<commentContents>().commentMetaUser.text = comment.user;
+                    comment3D.GetComponent<commentContents>().commentMetaDate.text = comment.date;
                     comment3D.GetComponent<commentContents>().filepath = comment.path;
                     comment3D.GetComponent<commentContents>().LoadVideo();
                 }
@@ -222,7 +229,8 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
                 comment3D.GetComponent<commentContents>().Date = commentJU.date;
                 comment3D.GetComponent<commentContents>().user = commentJU.user;
-                comment3D.GetComponent<commentContents>().commentMeta.text = (commentJU.user + " " + commentJU.date);
+                comment3D.GetComponent<commentContents>().commentMetaUser.text = commentJU.user;
+                comment3D.GetComponent<commentContents>().commentMetaDate.text = commentJU.date;
                 comment3D.GetComponent<commentContents>().commentMain.text = commentJU.content;
             }
         }

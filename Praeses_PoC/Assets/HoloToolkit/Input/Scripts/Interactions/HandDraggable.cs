@@ -49,8 +49,7 @@ namespace HoloToolkit.Unity.InputModule
         private float handRefDistance;
         private Vector3 objRefGrabPoint;
 
-
-        public Vector3 draggingPosition;
+        private Vector3 draggingPosition;
         private Quaternion draggingRotation;
 
         private IInputSource currentInputSource = null;

@@ -11,37 +11,19 @@ namespace HoloToolkit.Unity
     {
 
         public GameObject linkedNode;
-        public Transform thumbPos;
-        public Transform attachmentParent;
-        public float thumbOffset;
         public Text DisplayName;
         public string trueName;
         public InputField Value;
         public Text previousValue;
         public int nodeIndex;
-        public List<GameObject> activeComments;
-        public GameObject videoThumbPrefab;
-        public List<GameObject> activeVideos;
-        public List<string> videoFilePaths;
-        string activeVideoPath;
-        public MediaPlayer VideoPlayer;
-        public videoRecorder vidRecorder;
-        int videoCounter;
-        public GameObject simpleNotePrefab;
-        public List<GameObject> activeSimpleNotes;
-        public GameObject photoThumbPrefab;
-        public List<string> photoFilePaths;
-        public List<GameObject> activePhotos;
-        string activePhotoPath;
-        Texture2D photoTexture;
-        photoRecorder photoRecorder;
-        public bool capturingVideo;
-        public bool capturingPhoto;
         public GameObject fieldButton;
         public Transform buttonPos;
         public float buttonXOffset;
         public float buttonYOffset;
+        public Transform buttonParent;
         public List<GameObject> curButtons;
+        int currCommentType;
+        public bool showUpdate;
 
 
 
@@ -56,10 +38,12 @@ namespace HoloToolkit.Unity
 
         }
 
-        public void spawnNode()
+        public void spawnNode(int commentType)
         {
+            currCommentType = commentType;
             if (linkedNode == null)
             {
+
                 nodeSpawner.Instance.spawnNode(4);
                 nodeSpawner.Instance.getLinkedField(gameObject.GetComponent<formFieldController>());
             }
@@ -67,12 +51,15 @@ namespace HoloToolkit.Unity
             {
                 enableAttachmentCapture();
             }
+
+
+
         }
 
-        public void repositionThumb()
-        {
-            thumbPos.position = new Vector3(thumbPos.position.x, thumbPos.position.y - thumbOffset, thumbPos.position.z);
-        }
+        //public void repositionThumb()
+        //{
+        //    thumbPos.position = new Vector3(thumbPos.position.x, thumbPos.position.y - thumbOffset, thumbPos.position.z);
+        //}
 
 
 
@@ -80,21 +67,38 @@ namespace HoloToolkit.Unity
         public void enableAttachmentCapture()
         {
 
-            GetComponent<subMenu>().turnOnSubButtons();
-            //attachmentParent.gameObject.SetActive(false);
-            for(int i = 0; i<transform.parent.childCount; i++)
-            {
-                if (transform.parent.GetChild(i).gameObject != this.gameObject && transform.parent.GetChild(i).gameObject.GetComponent<subMenu>() != null)
-                {
+            //GetComponent<subMenu>().turnOnSubButtons();
+            ////attachmentParent.gameObject.SetActive(false);
+            //for(int i = 0; i<transform.parent.childCount; i++)
+            //{
+            //    if (transform.parent.GetChild(i).gameObject != this.gameObject && transform.parent.GetChild(i).gameObject.GetComponent<subMenu>() != null)
+            //    {
 
-                    transform.parent.GetChild(i).gameObject.GetComponent<subMenu>().turnOffCounter();
-                    //transform.parent.GetChild(i).gameObject.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(false);
-                }
-            }
-            if(linkedNode.GetComponent<selectEvent>().enabled == false)
+            //        transform.parent.GetChild(i).gameObject.GetComponent<subMenu>().turnOffCounter();
+            //        //transform.parent.GetChild(i).gameObject.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(false);
+            //    }
+            //}
+
+            print(currCommentType);
+            if (linkedNode.GetComponent<selectEvent>().enabled == false)
             {
                 linkedNode.GetComponent<selectEvent>().enabled = true;
             }
+
+            if(currCommentType == 1)
+            {
+                GetComponent<commentManager>().spawnSimpleComment();
+            }
+            if (currCommentType == 2)
+            {
+                GetComponent<commentManager>().enablePhotoCapture();
+            }
+            if (currCommentType == 3)
+            {
+                GetComponent<commentManager>().enableVideoCapture();
+            }
+
+            currCommentType = 0;
         }
 
         public void populateButtons(int buttonAmount)
@@ -104,40 +108,49 @@ namespace HoloToolkit.Unity
             {
                 if (i == 2)
                 {
-                    buttonLoc = new Vector3(buttonPos.position.x, buttonPos.position.y + buttonYOffset, buttonLoc.z); ;
+                    //buttonLoc = new Vector3(buttonPos.position.x, buttonPos.position.y + buttonYOffset, buttonLoc.z); ;
                 }
 
                 curButtons.Add( Instantiate(fieldButton, buttonLoc, Quaternion.identity));
-                curButtons[i].transform.SetParent(transform);
+                curButtons[i].GetComponent<formButtonController>().field = this;
+                curButtons[i].transform.SetParent(buttonParent);
                 curButtons[i].transform.localScale = fieldButton.transform.localScale;
                 curButtons[i].transform.localRotation = fieldButton.transform.localRotation;
 
                 buttonLoc = new Vector3(buttonLoc.x + buttonXOffset, buttonLoc.y, buttonLoc.z) ;
 
             }
-
-            
-
         }
 
-        public void revealAttachments()
+        public void setStatus()
         {
-            if (!GetComponent<subMenu>().subButtonsOn && linkedNode!=null)
+            
+            if (showUpdate)
             {
-                for (int i = 0; i < transform.parent.childCount; i++)
-                {
-                    if (transform.parent.GetChild(i).gameObject != this.gameObject && transform.parent.GetChild(i).gameObject.GetComponent<subMenu>() != null)
-                    {
 
-                        transform.parent.GetChild(i).gameObject.GetComponent<subMenu>().turnOffCounter();
-                        transform.parent.GetChild(i).gameObject.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(false);
-                    }
-                }
+                formController.Instance.updateFieldStatus(1);
+                showUpdate = false;
             }
-
-
-            attachmentParent.gameObject.SetActive(true);
         }
+
+        //public void revealAttachments()
+        //{
+        //    if (!GetComponent<subMenu>().subButtonsOn && linkedNode!=null)
+        //    {
+        //        for (int i = 0; i < transform.parent.childCount; i++)
+        //        {
+        //            if (transform.parent.GetChild(i).gameObject != this.gameObject && transform.parent.GetChild(i).gameObject.GetComponent<subMenu>() != null)
+        //            {
+
+        //                transform.parent.GetChild(i).gameObject.GetComponent<subMenu>().turnOffCounter();
+        //                transform.parent.GetChild(i).gameObject.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(false);
+        //            }
+        //        }
+        //    }
+
+
+        //    attachmentParent.gameObject.SetActive(true);
+        //}
 
 
     //    public void enableVideoCapture()

@@ -46,7 +46,7 @@ namespace HoloToolkit.Unity
         {
             if (contentOpen && !nodeTagalong.locked)
             {
-                distanceChecker();
+                //distanceChecker();
             }
 
         }
@@ -110,33 +110,38 @@ namespace HoloToolkit.Unity
             contentOpen = false;
         }
 
-        public void enableReview()
+        public void repos()
         {
-            if (!isMiniNode)
-            {
-                reviewButtons.SetActive(true);
-                for (int i = 0; i < GetComponent<commentManager>().activeComments.Count; i++)
-                {
-                    //GetComponent<commentManager>().activeComments[i].GetComponent<commentContents>().editButton.SetActive(true);
-                }
-            }
-
+            nodeSpawner.Instance.repositionNode(gameObject);
         }
 
-        public void completeReview()
-        {
-            if (!isMiniNode)
-            {
-                reviewButtons.SetActive(false);
-                for (int i = 0; i < GetComponent<commentManager>().activeComments.Count; i++)
-                {
-                    //GetComponent<commentManager>().activeComments[i].GetComponent<commentContents>().editButton.SetActive(false);
-                }
-                BroadcastMessage("OnFocusExit", SendMessageOptions.DontRequireReceiver);
+        //public void enableReview()
+        //{
+        //    if (!isMiniNode)
+        //    {
+        //        reviewButtons.SetActive(true);
+        //        for (int i = 0; i < GetComponent<commentManager>().activeComments.Count; i++)
+        //        {
+        //            //GetComponent<commentManager>().activeComments[i].GetComponent<commentContents>().editButton.SetActive(true);
+        //        }
+        //    }
+
+        //}
+
+        //public void completeReview()
+        //{
+        //    if (!isMiniNode)
+        //    {
+        //        reviewButtons.SetActive(false);
+        //        for (int i = 0; i < GetComponent<commentManager>().activeComments.Count; i++)
+        //        {
+        //            //GetComponent<commentManager>().activeComments[i].GetComponent<commentContents>().editButton.SetActive(false);
+        //        }
+        //        BroadcastMessage("OnFocusExit", SendMessageOptions.DontRequireReceiver);
 
 
-            }
-        }
+        //    }
+        //}
 
 
         // determine whether or not to tag along

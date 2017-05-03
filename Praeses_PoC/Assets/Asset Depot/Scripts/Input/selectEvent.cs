@@ -7,16 +7,66 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     public UnityEvent Event;
 
 
+    bool canClick;
     bool focused;
     public bool gazeExit;
+    public bool clickMotion;
+    public float moveSpeed;
+    public float moveDist;
+
+
     void Start()
     {
 
+        canClick = true;
+        if (clickMotion)
+        {
+            gameObject.AddComponent<clickMotion>();
+            if (moveSpeed == 0)
+            {
+                moveSpeed = .001f;
+                moveDist = .01f;
+            }
+
+            GetComponent<clickMotion>().moveSpeed = moveSpeed;
+            GetComponent<clickMotion>().moveDist = moveDist;
+
+
+        }
     }
 
     public void OnSelect()
     {
 
+
+        if (clickMotion)
+        {
+            GetComponent<clickMotion>().click();
+        }
+        else
+        {
+            if (this.enabled == false) return;
+            if (Event != null)
+            {
+
+                Event.Invoke();
+
+                Debug.Log("select");
+                audioManager.Instance.src.Play();
+            }
+
+            if (GetComponent<gazeLeaveEvent>() != null && gazeExit)
+            {
+                GetComponent<gazeLeaveEvent>().OnFocusExit();
+            }
+        }
+
+
+    }
+
+
+    public void finishClick()
+    {
         if (this.enabled == false) return;
         if (Event != null)
         {
@@ -34,15 +84,16 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     }
 
 
-
-
-
     public void OnInputClicked(InputClickedEventData eventData)
     {
         if (GazeManager.Instance.HitObject == this.gameObject)
         {
-
-            OnSelect();
+            if (canClick)
+            {
+                OnSelect();
+                canClick = false;
+                Invoke("ClickReseter", .2f);
+            }
         }
         
     }
@@ -55,6 +106,11 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     public void OnFocusExit()
     {
         focused = false;
+    }
+
+    void ClickReseter()
+    {
+        canClick = true;
     }
 
 }

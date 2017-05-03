@@ -9,7 +9,7 @@ public class popForward : MonoBehaviour {
     Vector3 startPos;
     Vector3 movePos;
     public float scaleMult;
-    public float moveMult;
+    public float moveDist;
     public bool scale;
     public bool move;
 
@@ -17,7 +17,7 @@ public class popForward : MonoBehaviour {
 	void Start () {
         startScale = transform.localScale;
         largeScale = new Vector3(transform.localScale.x + scaleMult, transform.localScale.y + scaleMult, transform.localScale.z + scaleMult);
-        //startPos = transform.position;
+        startPos = transform.localPosition;
         
 	}
 	
@@ -28,18 +28,16 @@ public class popForward : MonoBehaviour {
 
     public void moveForward()
     {
-        Debug.Log("gazeOn");
         if (scale)
         {
-            transform.localScale = largeScale;
+            transform.localScale *= scaleMult;
         }
 
 
         if (move)
         {
-            startPos = Vector3.zero;
-               movePos = new Vector3(transform.position.x, transform.position.y, transform.position.z + moveMult);
-            transform.position = movePos;
+            movePos = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + moveDist);
+            transform.localPosition = movePos;
         }
     }
 
