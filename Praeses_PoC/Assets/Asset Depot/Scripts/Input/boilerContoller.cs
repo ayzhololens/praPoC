@@ -71,7 +71,7 @@ public class boilerContoller : MonoBehaviour {
 
             if (controllerInput.GetButtonDown(ControllerButton.A))
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - ratchetSensitivity, transform.position.z);
+                GetComponent<boilerIdentifier>().sendBoilerPosition();
             }
         }
 
