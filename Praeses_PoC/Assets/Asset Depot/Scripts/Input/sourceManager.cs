@@ -11,6 +11,8 @@ public class sourceManager : Singleton<sourceManager>, ISourceStateHandler, IInp
     public bool sourcePressed;
     public bool sourceDetected;
 
+    ActorBehavior actor;
+
 
     // Use this for initialization
     void Start()
@@ -30,6 +32,7 @@ public class sourceManager : Singleton<sourceManager>, ISourceStateHandler, IInp
         if (!sourceDetected)
         {
             sourceDetected = true;
+
         }
 
     }
@@ -51,6 +54,18 @@ public class sourceManager : Singleton<sourceManager>, ISourceStateHandler, IInp
         if (sourcePressed)
         {
             sourcePressed = false;
+            if (actor == null)
+            {
+                if (GameObject.Find("Actor(Clone)") != null)
+                {
+
+                    actor = GameObject.Find("Actor(Clone)").GetComponent<ActorBehavior>();
+                }
+            }
+            if (actor != null)
+            {
+                actor.RpcUpdateSource(sourcePressed);
+            }
         }
 
     }
@@ -60,6 +75,23 @@ public class sourceManager : Singleton<sourceManager>, ISourceStateHandler, IInp
         if (!sourcePressed)
         {
             sourcePressed = true;
+
+            if (actor == null)
+            {
+                if (GameObject.Find("Actor(Clone)") != null)
+                {
+                    actor = GameObject.Find("Actor(Clone)").GetComponent<ActorBehavior>();
+                }
+            }
+            if (actor != null)
+            {
+                actor.RpcOnInputDown();
+            }
+            if (actor != null)
+            {
+                actor.RpcUpdateSource(sourcePressed);
+            }
+
         }
     }
 

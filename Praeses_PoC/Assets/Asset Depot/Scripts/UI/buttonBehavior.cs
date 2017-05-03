@@ -68,7 +68,7 @@ namespace HoloToolkit.Unity.InputModule
         public void goToNextButton()
         {
             currentButtonHolder.SetActive(false);
-            //nextButtonHolder.transform.LookAt(Camera.main.transform);
+            //nextButtonHolder.transform.LookAt(ActorSingleton.Actor.transform);
             nextButtonHolder.SetActive(true);
         }
 

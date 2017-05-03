@@ -51,11 +51,11 @@ namespace PosterAlignment.InputUtilities
             // camera is always moving
             worldScreenCenter.x = ScreenCenter.x;
             worldScreenCenter.y = ScreenCenter.y;
-            worldScreenCenter.z = Camera.main.nearClipPlane;
-            worldScreenCenter = Camera.main.ScreenToWorldPoint(worldScreenCenter);
+            worldScreenCenter.z = ActorSingleton.Actor.nearClipPlane;
+            worldScreenCenter = ActorSingleton.Actor.ScreenToWorldPoint(worldScreenCenter);
 
             var lastGazePosition = GazePoint;
-            GazePoint = Camera.main.transform.position + Camera.main.transform.forward;
+            GazePoint = ActorSingleton.Actor.transform.position + ActorSingleton.Actor.transform.forward;
             GazeDelta = GazePoint - lastGazePosition;
         }
 

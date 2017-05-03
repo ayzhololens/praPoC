@@ -125,7 +125,7 @@ namespace HoloToolkit.Unity
             {
                 string keyword;
                 keyword = formItem.trueName;
-                databaseMan.Instance.formToClassValueSync(keyword, mainInputField.text);
+                //for test dont comment this databaseMan.Instance.formToClassValueSync(keyword, mainInputField.text);
             }
             else if(nodeInfo != null)
             {

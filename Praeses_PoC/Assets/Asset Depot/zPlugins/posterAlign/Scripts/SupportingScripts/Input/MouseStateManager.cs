@@ -60,14 +60,14 @@ namespace PosterAlignment.InputUtilities
                 = UnityEngine.Input.mousePosition;
             this.worldScreenPosition.x = this.ScreenPosition.x;
             this.worldScreenPosition.y = this.ScreenPosition.y;
-            this.worldScreenPosition.z = Camera.main.nearClipPlane;
+            this.worldScreenPosition.z = ActorSingleton.Actor.nearClipPlane;
             this.worldScreenPosition
-                = Camera.main.ScreenToWorldPoint(this.worldScreenPosition);
+                = ActorSingleton.Actor.ScreenToWorldPoint(this.worldScreenPosition);
         }
 
         public override void UpdateModule()
         {
-            float screenZ = Camera.main.nearClipPlane;
+            float screenZ = ActorSingleton.Actor.nearClipPlane;
 
             var lastPosition = this.ScreenPosition;
             var worldLastPosition = this.WorldScreenPosition;
@@ -76,9 +76,9 @@ namespace PosterAlignment.InputUtilities
                 = UnityEngine.Input.mousePosition;
             this.worldScreenPosition.x = this.ScreenPosition.x;
             this.worldScreenPosition.y = this.ScreenPosition.y;
-            this.worldScreenPosition.z = Camera.main.nearClipPlane;
+            this.worldScreenPosition.z = ActorSingleton.Actor.nearClipPlane;
             this.worldScreenPosition
-                = Camera.main.ScreenToWorldPoint(this.worldScreenPosition);
+                = ActorSingleton.Actor.ScreenToWorldPoint(this.worldScreenPosition);
 
             if (UnityEngine.Input.GetButton(this.LeftButton))
             {

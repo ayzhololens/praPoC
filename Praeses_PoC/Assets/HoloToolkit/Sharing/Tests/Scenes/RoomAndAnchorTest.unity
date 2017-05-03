@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClientRole: 0
-  ServerAddress: 10.10.13.167
+  ServerAddress: 10.10.11.106
   ServerPort: 20602
   connectOnAwake: 1
   AutoDiscoverServer: 0

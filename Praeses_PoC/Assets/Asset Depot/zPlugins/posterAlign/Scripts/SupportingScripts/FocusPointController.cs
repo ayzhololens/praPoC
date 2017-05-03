@@ -20,7 +20,7 @@ namespace PosterAlignment
 
         public Vector3 FocusPointPosition { get; private set; }
 
-        public Vector3 FocusPointNormal { get { return -Camera.main.transform.forward; } }
+        public Vector3 FocusPointNormal { get { return -ActorSingleton.Actor.transform.forward; } }
 
         private const float LerpPowerCloser = 7.0f;
         private const float LerpPowerFarther = 10.0f;
@@ -28,22 +28,22 @@ namespace PosterAlignment
         void Awake()
         {
             // uses the main camera for focus plane adjustmensts
-            if (Camera.main == null)
+            if (ActorSingleton.Actor == null)
             {
                 Debug.LogError("You need to choose a main camera that will be used for the scene");
                 this.enabled = false;
                 return;
             }
 
-            this.MinDistance = Camera.main.nearClipPlane + this.MinDistance;
+            this.MinDistance = ActorSingleton.Actor.nearClipPlane + this.MinDistance;
             this.FocusPointDistance = this.DefaultStartDistance;
-            this.FocusPointPosition = Camera.main.transform.position + (Camera.main.transform.forward * this.FocusPointDistance);
+            this.FocusPointPosition = ActorSingleton.Actor.transform.position + (ActorSingleton.Actor.transform.forward * this.FocusPointDistance);
         }
 
         void LateUpdate()
         {
             // use the last location
-            var newFocusPos = Camera.main.transform.position + (Camera.main.transform.forward * this.FocusPointDistance);
+            var newFocusPos = ActorSingleton.Actor.transform.position + (ActorSingleton.Actor.transform.forward * this.FocusPointDistance);
 
             // if we hit an object, set this as the new position
             RaycastResult raycast = CustomHoloLensInputModule.GetRaycastResult();
@@ -53,7 +53,7 @@ namespace PosterAlignment
             }
 
             // determine its distance to that point
-            var newFocusPointDistance = (Camera.main.transform.position - newFocusPos).magnitude;
+            var newFocusPointDistance = (ActorSingleton.Actor.transform.position - newFocusPos).magnitude;
 
             // if we want to set it immediately, set snap mode
             if (this.Snap)
@@ -80,7 +80,7 @@ namespace PosterAlignment
 
             // set the position
             this.FocusPointPosition
-                = Camera.main.transform.position + (Camera.main.transform.forward * this.FocusPointDistance);
+                = ActorSingleton.Actor.transform.position + (ActorSingleton.Actor.transform.forward * this.FocusPointDistance);
 
             HolographicSettings.SetFocusPointForFrame(this.FocusPointPosition, this.FocusPointNormal);
         }

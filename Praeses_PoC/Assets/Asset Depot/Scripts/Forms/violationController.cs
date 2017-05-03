@@ -28,7 +28,7 @@ namespace HoloToolkit.Unity
         // Use this for initialization
         void Start()
         {
-            frontHolder = Camera.main.transform.GetChild(0);
+            frontHolder = ActorSingleton.Actor.transform.GetChild(0);
         }
 
         // Update is called once per frame

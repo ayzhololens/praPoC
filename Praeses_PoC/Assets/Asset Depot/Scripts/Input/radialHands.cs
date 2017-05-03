@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity;
 
-public class radialHands : MonoBehaviour {
+public class radialHands : Singleton<radialHands> {
 
     public HandsManager handsManager;
     public GameObject invisCursor;
@@ -15,6 +15,9 @@ public class radialHands : MonoBehaviour {
     public float sensitivity;
     Vector3 handStartPos;
     public GameObject focusedObj;
+    Vector3 handPos;
+    public Vector3 actorHandPos;
+    public bool isClient;
 
 
     // Use this for initialization
@@ -26,18 +29,27 @@ public class radialHands : MonoBehaviour {
 	void Update () {
         if (canManipulate)
         {
+            Vector3 tempHandPos = handsManager.ManipulationHandPosition;
+            if (isClient)
+            {
+                handPos = actorHandPos;
+            }
+            else
+            {
+                handPos = tempHandPos;
+            }
 
 
             if (sourceManager.Instance.sourcePressed && !manipulating)
             {
                 navCursor.transform.position = startPos;
-                handStartPos = (handsManager.ManipulationHandPosition);
+                handStartPos = (handPos);
                 manipulating = true;
             }
 
             if (manipulating && sourceManager.Instance.sourcePressed)
             {
-                invisCursor.transform.position = (handsManager.ManipulationHandPosition - handStartPos);
+                invisCursor.transform.position = (handPos - handStartPos);
                 navCursor.transform.localPosition = (new Vector3(invisCursor.transform.localPosition.x * -1, invisCursor.transform.localPosition.y, 1)) * sensitivity;
 
             }

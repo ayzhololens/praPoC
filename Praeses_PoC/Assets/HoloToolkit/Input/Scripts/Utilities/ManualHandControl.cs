@@ -219,10 +219,10 @@ namespace HoloToolkit.Unity.InputModule
                 }
 
                 leftHandLocalPosition += translate;
-                LeftHandSourceState.Properties.Location.Position = Camera.main.transform.position + Camera.main.transform.TransformVector(leftHandLocalPosition);
+                LeftHandSourceState.Properties.Location.Position = ActorSingleton.Actor.transform.position + ActorSingleton.Actor.transform.TransformVector(leftHandLocalPosition);
 
                 LeftHandVisualizer.transform.position = LeftHandSourceState.Properties.Location.Position;
-                LeftHandVisualizer.transform.forward = Camera.main.transform.forward;
+                LeftHandVisualizer.transform.forward = ActorSingleton.Actor.transform.forward;
 
                 leftHandVisualPropertyBlock.SetTexture(mainTexID, LeftHandSourceState.Pressed ? HandDownTexture : HandUpTexture);
                 leftHandVisualRenderer.SetPropertyBlock(leftHandVisualPropertyBlock);
@@ -253,10 +253,10 @@ namespace HoloToolkit.Unity.InputModule
                 }
 
                 rightHandLocalPosition += translate;
-                RightHandSourceState.Properties.Location.Position = Camera.main.transform.position + Camera.main.transform.TransformVector(rightHandLocalPosition);
+                RightHandSourceState.Properties.Location.Position = ActorSingleton.Actor.transform.position + ActorSingleton.Actor.transform.TransformVector(rightHandLocalPosition);
 
                 RightHandVisualizer.transform.position = RightHandSourceState.Properties.Location.Position;
-                RightHandVisualizer.transform.forward = Camera.main.transform.forward;
+                RightHandVisualizer.transform.forward = ActorSingleton.Actor.transform.forward;
                 rightHandVisualPropertyBlock.SetTexture(mainTexID, RightHandSourceState.Pressed ? HandDownTexture : HandUpTexture);
                 rightHandVisualRenderer.SetPropertyBlock(rightHandVisualPropertyBlock);
 

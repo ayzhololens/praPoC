@@ -29,6 +29,10 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
 
     public float sensitivity;
 
+    Vector3 handPos;
+    public Vector3 actorHandPos;
+    public bool isClient;
+
     void Start()
     {
         initHandPos = new Vector3(0, 0, 0);
@@ -74,16 +78,24 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
 
         if (GazeManager.Instance.HitObject == gameObject || navigating)
         {
-            Debug.Log("looking");
+            //Debug.Log("looking");
             if (sourceManager.Instance.sourcePressed)
             {
-                Debug.Log("pressing...");
+                Vector3 tempHandPos = HandsManager.Instance.ManipulationHandPosition;
+                if (isClient)
+                {
+                    handPos = actorHandPos;
+                }
+                else
+                {
+                    handPos = tempHandPos;
+                }
+                //Debug.Log("pressing...");
                 if (!navigating)
                 {
-                    
-                    tempDist = Vector3.Distance(Camera.main.transform.position, GazeManager.Instance.HitPosition);
+                    tempDist = Vector3.Distance(ActorSingleton.Actor.transform.position, GazeManager.Instance.HitPosition);
 
-                    initHandPos = HandsManager.Instance.ManipulationHandPosition;
+                    initHandPos = handPos;
                     editState = true;
                     adjustWithEdit();
                     navigating = true;
@@ -92,7 +104,7 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
                 navigating = true;
                 cursorHand.SetActive(true);
             
-                handPosLocal.transform.position = HandsManager.Instance.ManipulationHandPosition - initHandPos;
+                handPosLocal.transform.position = handPos - initHandPos;
 
                 handPosLocal.transform.localPosition = new Vector3(Mathf.Clamp(handPosLocal.transform.localPosition.x, -.1f, .1f),
                                                                     Mathf.Clamp(handPosLocal.transform.localPosition.y, -.1f, .1f),
@@ -122,10 +134,10 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
         if (editState)
         {
             Vector3 up = oriParent.up;
-            Vector3 forward = Vector3.ProjectOnPlane(Camera.main.transform.forward, up).normalized;
+            Vector3 forward = Vector3.ProjectOnPlane(ActorSingleton.Actor.transform.forward, up).normalized;
 
             buttonsGrp.SetActive(true);
-            buttonsGrp.transform.SetParent(Camera.main.transform);
+            buttonsGrp.transform.SetParent(ActorSingleton.Actor.transform);
             buttonsGrp.transform.localPosition = new Vector3(0, 0, tempDist);
             buttonsGrp.transform.rotation = Quaternion.LookRotation(forward, up);
             buttonsGrp.transform.SetParent(oriParent);

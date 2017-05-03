@@ -58,19 +58,6 @@ public class minimize : MonoBehaviour, IInputClickHandler {
     private void Update()
     {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         if (miniCopy != null && posUpdate)
         {
 

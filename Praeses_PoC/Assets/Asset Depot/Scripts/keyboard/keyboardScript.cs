@@ -153,7 +153,7 @@ namespace HoloToolkit.Unity
         void cameraParent()
         {
             Quaternion oldRot = transform.rotation;
-            transform.SetParent(Camera.main.transform);
+            transform.SetParent(ActorSingleton.Actor.transform);
             transform.localPosition = new Vector3(0, 0, 1);
             transform.rotation = new Quaternion(oldRot.x, 0, oldRot.z, oldRot.w);
             transform.SetParent(null);

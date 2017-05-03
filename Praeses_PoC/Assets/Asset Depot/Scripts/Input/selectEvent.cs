@@ -72,9 +72,6 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
         {
 
             Event.Invoke();
-
-            //Debug.Log("select");
-            //audioManager.Instance.src.Play();
         }
 
         if (GetComponent<gazeLeaveEvent>() != null && gazeExit)

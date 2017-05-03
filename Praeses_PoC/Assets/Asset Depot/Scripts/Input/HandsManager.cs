@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VR.WSA.Input;
 
+
 namespace HoloToolkit.Unity
 {
     /// <summary>
@@ -37,6 +38,10 @@ namespace HoloToolkit.Unity
             get { return pressedHands.Count > 0; }
         }
 
+
+        ActorBehavior actor;
+        Vector3 lastPos;
+
         /// <summary>
         /// The world space position of the hand being used for the current manipulation gesture.
         /// Valid only if a manipulation gesture is in progress.
@@ -50,9 +55,12 @@ namespace HoloToolkit.Unity
                 {
                     handPosition = Vector3.zero;
                 }
+
                 return handPosition;
             }
         }
+
+
 
         private InteractionSourceState currentHandState;
 
@@ -75,6 +83,28 @@ namespace HoloToolkit.Unity
             InteractionManager.SourceReleased -= InteractionManager_SourceReleased;
             InteractionManager.SourceUpdated -= InteractionManager_SourceUpdated;
             InteractionManager.SourceLost -= InteractionManager_SourceLost;
+        }
+
+        private void Update()
+        {
+           
+            if (ManipulationHandPosition != lastPos)
+            {
+                if (actor == null)
+                {
+                    if (GameObject.Find("Actor(Clone)") != null)
+                    {
+
+                        actor = GameObject.Find("Actor(Clone)").GetComponent<ActorBehavior>();
+                    }
+                }
+                if (actor != null)
+                {
+                    actor.RpcUpdateHandPos(ManipulationHandPosition);
+                }
+            }
+            lastPos = ManipulationHandPosition;
+            
         }
 
         /// <summary>

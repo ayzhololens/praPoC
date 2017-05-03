@@ -212,7 +212,7 @@ namespace HoloToolkit.Unity
         /// </param>
         private void LogSpeech(string text)
         {
-            Debug.LogFormat("Speech not supported in editor. \"{0}\"", text);
+            //Debug.LogFormat("Speech not supported in editor. \"{0}\"", text);
         }
 
 #if !UNITY_EDITOR && UNITY_METRO

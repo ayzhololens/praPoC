@@ -21,6 +21,9 @@ namespace HoloToolkit.Unity
         public GameObject avatar;
         public bool useAvatar;
 
+        public Transform minimapContainer;
+        Transform holoCollection;
+
         // Use this for initialization
         void Start()
         {
@@ -47,6 +50,13 @@ namespace HoloToolkit.Unity
             mediaManager.Instance.gameObject.transform.SetParent(initParent);
         }
 
+        void setMinimapTo(Transform parent)
+        {
+            minimapContainer.SetParent(parent);
+            minimapContainer.localPosition = Vector3.zero;
+            minimapContainer.localRotation = new Quaternion(0, 0, 0, 0);
+            minimapContainer.localScale = Vector3.one;
+        }
 
         public void spawnMiniMap()
         {
@@ -54,6 +64,8 @@ namespace HoloToolkit.Unity
             boiler = GameObject.Find("boiler");
             boiler.transform.SetParent(transform);
             repositionNodeHolder();
+            holoCollection = GameObject.Find("HologramCollection").transform;
+            setMinimapTo(null);
 
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -119,12 +131,13 @@ namespace HoloToolkit.Unity
                 {
                     if (boiler.transform.GetChild(u).gameObject.activeSelf && boiler.transform.GetChild(u).gameObject.GetComponent<MeshRenderer>() != null)
                     {
-                        boiler.transform.GetChild(u).gameObject.GetComponent<Renderer>().material = occlusionMat;
+                        //boiler.transform.GetChild(u).gameObject.GetComponent<Renderer>().material = occlusionMat;
 
                     }
                 }
 
             }
+            setMinimapTo(holoCollection);
         }
         
 

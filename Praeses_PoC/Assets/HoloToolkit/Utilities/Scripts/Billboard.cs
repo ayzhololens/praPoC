@@ -34,13 +34,13 @@ namespace HoloToolkit.Unity
         /// </summary>
         private void Update()
         {
-            if (!Camera.main)
+            if (!ActorSingleton.Actor)
             {
                 return;
             }
 
             // Get a Vector that points from the target to the main camera.
-            Vector3 directionToTarget = Camera.main.transform.position - transform.position;
+            Vector3 directionToTarget = ActorSingleton.Actor.transform.position - transform.position;
 
             // Adjust for the pivot axis.
             switch (PivotAxis)

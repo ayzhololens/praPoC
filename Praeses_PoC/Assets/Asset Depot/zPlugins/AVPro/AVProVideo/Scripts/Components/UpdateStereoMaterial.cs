@@ -37,7 +37,7 @@ namespace RenderHeads.Media.AVProVideo
 			Camera camera = _camera;
 			if (camera == null)
 			{
-				camera = Camera.main;
+				camera = ActorSingleton.Actor;
 			}
 			if (_renderer == null && _material == null)
 			{

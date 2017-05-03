@@ -9,6 +9,8 @@ public class minimapTransferObject : Singleton<minimapTransferObject> {
     Quaternion initRot;
     Vector3 initSca;
 
+    GameObject holoCollection;
+
     public void transferObject(GameObject processObj)
     {
         initPos = minimapSpawn.Instance.miniMapHolder.transform.localPosition;
@@ -16,7 +18,15 @@ public class minimapTransferObject : Singleton<minimapTransferObject> {
         initSca = minimapSpawn.Instance.miniMapHolder.transform.localScale;
         resetHolder();
 
-        processObj.transform.SetParent(minimapSpawn.Instance.miniMapHolder.transform);
+        GameObject miniHoloCollection = new GameObject();
+        miniHoloCollection.name = "miniHoloCollection";
+        miniHoloCollection.transform.SetParent(holoCollection.transform);
+        miniHoloCollection.transform.position = Vector3.zero;
+        miniHoloCollection.transform.rotation = new Quaternion(0, 0, 0, 0);
+        miniHoloCollection.transform.localScale = Vector3.one;
+
+        miniHoloCollection.transform.SetParent(minimapSpawn.Instance.miniMapHolder.transform);
+        processObj.transform.SetParent(miniHoloCollection.transform);
         minimapSpawn.Instance.miniMapHolder.transform.SetParent(minimapSpawn.Instance.MiniMapHolderParent.transform);
         minimapSpawn.Instance.miniMapHolder.transform.localPosition = initPos;
         minimapSpawn.Instance.miniMapHolder.transform.localRotation = initRot;
@@ -25,9 +35,11 @@ public class minimapTransferObject : Singleton<minimapTransferObject> {
 
     public void resetHolder()
     {
-        minimapSpawn.Instance.miniMapHolder.transform.SetParent(null);
+        holoCollection = GameObject.Find("HologramCollection");
+        minimapSpawn.Instance.miniMapHolder.transform.SetParent(holoCollection.transform);
         minimapSpawn.Instance.miniMapHolder.transform.position = Vector3.zero;
         minimapSpawn.Instance.miniMapHolder.transform.rotation = new Quaternion(0,0,0,0);
         minimapSpawn.Instance.miniMapHolder.transform.localScale = Vector3.one;
     }
+
 }

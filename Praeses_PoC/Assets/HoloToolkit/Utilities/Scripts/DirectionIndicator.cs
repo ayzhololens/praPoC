@@ -112,7 +112,7 @@ namespace HoloToolkit.Unity
             }
 
             // Direction from the Main Camera to this script's parent gameObject.
-            Vector3 camToObjectDirection = gameObject.transform.position - Camera.main.transform.position;
+            Vector3 camToObjectDirection = gameObject.transform.position - ActorSingleton.Actor.transform.position;
             camToObjectDirection.Normalize();
 
             // The cursor indicator should only be visible if the target is not visible.
@@ -141,7 +141,7 @@ namespace HoloToolkit.Unity
         private bool IsTargetVisible()
         {
             // This will return true if the target's mesh is within the Main Camera's view frustums.
-            Vector3 targetViewportPosition = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+            Vector3 targetViewportPosition = ActorSingleton.Actor.WorldToViewportPoint(gameObject.transform.position);
             return (targetViewportPosition.x > VisibilitySafeFactor && targetViewportPosition.x < 1 - VisibilitySafeFactor &&
                     targetViewportPosition.y > VisibilitySafeFactor && targetViewportPosition.y < 1 - VisibilitySafeFactor &&
                     targetViewportPosition.z > 0);
@@ -154,21 +154,21 @@ namespace HoloToolkit.Unity
             Vector3 origin = Cursor.transform.position;
 
             // Project the camera to target direction onto the screen plane.
-            Vector3 cursorIndicatorDirection = Vector3.ProjectOnPlane(camToObjectDirection, -1 * Camera.main.transform.forward);
+            Vector3 cursorIndicatorDirection = Vector3.ProjectOnPlane(camToObjectDirection, -1 * ActorSingleton.Actor.transform.forward);
             cursorIndicatorDirection.Normalize();
 
             // If the direction is 0, set the direction to the right.
             // This will only happen if the camera is facing directly away from the target.
             if (cursorIndicatorDirection == Vector3.zero)
             {
-                cursorIndicatorDirection = Camera.main.transform.right;
+                cursorIndicatorDirection = ActorSingleton.Actor.transform.right;
             }
 
             // The final position is translated from the center of the screen along this direction vector.
             position = origin + cursorIndicatorDirection * MetersFromCursor;
 
             // Find the rotation from the facing direction to the target object.
-            rotation = Quaternion.LookRotation(Camera.main.transform.forward, cursorIndicatorDirection) * directionIndicatorDefaultRotation;
+            rotation = Quaternion.LookRotation(ActorSingleton.Actor.transform.forward, cursorIndicatorDirection) * directionIndicatorDefaultRotation;
         }
     }
 }

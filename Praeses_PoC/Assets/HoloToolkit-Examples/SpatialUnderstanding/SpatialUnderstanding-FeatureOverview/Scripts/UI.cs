@@ -156,7 +156,7 @@ namespace HoloToolkit.Examples.SpatialUnderstandingFeatureOverview
                 Debug.Log("PlaceMenu - LargestPositionsOnFloor");
                 SpatialUnderstandingDllTopology.TopologyResult menuLocation = resultsTopology[0];
                 Vector3 menuPosition = menuLocation.position + Vector3.up * MenuHeight;
-                Vector3 menuLookVector = Camera.main.transform.position - menuPosition;
+                Vector3 menuLookVector = ActorSingleton.Actor.transform.position - menuPosition;
                 PlaceMenu(menuPosition, (new Vector3(menuLookVector.x, 0.0f, menuLookVector.z)).normalized, true);
                 yield break;
             }
@@ -164,8 +164,8 @@ namespace HoloToolkit.Examples.SpatialUnderstandingFeatureOverview
             // Final fallback just in front of the user
             SpatialUnderstandingDll.Imports.QueryPlayspaceAlignment(SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceAlignmentPtr());
             SpatialUnderstandingDll.Imports.PlayspaceAlignment alignment = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceAlignment();
-            Vector3 defaultPosition = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
-            PlaceMenu(new Vector3(defaultPosition.x, Math.Max(defaultPosition.y, alignment.FloorYValue + 1.5f), defaultPosition.z), (new Vector3(Camera.main.transform.forward.x, 0.0f, Camera.main.transform.forward.z)).normalized, true);
+            Vector3 defaultPosition = ActorSingleton.Actor.transform.position + ActorSingleton.Actor.transform.forward * 2.0f;
+            PlaceMenu(new Vector3(defaultPosition.x, Math.Max(defaultPosition.y, alignment.FloorYValue + 1.5f), defaultPosition.z), (new Vector3(ActorSingleton.Actor.transform.forward.x, 0.0f, ActorSingleton.Actor.transform.forward.z)).normalized, true);
             Debug.Log("PlaceMenu - InFrontOfUser");
         }
 
@@ -325,7 +325,7 @@ namespace HoloToolkit.Examples.SpatialUnderstandingFeatureOverview
                 {
                     // Rotate to face the user
                     transform.position = MenuAnimatedBox.AnimPosition.Evaluate(MenuAnimatedBox.Time);
-                    Vector3 lookDirTarget = Camera.main.transform.position - transform.position;
+                    Vector3 lookDirTarget = ActorSingleton.Actor.transform.position - transform.position;
                     lookDirTarget = (new Vector3(lookDirTarget.x, 0.0f, lookDirTarget.z)).normalized;
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-lookDirTarget), Time.deltaTime * 10.0f);
                 }

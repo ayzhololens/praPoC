@@ -1828,7 +1828,7 @@ Prefab:
         type: 2}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[6].m_Target
       value: 
-      objectReference: {fileID: 1569777040}
+      objectReference: {fileID: 0}
     - target: {fileID: 114983693428349266, guid: ce33e945c1fb5d7489d025d20ff4bcaf,
         type: 2}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2406,41 +2406,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1531927110}
   m_Mesh: {fileID: 4300006, guid: faa9261052912a348a86cead9f186f79, type: 3}
---- !u!1 &1569777038 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1771440602139932, guid: 6b9c14fcc8025f543bf3a867845d521d,
-    type: 2}
-  m_PrefabInternal: {fileID: 2097364236}
---- !u!114 &1569777040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1569777038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13af999bd32dcb643a87f60557980be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeprefabs:
-  - {fileID: 1749729230984222, guid: be75c3a893693db4fbc61a2ef6151fb5, type: 2}
-  - {fileID: 1271331746875164, guid: c3a4428584fc6b849944f0f9219ec60b, type: 2}
-  - {fileID: 1332994365205722, guid: 364b17d8f0ecaad4c886e0d68ff68ee9, type: 2}
-  - {fileID: 1991752197719450, guid: fb9dc23a55385da4093b7aa035f23b38, type: 2}
-  - {fileID: 1723358471618130, guid: b89775811fc7ed0438b34acb3a60f311, type: 2}
-  changedText: {fileID: 0}
-  offSiteHolder: {fileID: 0}
---- !u!114 &1569777041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1569777038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01d2afa6f3ca48e4e911fcefd91dae2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1569777042 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114663073116832346, guid: 6b9c14fcc8025f543bf3a867845d521d,
@@ -2968,6 +2933,8 @@ MonoBehaviour:
   moveSensitivity: 0.01
   rotateSensitivity: 0.2
   ratchetSensitivity: 0.02
+  mainMenuContent: {fileID: 0}
+  useController: 0
 --- !u!1 &1694856253
 GameObject:
   m_ObjectHideFlags: 0
@@ -3807,7 +3774,7 @@ Prefab:
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[9].Response.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1569777040}
+      objectReference: {fileID: 0}
     - target: {fileID: 114955019297564206, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[9].Response.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName

@@ -61,7 +61,7 @@ namespace HoloToolkit.Unity
 
         private void Start()
         {
-            Depth = Mathf.Clamp(Depth, Camera.main.nearClipPlane, Camera.main.farClipPlane);
+            Depth = Mathf.Clamp(Depth, ActorSingleton.Actor.nearClipPlane, ActorSingleton.Actor.farClipPlane);
 
             if (PointerPrefab == null)
             {
@@ -104,12 +104,12 @@ namespace HoloToolkit.Unity
                 if (currentFrameCount != frustumLastUpdated)
                 {
                     // Collect the updated camera information for the current frame
-                    CacheCameraTransform(Camera.main);
+                    CacheCameraTransform(ActorSingleton.Actor);
 
                     frustumLastUpdated = currentFrameCount;
                 }
 
-                UpdatePointerTransform(Camera.main, indicatorVolume, TargetObject.transform.position);
+                UpdatePointerTransform(ActorSingleton.Actor, indicatorVolume, TargetObject.transform.position);
             }
         }
 

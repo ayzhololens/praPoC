@@ -14,7 +14,7 @@ public class sharedFollowCam : NetworkBehaviour {
     // Use this for initialization
     void Start () {
         initHeight = transform.position.y;
-        cameraTra = Camera.main.transform;
+        cameraTra = ActorSingleton.Actor.transform;
         if (isServer)
         {
             if (isLocalPlayer)
