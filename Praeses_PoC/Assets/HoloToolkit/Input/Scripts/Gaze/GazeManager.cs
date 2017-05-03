@@ -115,6 +115,7 @@ namespace HoloToolkit.Unity.InputModule
                 }
                 else
                 {
+                    GazeTransform = Camera.main.transform;
                     Debug.LogError("Gaze Manager was not given a GazeTransform and no main camera exists to default to.");
                 }
             }

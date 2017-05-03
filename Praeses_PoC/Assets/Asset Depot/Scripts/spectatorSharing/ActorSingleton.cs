@@ -26,7 +26,7 @@ public class ActorSingleton : MonoBehaviour {
                     _actor = actor.GetComponent<Camera>();
                 }
             }
-            
+
             return _actor;
         }
 
@@ -49,13 +49,4 @@ public class ActorSingleton : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

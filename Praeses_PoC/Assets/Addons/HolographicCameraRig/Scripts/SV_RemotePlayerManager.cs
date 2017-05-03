@@ -469,10 +469,10 @@ namespace SpectatorView
 
         private void SendSpatialMappingData()
         {
-            Debug.Log("Send spatial data");
-            Debug.Log("sp" + SpatialMappingManager.Instance);
-            Debug.Log("holo" + HolographicCameraManager.Instance);
-            Debug.Log("request: " + HolographicCameraManager.Instance.requestSpatialMappingData);
+            //Debug.Log("Send spatial data");
+            //Debug.Log("sp" + SpatialMappingManager.Instance);
+            //Debug.Log("holo" + HolographicCameraManager.Instance);
+            //Debug.Log("request: " + HolographicCameraManager.Instance.requestSpatialMappingData);
 
             if (SpatialMappingManager.Instance == null ||
                 HolographicCameraManager.Instance == null ||
@@ -481,7 +481,7 @@ namespace SpectatorView
                 return;
             }
 
-            Debug.Log("And we should be here");
+            //Debug.Log("And we should be here");
             HolographicCameraManager.Instance.requestSpatialMappingData = false;
 
             List<MeshFilter> meshFilters = SpatialMappingManager.Instance.GetMeshFilters();
@@ -499,7 +499,7 @@ namespace SpectatorView
                 Vector3[] normals = mesh.normals;
                 int[] indices = mesh.triangles;
 
-                Debug.Log("Sending a message");
+                //Debug.Log("Sending a message");
                 SpectatorView.SV_CustomMessages.Instance.SendSpatialMapping(vertices, normals, indices);
             }
         }

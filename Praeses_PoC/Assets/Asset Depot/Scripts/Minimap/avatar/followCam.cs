@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity;
 
 public class followCam : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class followCam : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         initHeight = transform.position.y;
-        cameraTra = ActorSingleton.Actor.transform;
+        cameraTra = Camera.main.transform;
     }
 	
 	// Update is called once per frame

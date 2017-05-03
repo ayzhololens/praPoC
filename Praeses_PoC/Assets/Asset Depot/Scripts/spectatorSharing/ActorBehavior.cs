@@ -20,9 +20,14 @@ public class ActorBehavior : NetworkBehaviour
     
 
     Transform holoCollection;
+    Transform person;
+    Transform boiler;
 
     [SyncVar]
     public Vector3 syncHandPos;
+
+    public Vector3 startCamPos;
+    public Quaternion startCamRot;
 
     // Use this for initialization
     void Start()
@@ -30,27 +35,43 @@ public class ActorBehavior : NetworkBehaviour
 
         holoCollection = GameObject.Find("HologramCollection").transform; 
         transform.SetParent(holoCollection);
+        boiler = GameObject.Find("boiler").transform;
+        boiler.GetComponent<boilerIdentifier>().Actor = this;
 
         if (isServer)
         {
             Debug.Log("i am a server");
             ActorSingleton.isServer = true;
-            
+            startCamPos = Camera.main.transform.position;
+            startCamRot = Camera.main.transform.rotation;
+            boiler.GetComponent<boilerIdentifier>().isServer = true;
         }
         else
         {
+            ActorSingleton.Actor = this.gameObject.GetComponent<Camera>();
             Debug.Log("i am a client");
             ActorSingleton.isServer = false;
             GazeManager.Instance.GazeTransform = this.gameObject.transform;
+
+            //radial menu
             radialHands.Instance.isClient = true;
+            radialManagement.Instance.RadialHolder = transform.Find("RadialHolderActor").transform;
+            
+                 
+            //minimap network setup
+            person = GameObject.Find("person").transform;
+            person.GetComponent<followCam>().cameraTra = this.gameObject.transform;
+            onModelDragHybrid.Instance.isClient = true;
+
+            //boiler
+            boiler.gameObject.GetComponent<boilerContoller>().useController = false;
+            boilerSpawner.Instance.frontHolder = transform.Find("Front Holder Actor").gameObject;
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-
         //server defines sync values
         if (isServer)
         {
@@ -59,7 +80,7 @@ public class ActorBehavior : NetworkBehaviour
             rot = transform.localRotation;
             sca = transform.localScale;
         }
-        else
+        else if(!isLocalPlayer)
 
         //client picks up sync values
         {
@@ -72,37 +93,58 @@ public class ActorBehavior : NetworkBehaviour
 
     public void mainCameraSync()
     {
-            transform.position = ActorSingleton.Actor.transform.position;
-            transform.rotation = ActorSingleton.Actor.transform.rotation;
+            transform.position = Camera.main.transform.position;
+            transform.rotation = Camera.main.transform.rotation;
     }
 
+
+    //boiler position snap
+    [ClientRpc]
+    public void RpcUpdateBoilerPosition(Vector3 pos, Quaternion rot)
+    {
+        if (!isServer)
+        {
+            boiler.localPosition = pos;
+            boiler.localRotation = rot;
+        }
+            
+    }
 
     [ClientRpc]
     public void RpcOnInputDown()
     {
-        if (GazeManager.Instance.HitObject != null)
+        if (!isServer)
         {
-            if (GazeManager.Instance.HitObject.GetComponent<selectEvent>() != null)
+            if (GazeManager.Instance.HitObject != null)
             {
-                GazeManager.Instance.HitObject.SendMessage("OnSelect", SendMessageOptions.DontRequireReceiver);
+                if (GazeManager.Instance.HitObject.GetComponent<selectEvent>() != null)
+                {
+                    GazeManager.Instance.HitObject.SendMessage("OnSelect", SendMessageOptions.DontRequireReceiver);
+                }
             }
         }
-
 
     }
 
     [ClientRpc]
     public void RpcUpdateSource(bool sourcePressed)
     {
-        sourceManager.Instance.sourcePressed = sourcePressed;
+
+        if (!isServer)
+        {
+            sourceManager.Instance.sourcePressed = sourcePressed;
+        }
     }
 
     [ClientRpc]
     public void RpcUpdateHandPos(Vector3 handPos)
     {
-        syncHandPos = handPos;
-        radialHands.Instance.actorHandPos = syncHandPos;
-
+        if (!isServer)
+        {
+            syncHandPos = handPos;
+            radialHands.Instance.actorHandPos = syncHandPos;
+            onModelDragHybrid.Instance.actorHandPos = syncHandPos;
+        }
     }
 
 

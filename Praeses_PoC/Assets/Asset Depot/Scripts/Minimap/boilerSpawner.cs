@@ -6,7 +6,7 @@ using HoloToolkit.Unity.InputModule;
 namespace HoloToolkit.Unity
 {
 
-    public class boilerSpawner : MonoBehaviour
+    public class boilerSpawner : Singleton<boilerSpawner>
     {
 
         public GameObject boiler;
@@ -95,12 +95,11 @@ namespace HoloToolkit.Unity
             if (!isObj)
             {
                 Vector3 pos = GazeManager.Instance.HitPosition;
-                activeObj.transform.position = pos;
+                activeObj.transform.localPosition = pos;
             }
 
             if(sourceManager.Instance.sourcePressed && tapToPlaceBoiler)
             {
-                print("eh");
                 LockBoiler();
             }
 
@@ -118,7 +117,7 @@ namespace HoloToolkit.Unity
             {
                 activeObj.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = false;
             }
-
+            boiler.GetComponent<boilerIdentifier>().sendBoilerPosition();
         }
 
 
