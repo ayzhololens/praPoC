@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using HoloToolkit.Unity;
 using HoloToolkit.Unity.InputModule;
 
 namespace HoloToolkit.Unity
 {
 
-    public class formController : MonoBehaviour {
+    public class formController : Singleton<formController> {
 
         public GameObject inspectionTab;
         public GameObject equipmentTab;
         public GameObject locationTab;
         public GameObject contentHolder;
+        public GameObject Sumbit;
+        public Text fieldStatus;
+        public int totalFields { get; set; }
+        public int curFields { get; set; }
         public Transform frontHolder;
         public List<GameObject> fieldNodes;
 
@@ -99,6 +104,12 @@ namespace HoloToolkit.Unity
         {
             contentHolder.transform.position = frontHolder.position;
             contentHolder.SetActive(true);
+        }
+
+        public void updateFieldStatus(int amount)
+        {
+            curFields += amount;
+            fieldStatus.text = "Total Fields Completed: " + curFields + "/" + totalFields;
         }
     }
 }

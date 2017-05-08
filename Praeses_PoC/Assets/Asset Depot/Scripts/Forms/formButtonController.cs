@@ -9,6 +9,7 @@ namespace HoloToolkit.Unity
     public class formButtonController : MonoBehaviour {
         public int buttonIndex { get; set; }
         public Text buttonText;
+        public formFieldController field;
 
         // Use this for initialization
         void Start() {
@@ -22,7 +23,7 @@ namespace HoloToolkit.Unity
 
         public void setFormButtonValue()
         {
-            foreach(GameObject formButton in transform.parent.gameObject.GetComponent<formFieldController>().curButtons)
+            foreach(GameObject formButton in field.curButtons)
             {
                 if (formButton != this.gameObject)
                 {
@@ -34,7 +35,9 @@ namespace HoloToolkit.Unity
 
                 }
             }
-            transform.parent.gameObject.GetComponent<formFieldController>().Value.text = buttonIndex.ToString();
+            field.gameObject.GetComponent<buttonHightlight>().updateMat();
+            field.Value.text = buttonIndex.ToString();
+            databaseMan.Instance.formToClassValueSync(field.trueName, field.Value.text);
             GetComponent<gazeLeaveEvent>().enabled = false;
         }
     }

@@ -16,13 +16,14 @@ namespace HoloToolkit.Unity
         GameObject spawnedNode;
         int spawnedIndex;
         bool placingInProgress;
+        bool reposInProgress;
         int offsetCounter;
 
         //gaze position and rotation
         Vector3 lookPos;
         Quaternion lookRot;
 
-        formFieldController linkedField;
+        public formFieldController linkedField;
 
         void Start()
         {
@@ -35,6 +36,10 @@ namespace HoloToolkit.Unity
             if (placingInProgress)
             {
                 nodePlacement();
+            }
+            if (reposInProgress)
+            {
+                repositionNode(spawnedNode);
             }
 
         }
@@ -90,8 +95,12 @@ namespace HoloToolkit.Unity
             Vector3 boilerPos = miniMapComponent.boilerPivot;
             Transform miniMap = miniMapComponent.miniMapHolder.transform;
             Transform rotatorGroup = miniMap.parent;
-            rotatorGroup.localScale = Vector3.one * (1 / miniMapComponent.scaleOffset);
+            Transform scalerGroup = rotatorGroup.parent.parent;
+            Quaternion initRot = rotatorGroup.rotation;
+
+            rotatorGroup.localScale = Vector3.one * (1 / miniMapComponent.scaleOffset) * (1/scalerGroup.localScale.x);
             rotatorGroup.position = boilerPos;
+            rotatorGroup.rotation = new Quaternion(0,0,0,0);
 
             //spawn miniNode and parent it correctly
             GameObject miniNode = Instantiate(miniNodePrefab[spawnIndex], parentNode.transform.position, parentNode.transform.rotation);
@@ -102,6 +111,7 @@ namespace HoloToolkit.Unity
             miniNode.transform.SetParent(miniMap);
             rotatorGroup.localPosition = Vector3.zero;
             rotatorGroup.localScale = Vector3.one;
+            rotatorGroup.rotation = initRot;
             miniNode.SetActive(miniMapToggle.Instance.active);
 
             parentNode.GetComponent<nodeController>().miniNode = miniNode;
@@ -117,10 +127,8 @@ namespace HoloToolkit.Unity
 
             spawnMiniNode(spawnedNode, spawnedIndex);
 
-            spawnedNode.GetComponent<nodeMediaHolder>().NodeIndex = JU_databaseMan.Instance.nodesManager.nodes.Count;
-
-            databaseMan.Instance.addAnnotation(spawnedNode);
-
+            spawnedNode.GetComponent<nodeMediaHolder>().NodeIndex = JU_databaseMan.Instance.nodesManager.nodes.Count+1;
+            
             //spawnedNode.GetComponent<nodeMediaHolder>().NodeIndex = mediaManager.Instance.nodeIndex;
             //mediaManager.Instance.nodeIndex += 1;
 
@@ -155,13 +163,17 @@ namespace HoloToolkit.Unity
                 //get content holder of masterform
                 spawnedNode.GetComponent<nodeController>().contentHolder = fieldSpawner.Instance.MasterForm.GetComponent<formController>().contentHolder;
                 fieldSpawner.Instance.MasterForm.GetComponent<formController>().fieldNodes.Add(spawnedNode);
-
+                spawnedNode.GetComponent<nodeController>().linkedField = linkedField.gameObject;
                 //activate media to store user and date
                 mediaManager.Instance.activateMedia();
 
+                print(linkedField);
+
                 //link field and node then enable attachment capture
+
                 linkedField.linkedNode = spawnedNode;
                 linkedField.enableAttachmentCapture();
+
             }
             //print("locPos, X: " + spawnedNode.transform.localPosition.x + ", Y: " + spawnedNode.transform.localPosition.y + ", Z: " + spawnedNode.transform.localPosition.z);
             //print("locRot, X: " + spawnedNode.transform.localRotation.x + ", Y: " + spawnedNode.transform.localRotation.y + ", Z: " + spawnedNode.transform.localRotation.z + ", W: " + spawnedNode.transform.localRotation.w);
@@ -176,8 +188,66 @@ namespace HoloToolkit.Unity
         //get linked form field
         public void getLinkedField(formFieldController curField)
         {
+
             linkedField = curField;
+
+            print("1");
+
         }
 
+        public void repositionNode(GameObject node)
+        {
+            if(spawnedNode!=node || !reposInProgress)
+            {
+
+                node.GetComponent<nodeController>().closeNode();
+                node.GetComponent<BoxCollider>().enabled = false;
+                spawnedNode = node;
+                reposInProgress = true;
+
+            }
+            //update node placement
+            spawnedNode.transform.position = getNodeLoc(lookPos);
+            spawnedNode.transform.rotation = getNodeRot(lookRot);
+
+            //wait a short while before they can lock placement so it doesnt autolock
+            offsetCounter += 1;
+            if (sourceManager.Instance.sourcePressed && offsetCounter >= 40)
+            {
+                reposInProgress = false;
+                reposMiniNode(spawnedNode);
+                node.GetComponent<BoxCollider>().enabled = true;
+                offsetCounter = 0;
+                node.GetComponent<nodeController>().openNode();
+            }
+        }
+
+        void reposMiniNode(GameObject node)
+        {
+            //get minimap components, scale and offset it to real space
+            minimapSpawn miniMapComponent = minimapSpawn.Instance;
+            Vector3 boilerPos = miniMapComponent.boilerPivot;
+            Transform miniMap = miniMapComponent.miniMapHolder.transform;
+            Transform rotatorGroup = miniMap.parent;
+            rotatorGroup.localScale = Vector3.one * (1 / miniMapComponent.scaleOffset);
+            rotatorGroup.position = boilerPos;
+
+            //spawn miniNode and parent it correctly
+            GameObject miniNode = node.GetComponent<nodeController>().miniNode;
+            miniNode.transform.position = node.transform.position;
+            miniNode.transform.rotation = node.transform.rotation;
+
+
+            //reset rotator group to position miniNode
+            miniNode.transform.SetParent(miniMap);
+            rotatorGroup.localPosition = Vector3.zero;
+            rotatorGroup.localScale = Vector3.one;
+        }
+
+
+    
+
     }
+
+
 }

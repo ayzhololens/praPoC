@@ -437,7 +437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -567.0163, y: -0.013366699}
+  m_AnchoredPosition: {x: -566.99927, y: 0.0056152344}
   m_SizeDelta: {x: 2150, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &58748147
@@ -3982,8 +3982,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1098661649}
   m_HandleRect: {fileID: 1098661648}
   m_Direction: 0
-  m_Value: 0.99999976
-  m_Size: 0.73627603
+  m_Value: 0.9999958
+  m_Size: 0.7362816
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4956,6 +4956,24 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 1441332815}
           m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Keyword: downloadData
+    KeyCode: 120
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2100857531}
+          m_MethodName: hololensToPCCopyCmd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7327,8 +7345,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 34274294}
   m_HandleRect: {fileID: 34274293}
   m_Direction: 2
-  m_Value: 0.96200675
-  m_Size: 0.19574982
+  m_Value: 0.96200573
+  m_Size: 0.19574969
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10094,7 +10112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -929.9921, y: 122.22632}
+  m_AnchoredPosition: {x: -929.9921, y: 122.223145}
   m_SizeDelta: {x: 1860, y: 4000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1710704115
@@ -12584,6 +12602,7 @@ GameObject:
   - component: {fileID: 2100857528}
   - component: {fileID: 2100857529}
   - component: {fileID: 2100857530}
+  - component: {fileID: 2100857531}
   m_Layer: 0
   m_Name: dataManager
   m_TagString: Untagged
@@ -12659,7 +12678,6 @@ MonoBehaviour:
         State: 
         Zip: 
       Equipment: []
-  testItem: {fileID: 0}
 --- !u!4 &2100857527
 Transform:
   m_ObjectHideFlags: 0
@@ -12744,6 +12762,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01d2afa6f3ca48e4e911fcefd91dae2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2100857531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2100857524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb4a018c40cad846beaab75f55d604b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2106541773

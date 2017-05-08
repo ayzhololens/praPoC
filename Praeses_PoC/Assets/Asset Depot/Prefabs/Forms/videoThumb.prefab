@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleMult: 0.01
-  moveMult: 0
+  moveDist: 0
   scale: 1
   move: 0
 --- !u!114 &114401557900949202
@@ -510,7 +510,8 @@ MonoBehaviour:
   isPhoto: 0
   isVideo: 0
   commentMain: {fileID: 0}
-  commentMeta: {fileID: 114026757942736786}
+  commentMetaUser: {fileID: 114026757942736786}
+  commentMetaDate: {fileID: 114026757942736786}
   Date: 
   user: 
   editButton: {fileID: 0}
@@ -523,6 +524,7 @@ MonoBehaviour:
   vidThumbnail: {fileID: 0}
   vidMat: {fileID: 2100000, guid: 40d52c679136afa47b84c82b28c489ad, type: 2}
   vidThumbMat: {fileID: 2100000, guid: e95a922f0483fe644b152474cfa971a2, type: 2}
+  thumbMat: {fileID: 0}
 --- !u!114 &114606885386697824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,7 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleMult: 0.01
-  moveMult: 0
+  moveDist: 0
   scale: 1
   move: 0
 --- !u!114 &114953024449630720

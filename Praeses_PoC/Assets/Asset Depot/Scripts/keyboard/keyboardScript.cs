@@ -76,7 +76,13 @@ namespace HoloToolkit.Unity
 
         public void editChangeSync()
         {
-            currentField.gameObject.GetComponent<inputFieldManager>().onEditChangeUpdateJSon();
+            if (currentField.GetComponent<inputFieldManager>().commentNode != null)
+            {
+                currentField.gameObject.GetComponent<inputFieldManager>().onEditChangeAddComment(currentField.gameObject.transform.parent.parent.gameObject.GetComponent<commentContents>());
+            }else
+            {
+                currentField.gameObject.GetComponent<inputFieldManager>().onEditChangeUpdateJSon();
+            }
         }
 
         void textSync()
@@ -95,7 +101,6 @@ namespace HoloToolkit.Unity
         public void turnOn()
         {
             getText();
-            getPrevious();
             nestedOn();
             Invoke("adjustCaret",.1f);
         }
@@ -103,11 +108,6 @@ namespace HoloToolkit.Unity
         void getText()
         {
             keyboardField.text = currentField.text;
-        }
-
-        void getPrevious()
-        {
-            //previousButton.
         }
 
         void nestedOn()

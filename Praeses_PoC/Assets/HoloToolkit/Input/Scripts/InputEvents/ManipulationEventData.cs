@@ -15,7 +15,7 @@ namespace HoloToolkit.Unity.InputModule
         /// The amount of manipulation that has occurred. Usually in the form of
         /// delta position of a hand. 
         /// </summary>
-        public Vector3 CumulativeDelta { get; private set; }
+        public Vector3 CumulativeDelta { get;  set; }
 
         public ManipulationEventData(EventSystem eventSystem) : base(eventSystem)
         {

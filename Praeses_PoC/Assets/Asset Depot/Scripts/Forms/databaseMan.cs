@@ -23,8 +23,6 @@ public class databaseMan : Singleton<databaseMan>
     public MainForm definitions;
     public ValuesClass values;
 
-    public GameObject testItem;
-
     public Dictionary<string, GameObject> formPairs = new Dictionary<string, GameObject>();
 
     private void Start()
@@ -211,15 +209,15 @@ public class databaseMan : Singleton<databaseMan>
         print("jsonValuesLoaded");
     }
 
-    public void storeNodesList()
-    {
-        values.Location.Equipment[0].Nodes.Clear();
-        foreach (GameObject node in annotationManager.Instance.activeAnnotations)
-        {
-            addAnnotation(node);
-        }
-        saveCmd();
-    }
+    //public void storeNodesList()
+    //{
+    //    values.Location.Equipment[0].Nodes.Clear();
+    //    foreach (GameObject node in mediaManager.Instance.activeNodes)
+    //    {
+    //        addAnnotation(node);
+    //    }
+    //    saveCmd();
+    //}
 
     public void addAnnotation(GameObject nodeObj)
     {
@@ -317,6 +315,7 @@ public class databaseMan : Singleton<databaseMan>
 
         if (newNode.type == 2)
         {
+            print("ahh");
             newNode.title = nodeObj.GetComponent<nodeController>().linkedField.GetComponent<formFieldController>().DisplayName.text;
             newNode.description = nodeObj.GetComponent<nodeController>().linkedField.GetComponent<formFieldController>().Value.text;
             newNode.audioPath = "";
@@ -417,7 +416,7 @@ public class databaseMan : Singleton<databaseMan>
         JU_databaseMan.Instance.loadEquipmentData();
     }
 
-    public void commentToClassValueSync(int nodeIndex, comment comment)
+    public void commentToClassValueSync(int nodeIndex, tempComment comment)
     {
         Dictionary<int, NodeClass> nodeClasses = new Dictionary<int, NodeClass>();
 
@@ -428,15 +427,28 @@ public class databaseMan : Singleton<databaseMan>
 
         if (nodeClasses.ContainsKey(nodeIndex))
         {
-            comment newComment = new comment();
-            newComment.content = comment.content;
-            newComment.user = comment.user;
-            newComment.date = comment.date;
-            nodeClasses[nodeIndex].comments.Add(newComment);
+            if(comment.type == 1)
+            {
+                comment newComment = new comment();
+                newComment.content = comment.content;
+                newComment.user = comment.user;
+                newComment.date = comment.date;
+                nodeClasses[nodeIndex].comments.Add(newComment);
+            }
+            else
+            {
+                media newMedia = new media();
+                newMedia.path = comment.path;
+                newMedia.user = comment.user;
+                newMedia.date = comment.date;
+                newMedia.type = comment.type;
+                nodeClasses[nodeIndex].medias.Add(newMedia);
+            }
+
         }
 
-        JU_databaseMan.Instance.loadCurrentData();
-        JU_databaseMan.Instance.loadEquipmentData();
+        JU_databaseMan.Instance.loadNodesCmd();
+        print("script on database manager ran");
     }
 
     public void syncViolation(violationController violation)
@@ -452,5 +464,7 @@ public class databaseMan : Singleton<databaseMan>
         vioClass.nodeIndex = violation.linkedNode.GetComponent<nodeMediaHolder>().NodeIndex;
 
         values.Location.Equipment[0].Violations.Add(vioClass);
+
+        JU_databaseMan.Instance.loadViolationsCmd();
     }
 }

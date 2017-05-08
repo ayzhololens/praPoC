@@ -199,12 +199,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClientRole: 0
-  ServerAddress: localhost
+  ServerAddress: 10.10.13.167
   ServerPort: 20602
   connectOnAwake: 1
   AutoDiscoverServer: 0
   PingIntervalSec: 2
   IsAudioEndpoint: 1
+  ShowDetailedLogs: 0
 --- !u!1 &1059641718
 GameObject:
   m_ObjectHideFlags: 0

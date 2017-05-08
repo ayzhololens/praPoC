@@ -219,7 +219,8 @@ MonoBehaviour:
   isPhoto: 0
   isVideo: 0
   commentMain: {fileID: 0}
-  commentMeta: {fileID: 114355925616663702}
+  commentMetaUser: {fileID: 114355925616663702}
+  commentMetaDate: {fileID: 114355925616663702}
   Date: 
   user: 
   editButton: {fileID: 0}
@@ -228,6 +229,11 @@ MonoBehaviour:
   linkedComponent: {fileID: 0}
   playIcon: {fileID: 0}
   pauseIcon: {fileID: 0}
+  mediaPlayer: {fileID: 0}
+  vidThumbnail: {fileID: 0}
+  vidMat: {fileID: 0}
+  vidThumbMat: {fileID: 0}
+  thumbMat: {fileID: 0}
 --- !u!114 &114355925616663702
 MonoBehaviour:
   m_ObjectHideFlags: 1
