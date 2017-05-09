@@ -85,10 +85,19 @@ namespace RenderHeads.Media.AVProVideo.Demos
             // Extract the frame to Texture2D
             float timeSeconds = _frameIndex * _timeStepSeconds;
             _texture = _mediaPlayer.ExtractFrame(_texture, timeSeconds, _accurateSeek, _timeoutMs);
-            activeComment.GetComponent<commentContents>().vidThumbnail = _texture;
-            activeComment.GetComponent<commentContents>().thumbMat.mainTexture = activeComment.GetComponent<commentContents>().vidThumbnail;
-            activeComment.GetComponent<Renderer>().material = activeComment.GetComponent<commentContents>().thumbMat;
-            Invoke("clear", 1);
+            if (_texture != null)
+            {
+                activeComment.GetComponent<commentContents>().vidThumbnail = _texture;
+                activeComment.GetComponent<commentContents>().thumbMat.mainTexture = activeComment.GetComponent<commentContents>().vidThumbnail;
+                activeComment.GetComponent<Renderer>().material = activeComment.GetComponent<commentContents>().thumbMat;
+                Invoke("clear", 1);
+                print("ip");
+            }
+            else
+            {
+                print("no texture");
+            }
+
         }
 
         void clear()

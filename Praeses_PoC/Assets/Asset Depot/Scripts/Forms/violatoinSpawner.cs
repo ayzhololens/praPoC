@@ -15,6 +15,7 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
     public GameObject violationFieldPrefab;
     public GameObject violationPreview;
     public GameObject violationPreviewField;
+    public GameObject successContentHolder;
     public int rowLengthBox;
     public float hOffsetBox;
     public float vOffsetBox;
@@ -377,6 +378,7 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
 
         activeViolationController.vioReview.loadReview();
+        activeViolationController.vioReview.submitReview(true);
         //activeViolationController.vioReview.submitReview(true);
         //populatePreviewField();
     }

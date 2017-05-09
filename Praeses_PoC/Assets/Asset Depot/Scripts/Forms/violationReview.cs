@@ -9,12 +9,10 @@ namespace HoloToolkit.Unity
     public class violationReview : MonoBehaviour {
 
         public Text[] violationData;
+        public Text[] violationSubmittedData;
         public violationController violationControl;
-        public GameObject[] resolutions;
-        public GameObject ReviewHolder;
         public GameObject submittedViolationHolder;
-        public GameObject SubmittedMainHolder;
-        GameObject copiedViolationContent;
+        public GameObject addingViolationHolder;
 
     // Use this for initialization
         void Start() {
@@ -88,20 +86,32 @@ namespace HoloToolkit.Unity
         public void submitReview(bool fromJson)
         {
 
-            copiedViolationContent = Instantiate(this.gameObject, transform.position, Quaternion.identity);
-            copiedViolationContent.transform.SetParent(submittedViolationHolder.transform);
-            copiedViolationContent.transform.localScale = transform.localScale;
-            copiedViolationContent.transform.localRotation = transform.localRotation;
-            violationControl.showTabs(false);
 
-            violationControl.violationHeader.text = violationControl.violationData[2];
-            SubmittedMainHolder.SetActive(true);
-            ReviewHolder.SetActive(false);
+            for (int i = 0; i < violationControl.violationData.Count + 1; i++)
+            {
+                violationSubmittedData[i].text = violationData[i].text;
+            }
 
-            violatoinSpawner.Instance.populatePreviewField();
+            violationSubmittedData[8].text = metaManager.Instance.user;
+            violationSubmittedData[9].text = metaManager.Instance.date;
+
+            
+            violationControl.violationHeader.text = 
+                ("Violation " + violationControl.violationIndices[0].ToString() +"."
+                + violationControl.violationIndices[1].ToString() +"."
+                + violationControl.violationIndices[2].ToString());
+            submittedViolationHolder.SetActive(true);
+            submittedViolationHolder.GetComponent<submittedViolationController>().addPreview(0);
+            addingViolationHolder.SetActive(false);
+
+            violationControl.closeViolation();
+
+            //violatoinSpawner.Instance.populatePreviewField();
             if (!fromJson)
             {
-                databaseMan.Instance.syncViolation(violationControl);
+                violatoinSpawner.Instance.successContentHolder.SetActive(true);
+                violatoinSpawner.Instance.successContentHolder.transform.position = this.transform.position;
+                //databaseMan.Instance.syncViolation(violationControl);
 
             }
         }
@@ -109,10 +119,10 @@ namespace HoloToolkit.Unity
         public void enableEditing()
         {
             violationControl.violationHeader.text = "Edit Violation";
-            DestroyImmediate(copiedViolationContent);
+            //DestroyImmediate(copiedViolationContent);
             violationControl.showTabs(true);
-            SubmittedMainHolder.SetActive(false);
-            ReviewHolder.SetActive(true);
+            submittedViolationHolder.SetActive(false);
+            //ReviewHolder.SetActive(true);
         }
 
         public void resolveViolation()
@@ -121,20 +131,20 @@ namespace HoloToolkit.Unity
             violatoinSpawner.Instance.violationPreview.GetComponent<viewViolationController>().vioResolvedFields.Add(violationControl.linkedPreview);
             violationControl.linkedPreview.transform.localPosition = violatoinSpawner.Instance.violationPreview.GetComponent<viewViolationController>().resolvedPos.localPosition;
 
-            resolutions[0].SetActive(false);
-            resolutions[1].SetActive(false);
+            //resolutions[0].SetActive(false);
+            //resolutions[1].SetActive(false);
 
         }
 
         public void vioNotResolved()
         {
-            resolutions[2].SetActive(false);
-            resolutions[1].SetActive(false);
+            //resolutions[2].SetActive(false);
+            //resolutions[1].SetActive(false);
         }
         public void vioNotResolvedOther()
         {
-            resolutions[2].SetActive(false);
-            resolutions[0].SetActive(false);
+            //resolutions[2].SetActive(false);
+            //resolutions[0].SetActive(false);
         }
         
 

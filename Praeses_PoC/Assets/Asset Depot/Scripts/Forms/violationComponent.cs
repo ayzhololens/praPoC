@@ -264,9 +264,6 @@ namespace HoloToolkit.Unity
             //linkedViolation.violationTabs[7].SetActive(true);
         }
 
-        public void showViolationContent()
-        {
-            linkedViolation.violationContent.text = violatoinSpawner.Instance.Vios[Index];
-        }
+
     }
 }

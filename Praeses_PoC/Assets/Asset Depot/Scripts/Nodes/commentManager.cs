@@ -9,7 +9,6 @@ using RenderHeads.Media.AVProVideo.Demos;
 public class commentManager : MonoBehaviour {
 
     public List<GameObject> activeComments;
-    public List<GameObject> activeSimpleComments;
     public int commentCount;
     public Transform commentParent;
     public Transform CommmentStartPos;

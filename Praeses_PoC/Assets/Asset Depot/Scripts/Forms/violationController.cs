@@ -16,8 +16,7 @@ namespace HoloToolkit.Unity
         public GameObject[] violationTabs;
         public GameObject[] violationTabButtons;
         public Text[] violationSectionTitles;
-        public Text violationHeader;
-        public Text violationContent;
+        public InputField violationHeader;
         public Transform boxStartPos;
         public Transform fieldStartPos;
         public GameObject linkedNode;
