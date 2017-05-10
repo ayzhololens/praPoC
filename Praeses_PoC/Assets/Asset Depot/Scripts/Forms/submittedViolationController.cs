@@ -46,7 +46,8 @@ public class submittedViolationController : MonoBehaviour {
         goToResolveVioButton.position = new Vector3(goToResolveVioButton.position.x, goToResolveVioButton.position.y-offsetDist, goToResolveVioButton.position.z);
         previewCount += 1;
 
-        setPreviewComments();
+        //setPreviewComments();
+        Invoke("setPreviewComments", .5f);
 
         formController.Instance.submitInspection.addVioPreview(index, vioController);
 
@@ -151,6 +152,11 @@ public class submittedViolationController : MonoBehaviour {
             {
                 sCounter += 1;
                 GameObject simpleComment = resolutionField.GetComponent<commentManager>().spawnSimpleCommentFromJSON();
+                simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
+                simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+                simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+
+
 
             }
             if (activeComment.GetComponent<commentContents>().isVideo)

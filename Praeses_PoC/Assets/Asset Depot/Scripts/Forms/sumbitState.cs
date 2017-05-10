@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity;
 
 public class sumbitState : MonoBehaviour {
     public GameObject Indicator;
@@ -17,6 +18,7 @@ public class sumbitState : MonoBehaviour {
 
     public void startUpload()
     {
+        formController.Instance.closeForm();
         Indicator.SetActive(true);
         Indicator.GetComponent<TextMesh>().text = "Compiling Inspection Data...";
         Invoke("success", 2.5f);
