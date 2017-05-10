@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: b21aa08825c93084cb4072b24fc90532, type: 3}
   m_ShaderKeywords: _EMISSION _USECOLOR_ON _USEDIFFUSE_ON _USEEMISSIONCOLOR_ON
   m_LightmapFlags: 1
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 996
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -178,7 +178,7 @@ Material:
       second: {r: 0.74264705, g: 0.6299696, b: 0, a: 1}
     - first:
         name: _Color
-      second: {r: 0, g: 0.3372549, b: 0.043137256, a: 1}
+      second: {r: 0, g: 0.5, b: 0.06395352, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0.7352941, g: 0.56288034, b: 0, a: 1}

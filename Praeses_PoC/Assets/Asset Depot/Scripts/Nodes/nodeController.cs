@@ -78,10 +78,16 @@ namespace HoloToolkit.Unity
                 contentHolder.GetComponent<DirectionIndicator>().enabled = true;
                 contentHolder.GetComponent<DirectionIndicator>().hasGazed = false;
                 contentHolder.transform.position = contentStartLoc.position;
+                
 
                 if (GetComponent<nodeMediaHolder>().videoNode)
                 {
                     GetComponent<nodeMediaHolder>().LoadVideo();
+                }
+
+                if (GetComponent<nodeMediaHolder>().fieldNode || GetComponent<nodeMediaHolder>().violationNode)
+                {
+                    contentHolder.transform.parent.gameObject.SendMessage("checkTab", SendMessageOptions.DontRequireReceiver);
                 }
 
             }

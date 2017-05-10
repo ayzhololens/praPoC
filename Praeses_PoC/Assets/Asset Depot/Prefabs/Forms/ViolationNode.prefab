@@ -679,7 +679,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a4035dd21c94a274e820ec4975b4bf91, type: 2}
+  - {fileID: 2100000, guid: f93713688c6ad5a499308802f90607b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -940,8 +940,12 @@ MonoBehaviour:
   NodeMesh:
   - {fileID: 1441908544509708}
   - {fileID: 1760660661576566}
+  xRayMesh:
+  - {fileID: 1908331684304028}
+  - {fileID: 1287885527791870}
   nodeMat: {fileID: 2100000, guid: 02b06ec22c74668479fa2d572ba8a39b, type: 2}
   nodeHighlightMat: {fileID: 2100000, guid: 6379fce9b5701d94783d73c441760a45, type: 2}
+  xRayMat: {fileID: 2100000, guid: a4035dd21c94a274e820ec4975b4bf91, type: 2}
 --- !u!114 &114362974601443260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1045,7 +1049,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1678845134676338}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c7604e7491ee0d4981f6838ff957762, type: 3}
   m_Name: 

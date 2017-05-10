@@ -11,3 +11,4 @@ EditorBuildSettings:
     path: Assets/HoloToolkit-Examples/SavingSpatialMeshes/SaveSpatialMapping.unity
   - enabled: 0
     path: Assets/Scenes/Stable Build/Integration/meshSaverTest.unity
+

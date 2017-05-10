@@ -2984,7 +2984,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 165526644b2c8b349b01e2f9d437852c, type: 2}
+  - {fileID: 2100000, guid: 8aa48bbbb7d9a784697ca7e35490b4a0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3139,7 +3139,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3a8e53f86e87a374cbca06eb21f456b0, type: 2}
+  - {fileID: 2100000, guid: 38af45ecf0eb9b1409a74f95ce596a4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3883,7 +3883,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3a8e53f86e87a374cbca06eb21f456b0, type: 2}
+  - {fileID: 2100000, guid: 38af45ecf0eb9b1409a74f95ce596a4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4069,7 +4069,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 165526644b2c8b349b01e2f9d437852c, type: 2}
+  - {fileID: 2100000, guid: 8aa48bbbb7d9a784697ca7e35490b4a0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5890,8 +5890,12 @@ MonoBehaviour:
   NodeMesh:
   - {fileID: 1950751872479016}
   - {fileID: 1144745729024096}
-  nodeMat: {fileID: 2100000, guid: 3a8e53f86e87a374cbca06eb21f456b0, type: 2}
-  nodeHighlightMat: {fileID: 2100000, guid: ca5926f32ff5a354792578a54cd262b4, type: 2}
+  xRayMesh:
+  - {fileID: 1165765977527700}
+  - {fileID: 1166560287833308}
+  nodeMat: {fileID: 2100000, guid: 38af45ecf0eb9b1409a74f95ce596a4d, type: 2}
+  nodeHighlightMat: {fileID: 2100000, guid: 6201742f17818d141a94f3961fea9ac7, type: 2}
+  xRayMat: {fileID: 2100000, guid: 8aa48bbbb7d9a784697ca7e35490b4a0, type: 2}
 --- !u!114 &114328627373842982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7054,7 +7058,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101979280381446}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c7604e7491ee0d4981f6838ff957762, type: 3}
   m_Name: 
@@ -7240,7 +7244,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeComments: []
-  activeSimpleComments: []
   commentCount: 0
   commentParent: {fileID: 4145954627337736}
   CommmentStartPos: {fileID: 4785820050342758}

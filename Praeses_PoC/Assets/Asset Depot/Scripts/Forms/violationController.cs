@@ -16,8 +16,7 @@ namespace HoloToolkit.Unity
         public GameObject[] violationTabs;
         public GameObject[] violationTabButtons;
         public Text[] violationSectionTitles;
-        public Text violationHeader;
-        public Text violationContent;
+        public InputField violationHeader;
         public Transform boxStartPos;
         public Transform fieldStartPos;
         public GameObject linkedNode;
@@ -37,25 +36,41 @@ namespace HoloToolkit.Unity
 
         }
 
+
+        public void checkTab()
+        {
+            for (int i = 0; i < violationTabs.Length; i++)
+            {
+                if (violationTabs[i].activeSelf)
+                {
+                    goToTab(i);
+                }
+            }
+        }
         
         public void goToTab(int tab)
         {
-            print(violationTabs[tab].name);
+
             for (int i = 0; i < violationTabs.Length; i++)
             {
                 if (i != tab)
                 {
+                    violationTabButtons[i].GetComponent<buttonHightlight>().revertMat();
                     if (violationTabs[i].activeSelf)
                     {
+
                         violationTabs[i].SetActive(false);
                     }
 
                 }
                 else
                 {
+                    violationTabButtons[i].GetComponent<buttonHightlight>().updateMat();
                     violationTabs[i].SetActive(true);
+                    //debu
                 }
             }
+            
         }
 
         //enablements here
