@@ -6,28 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Stable Build/Active Scenes/OnSiteInspection.unity
+    path: Assets/Scenes/Stable Build/Integration/offsite/offsiteScene.unity
   - enabled: 0
-    path: Assets/Scenes/Working Prototypes/NodeComments/nodeComments.unity
-  - enabled: 0
-    path: Assets/Scenes/Working Prototypes/NodeComments/dictation.unity
-  - enabled: 0
-    path: Assets/Scenes/Stable Build/Integration/nodeComments.unity
-  - enabled: 0
-    path: Assets/Scenes/Stable Build/Demos/OnsiteInspectionDemoBoundingTest.unity
-  - enabled: 0
-    path: Assets/Scenes/Stable Build/Integration/formNodes.unity
-  - enabled: 0
-    path: Assets/Scenes/Working Prototypes/Jenna/violations/violation.unity
-  - enabled: 0
-    path: Assets/Asset Depot/zPlugins/posterAlign/SingleZone.unity
-  - enabled: 0
-    path: Assets/Scenes/Stable Build/Integration/violation.unity
-  - enabled: 0
-    path: Assets/Scenes/Stable Build/Integration/preHAcademy.unity
-  - enabled: 0
-    path: Assets/Scenes/Stable Build/Integration/betaBegin2.unity
+    path: Assets/HoloToolkit-Examples/SavingSpatialMeshes/SaveSpatialMapping.unity
   - enabled: 1
-    path: Assets/Scenes/Stable Build/Integration/minimapTumbleBugFix.unity
-  - enabled: 0
-    path: Assets/Scenes/Stable Build/Integration/offsiteScene.unity
+    path: Assets/Scenes/Stable Build/Integration/meshSaverTest.unity
