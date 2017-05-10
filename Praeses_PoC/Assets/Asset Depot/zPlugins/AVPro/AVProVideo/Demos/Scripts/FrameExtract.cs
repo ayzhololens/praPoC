@@ -91,7 +91,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
                 activeComment.GetComponent<commentContents>().thumbMat.mainTexture = activeComment.GetComponent<commentContents>().vidThumbnail;
                 activeComment.GetComponent<Renderer>().material = activeComment.GetComponent<commentContents>().thumbMat;
                 Invoke("clear", 1);
-                print("ip");
+
             }
             else
             {

@@ -133,6 +133,16 @@ namespace HoloToolkit.Unity
             }
         }
 
+        public void checkDelta()
+        {
+            string tempVal = "(" + Value.text + ")";
+            if (tempVal != previousValue.text)
+            {
+                formController.Instance.submitInspection.addChangedValue(DisplayName.text, previousValue.text, Value.text);
+            }
+
+        }
+
         //public void revealAttachments()
         //{
         //    if (!GetComponent<subMenu>().subButtonsOn && linkedNode!=null)

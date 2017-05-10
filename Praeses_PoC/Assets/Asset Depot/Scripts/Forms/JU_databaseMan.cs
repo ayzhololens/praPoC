@@ -26,6 +26,7 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         public LocationsClass LocationFields = new LocationsClass();
         public EquipmentInspectionFields EquipmentData = new EquipmentInspectionFields();
         public EquipmentInspectionFields InspectionFields = new EquipmentInspectionFields();
+        public EquipmentInspectionFields ExtraFields = new EquipmentInspectionFields();
     }
 
     [System.Serializable]
@@ -101,6 +102,7 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         public List<valueItem> equipmentData = new List<valueItem>();
         public List<valueItem> historicData = new List<valueItem>();
         public List<valueItem> currentData = new List<valueItem>();
+        public List<valueItem> extraData = new List<valueItem>();
     }
 
     [System.Serializable]
@@ -250,18 +252,18 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
     {
         foreach (databaseMan.fieldItem fieldItem in databaseMan.Instance.definitions.EquipmentInspectionFields.threeNine)
         {
-
+            fieldItem newFieldItem = new fieldItem();
+            newFieldItem.DisplayName = fieldItem.DisplayName;
+            newFieldItem.FieldType = fieldItem.FieldType;
+            newFieldItem.Name = fieldItem.Name;
+            newFieldItem.Required = fieldItem.Required;
+            newFieldItem.Options = fieldItem.Options;
             if (fieldItem.Name == "intActivityTypeID" || fieldItem.Name == "dtActivityDate" || fieldItem.Name == "blnIssueCertOK")
-            { 
+            {
+                definitions.ExtraFields.fields.Add(newFieldItem);
             }
             else
             {
-                fieldItem newFieldItem = new fieldItem();
-                newFieldItem.DisplayName = fieldItem.DisplayName;
-                newFieldItem.FieldType = fieldItem.FieldType;
-                newFieldItem.Name = fieldItem.Name;
-                newFieldItem.Required = fieldItem.Required;
-                newFieldItem.Options = fieldItem.Options;
                 definitions.InspectionFields.fields.Add(newFieldItem);
             }
         }
@@ -285,17 +287,16 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
     {
         foreach (databaseMan.ItemClass item in databaseMan.Instance.values.Location.Equipment[0].PreviousInspection[0].InspectionData)
         {
-
+            valueItem newValueItem = new valueItem();
+            newValueItem.name = item.name;
+            newValueItem.value = item.value;
+            newValueItem.nodeIndex = item.nodeIndex;
             if (item.name == "intActivityTypeID" || item.name == "dtActivityDate" || item.name == "blnIssueCertOK")
             {
+                values.extraData.Add(newValueItem);
             }
             else
             {
-                valueItem newValueItem = new valueItem();
-                newValueItem.name = item.name;
-                newValueItem.value = item.value;
-                newValueItem.nodeIndex = item.nodeIndex;
-
                 values.historicData.Add(newValueItem);
             }
         }

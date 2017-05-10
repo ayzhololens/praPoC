@@ -39,22 +39,27 @@ namespace HoloToolkit.Unity
         
         public void goToTab(int tab)
         {
-            print(violationTabs[tab].name);
+
             for (int i = 0; i < violationTabs.Length; i++)
             {
                 if (i != tab)
                 {
+                    violationTabButtons[i].GetComponent<buttonHightlight>().revertMat();
                     if (violationTabs[i].activeSelf)
                     {
+
                         violationTabs[i].SetActive(false);
                     }
 
                 }
                 else
                 {
+                    violationTabButtons[i].GetComponent<buttonHightlight>().updateMat();
                     violationTabs[i].SetActive(true);
+                    //debu
                 }
             }
+            
         }
 
         //enablements here

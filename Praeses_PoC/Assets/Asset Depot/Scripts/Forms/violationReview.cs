@@ -95,7 +95,8 @@ namespace HoloToolkit.Unity
             violationSubmittedData[8].text = metaManager.Instance.user;
             violationSubmittedData[9].text = metaManager.Instance.date;
 
-            
+
+            violationControl.goToTab(8);
             violationControl.violationHeader.text = 
                 ("Violation " + violationControl.violationIndices[0].ToString() +"."
                 + violationControl.violationIndices[1].ToString() +"."
@@ -103,7 +104,6 @@ namespace HoloToolkit.Unity
             submittedViolationHolder.SetActive(true);
             submittedViolationHolder.GetComponent<submittedViolationController>().addPreview(0);
             addingViolationHolder.SetActive(false);
-
             violationControl.closeViolation();
 
             //violatoinSpawner.Instance.populatePreviewField();

@@ -13,8 +13,11 @@ namespace HoloToolkit.Unity
         public GameObject inspectionTab;
         public GameObject equipmentTab;
         public GameObject locationTab;
+        public GameObject[] fieldTabs;
+        public GameObject[] fieldTabButtons;
         public GameObject contentHolder;
         public GameObject Sumbit;
+        public submitInspection submitInspection;
         public Text fieldStatus;
         public int totalFields { get; set; }
         public int curFields { get; set; }
@@ -28,6 +31,30 @@ namespace HoloToolkit.Unity
 
         // Update is called once per frame
         void Update() {
+
+        }
+
+        public void goToTab(int tab)
+        {
+
+            for (int i = 0; i < fieldTabs.Length; i++)
+            {
+                if (i != tab)
+                {
+                    fieldTabButtons[i].GetComponent<buttonHightlight>().revertMat();
+                    if (fieldTabs[i].activeSelf)
+                    {
+
+                        fieldTabs[i].SetActive(false);
+                    }
+
+                }
+                else
+                {
+                    fieldTabButtons[i].GetComponent<buttonHightlight>().updateMat();
+                    fieldTabs[i].SetActive(true);
+                }
+            }
 
         }
 

@@ -50,9 +50,7 @@ namespace HoloToolkit.Unity
             }
             Text linkedText = linkedViolation.violationSectionTitles[1];
             linkedText.text = Index + ") " + value;
-            linkedViolation.violationTabButtons[0].GetComponent<buttonHightlight>().updateMat();
-            linkedViolation.violationTabs[0].SetActive(false);
-            linkedViolation.violationTabs[1].SetActive(true);
+            linkedViolation.goToTab(1);
         }
 
         public void setSubCategory()
@@ -73,9 +71,7 @@ namespace HoloToolkit.Unity
                 + "." + linkedViolation.violationIndices[1] + " "
                 + linkedViolation.violationData[0] + " > " +
                 value;
-            linkedViolation.violationTabButtons[1].GetComponent<buttonHightlight>().updateMat();
-            linkedViolation.violationTabs[1].SetActive(false);
-            linkedViolation.violationTabs[2].SetActive(true);
+            linkedViolation.goToTab(2);
         }
 
         public void setViolation()
@@ -95,10 +91,8 @@ namespace HoloToolkit.Unity
                 + "." + linkedViolation.violationIndices[1] + "."
                 + linkedViolation.violationIndices[2] + " "
                 + linkedViolation.violationData[2];
-            
-            linkedViolation.violationTabButtons[2].GetComponent<buttonHightlight>().updateMat();
-            linkedViolation.violationTabs[2].SetActive(false);
-            linkedViolation.violationTabs[3].SetActive(true);
+
+            linkedViolation.goToTab(3);
 
         }
 
@@ -119,9 +113,7 @@ namespace HoloToolkit.Unity
                 + "." + linkedViolation.violationIndices[1] + "."
                 + linkedViolation.violationIndices[2] + " "
                 + linkedViolation.violationData[2];
-            linkedViolation.violationTabButtons[3].GetComponent<buttonHightlight>().updateMat();
-            linkedViolation.violationTabs[3].SetActive(false);
-            linkedViolation.violationTabs[4].SetActive(true);
+            linkedViolation.goToTab(4);
 
         }
 
@@ -174,10 +166,8 @@ namespace HoloToolkit.Unity
                 + "." + linkedViolation.violationIndices[1] + "."
                 + linkedViolation.violationIndices[2] + " "
                 + linkedViolation.violationData[2];
-            
-            linkedViolation.violationTabButtons[4].GetComponent<buttonHightlight>().updateMat();
-            linkedViolation.violationTabs[4].SetActive(false);
-            linkedViolation.violationTabs[5].SetActive(true);
+
+            linkedViolation.goToTab(5);
         }
 
 
@@ -207,18 +197,13 @@ namespace HoloToolkit.Unity
                 + linkedViolation.violationIndices[2] + " "
                 + linkedViolation.violationData[2];
             linkedViolation.violationIndices.Add(Index);
-            
-            linkedViolation.violationTabButtons[5].GetComponent<buttonHightlight>().updateMat();
-            linkedViolation.violationTabs[5].SetActive(false);
-            linkedViolation.violationTabs[6].SetActive(true);
+            linkedViolation.goToTab(6);
         }
 
         public void setComments()
         {
 
-            linkedViolation.violationTabButtons[6].GetComponent<buttonHightlight>().updateMat();
-            linkedViolation.violationTabs[6].SetActive(false);
-            linkedViolation.violationTabs[7].SetActive(true);
+            linkedViolation.goToTab(7);
 
         }
 

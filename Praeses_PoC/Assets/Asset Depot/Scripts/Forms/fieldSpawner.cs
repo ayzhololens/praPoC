@@ -10,6 +10,7 @@ namespace HoloToolkit.Unity
         public Transform FieldInspectionParent;
         public Transform EquipmentDataParent;
         public Transform LocationDataParent;
+        public Transform ExtDataParent;
         public GameObject stringFieldPrefab;
         public GameObject buttonFieldPrefab;
         public Transform fieldStartPos;
@@ -19,6 +20,7 @@ namespace HoloToolkit.Unity
         public List<GameObject> IFCollection;
         public List<GameObject> EDCollection;
         public List<GameObject> LDCollection;
+        public List<GameObject> ExDCollection;
 
         // Use this for initialization
         void Start()
@@ -38,6 +40,7 @@ namespace HoloToolkit.Unity
             populateIF();
             populateED();
             populateLD();
+            populateExD();
 
             //distribute location data
             ActiveFields["address1"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.address1;
@@ -90,6 +93,49 @@ namespace HoloToolkit.Unity
                     }
                 }
             }
+        }
+
+        void populateExD() {
+
+            int fieldCount = JU_databaseMan.Instance.definitions.ExtraFields.fields.Count;
+            for (int i = 0; i < fieldCount; i++)
+            {
+
+                GameObject spawnedField;
+                if (JU_databaseMan.Instance.definitions.ExtraFields.fields[i].FieldType == 16)
+                {
+                    spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
+                    spawnedField.GetComponent<formFieldController>().populateButtons(3);
+                    spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonText.text = "Yes";
+                    spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonIndex = 1;
+                    spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonText.text = "No";
+                    spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonIndex = 0;
+                    spawnedField.GetComponent<formFieldController>().curButtons[2].GetComponent<formButtonController>().buttonText.text = "Other";
+                    spawnedField.GetComponent<formFieldController>().curButtons[2].GetComponent<formButtonController>().buttonIndex = 2;
+
+                    spawnedField.GetComponent<formFieldController>().showUpdate = true;
+                    spawnedField.transform.SetParent(ExtDataParent);
+                    submitInspection submitIns = MasterForm.GetComponent<formController>().submitInspection;
+                    spawnedField.transform.localPosition = submitIns.issuePos.localPosition;
+                    spawnedField.transform.localScale = submitIns.issuePos.localScale;
+                    spawnedField.transform.localEulerAngles = new Vector3(0, 0, 0);
+
+                    for (int o = 3; o < submitIns.contents.Length; o++)
+                    {
+                        submitIns.contents[o].position = new Vector3(submitIns.contents[o].position.x, submitIns.contents[o].position.y - offsetDist, submitIns.contents[o].position.z);
+                    }
+
+                    spawnedField.GetComponent<formFieldController>().DisplayName.text = JU_databaseMan.Instance.definitions.ExtraFields.fields[i].DisplayName;
+                    spawnedField.GetComponent<formFieldController>().trueName = JU_databaseMan.Instance.definitions.ExtraFields.fields[i].Name;
+                    ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
+
+
+                    ExDCollection.Add(spawnedField);
+
+                }
+
+            }
+
         }
 
         void populateIF()
