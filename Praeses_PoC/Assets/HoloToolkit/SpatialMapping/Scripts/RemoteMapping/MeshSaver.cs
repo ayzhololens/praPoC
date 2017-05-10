@@ -31,7 +31,7 @@ namespace HoloToolkit.Unity.SpatialMapping
             get
             {
 #if !UNITY_EDITOR && UNITY_METRO
-                return ApplicationData.Current.RoamingFolder.Path;
+                return ApplicationData.Current.LocalFolder.Path;
 #else
                 return Application.persistentDataPath;
 #endif

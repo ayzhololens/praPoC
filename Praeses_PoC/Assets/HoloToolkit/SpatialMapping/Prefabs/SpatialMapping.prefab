@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 114000012149591842}
   - component: {fileID: 114722865667208052}
   - component: {fileID: 114372533453860654}
+  - component: {fileID: 114067691865161900}
+  - component: {fileID: 114444289630641534}
   m_Layer: 0
   m_Name: SpatialMapping
   m_TagString: Untagged
@@ -57,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhysicsLayer: 31
   surfaceMaterial: {fileID: 2100000, guid: d698790d3facd3d4289a13fa1243030a, type: 2}
-  autoStartObserver: 1
+  autoStartObserver: 0
   drawVisualMeshes: 1
   castShadows: 0
 --- !u!114 &114000012149591842
@@ -87,6 +89,20 @@ MonoBehaviour:
   TrianglesPerCubicMeter: 500
   Extents: {x: 10, y: 10, z: 10}
   TimeBetweenUpdates: 3.5
+--- !u!114 &114067691865161900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010302963436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079aa95a7ec12cd498b05cc8046b8a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spatTap: {fileID: 2100000, guid: 254b555db8831eb4d9f500e9c51c5b58, type: 2}
+  occlusion: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
+  speed: 0.015
 --- !u!114 &114372533453860654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,13 +116,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniMapHolder: {fileID: 0}
   miniMapMeshes: []
-  SpatUnderstanding: {fileID: 0}
   MiniMapHolderParent: {fileID: 0}
+  occlusionMat: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
   miniMapMat: {fileID: 2100000, guid: fd47ef7f600f7c74f8015654ecd56660, type: 2}
   scaleOffset: 0.075
   boilerPivot: {x: 0, y: 0, z: 0}
   avatar: {fileID: 0}
   useAvatar: 1
+--- !u!114 &114444289630641534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010302963436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c401a2a9c189284cbfd38e27cd16fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boilerClass:
+    transform: []
+  offsiteBoilerHolder: {fileID: 0}
 --- !u!114 &114722865667208052
 MonoBehaviour:
   m_ObjectHideFlags: 1

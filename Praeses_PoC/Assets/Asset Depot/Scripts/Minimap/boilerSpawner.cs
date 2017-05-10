@@ -6,7 +6,7 @@ using HoloToolkit.Unity.InputModule;
 namespace HoloToolkit.Unity
 {
 
-    public class boilerSpawner : MonoBehaviour
+    public class boilerSpawner : Singleton<boilerSpawner>
     {
 
         public GameObject boiler;
