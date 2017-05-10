@@ -48,7 +48,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
         if (closer)
         {
             mediaWindow.SetActive(false);
-            mainWindow.SetActive(true);
+            //mainWindow.SetActive(true);
         }
         else
         {
@@ -91,7 +91,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
             metaobject.GetComponent<Text>().text = (currentNode.date + " - " + currentNode.user);
             nodesMinimapCam.focus(currentNode.indexNum);
             mediaWindow.SetActive(true);
-            mainWindow.SetActive(false);
+            //mainWindow.SetActive(false);
         }
     }
     
