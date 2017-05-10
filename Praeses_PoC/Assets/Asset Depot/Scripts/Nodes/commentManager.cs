@@ -9,7 +9,6 @@ using RenderHeads.Media.AVProVideo.Demos;
 public class commentManager : MonoBehaviour {
 
     public List<GameObject> activeComments;
-    public List<GameObject> activeSimpleComments;
     public int commentCount;
     public Transform commentParent;
     public Transform CommmentStartPos;
@@ -322,7 +321,15 @@ public class commentManager : MonoBehaviour {
         commentContents photoContent = spawnedComment.GetComponent<commentContents>();
         photoContent.isPhoto = true;
         capturingPhoto = false;
-        
+
+        //print(photoContent.filepath);
+
+        if (System.IO.File.Exists(photoContent.filepath))
+        {
+            //photoContent.loadPhoto();
+
+        }
+
 
 
         return spawnedComment;

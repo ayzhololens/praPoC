@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class buttonHightlight : MonoBehaviour {
 
     public Material mainMat;
-    Material mainMatTemp;
+    Material curMat;
     public Material highlightMat;
     public Material altMat;
     public bool isPanel;
@@ -16,15 +16,21 @@ public class buttonHightlight : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        curMat = mainMat;
+
         if (!isPanel)
         {
             if(objectOverride != null)
             {
-                objectOverride.GetComponent<Renderer>().material = mainMat;
+                objectOverride.GetComponent<Renderer>().material = curMat;
+
+                
             }
             else
             {
-                GetComponent<Renderer>().material = mainMat;
+                GetComponent<Renderer>().material = curMat;
+                
 
             }
         }
@@ -41,16 +47,29 @@ public class buttonHightlight : MonoBehaviour {
 
     public void updateMat()
     {
-        mainMatTemp = mainMat;
-        mainMat = altMat;
-        //altMat = mainMatTemp;
+        curMat = altMat;
         if (objectOverride != null)
         {
-            objectOverride.GetComponent<Renderer>().material = mainMat;
+            objectOverride.GetComponent<Renderer>().material = curMat;
         }
         else
         {
-            GetComponent<Renderer>().material = mainMat;
+            GetComponent<Renderer>().material = curMat;
+
+        }
+    }
+
+    public void revertMat()
+    {
+
+        curMat = mainMat;
+        if (objectOverride != null)
+        {
+            objectOverride.GetComponent<Renderer>().material = curMat;
+        }
+        else
+        {
+            GetComponent<Renderer>().material = curMat;
 
         }
     }
@@ -80,11 +99,11 @@ public class buttonHightlight : MonoBehaviour {
     {
         if (objectOverride != null)
         {
-            objectOverride.GetComponent<Renderer>().material = mainMat;
+            objectOverride.GetComponent<Renderer>().material = curMat;
         }
         else if(!isPanel)
         {
-            GetComponent<Renderer>().material = mainMat;
+            GetComponent<Renderer>().material = curMat;
         }
         if (isPanel)
         {

@@ -8,8 +8,10 @@ namespace HoloToolkit.Unity
         
         Material mat;
         public GameObject[] NodeMesh;
+        public GameObject[] xRayMesh;
         public Material nodeMat;
         public Material nodeHighlightMat;
+        public Material xRayMat;
 
         // Use this for initialization
         void Start() {
@@ -32,10 +34,17 @@ namespace HoloToolkit.Unity
                     NodeMesh[i].GetComponent<Renderer>().material = nodeHighlightMat;
 
             }
-            
+
+            for (int i = 0; i < xRayMesh.Length; i++)
+            {
+
+                xRayMesh[i].GetComponent<Renderer>().material = nodeHighlightMat;
+
+            }
 
 
-    }
+
+        }
 
         public void unhighlightNode()
         {
@@ -45,7 +54,14 @@ namespace HoloToolkit.Unity
                 NodeMesh[i].GetComponent<Renderer>().material = nodeMat;
 
             }
-            
+
+            for (int i = 0; i < xRayMesh.Length; i++)
+            {
+
+                xRayMesh[i].GetComponent<Renderer>().material = xRayMat;
+
+            }
+
         }
     }
 }

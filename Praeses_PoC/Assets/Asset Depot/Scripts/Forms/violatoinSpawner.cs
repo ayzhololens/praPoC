@@ -15,6 +15,7 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
     public GameObject violationFieldPrefab;
     public GameObject violationPreview;
     public GameObject violationPreviewField;
+    public GameObject successContentHolder;
     public int rowLengthBox;
     public float hOffsetBox;
     public float vOffsetBox;
@@ -47,6 +48,7 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
         //store violation during categorization
         activeViolationController = curVio;
+        activeViolationController.goToTab(0);
         populateCategories();
     }
 
@@ -71,6 +73,8 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
     public void populateCategories()
     {
+        activeViolationController.goToTab(0);
+
 
         Vector3 startPos = activeViolationController.boxStartPos.localPosition;
         float vOff = 0;
@@ -377,6 +381,8 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
 
         activeViolationController.vioReview.loadReview();
+        activeViolationController.vioReview.submitReview(true);
+        activeViolationController.goToTab(8);
         //activeViolationController.vioReview.submitReview(true);
         //populatePreviewField();
     }

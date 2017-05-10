@@ -955,7 +955,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1251693258926106}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c7604e7491ee0d4981f6838ff957762, type: 3}
   m_Name: 
@@ -1098,8 +1098,12 @@ MonoBehaviour:
   NodeMesh:
   - {fileID: 1829860473298434}
   - {fileID: 1084425767433630}
+  xRayMesh:
+  - {fileID: 1358476112321214}
+  - {fileID: 1044312834035554}
   nodeMat: {fileID: 2100000, guid: 2b0f1af6f4214404f93def989fc7a093, type: 2}
   nodeHighlightMat: {fileID: 2100000, guid: 9e4f3bdf82c7ece4c987211411ffff83, type: 2}
+  xRayMat: {fileID: 2100000, guid: f93713688c6ad5a499308802f90607b6, type: 2}
 --- !u!114 &114812309832220236
 MonoBehaviour:
   m_ObjectHideFlags: 1

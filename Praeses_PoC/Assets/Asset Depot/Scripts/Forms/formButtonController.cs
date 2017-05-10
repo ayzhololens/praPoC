@@ -37,6 +37,7 @@ namespace HoloToolkit.Unity
             }
             field.gameObject.GetComponent<buttonHightlight>().updateMat();
             field.Value.text = buttonIndex.ToString();
+            field.checkDelta();
             databaseMan.Instance.formToClassValueSync(field.trueName, field.Value.text);
             GetComponent<gazeLeaveEvent>().enabled = false;
         }
