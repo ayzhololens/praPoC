@@ -34,6 +34,19 @@ namespace HoloToolkit.Unity
 
         }
 
+
+
+        public void checkTab()
+        {
+            for (int i = 0; i < fieldTabs.Length; i++)
+            {
+                if (fieldTabs[i].activeSelf)
+                {
+                    goToTab(i);
+                }
+            }
+        }
+
         public void goToTab(int tab)
         {
 
@@ -130,6 +143,7 @@ namespace HoloToolkit.Unity
         public void openForm()
         {
             contentHolder.transform.position = frontHolder.position;
+            checkTab();
             contentHolder.SetActive(true);
         }
 

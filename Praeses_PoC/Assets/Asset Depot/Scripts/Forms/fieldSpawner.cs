@@ -214,6 +214,7 @@ namespace HoloToolkit.Unity
             GameObject Submit = MasterForm.GetComponent<formController>().Sumbit;
             Submit.transform.SetParent(FieldInspectionParent);
             Submit.transform.localPosition = fieldStartPos.localPosition;
+            MasterForm.GetComponent<formController>().goToTab(2);
         }
 
         void populateED()

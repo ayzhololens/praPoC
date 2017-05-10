@@ -321,7 +321,15 @@ public class commentManager : MonoBehaviour {
         commentContents photoContent = spawnedComment.GetComponent<commentContents>();
         photoContent.isPhoto = true;
         capturingPhoto = false;
-        
+
+        //print(photoContent.filepath);
+
+        if (System.IO.File.Exists(photoContent.filepath))
+        {
+            //photoContent.loadPhoto();
+
+        }
+
 
 
         return spawnedComment;

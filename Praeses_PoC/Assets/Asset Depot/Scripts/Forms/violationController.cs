@@ -36,6 +36,17 @@ namespace HoloToolkit.Unity
 
         }
 
+
+        public void checkTab()
+        {
+            for (int i = 0; i < violationTabs.Length; i++)
+            {
+                if (violationTabs[i].activeSelf)
+                {
+                    goToTab(i);
+                }
+            }
+        }
         
         public void goToTab(int tab)
         {
