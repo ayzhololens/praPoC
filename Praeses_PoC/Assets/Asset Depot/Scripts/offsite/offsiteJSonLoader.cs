@@ -10,14 +10,8 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
 
     public GameObject fieldItemPrefab;
     public GameObject equipmentDataParent;
-    public collapseableBox equipmentCollapse;
+    public equipmentDataCollapseble equipmentCollapse;
     Dictionary<string, GameObject> fieldItemCollection = new Dictionary<string, GameObject>();
-
-    public GameObject fieldDeltaPrefab;
-    public GameObject changedFieldParent;
-    public collapseableBox fieldDeltaCollapse;
-    Dictionary<string,GameObject> deltaCollection = new Dictionary<string, GameObject>();
-    public List<JU_databaseMan.compareItem> compareItemList;
 
     int nodeRow;
     int nodeColumn;
@@ -60,7 +54,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
         {
             insertBasicValues(valueItem);
         }
-     }
+    }
 
     void addOneField(GameObject parentObj, float yOffset, JU_databaseMan.fieldItem fieldItem)
     {
@@ -70,7 +64,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
         newItem.transform.SetParent(parentObj.transform);
         newItem.GetComponent<RectTransform>().localPosition = new Vector3(9.88f, yOffset, 0);
         newItem.GetComponent<RectTransform>().localScale = new Vector3(.36f, .072f, .241f);
-        equipmentCollapse.expandSize += 94;
+        equipmentCollapse.expandSize += 94.625f;
         equipmentCollapse.openCollapseable(-initExpandSize);
         newItem.name = fieldItem.Name;
         newItem.GetComponent<offsiteFieldItemValueHolder>().name.text = fieldItem.DisplayName;
@@ -92,81 +86,6 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
             {
                 //print(valueItem.name + " does not exist");
             }
-    }
-
-    public void populateFieldDeltas()
-    {
-        deltaCollection.Clear();
-        float yOffset = -136;
-        //compare deltas
-        foreach (JU_databaseMan.valueItem historyItem in JU_databaseMan.Instance.values.historicData)
-            {
-                foreach (JU_databaseMan.valueItem currentItem in JU_databaseMan.Instance.values.currentData)
-                {
-                    if(historyItem.name == currentItem.name)
-                    {
-                        if (historyItem.value != currentItem.value)
-                        {
-                        //print(currentItem.name + " deltas: " + historyItem.value + " and " + currentItem.value);
-                        //definitions
-                        JU_databaseMan.compareItem newFieldItem = new JU_databaseMan.compareItem();
-                        newFieldItem.name = currentItem.name;
-                        foreach (JU_databaseMan.fieldItem item in JU_databaseMan.Instance.definitions.InspectionFields.fields)
-                        {
-                            if (item.Name == currentItem.name)
-                            {
-                                newFieldItem.displayName = item.DisplayName;
-                            }
-                        }
-                        newFieldItem.value = currentItem.value;
-                        newFieldItem.oldValue = historyItem.value;
-                        addOneFieldDelta(changedFieldParent, yOffset, newFieldItem);
-                        compareItemList.Add(newFieldItem);
-                        yOffset += -94;
-                    }
-                    }
-                }
-            }
-        //values
-        if(compareItemList.Count > 0)
-        {
-            foreach (JU_databaseMan.compareItem compareItem in compareItemList)
-            {
-                insertComparativeValues(compareItem);
-            }
-        }
-
-    }
-
-    void addOneFieldDelta(GameObject parentObj, float yOffset, JU_databaseMan.compareItem compareItem)
-    {
-        GameObject newItem;
-        float initExpandSize = fieldDeltaCollapse.expandSize;
-        newItem = Instantiate(fieldDeltaPrefab);
-        newItem.transform.SetParent(parentObj.transform);
-        newItem.GetComponent<RectTransform>().localPosition = new Vector3(866.5f, yOffset, 0);
-        newItem.GetComponent<RectTransform>().localScale = Vector3.one;
-        fieldDeltaCollapse.expandSize += 94;
-        fieldDeltaCollapse.openCollapseable(-initExpandSize);
-        newItem.GetComponent<offsiteFieldItemValueHolder>().displayName.text = compareItem.displayName;
-        newItem.GetComponent<offsiteFieldItemValueHolder>().value.text = compareItem.value;
-        newItem.GetComponent<offsiteFieldItemValueHolder>().oldValue.text = compareItem.oldValue;
-        deltaCollection.Add(compareItem.name, newItem);
-    }
-
-    void insertComparativeValues(JU_databaseMan.compareItem compareItem)
-    {
-
-        if (deltaCollection.ContainsKey(compareItem.name))
-        {
-            deltaCollection[compareItem.name].GetComponent<offsiteFieldItemValueHolder>().value.text = compareItem.value;
-            deltaCollection[compareItem.name].GetComponent<offsiteFieldItemValueHolder>().displayName.text = compareItem.displayName;
-            deltaCollection[compareItem.name].GetComponent<offsiteFieldItemValueHolder>().oldValue.text = compareItem.oldValue;
-        }
-        else
-        {
-            //print(valueItem.name + " does not exist");
-        }
     }
 
     public void populateNodes()

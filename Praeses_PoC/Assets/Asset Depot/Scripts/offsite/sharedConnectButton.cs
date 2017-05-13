@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class sharedConnectButton : MonoBehaviour {
 
-    public Text connectText;
+    public GameObject launchBox;
     public bool isConnected { get; set; }
     public NetworkManager NetworkManagerNull;
     public bool connnectHost;
@@ -41,14 +41,14 @@ public class sharedConnectButton : MonoBehaviour {
     {
         NetworkManagerNull.GetComponent<NetworkManager>().networkAddress = "192.168.1.120";
         NetworkManagerNull.GetComponent<NetworkManager>().StartClient();
-        connectText.text = "CONNECTED";
+        launchBox.SetActive(false);
         print(NetworkServer.connections.Count);
     }
 
     void disconnectAsClient()
     {
         NetworkManagerNull.GetComponent<NetworkManager>().StopClient();
-        connectText.text = "CONNECT";
+        launchBox.SetActive(true);
     }
 
     void clientToggle()
@@ -76,6 +76,7 @@ public class sharedConnectButton : MonoBehaviour {
         NetworkManagerNull.GetComponent<NetworkManager>().StopHost();
         offsiteWindow.SetActive(true);
         sharedWindow.SetActive(false);
+        launchBox.SetActive(true);
     }
 
     void hostToggle()

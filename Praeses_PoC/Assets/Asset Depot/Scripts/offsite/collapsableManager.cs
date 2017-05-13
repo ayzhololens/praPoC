@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity;
 
-public class collapsableManager : MonoBehaviour {
+public class collapsableManager : Singleton<collapsableManager> {
 
     public float startCollapse = 1400;
     public GameObject content;
