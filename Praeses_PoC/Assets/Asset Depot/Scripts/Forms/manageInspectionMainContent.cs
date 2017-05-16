@@ -24,7 +24,7 @@ public class manageInspectionMainContent : MonoBehaviour {
     {
 
         direction = direction * -1;
-        collapseIcon.transform.localScale = new Vector3(collapseIcon.transform.localScale.x * -1, collapseIcon.transform.localScale.y, collapseIcon.transform.localScale.z);
+        collapseIcon.transform.localScale = new Vector3(collapseIcon.transform.localScale.x, collapseIcon.transform.localScale.y * -1, collapseIcon.transform.localScale.z);
 
   
         for (int i=1; i<transform.parent.childCount; i++)
