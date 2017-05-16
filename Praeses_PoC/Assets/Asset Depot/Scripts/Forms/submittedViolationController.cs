@@ -82,7 +82,7 @@ public class submittedViolationController : MonoBehaviour {
             }
             if (activeComment.GetComponent<commentContents>().isPhoto)
             {
-                print("bbb" + activeComment.GetComponent<commentContents>().filepath);
+
                 pCounter += 1;
                 GameObject photoComment = spawnedPreview.GetComponent<commentManager>().spawnPhotoCommentFromJSON();
                 photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;

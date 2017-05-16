@@ -136,14 +136,13 @@ public class moveContent : MonoBehaviour,IManipulationHandler
 
     public void OnManipulationCanceled(ManipulationEventData delta)
     {
-        //print(delta.CumulativeDelta);
-        //manipulating = false;
-        //radialManagement.Instance.canOpen = true;
-        //BoundingBox.transform.GetChild(0).gameObject.SetActive(false);
-        //BoundingBox.GetComponent<BoxCollider>().enabled = false;
-
+        manipulating = false;
+        radialManagement.Instance.canOpen = true;
+        BoundingBox.transform.GetChild(0).gameObject.SetActive(false);
+        BoundingBox.GetComponent<BoxCollider>().enabled = false;
         curDelta = Vector3.zero;
         prevDelta = Vector3.zero;
+
 
     }
 

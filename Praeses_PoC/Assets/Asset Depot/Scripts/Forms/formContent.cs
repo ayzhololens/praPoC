@@ -15,6 +15,7 @@ namespace HoloToolkit.Unity
         public Text CityState;
         public Text ZIP;
         public Text LocationName;
+        public Text LocationID;
         public Text NBNumber;
         [Header("Object Details")]
         public Text Object;
@@ -59,17 +60,23 @@ namespace HoloToolkit.Unity
             }
             if (NBNumber != null)
             {
-                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.currentData)
+                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.equipmentData)
                 {
                     if (valueItem.name == "strNBNumber")
                     {
-                        NBNumber.text = valueItem.value + " ";
+
+                        NBNumber.text = valueItem.value + "";
                     }
                 }
             }
             if (CityState != null)
             {
                 CityState.text = database.definitions.LocationFields.City + ", " + database.definitions.LocationFields.State;
+            }
+
+            if (LocationID != null)
+            {
+                LocationID.text = database.definitions.LocationFields.LocationID.ToString();
             }
             if (ZIP != null)
             {
@@ -79,6 +86,13 @@ namespace HoloToolkit.Unity
             if (LocationName != null)
             {
                 LocationName.text = database.definitions.LocationFields.LocationName;
+
+            }
+
+
+            if (Object != null)
+            {
+                Object.text = database.definitions.LocationFields.LocationName;
 
             }
             #endregion
@@ -102,11 +116,11 @@ namespace HoloToolkit.Unity
             if (CertType != null)
             {
 
-                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.historicData)
+                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.extraData)
                 {
                     if (valueItem.name == "intActivityTypeID")
                     {
-                        foreach (JU_databaseMan.fieldItem fieldItem in database.definitions.InspectionFields.fields)
+                        foreach (JU_databaseMan.fieldItem fieldItem in database.definitions.ExtraFields.fields)
                         {
                             if (fieldItem.Name == "intActivityTypeID")
                             {
@@ -147,14 +161,11 @@ namespace HoloToolkit.Unity
                 Violations.text = "x" + vioIndex + " Violations";
 
                 int fieldIndex = 0;
-                for (int f = 0; f < mediaManager.Instance.activeNodes.Count; f++)
+                for (int f = 0; f < fieldSpawner.Instance.IFCollection.Count; f++)
                 {
-                    if (mediaManager.Instance.activeNodes[f].GetComponent<nodeMediaHolder>().fieldNode)
-                    {
-                        fieldIndex += 1;
-                    }
+                    fieldIndex += 1;
                 }
-                DataFields.text = "x" + fieldIndex + " Data Fields";
+                DataFields.text = "x" + fieldIndex + " Inspection Fields";
 
             }
 
@@ -175,7 +186,7 @@ namespace HoloToolkit.Unity
             if (MAWP != null)
             {
 
-                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.currentData)
+                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.equipmentData)
                 {
                     if (valueItem.name == "intStampedMAWP")
                     {
@@ -186,7 +197,7 @@ namespace HoloToolkit.Unity
 
             if (SerialNumber != null)
             {
-                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.currentData)
+                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.equipmentData)
                 {
                     if (valueItem.name == "strOtherNumber")
                     {

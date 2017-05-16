@@ -15,10 +15,11 @@ namespace HoloToolkit.Unity
         public GameObject aligner;
         public GameObject alignerIndicator;
         bool startedAlignment;
+        int curTab;
 
         // Use this for initialization
         void Start() {
-
+            //openMainMenu();
         }
 
         // Update is called once per frame
@@ -39,7 +40,9 @@ namespace HoloToolkit.Unity
                     tabs[i].SetActive(false);
                 }
             }
+            curTab = tabIndex;
             tabs[tabIndex].SetActive(true);
+            print(curTab);
         }
 
         public void preloadData()
@@ -47,7 +50,7 @@ namespace HoloToolkit.Unity
 
             for (int i = 0; i < preloadedDataFields.Length; i++)
             {
-                //preloadedDataFields[i].loadDetails();
+                preloadedDataFields[i].loadDetails();
             }
         }
 
@@ -58,7 +61,9 @@ namespace HoloToolkit.Unity
 
         public void openMainMenu()
         {
+
             contentHolder.SetActive(true);
+            contentHolder.transform.position = GameObject.Find("Front Holder_1.5").transform.position;
         }
 
 
@@ -93,8 +98,34 @@ namespace HoloToolkit.Unity
         void turnOffAligner()
         {
             openMainMenu();
-            goToTab(6);
+            goToTab(5);
             mediaManager.Instance.disableStatusIndicator();
+        }
+
+        public void completeMainMenu()
+        {
+            closeMainMenu();
+            mediaManager.Instance.setStatusIndicator("Inspection started.  Tap and hold to open radial menu");
+            Invoke("turnOffInd", 3);
+        }
+
+        void turnOffInd()
+        {
+            mediaManager.Instance.disableStatusIndicator();
+        }
+
+        public void goBackTab()
+        {
+            if (curTab == 3)
+            {
+
+                goToTab(curTab - 2);
+            }
+            else if (curTab != 0)
+            {
+                goToTab(curTab - 1);
+
+            }
         }
 
     }

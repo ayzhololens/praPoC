@@ -352,6 +352,8 @@ namespace HoloToolkit.Unity
 
         public void startRecording()
         {
+
+            numpad.SetActive(false);
             keypad.SetActive(false);
             micOn.SetActive(true);
             isRecording = true;
@@ -359,7 +361,14 @@ namespace HoloToolkit.Unity
 
         public void finishRecording()
         {
-            keypad.SetActive(true);
+            if (useKeypad)
+            {
+                keypad.SetActive(true);
+            }
+            else if (useNumpad)
+            {
+                numpad.SetActive(true);
+            }
             micOn.SetActive(false);
             isRecording = false;
         }

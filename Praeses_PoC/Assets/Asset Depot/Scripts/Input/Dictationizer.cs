@@ -75,7 +75,14 @@ namespace HoloToolkit.Unity.InputModule
 
         private void DictationRecognizer_DictationResult(string text, ConfidenceLevel confidence)
         {
-            textSoFar.Append(text + ". ");
+            if (keyboardScript.Instance.useKeypad)
+            {
+                textSoFar.Append(text + ". ");
+            }
+            else
+            {
+                textSoFar.Append(text + "");
+            }
             keyboardScript.Instance.keyboardField.text = textSoFar.ToString();
             keyboardScript.Instance.keyboardField.caretPosition = keyboardScript.Instance.keyboardField.caretPosition + textSoFar.ToString().Length;
 
@@ -84,7 +91,15 @@ namespace HoloToolkit.Unity.InputModule
 
         private void DictationRecognizer_DictationHypothesis(string text)
         {
-            keyboardScript.Instance.keyboardField.text = textSoFar.ToString() + " " + text + "...";
+
+            if (keyboardScript.Instance.useKeypad)
+            {
+                keyboardScript.Instance.keyboardField.text = textSoFar.ToString() + " " + text + "...";
+            }
+            else
+            {
+                keyboardScript.Instance.keyboardField.text = textSoFar.ToString() + "" + text + "";
+            }
             keyboardScript.Instance.keyboardField.caretPosition = keyboardScript.Instance.keyboardField.caretPosition + textSoFar.ToString().Length;
         }
 
