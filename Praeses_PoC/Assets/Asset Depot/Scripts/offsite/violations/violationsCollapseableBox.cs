@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using HoloToolkit.Unity;
 
 public class violationsCollapseableBox : MonoBehaviour {
 
-    public GameObject onIcon;
-    public GameObject offIcon;
     public int vioInt;
     public Text dateAddedValue;
     public Text dueValue;
     public Text title;
     public Text severity;
     public Image severityBox;
+    public Text inspector;
+    public Text category;
+    public Text subcategory;
+    public Text conditions;
+    public Text requirements;
+
+    public GameObject collapseIcon;
+    public GameObject expandIcon;
+    public GameObject collapseContent;
+    public GameObject lineItem;
+    public collapsableManager bigBox;
+    public GameObject vioBox;
+    public bool isOpen;
+    public List<GameObject> childItems = new List<GameObject>();
+    public int expandSize;
+
+    public GameObject addObject;
 
     public void updateTitleContents()
     {
@@ -36,65 +52,87 @@ public class violationsCollapseableBox : MonoBehaviour {
         }
     }
 
-    //public GameObject scrollBox;
-    //public bool boxState;
-    //public float expandSize;
-    //public GameObject nextLiner;
-    //float initNextLinerY;
-    //public List<GameObject> collapsableChild;
+    public void updateCollapseableContents()
+    {
+        JU_databaseMan.ViolationsItem vio = JU_databaseMan.Instance.violationsManager.violations[vioInt];
+        if(vio.nodeIndex != 0)
+        {
+            inspector.text = JU_databaseMan.Instance.nodesManager.nodes[vio.nodeIndex].user;
+        }else
+        {
+            inspector.text = metaManager.Instance.user;
+        }
+        category.text = vio.category.ToString() + "." + JU_databaseMan.Instance.categoryStringer(vio)[0];
+        subcategory.text = vio.subCategory.ToString() + "." + JU_databaseMan.Instance.categoryStringer(vio)[1];
+        conditions.text = vio.conditions;
+        requirements.text = vio.requirements;
+    }
 
-    //void toggleBox()
-    //{
-    //    if (boxState)
-    //    {
-    //        closeCollapseable();
-    //    }
-    //    else
-    //    {
-    //        openCollapseable(0);
-    //    }
-    //}
+    private void Start()
+    {
+        bigBox = collapsableManager.Instance;
+        childItems.Add(lineItem);
+        addObject.GetComponent<Collider>().enabled = false;
+        addObject.GetComponent<Renderer>().enabled = false;
+    }
 
-    //public void closeCollapseable()
-    //{
-    //    onIcon.SetActive(false);
-    //    offIcon.SetActive(true);
-    //    scrollBox.GetComponent<RectTransform>().sizeDelta = new Vector2(scrollBox.GetComponent<RectTransform>().rect.width,
-    //                                                                    0);
-    //    if (nextLiner != null)
-    //    {
-    //        nextLiner.GetComponent<RectTransform>().localPosition = new Vector3(nextLiner.GetComponent<RectTransform>().localPosition.x,
-    //                                                initNextLinerY, 0);
-    //    }
-    //    if (collapsableChild.Count > 0)
-    //    {
-    //        foreach (GameObject child in collapsableChild)
-    //        {
-    //            child.SetActive(false);
-    //        }
-    //    }
-    //    boxState = false;
-    //}
+    public void toggleVioBox()
+    {
+        if (isOpen)
+        {
+            closeBox();
+            isOpen = false;
+        }
+        else
+        {
+            openBox();
+            isOpen = true;
+        }
+    }
 
-    //public void openCollapseable(float expandOffset)
-    //{
-    //    onIcon.SetActive(true);
-    //    offIcon.SetActive(false);
-    //    scrollBox.GetComponent<RectTransform>().sizeDelta = new Vector2(scrollBox.GetComponent<RectTransform>().rect.width,
-    //        expandSize);
-    //    boxState = true;
-    //    if (nextLiner != null)
-    //    {
-    //        nextLiner.GetComponent<RectTransform>().localPosition = new Vector3(nextLiner.GetComponent<RectTransform>().localPosition.x,
-    //                                                                initNextLinerY - (expandSize/ 2.246608f), 
-    //                                                                0);
-    //    }
-    //    if (collapsableChild.Count > 0)
-    //    {
-    //        foreach (GameObject child in collapsableChild)
-    //        {
-    //            child.SetActive(true);
-    //        }
-    //    }
-    //}
+    private void openBox()
+    {
+        collapseIcon.SetActive(true);
+        expandIcon.SetActive(false);
+        collapseContent.SetActive(true);
+        vioBox.GetComponent<RectTransform>().sizeDelta = new Vector2(vioBox.GetComponent<RectTransform>().rect.width,
+                                vioBox.GetComponent<RectTransform>().rect.height + expandSize);
+        bigBox.startCollapse += expandSize;
+        bigBox.readjustBox();
+        foreach(GameObject childItem in childItems)
+        {
+            childItem.GetComponent<RectTransform>().localPosition = new Vector3(childItem.GetComponent<RectTransform>().localPosition.x,
+                                                        childItem.GetComponent<RectTransform>().localPosition.y - (expandSize),
+                                                        childItem.GetComponent<RectTransform>().localPosition.z);
+        };
+
+        addObject.GetComponent<Collider>().enabled = true;
+        addObject.GetComponent<Renderer>().enabled = true;
+    }
+
+    private void closeBox()
+    {
+        collapseIcon.SetActive(false);
+        expandIcon.SetActive(true);
+        collapseContent.SetActive(false);
+        vioBox.GetComponent<RectTransform>().sizeDelta = new Vector2(vioBox.GetComponent<RectTransform>().rect.width,
+                        vioBox.GetComponent<RectTransform>().rect.height - expandSize);
+        bigBox.GetComponent<RectTransform>().sizeDelta = new Vector2(vioBox.GetComponent<RectTransform>().rect.width,
+                        vioBox.GetComponent<RectTransform>().rect.height - expandSize);
+        foreach (GameObject childItem in childItems)
+        {
+            childItem.GetComponent<RectTransform>().localPosition = new Vector3(childItem.GetComponent<RectTransform>().localPosition.x,
+                                                                childItem.GetComponent<RectTransform>().localPosition.y + (expandSize),
+                                                                childItem.GetComponent<RectTransform>().localPosition.z);
+        };
+        addObject.GetComponent<Collider>().enabled = false;
+        addObject.GetComponent<Renderer>().enabled = false;
+        //bigBox.startCollapse -= expandSize;
+        //bigBox.readjustBox();
+    }
+
+    private void OnMouseDown()
+    {
+        toggleVioBox();
+    }
 }

@@ -37,9 +37,9 @@ public class populateOffsite : MonoBehaviour {
         offsiteJSonLoader.Instance.populateEquipment();
         offsiteJSonLoader.Instance.equipmentCollapse.toggleBox();
         violationsParentSpawner.Instance.populateViolations();
-        fieldCollapseableBox.Instance.populateFieldDeltas();
-        annotationsCollapseableBox.Instance.populateNodes();
-        addNodeFromJSon.Instance.spawnNodeOffsiteList();
+        //fieldCollapseableBox.Instance.populateFieldDeltas();
+        //annotationsCollapseableBox.Instance.populateNodes();
+        //addNodeFromJSon.Instance.spawnNodeOffsiteList();
         populateSummary();
     }
 
