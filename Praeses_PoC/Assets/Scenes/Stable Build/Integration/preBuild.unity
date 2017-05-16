@@ -8240,15 +8240,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1071622073431788, guid: 6a695fa918182f74a8a5c856aaf3dcd3, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1126107231344022, guid: 6a695fa918182f74a8a5c856aaf3dcd3, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1445893636506936, guid: 6a695fa918182f74a8a5c856aaf3dcd3, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114217223696040098, guid: 6a695fa918182f74a8a5c856aaf3dcd3,
         type: 2}
