@@ -13,14 +13,6 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
     public equipmentDataCollapseble equipmentCollapse;
     Dictionary<string, GameObject> fieldItemCollection = new Dictionary<string, GameObject>();
 
-    int nodeRow;
-    int nodeColumn;
-    public GameObject simpleNodePrefab;
-    public GameObject photoNodePrefab;
-    public GameObject videoNodePrefab;
-    public GameObject nodesParent;
-    public collapseableBox nodesCollapsable;
-
     public Dictionary<int, GameObject> nodes3DList = new Dictionary<int, GameObject>();
 
     public GameObject commentSimplePrefab;
@@ -88,104 +80,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
             }
     }
 
-    public void populateNodes()
-    {
-        List<JU_databaseMan.nodeItem> nodesList = new List<JU_databaseMan.nodeItem>();
-        foreach(JU_databaseMan.nodeItem nodeItem in JU_databaseMan.Instance.nodesManager.nodes)
-        {
-            //print("hi: "+ nodeItem.title);
-            if(nodeItem.type == 2 || nodeItem.type == 3) { }
-            else
-            {
-                nodesList.Add(nodeItem);
-            }
-        }
-        nodeRow = 0;
-        nodeColumn = 0;
-        int max = nodesList.Count;
-
-        for(int en=0; en < max; en++)
-        {
-            int currentItem;
-            int currentRow;
-            int currentColumn;
-
-            currentItem = en + 1;
-            currentRow = nodeRow + 1;
-
-            nodeRow = Mathf.FloorToInt((en+1) / 3);
-            nodeColumn = ((en%3) +1);
-
-            currentColumn = nodeColumn;
-
-            addOneNode(nodesParent, currentColumn, currentRow, nodesList[en]);
-        }
-
-        //print("num of items: " + max);
-        //print("num of rows: " + (nodeRow + 1));
-        //print("num of columns: " +nodeColumn);
-    }
-
-    void addOneNode(GameObject parentObj, int currentColumn, int currentRow, JU_databaseMan.nodeItem nodeItem)
-    {
-        GameObject newItem;
-        float xpos = (580 * (currentColumn-1)) + 72;
-        float ypos = (-408 * (currentRow-1)) -37;
-        float initExpandSize = nodesCollapsable.expandSize;
-
-        if (nodeItem.type == 0)
-        {
-            newItem = Instantiate(simpleNodePrefab);
-        }
-        else if(nodeItem.type == 1)
-        {
-            newItem = Instantiate(photoNodePrefab);
-            newItem.GetComponent<offsiteFieldItemValueHolder>().path = nodeItem.photos[0].path;
-            //newItem.GetComponent<offsiteMediaPlayer>().photoMaterial = photoMaterial;
-        }
-        else if(nodeItem.type == 4)
-        {
-            newItem = Instantiate(videoNodePrefab);
-            newItem.GetComponent<offsiteFieldItemValueHolder>().path = nodeItem.videos[0].path;
-            newItem.GetComponent<offsiteMediaPlayer>().videoMaterial = videoMaterial;
-        }
-        else
-        {
-            newItem = new GameObject();
-        }
-        
-        if(newItem == null)
-        {
-            Destroy(newItem);
-            print("no add node created");
-        }else
-        {
-            newItem.transform.SetParent(parentObj.transform);
-            newItem.GetComponent<RectTransform>().localPosition = new Vector3(xpos, ypos, 0);
-            newItem.GetComponent<RectTransform>().localScale = Vector3.one;
-            nodesCollapsable.expandSize = 430 * currentRow;
-            nodesCollapsable.openCollapseable(-initExpandSize);
-            newItem.name = nodeItem.title;
-            newItem.GetComponent<offsiteFieldItemValueHolder>().meta.text = (nodeItem.date + " - " + nodeItem.user);
-            newItem.GetComponent<offsiteFieldItemValueHolder>().content.text = nodeItem.description;
-            newItem.GetComponent<offsiteFieldItemValueHolder>().user = nodeItem.user;
-            newItem.GetComponent<offsiteFieldItemValueHolder>().date = nodeItem.date;
-            newItem.GetComponent<offsiteFieldItemValueHolder>().nodeIndex = nodeItem.indexNum;
-            newItem.GetComponent<offsiteMediaPlayer>().mediaWindow = offsiteMediaWindow;
-            newItem.GetComponent<offsiteMediaPlayer>().mediaPlane = mediaPlane;
-            newItem.GetComponent<offsiteMediaPlayer>().nodesMinimapCam = nodesMinimapCam;
-            newItem.GetComponent<offsiteMediaPlayer>().minimapGrp = minimapGrp;
-            newItem.GetComponent<offsiteMediaPlayer>().descObject = descObject;
-            newItem.GetComponent<offsiteMediaPlayer>().metaobject = metaObject;
-            newItem.GetComponent<offsiteMediaPlayer>().mainWindow = mainWindow;
-            newItem.GetComponent<offsiteMediaPlayer>().commentBoxObject = commentBox;
-            newItem.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
-            newItem.GetComponent<offsiteMediaPlayer>().playButton = playButton;
-            //fieldItemCollection.Add(fieldItem.Name, newItem);
-        }
-
-    }
-
+    
     public void populateComments(JU_databaseMan.nodeItem nodeItem)
     {
         if(commentHolder.Count > 0)
@@ -224,7 +119,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
 
     public void loadPhoto(GameObject newItem)
     {
-        string filepath = newItem.GetComponent<offsiteFieldItemValueHolder>().path;
+        string filepath = newItem.GetComponent<offsiteFieldItemValueHolder>().path.text;
         //Debug.Log(filepath);
         Texture2D targetTexture = new Texture2D(2048, 1152);
 

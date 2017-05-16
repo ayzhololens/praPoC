@@ -32,24 +32,24 @@ public class populateOffsite : MonoBehaviour {
         databaseMan.Instance.loadDefCmd();
     }
 
-    void populateForm()
+    public void populateForm()
     {
         offsiteJSonLoader.Instance.populateEquipment();
         offsiteJSonLoader.Instance.equipmentCollapse.toggleBox();
         violationsParentSpawner.Instance.populateViolations();
         fieldCollapseableBox.Instance.populateFieldDeltas();
-        //offsiteJSonLoader.Instance.populateNodes();
+        annotationsCollapseableBox.Instance.populateNodes();
         addNodeFromJSon.Instance.spawnNodeOffsiteList();
         populateSummary();
     }
 
-    void loadSpatialMesh()
+    public void loadSpatialMesh()
     {
         spatialMap.GetComponent<boilerTransformRecorder>().importData();
         spatialMap.GetComponent<SpatialMappingObserver>().LoadSpatialMeshes("JU_spatialMesh");
     }
 
-    public void populateSummary()
+    void populateSummary()
     {
         int violationsNum = 0;
         int annotationsNum = 0;

@@ -24,15 +24,17 @@ public class cameraZoomOverTime : MonoBehaviour {
         //   }
     }
 
-    public IEnumerator smoothMove(Vector3 startPos, Vector3 endPos, Quaternion startRot, Quaternion endRot, Vector3 pStartPos, Vector3 pEndPos, float seconds)
+    public IEnumerator smoothMove(Vector3 startPos, Vector3 endPos, Quaternion startRot, Quaternion endRot, Quaternion pStartRot, Quaternion pEndRot, Vector3 pStartPos, Vector3 pEndPos, float seconds)
     {
         float t = 0.0f;
         while (t <= 1.0)
         {
             t += Time.deltaTime / seconds;
             cameraToMove.transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0.0f, 1.0f, t));
-            parentToMove.transform.rotation = Quaternion.Lerp(startRot, endRot, Mathf.SmoothStep(0.0f, 1.0f, t));
+            parentToMove.transform.rotation = Quaternion.Lerp(pStartRot, pEndRot, Mathf.SmoothStep(0.0f, 1.0f, t));
             parentToMove.transform.position = Vector3.Lerp(pStartPos, pEndPos, Mathf.SmoothStep(0.0f, 1.0f, t));
+            cameraToMove.transform.rotation = Quaternion.Lerp(startRot, endRot, Mathf.SmoothStep(0.0f, 1.0f, t));
+
             yield return true;
         }
     }
@@ -40,15 +42,17 @@ public class cameraZoomOverTime : MonoBehaviour {
     public void resetCam()
     {
         parentToMove.transform.localPosition = Vector3.zero;
-        parentToMove.transform.eulerAngles = Vector3.zero;
-        cameraToMove.transform.localPosition = new Vector3(0,.8f,-5);
+        parentToMove.transform.eulerAngles = new Vector3(0,20,0);
+        cameraToMove.transform.localPosition = new Vector3(0,2.38f,-5);
+        cameraToMove.transform.eulerAngles = new Vector3(20, 0, 0);
     }
 
     public void smoothZoom(Transform target)
     {
         resetCam();
         focusObj(targetObject.transform);
-        StartCoroutine(smoothMove(cameraToMove.transform.position, transform.position, 
+        StartCoroutine(smoothMove(cameraToMove.transform.position, transform.position,
+            cameraToMove.transform.rotation, transform.transform.rotation,
             parentToMove.transform.rotation, rotateCam.transform.rotation,
             parentToMove.transform.position, rotateCam.transform.position,
             speed));

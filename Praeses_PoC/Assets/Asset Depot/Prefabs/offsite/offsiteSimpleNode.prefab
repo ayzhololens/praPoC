@@ -364,7 +364,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 165526644b2c8b349b01e2f9d437852c, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -395,7 +395,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 165526644b2c8b349b01e2f9d437852c, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -426,7 +426,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 165526644b2c8b349b01e2f9d437852c, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -457,7 +457,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3a8e53f86e87a374cbca06eb21f456b0, type: 2}
+  - {fileID: 2100000, guid: 38af45ecf0eb9b1409a74f95ce596a4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -488,7 +488,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3a8e53f86e87a374cbca06eb21f456b0, type: 2}
+  - {fileID: 2100000, guid: 38af45ecf0eb9b1409a74f95ce596a4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -550,7 +550,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 165526644b2c8b349b01e2f9d437852c, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -581,7 +581,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3a8e53f86e87a374cbca06eb21f456b0, type: 2}
+  - {fileID: 2100000, guid: 38af45ecf0eb9b1409a74f95ce596a4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -703,8 +703,10 @@ MonoBehaviour:
   NodeMesh:
   - {fileID: 1449366208214288}
   - {fileID: 1179880558301962}
-  nodeMat: {fileID: 2100000, guid: 3a8e53f86e87a374cbca06eb21f456b0, type: 2}
-  nodeHighlightMat: {fileID: 2100000, guid: ca5926f32ff5a354792578a54cd262b4, type: 2}
+  xRayMesh: []
+  nodeMat: {fileID: 0}
+  nodeHighlightMat: {fileID: 0}
+  xRayMat: {fileID: 0}
 --- !u!114 &114429339318861298
 MonoBehaviour:
   m_ObjectHideFlags: 1

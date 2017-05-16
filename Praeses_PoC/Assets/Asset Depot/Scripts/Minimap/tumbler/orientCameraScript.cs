@@ -4,9 +4,29 @@ using UnityEngine;
 
 public class orientCameraScript : MonoBehaviour {
 
+    public Transform mainCamera;
+    public bool onlyY;
+
+    private void Start()
+    {
+        mainCamera = Camera.main.transform;
+    }
+
     // Update is called once per frame
     void Update () {
-        transform.rotation = Camera.main.transform.rotation;
+
+        if (onlyY)
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 
+                mainCamera.transform.eulerAngles.y,
+                transform.eulerAngles.z);
+
+        }
+        else
+        {
+            transform.rotation = mainCamera.transform.rotation;
+
+        }
 
     }
 

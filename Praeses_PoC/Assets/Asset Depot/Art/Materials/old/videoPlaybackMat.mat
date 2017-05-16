@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: videoPlaybackMat
   m_Shader: {fileID: 4800000, guid: 06790e211e4a6df409b1e04bc91c4810, type: 3}
-  m_ShaderKeywords: STEREO_NONE _EMISSION _USEMAINTEX_ON
+  m_ShaderKeywords: STEREO_NONE _EMISSION _USECOLOR_ON _USEMAINTEX_ON
   m_LightmapFlags: 1
   m_CustomRenderQueue: 998
   stringTagMap: {}
@@ -129,7 +129,7 @@ Material:
       second: 0
     - first:
         name: _UseColor
-      second: 0
+      second: 1
     - first:
         name: _UseMainTex
       second: 1
@@ -142,7 +142,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.6544118, g: 0.6544118, b: 0.6544118, a: 1}
+      second: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
