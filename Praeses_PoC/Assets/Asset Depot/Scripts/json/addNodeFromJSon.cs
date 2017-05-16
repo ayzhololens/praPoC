@@ -298,7 +298,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         spawnedNode.transform.SetParent(offSiteHolder.transform);
         spawnedNode.transform.localPosition = pos;
         spawnedNode.transform.localRotation = rot;
-        spawnedNode.transform.localScale = sca;
+        spawnedNode.transform.localScale = sca * 4;
         spawnedNode.name = nodeClass.title;
         offsiteJSonLoader.Instance.nodes3DList.Add(nodeClass.indexNum, spawnedNode);
 

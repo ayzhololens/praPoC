@@ -10,9 +10,9 @@ public class offsiteFieldItemValueHolder : MonoBehaviour {
     public InputField displayName;
     public Text meta;
     public Text content;
+    public Text path;
     public string user;
     public string date;
-    public string path;
     public int nodeIndex;
 
     public void onEditChangeUpdateJSon()

@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class lookAt : MonoBehaviour {
 
+    public Transform mainCamera;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+        mainCamera = Camera.main.transform;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.LookAt(Camera.main.transform);
+        transform.LookAt(mainCamera);
 
     }
 }

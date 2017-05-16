@@ -8,6 +8,7 @@ public class cameraViewRectangle : MonoBehaviour {
     public GameObject mainScroller;
     public GameObject miniCamera;
     public GameObject shooterCamera;
+    public GameObject lightHolder;
 
     bool hold;
 
@@ -64,12 +65,51 @@ public class cameraViewRectangle : MonoBehaviour {
     {
         miniCamera.GetComponent<CameraControlOffsite>().enabled = true;
         mainScroller.GetComponent<ScrollRect>().enabled = false;
+
+        faceLookAtToThis(true);
     }
 
     void cameraModeOff()
     {
         miniCamera.GetComponent<CameraControlOffsite>().enabled = false;
         mainScroller.GetComponent<ScrollRect>().enabled = true;
+        //faceLookAtToThis(false);
     }
 
+    void faceLookAtToThis(bool isOverridden)
+    {
+        foreach (GameObject node in offsiteJSonLoader.Instance.nodes3DList.Values)
+        {
+            foreach (Transform child in node.transform)
+            {
+                if (child.name == "Mesh (1)")
+                {
+                    foreach (Transform gChild in child.transform)
+                    {
+                        if (gChild.name == "Coin")
+                        {
+                            GameObject coinObj;
+                            coinObj = gChild.gameObject;
+                            if (isOverridden)
+                            {
+                                coinObj.GetComponent<lookAt>().mainCamera = miniCamera.transform;
+                            }else
+                            {
+                                coinObj.GetComponent<lookAt>().mainCamera = Camera.main.transform;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        if (isOverridden)
+        {
+            lightHolder.GetComponent<orientCameraScript>().mainCamera = miniCamera.transform;
+        }
+        else
+        {
+            lightHolder.GetComponent<orientCameraScript>().mainCamera = Camera.main.transform;
+        }
+    }
 }

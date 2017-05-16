@@ -7,7 +7,9 @@ public class violationsLib : Singleton<violationsLib> {
 
     //h
     public Dictionary<int, string> violationsCategory = new Dictionary<int, string>();
+    public Dictionary<int, string> violationsSubCategory1 = new Dictionary<int, string>();
     public Dictionary<int, string> violationsSubCategory4 = new Dictionary<int, string>();
+    public Dictionary<int, string> violationsSpecific11 = new Dictionary<int, string>();
     public Dictionary<int, string> violationsSpecific41 = new Dictionary<int, string>();
     public Dictionary<int, string> violationsSeverity = new Dictionary<int, string>();
     public Dictionary<int, string> violationsStatus =new Dictionary<int, string>();
@@ -48,9 +50,10 @@ public class violationsLib : Singleton<violationsLib> {
     void defineViolationsDicts()
     {
         //severity
-        violationsSeverity.Add(0, "minor");
-        violationsSeverity.Add(1, "moderate");
-        violationsSeverity.Add(2, "severe");
+        violationsSeverity.Add(0, "MINOR");
+        violationsSeverity.Add(1, "MODERATE");
+        violationsSeverity.Add(2, "SEVERE");
+        violationsSeverity.Add(3, "FIXED");
 
         //status
         violationsStatus.Add(0, "resolved");
@@ -73,6 +76,16 @@ public class violationsLib : Singleton<violationsLib> {
             categoryLib.categoryList.Add(cat, tempCategory);
         }
 
+        //subCategory1
+        violationsSubCategory1.Add(1, "Water Leaks");
+
+        foreach (int cat in violationsSubCategory1.Keys)
+        {
+            SubCategory tempSubCategory = new SubCategory();
+            tempSubCategory.name = violationsSubCategory1[cat];
+            categoryLib.categoryList[1].subCategoryList.Add(cat, tempSubCategory);
+        }
+
         //subCategory4
         violationsSubCategory4.Add(1, "Water Leaks");
         violationsSubCategory4.Add(2, "Baffles/refactory");
@@ -85,12 +98,22 @@ public class violationsLib : Singleton<violationsLib> {
 
         foreach (int cat in violationsSubCategory4.Keys)
         {
-            SubCategory tempSubCategory4 = new SubCategory();
-            tempSubCategory4.name = violationsSubCategory4[cat];
-            categoryLib.categoryList[4].subCategoryList.Add(cat, tempSubCategory4);
+            SubCategory tempSubCategory = new SubCategory();
+            tempSubCategory.name = violationsSubCategory4[cat];
+            categoryLib.categoryList[4].subCategoryList.Add(cat, tempSubCategory);
         }
 
-        //specific
+        //specific11
+        violationsSpecific11.Add(23, "Water Level indicator Glass is dirty.");
+
+        foreach (int cat in violationsSpecific11.Keys)
+        {
+            Specific tempSpecific = new Specific();
+            tempSpecific.name = violationsSpecific11[cat];
+            categoryLib.categoryList[1].subCategoryList[1].specificList.Add(cat, tempSpecific);
+        }
+
+        //specific41
         violationsSpecific41.Add(1, "Handhole or gasket or gasket seat installation is not satisfactory");
         violationsSpecific41.Add(2, "Head is not installed or installed incorrectly or inoperable or damaged or leaking.");
         violationsSpecific41.Add(3, "Shell is not installed or installed incorrectly or inoperable or damaged or leaking.");

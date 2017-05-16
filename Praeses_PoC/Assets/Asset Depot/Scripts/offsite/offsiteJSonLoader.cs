@@ -10,22 +10,8 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
 
     public GameObject fieldItemPrefab;
     public GameObject equipmentDataParent;
-    public collapseableBox equipmentCollapse;
+    public equipmentDataCollapseble equipmentCollapse;
     Dictionary<string, GameObject> fieldItemCollection = new Dictionary<string, GameObject>();
-
-    public GameObject fieldDeltaPrefab;
-    public GameObject changedFieldParent;
-    public collapseableBox fieldDeltaCollapse;
-    Dictionary<string,GameObject> deltaCollection = new Dictionary<string, GameObject>();
-    public List<JU_databaseMan.compareItem> compareItemList;
-
-    int nodeRow;
-    int nodeColumn;
-    public GameObject simpleNodePrefab;
-    public GameObject photoNodePrefab;
-    public GameObject videoNodePrefab;
-    public GameObject nodesParent;
-    public collapseableBox nodesCollapsable;
 
     public Dictionary<int, GameObject> nodes3DList = new Dictionary<int, GameObject>();
 
@@ -60,7 +46,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
         {
             insertBasicValues(valueItem);
         }
-     }
+    }
 
     void addOneField(GameObject parentObj, float yOffset, JU_databaseMan.fieldItem fieldItem)
     {
@@ -70,7 +56,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
         newItem.transform.SetParent(parentObj.transform);
         newItem.GetComponent<RectTransform>().localPosition = new Vector3(9.88f, yOffset, 0);
         newItem.GetComponent<RectTransform>().localScale = new Vector3(.36f, .072f, .241f);
-        equipmentCollapse.expandSize += 94;
+        equipmentCollapse.expandSize += 94.625f;
         equipmentCollapse.openCollapseable(-initExpandSize);
         newItem.name = fieldItem.Name;
         newItem.GetComponent<offsiteFieldItemValueHolder>().name.text = fieldItem.DisplayName;
@@ -94,179 +80,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
             }
     }
 
-    public void populateFieldDeltas()
-    {
-        deltaCollection.Clear();
-        float yOffset = -136;
-        //compare deltas
-        foreach (JU_databaseMan.valueItem historyItem in JU_databaseMan.Instance.values.historicData)
-            {
-                foreach (JU_databaseMan.valueItem currentItem in JU_databaseMan.Instance.values.currentData)
-                {
-                    if(historyItem.name == currentItem.name)
-                    {
-                        if (historyItem.value != currentItem.value)
-                        {
-                        //print(currentItem.name + " deltas: " + historyItem.value + " and " + currentItem.value);
-                        //definitions
-                        JU_databaseMan.compareItem newFieldItem = new JU_databaseMan.compareItem();
-                        newFieldItem.name = currentItem.name;
-                        foreach (JU_databaseMan.fieldItem item in JU_databaseMan.Instance.definitions.InspectionFields.fields)
-                        {
-                            if (item.Name == currentItem.name)
-                            {
-                                newFieldItem.displayName = item.DisplayName;
-                            }
-                        }
-                        newFieldItem.value = currentItem.value;
-                        newFieldItem.oldValue = historyItem.value;
-                        addOneFieldDelta(changedFieldParent, yOffset, newFieldItem);
-                        compareItemList.Add(newFieldItem);
-                        yOffset += -94;
-                    }
-                    }
-                }
-            }
-        //values
-        if(compareItemList.Count > 0)
-        {
-            foreach (JU_databaseMan.compareItem compareItem in compareItemList)
-            {
-                insertComparativeValues(compareItem);
-            }
-        }
-
-    }
-
-    void addOneFieldDelta(GameObject parentObj, float yOffset, JU_databaseMan.compareItem compareItem)
-    {
-        GameObject newItem;
-        float initExpandSize = fieldDeltaCollapse.expandSize;
-        newItem = Instantiate(fieldDeltaPrefab);
-        newItem.transform.SetParent(parentObj.transform);
-        newItem.GetComponent<RectTransform>().localPosition = new Vector3(866.5f, yOffset, 0);
-        newItem.GetComponent<RectTransform>().localScale = Vector3.one;
-        fieldDeltaCollapse.expandSize += 94;
-        fieldDeltaCollapse.openCollapseable(-initExpandSize);
-        newItem.GetComponent<offsiteFieldItemValueHolder>().displayName.text = compareItem.displayName;
-        newItem.GetComponent<offsiteFieldItemValueHolder>().value.text = compareItem.value;
-        newItem.GetComponent<offsiteFieldItemValueHolder>().oldValue.text = compareItem.oldValue;
-        deltaCollection.Add(compareItem.name, newItem);
-    }
-
-    void insertComparativeValues(JU_databaseMan.compareItem compareItem)
-    {
-
-        if (deltaCollection.ContainsKey(compareItem.name))
-        {
-            deltaCollection[compareItem.name].GetComponent<offsiteFieldItemValueHolder>().value.text = compareItem.value;
-            deltaCollection[compareItem.name].GetComponent<offsiteFieldItemValueHolder>().displayName.text = compareItem.displayName;
-            deltaCollection[compareItem.name].GetComponent<offsiteFieldItemValueHolder>().oldValue.text = compareItem.oldValue;
-        }
-        else
-        {
-            //print(valueItem.name + " does not exist");
-        }
-    }
-
-    public void populateNodes()
-    {
-        List<JU_databaseMan.nodeItem> nodesList = new List<JU_databaseMan.nodeItem>();
-        foreach(JU_databaseMan.nodeItem nodeItem in JU_databaseMan.Instance.nodesManager.nodes)
-        {
-            //print("hi: "+ nodeItem.title);
-            if(nodeItem.type == 2 || nodeItem.type == 3) { }
-            else
-            {
-                nodesList.Add(nodeItem);
-            }
-        }
-        nodeRow = 0;
-        nodeColumn = 0;
-        int max = nodesList.Count;
-
-        for(int en=0; en < max; en++)
-        {
-            int currentItem;
-            int currentRow;
-            int currentColumn;
-
-            currentItem = en + 1;
-            currentRow = nodeRow + 1;
-
-            nodeRow = Mathf.FloorToInt((en+1) / 3);
-            nodeColumn = ((en%3) +1);
-
-            currentColumn = nodeColumn;
-
-            addOneNode(nodesParent, currentColumn, currentRow, nodesList[en]);
-        }
-
-        //print("num of items: " + max);
-        //print("num of rows: " + (nodeRow + 1));
-        //print("num of columns: " +nodeColumn);
-    }
-
-    void addOneNode(GameObject parentObj, int currentColumn, int currentRow, JU_databaseMan.nodeItem nodeItem)
-    {
-        GameObject newItem;
-        float xpos = (580 * (currentColumn-1)) + 72;
-        float ypos = (-408 * (currentRow-1)) -37;
-        float initExpandSize = nodesCollapsable.expandSize;
-
-        if (nodeItem.type == 0)
-        {
-            newItem = Instantiate(simpleNodePrefab);
-        }
-        else if(nodeItem.type == 1)
-        {
-            newItem = Instantiate(photoNodePrefab);
-            newItem.GetComponent<offsiteFieldItemValueHolder>().path = nodeItem.photos[0].path;
-            //newItem.GetComponent<offsiteMediaPlayer>().photoMaterial = photoMaterial;
-        }
-        else if(nodeItem.type == 4)
-        {
-            newItem = Instantiate(videoNodePrefab);
-            newItem.GetComponent<offsiteFieldItemValueHolder>().path = nodeItem.videos[0].path;
-            newItem.GetComponent<offsiteMediaPlayer>().videoMaterial = videoMaterial;
-        }
-        else
-        {
-            newItem = new GameObject();
-        }
-        
-        if(newItem == null)
-        {
-            Destroy(newItem);
-            print("no add node created");
-        }else
-        {
-            newItem.transform.SetParent(parentObj.transform);
-            newItem.GetComponent<RectTransform>().localPosition = new Vector3(xpos, ypos, 0);
-            newItem.GetComponent<RectTransform>().localScale = Vector3.one;
-            nodesCollapsable.expandSize = 430 * currentRow;
-            nodesCollapsable.openCollapseable(-initExpandSize);
-            newItem.name = nodeItem.title;
-            newItem.GetComponent<offsiteFieldItemValueHolder>().meta.text = (nodeItem.date + " - " + nodeItem.user);
-            newItem.GetComponent<offsiteFieldItemValueHolder>().content.text = nodeItem.description;
-            newItem.GetComponent<offsiteFieldItemValueHolder>().user = nodeItem.user;
-            newItem.GetComponent<offsiteFieldItemValueHolder>().date = nodeItem.date;
-            newItem.GetComponent<offsiteFieldItemValueHolder>().nodeIndex = nodeItem.indexNum;
-            newItem.GetComponent<offsiteMediaPlayer>().mediaWindow = offsiteMediaWindow;
-            newItem.GetComponent<offsiteMediaPlayer>().mediaPlane = mediaPlane;
-            newItem.GetComponent<offsiteMediaPlayer>().nodesMinimapCam = nodesMinimapCam;
-            newItem.GetComponent<offsiteMediaPlayer>().minimapGrp = minimapGrp;
-            newItem.GetComponent<offsiteMediaPlayer>().descObject = descObject;
-            newItem.GetComponent<offsiteMediaPlayer>().metaobject = metaObject;
-            newItem.GetComponent<offsiteMediaPlayer>().mainWindow = mainWindow;
-            newItem.GetComponent<offsiteMediaPlayer>().commentBoxObject = commentBox;
-            newItem.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
-            newItem.GetComponent<offsiteMediaPlayer>().playButton = playButton;
-            //fieldItemCollection.Add(fieldItem.Name, newItem);
-        }
-
-    }
-
+    
     public void populateComments(JU_databaseMan.nodeItem nodeItem)
     {
         if(commentHolder.Count > 0)
@@ -305,7 +119,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
 
     public void loadPhoto(GameObject newItem)
     {
-        string filepath = newItem.GetComponent<offsiteFieldItemValueHolder>().path;
+        string filepath = newItem.GetComponent<offsiteFieldItemValueHolder>().path.text;
         //Debug.Log(filepath);
         Texture2D targetTexture = new Texture2D(2048, 1152);
 
