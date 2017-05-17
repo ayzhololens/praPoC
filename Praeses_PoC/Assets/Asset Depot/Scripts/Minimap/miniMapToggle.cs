@@ -26,6 +26,12 @@ namespace HoloToolkit.Unity
 
         }
 
+        public void placeMapByBoiler()
+        {
+            MiniMapTagAlong.transform.position = GameObject.Find("minimapPlacement").transform.position;
+        }
+
+
 
         public void toggleMiniMap()
         {

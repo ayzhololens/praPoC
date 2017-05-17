@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
+using UnityEngine;
+using System.IO;
 using UnityEngine;
 
 using HoloLensXboxController;
@@ -10,6 +12,8 @@ public class boilerContoller : MonoBehaviour {
     public float moveSensitivity;
     public float rotateSensitivity;
     public float ratchetSensitivity;
+    public GameObject[] popUpBoiler;
+    public GameObject normalBoiler;
     public GameObject mainMenuContent;
     private ControllerInput controllerInput;
 
@@ -65,7 +69,8 @@ public class boilerContoller : MonoBehaviour {
 
         if (controllerInput.GetButtonDown(ControllerButton.A))
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - ratchetSensitivity, transform.position.z);
+            toggleMenu();
+                
         }
 
     }
@@ -73,5 +78,41 @@ public class boilerContoller : MonoBehaviour {
     public void toggleMenu()
     {
         mainMenuContent.SetActive(!mainMenuContent.activeSelf);
+    }
+
+    public void switchBoiler()
+    {
+        if (popUpBoiler[0].activeSelf)
+        {
+
+
+            normalBoiler.SetActive(true);
+            for (int i = 0; i < popUpBoiler.Length; i++)
+            {
+
+                popUpBoiler[i].SetActive(false);
+
+                if (System.IO.File.Exists(Path.Combine(Application.persistentDataPath, "JO_JJ_values.json")))
+                {
+                    databaseMan.Instance.valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_values.json");
+                }
+
+
+            }
+        }
+        else if (normalBoiler.activeSelf)
+        {
+            normalBoiler.SetActive(false);
+            for (int i = 0; i < popUpBoiler.Length; i++)
+            {
+
+                popUpBoiler[i].SetActive(true);
+
+                if (System.IO.File.Exists(Path.Combine(Application.persistentDataPath, "JO_JJ_valuesPopUp.json")))
+                {
+                   databaseMan.Instance.valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_valuesPopUp.json");
+                }
+            }
+        }
     }
 }

@@ -15,11 +15,13 @@ using HoloToolkit.Unity;
 
 public class databaseMan : Singleton<databaseMan>
 {
-    public string saveDir; 
+    public string saveDir;
     public string definitionsDir;
     public string valuesDir;
     public string defJsonText;
     public string valJsonText;
+    public bool offsite;
+
     public MainForm definitions;
     public ValuesClass values;
 
@@ -28,10 +30,17 @@ public class databaseMan : Singleton<databaseMan>
     private void Start()
     {
         definitionsDir = Path.Combine(Application.persistentDataPath, "JO_JJ.json");
-        valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_values.json");
+        if (offsite && System.IO.File.Exists(Path.Combine(Application.persistentDataPath, "savedJson.json")))
+        {
+            valuesDir = Path.Combine(Application.persistentDataPath, "savedJson.json");
+        }
+        else
+        {
+            valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_values.json");
+        }
         saveDir = Path.Combine(Application.persistentDataPath, "savedJson.json");
     }
-    
+
     [System.Serializable]
     public class MainForm
     {
@@ -52,7 +61,7 @@ public class databaseMan : Singleton<databaseMan>
         public int FieldType;
         public string Name;
         public bool Required;
-        public Dictionary<string,string> Options = new Dictionary<string, string>();
+        public Dictionary<string, string> Options = new Dictionary<string, string>();
     }
 
     [System.Serializable]
@@ -271,7 +280,7 @@ public class databaseMan : Singleton<databaseMan>
             {
                 newMedia.type = 2;
             }
-            else if(newNode.type == 4)
+            else if (newNode.type == 4)
             {
                 newMedia.type = 3;
             }
@@ -311,7 +320,7 @@ public class databaseMan : Singleton<databaseMan>
 
             }
         }
-        
+
 
         if (newNode.type == 2)
         {
@@ -320,7 +329,7 @@ public class databaseMan : Singleton<databaseMan>
             newNode.description = nodeObj.GetComponent<nodeController>().linkedField.GetComponent<formFieldController>().Value.text;
             newNode.audioPath = "";
         }
-        else if(newNode.type == 3)
+        else if (newNode.type == 3)
         {
             Debug.Log("hello");
         }
@@ -328,12 +337,12 @@ public class databaseMan : Singleton<databaseMan>
         else
         {
 
-                newNode.title = nodeObj.GetComponent<nodeMediaHolder>().Title.text;
-                newNode.description = nodeObj.GetComponent<nodeMediaHolder>().Description.text;
-                newNode.audioPath = nodeObj.GetComponent<nodeMediaHolder>().audioPath;
+            newNode.title = nodeObj.GetComponent<nodeMediaHolder>().Title.text;
+            newNode.description = nodeObj.GetComponent<nodeMediaHolder>().Description.text;
+            newNode.audioPath = nodeObj.GetComponent<nodeMediaHolder>().audioPath;
         }
 
-        newNode.indexNum = nodeObj.GetComponent<nodeMediaHolder>().NodeIndex;       
+        newNode.indexNum = nodeObj.GetComponent<nodeMediaHolder>().NodeIndex;
 
         values.Location.Equipment[0].Nodes.Add(newNode);
         JU_databaseMan.Instance.loadNodesCmd();
@@ -377,14 +386,15 @@ public class databaseMan : Singleton<databaseMan>
         if (itemClasses.ContainsKey(keyword))
         {
             itemClasses[keyword].value = value;
-        }else
+        }
+        else
         {
             ItemClass newItem = new ItemClass();
             newItem.value = value;
             newItem.name = keyword;
             values.Location.Equipment[0].CurrentInspection.Add(newItem);
         }
-            
+
 
         JU_databaseMan.Instance.loadCurrentData();
         JU_databaseMan.Instance.loadEquipmentData();
@@ -402,10 +412,11 @@ public class databaseMan : Singleton<databaseMan>
 
         if (nodeClasses.ContainsKey(nodeIndex))
         {
-            if(valueType == 0)
+            if (valueType == 0)
             {
                 nodeClasses[nodeIndex].title = value;
-            }else
+            }
+            else
             {
                 nodeClasses[nodeIndex].description = value;
             }
@@ -427,7 +438,7 @@ public class databaseMan : Singleton<databaseMan>
 
         if (nodeClasses.ContainsKey(nodeIndex))
         {
-            if(comment.type == 1)
+            if (comment.type == 1)
             {
                 comment newComment = new comment();
                 newComment.content = comment.content;
@@ -454,7 +465,7 @@ public class databaseMan : Singleton<databaseMan>
     public void syncViolation(violationController violation)
     {
         ViolationsClass vioClass = new ViolationsClass();
-        vioClass.category = (violation.violationIndices[0].ToString()+"."+ violation.violationIndices[1].ToString()+"."+ violation.violationIndices[2].ToString());
+        vioClass.category = (violation.violationIndices[0].ToString() + "." + violation.violationIndices[1].ToString() + "." + violation.violationIndices[2].ToString());
         vioClass.classifications = violation.violationIndices[3];
         vioClass.violationDate = metaManager.Instance.date;
         vioClass.status = 1;

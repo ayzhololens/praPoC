@@ -77,7 +77,7 @@ namespace HoloToolkit.Unity
 
         void findZone()
         {
-            if(GazeManager.Instance.HitObject == aligner)
+            if(GazeManager.Instance.HitObject.name == "AlignmentZone")
             {
                 mediaManager.Instance.setStatusIndicator("Tag Located! Calibrating...");
                 alignerIndicator.GetComponent<Renderer>().material.color = new Color(1, 1, 1, .8f);

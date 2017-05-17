@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HoloToolkit.Unity;
 
 public class slideOut : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class slideOut : MonoBehaviour {
     Vector3 startPos;
     public float timer;
     bool keptOut;
+
+    public subMenu subMenu;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +41,14 @@ public class slideOut : MonoBehaviour {
                 {
                     transform.localPosition = startPos;
                     isMovingF = false;
+
+
+                if (subMenu != null)
+                {
+                    subMenu.turnOffSubButtons();
                 }
+
+            }
             
 
 
@@ -48,8 +58,16 @@ public class slideOut : MonoBehaviour {
 
     public void slideForward()
     {
+        formController.Instance.gameObject.BroadcastMessage("slideBackward", SendMessageOptions.DontRequireReceiver);
+
         isMovingF = true;
         isMovingB = false;
+
+        if (subMenu != null)
+        {
+            subMenu.turnOnSubButtons();
+        }
+
     }
 
     public void slideBackward()
@@ -58,6 +76,7 @@ public class slideOut : MonoBehaviour {
     {
         isMovingB = true;
         isMovingF = false;
+        
     }
 
     }
