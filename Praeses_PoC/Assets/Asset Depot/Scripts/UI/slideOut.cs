@@ -11,7 +11,7 @@ public class slideOut : MonoBehaviour {
     bool isMovingB;
     Vector3 startPos;
     public float timer;
-    bool keptOut;
+   public  bool keptOut;
 
     public subMenu subMenu;
 
@@ -43,10 +43,7 @@ public class slideOut : MonoBehaviour {
                     isMovingF = false;
 
 
-                if (subMenu != null)
-                {
-                    subMenu.turnOffSubButtons();
-                }
+
 
             }
             
@@ -72,7 +69,12 @@ public class slideOut : MonoBehaviour {
 
     public void slideBackward()
     {
-    if (!keptOut)
+        if (subMenu != null)
+        {
+            subMenu.turnOffSubButtons();
+        }
+
+        if (!keptOut)
     {
         isMovingB = true;
         isMovingF = false;
@@ -83,8 +85,8 @@ public class slideOut : MonoBehaviour {
 
     public void slideBackTimer()
     {
-        Invoke("slideBackward", timer);
         keptOut = false;
+        Invoke("slideBackward", timer);
     }
 
     public void keepOut()

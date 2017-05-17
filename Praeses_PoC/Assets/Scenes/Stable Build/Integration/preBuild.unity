@@ -992,7 +992,7 @@ GameObject:
   - component: {fileID: 165980283}
   m_Layer: 31
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: boilerPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1676,7 +1676,7 @@ GameObject:
   - component: {fileID: 280692132}
   m_Layer: 31
   m_Name: pCube7 (1)
-  m_TagString: Untagged
+  m_TagString: boilerPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2436,7 +2436,7 @@ GameObject:
   - component: {fileID: 430444993}
   m_Layer: 31
   m_Name: pCube8
-  m_TagString: Untagged
+  m_TagString: boilerPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2592,6 +2592,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 446781776}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &450392397
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4846929155712382, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.1477
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846929155712382, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.2653
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846929155712382, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846929155712382, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846929155712382, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846929155712382, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846929155712382, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846929155712382, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949503462865266, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6011e403db4f02e4f803595ef603c0d6, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &468824146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,6 +3405,52 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 606956554}
+--- !u!1001 &614248397
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4726845872994872, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.029217733
+      objectReference: {fileID: 0}
+    - target: {fileID: 4726845872994872, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.07840521
+      objectReference: {fileID: 0}
+    - target: {fileID: 4726845872994872, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.002827461
+      objectReference: {fileID: 0}
+    - target: {fileID: 4726845872994872, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4726845872994872, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4726845872994872, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4726845872994872, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4726845872994872, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766372532663484, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 51a5c582111ccae44a461ac8da55abc3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &620458107
 GameObject:
   m_ObjectHideFlags: 0
@@ -4733,7 +4825,7 @@ GameObject:
   - component: {fileID: 869998747}
   m_Layer: 31
   m_Name: pCube7 (3)
-  m_TagString: Untagged
+  m_TagString: boilerPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10822,7 +10914,7 @@ GameObject:
   - component: {fileID: 1667634257}
   m_Layer: 31
   m_Name: pCylinder6
-  m_TagString: Untagged
+  m_TagString: boilerPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11633,7 +11725,7 @@ GameObject:
   - component: {fileID: 1839363340}
   m_Layer: 31
   m_Name: pCylinder6 (1)
-  m_TagString: Untagged
+  m_TagString: boilerPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11727,7 +11819,7 @@ GameObject:
   - component: {fileID: 1846383742}
   m_Layer: 31
   m_Name: pCube7
-  m_TagString: Untagged
+  m_TagString: boilerPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12455,6 +12547,52 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09a1abef5878c9d44a681b3ff5b16af6, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &2036696808
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4129825312177740, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.029217733
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129825312177740, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.07840521
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129825312177740, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.002827461
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129825312177740, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129825312177740, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129825312177740, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129825312177740, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129825312177740, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201654596242484, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b2bedb3411ce5f049b36eb894c6484e0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2037956045
 GameObject:
@@ -13382,7 +13520,7 @@ GameObject:
   - component: {fileID: 2139809305}
   m_Layer: 31
   m_Name: pCube7 (2)
-  m_TagString: Untagged
+  m_TagString: boilerPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

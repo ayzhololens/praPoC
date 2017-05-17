@@ -1425,18 +1425,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: keepOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114208630910016630}
+      - m_Target: {fileID: 114015178592476722}
         m_MethodName: moveForward
         m_Mode: 1
         m_Arguments:
@@ -1725,8 +1714,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: turnOffCounter
+      - m_Target: {fileID: 114015178592476722}
+        m_MethodName: moveBackward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1736,8 +1725,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114208630910016630}
-        m_MethodName: moveBackward
+      - m_Target: {fileID: 114971035390281840}
+        m_MethodName: turnOffCounter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1851,18 +1840,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: keepOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114183360796563012}
+      - m_Target: {fileID: 114015178592476722}
         m_MethodName: moveForward
         m_Mode: 1
         m_Arguments:
@@ -1896,7 +1874,7 @@ MonoBehaviour:
     type: 2}
   photoCommentPrefab: {fileID: 1604367012362824, guid: ced045d3d00a3a1488293d5aa757b162,
     type: 2}
-  offsetDist: 0.85
+  offsetDist: 0.084
   xOffset: 1
 --- !u!114 &114469049014856652
 MonoBehaviour:
@@ -1965,17 +1943,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114911710326456250}
         m_MethodName: slideForward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: turnOnSubButtons
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2280,8 +2247,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: turnOffCounter
+      - m_Target: {fileID: 114015178592476722}
+        m_MethodName: moveBackward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2291,8 +2258,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114015178592476722}
-        m_MethodName: moveBackward
+      - m_Target: {fileID: 114971035390281840}
+        m_MethodName: turnOffCounter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2356,8 +2323,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: turnOffCounter
+      - m_Target: {fileID: 114015178592476722}
+        m_MethodName: moveBackward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2367,8 +2334,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114183360796563012}
-        m_MethodName: moveBackward
+      - m_Target: {fileID: 114971035390281840}
+        m_MethodName: turnOffCounter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2405,17 +2372,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: keepOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114015178592476722}
         m_MethodName: moveForward
         m_Mode: 1
@@ -2440,9 +2396,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e44539c3bef4344b9fc9d17220d3721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slideSpeed: -0.0005
+  slideSpeed: -0.002
   slideDist: -0.02
   timer: 1.5
+  keptOut: 0
+  subMenu: {fileID: 114971035390281840}
 --- !u!114 &114912238614557844
 MonoBehaviour:
   m_ObjectHideFlags: 1

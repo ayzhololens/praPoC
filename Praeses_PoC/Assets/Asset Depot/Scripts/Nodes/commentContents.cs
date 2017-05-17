@@ -86,6 +86,12 @@ namespace HoloToolkit.Unity
 
         public void PlayVideo()
         {
+
+
+            if (mediaPlayer == null)
+            {
+                mediaPlayer = mediaManager.Instance.videoPlayer;
+            }
             print(startedVideo);
             if (mediaPlayer.m_VideoPath != filepath)
             {
@@ -102,8 +108,10 @@ namespace HoloToolkit.Unity
             }
             if (!startedVideo)
             {
-                mediaPlayer.Control.Play();
+                mediaPlayer.m_VideoPath = filepath;
+                mediaPlayer.LoadVideoPlayer();
 
+                mediaPlayer.Control.Play();
                 startedVideo = true;
                 playIcon.SetActive(false);
                 pauseIcon.SetActive(true);

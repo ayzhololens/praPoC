@@ -46,7 +46,9 @@ public class subMenu : MonoBehaviour {
 
     public void turnOffSubButtons()
     {
-        
+
+        print("augh");
+
         if (!subButtonsOn)
         {
             if (gameObject.GetComponent<popForward>() != null)
