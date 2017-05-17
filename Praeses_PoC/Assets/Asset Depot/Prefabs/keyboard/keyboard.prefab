@@ -726,6 +726,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1162543043998626
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4865213610126958}
+  - component: {fileID: 212204324504366344}
+  m_Layer: 0
+  m_Name: mic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1173348754330684
 GameObject:
   m_ObjectHideFlags: 1
@@ -1175,6 +1191,25 @@ GameObject:
   - component: {fileID: 114571649510456774}
   m_Layer: 0
   m_Name: key_0
+  m_TagString: keyboard
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1279863044287198
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4054490241521642}
+  - component: {fileID: 33709719380553278}
+  - component: {fileID: 65579576000983614}
+  - component: {fileID: 23842645250397152}
+  - component: {fileID: 114163570457671156}
+  m_Layer: 0
+  m_Name: key_mic
   m_TagString: keyboard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2410,25 +2445,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1522653338472462
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4096702822619912}
-  - component: {fileID: 33107055639800594}
-  - component: {fileID: 65963716064061872}
-  - component: {fileID: 23192566560222328}
-  - component: {fileID: 114744965108322706}
-  m_Layer: 0
-  m_Name: key_mic
-  m_TagString: keyboard
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1532173929899416
 GameObject:
   m_ObjectHideFlags: 1
@@ -2482,6 +2498,23 @@ GameObject:
   m_Layer: 0
   m_Name: key_Q
   m_TagString: keyboard
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1536976535049336
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4133008765662566}
+  - component: {fileID: 23138629701350046}
+  - component: {fileID: 102216846976759208}
+  m_Layer: 0
+  m_Name: keyCharacter (1)
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3122,22 +3155,6 @@ GameObject:
   - component: {fileID: 102313722545537350}
   m_Layer: 0
   m_Name: keyCharacter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1701991973209976
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4416094679922050}
-  - component: {fileID: 212147061316428042}
-  m_Layer: 0
-  m_Name: mic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4027,23 +4044,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1931038736162948
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4001324882682314}
-  - component: {fileID: 23795467601568116}
-  - component: {fileID: 102667066317736492}
-  m_Layer: 0
-  m_Name: keyCharacter (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1931182110401226
 GameObject:
   m_ObjectHideFlags: 0
@@ -4507,19 +4507,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &4001324882682314
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931038736162948}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.06, y: 0, z: 0}
-  m_LocalScale: {x: 0.3894625, y: 0.8313549, z: 0.7552647}
-  m_Children: []
-  m_Father: {fileID: 4096702822619912}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4008268519148892
 Transform:
   m_ObjectHideFlags: 1
@@ -4653,7 +4640,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4096702822619912}
+  - {fileID: 4054490241521642}
   - {fileID: 4457333091263584}
   - {fileID: 4210428356258664}
   - {fileID: 4143404422516062}
@@ -4747,6 +4734,21 @@ Transform:
   m_Father: {fileID: 4678711356453626}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4054490241521642
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279863044287198}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -2.28, y: 1.5, z: 0}
+  m_LocalScale: {x: 0.17720361, y: 0.07617161, z: 0.07617161}
+  m_Children:
+  - {fileID: 4865213610126958}
+  - {fileID: 4133008765662566}
+  m_Father: {fileID: 4036809671436956}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4059235937367252
 Transform:
   m_ObjectHideFlags: 1
@@ -4923,21 +4925,6 @@ Transform:
   m_Father: {fileID: 4059235937367252}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!4 &4096702822619912
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522653338472462}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.28, y: 1.5, z: 0}
-  m_LocalScale: {x: 0.17720361, y: 0.07617161, z: 0.07617161}
-  m_Children:
-  - {fileID: 4416094679922050}
-  - {fileID: 4001324882682314}
-  m_Father: {fileID: 4036809671436956}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4101754934750536
 Transform:
   m_ObjectHideFlags: 1
@@ -5019,6 +5006,19 @@ Transform:
   m_Father: {fileID: 4522143231173738}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &4133008765662566
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1536976535049336}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 1.06, y: 0, z: 0}
+  m_LocalScale: {x: 0.3894625, y: 0.8313549, z: 0.7552647}
+  m_Children: []
+  m_Father: {fileID: 4054490241521642}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4134291878700506
 Transform:
   m_ObjectHideFlags: 1
@@ -6012,19 +6012,6 @@ Transform:
   m_LocalScale: {x: 0.94165, y: 1.0367597, z: 0.9416503}
   m_Children: []
   m_Father: {fileID: 4446109638868574}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4416094679922050
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1701991973209976}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3.2, y: 0.04999126, z: 0}
-  m_LocalScale: {x: 0.7883896, y: 1.8340896, z: 1.8340896}
-  m_Children: []
-  m_Father: {fileID: 4096702822619912}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4420084186385098
@@ -7588,6 +7575,19 @@ Transform:
   m_Father: {fileID: 4178587546717898}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4865213610126958
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1162543043998626}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -3.2, y: 0.04999126, z: 0}
+  m_LocalScale: {x: 0.7883896, y: 1.8340896, z: 1.8340896}
+  m_Children: []
+  m_Father: {fileID: 4054490241521642}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4866957161591928
 Transform:
   m_ObjectHideFlags: 1
@@ -8936,6 +8936,37 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!23 &23138629701350046
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1536976535049336}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!23 &23141597867897520
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -9260,37 +9291,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 853eddf545fe79d469d96ecbc6d13b76, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!23 &23192566560222328
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522653338472462}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 3a79937d8609ba949bffef5d7631f114, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13772,37 +13772,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!23 &23795467601568116
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931038736162948}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!23 &23803677173749956
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -14065,6 +14034,37 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 853eddf545fe79d469d96ecbc6d13b76, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!23 &23842645250397152
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279863044287198}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 3a79937d8609ba949bffef5d7631f114, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15083,13 +15083,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1762933981643774}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &33107055639800594
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522653338472462}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33133797880599560
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -15621,6 +15614,13 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1721147656898608}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33709719380553278
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279863044287198}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33712208857779384
 MeshFilter:
@@ -16465,6 +16465,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65579576000983614
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279863044287198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65587574755245568
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -17083,18 +17095,6 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111146333400598}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 1, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65963716064061872
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522653338472462}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -17795,6 +17795,27 @@ TextMesh:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474724599509700}
   m_Text: '!#&%*'
+  m_OffsetZ: 0
+  m_CharacterSize: 0.82
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 60
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!102 &102216846976759208
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1536976535049336}
+  m_Text: Record
   m_OffsetZ: 0
   m_CharacterSize: 0.82
   m_LineSpacing: 1
@@ -18774,27 +18795,6 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!102 &102667066317736492
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931038736162948}
-  m_Text: Record
-  m_OffsetZ: 0
-  m_CharacterSize: 0.82
-  m_LineSpacing: 1
-  m_Anchor: 4
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 60
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
 --- !u!102 &102674506832202070
 TextMesh:
   serializedVersion: 3
@@ -19527,6 +19527,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114020750862582438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19555,6 +19558,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114025680685992848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19594,6 +19600,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114026478282162788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19633,6 +19642,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114032064538602760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19672,6 +19684,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114037879354285660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19711,6 +19726,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114046605305404608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19739,6 +19757,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114051195797208152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19778,6 +19799,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114063229580479684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19817,6 +19841,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114083345348706372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19856,6 +19883,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114084391580719674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19895,6 +19925,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114095181490583428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19967,6 +20000,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114107946017026646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20006,6 +20042,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114121593908851500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20034,6 +20073,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114133855888316042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20062,6 +20104,51 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
+--- !u!114 &114163570457671156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279863044287198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930d5889c57417143a0f55a18dbe0620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114288626453285332}
+        m_MethodName: startRecording
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: setUpDictation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114185445134196430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20101,6 +20188,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114192509757686832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20140,6 +20230,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114192769373068040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20179,6 +20272,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114193589424658756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20218,6 +20314,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114219360011679586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20257,6 +20356,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114233766068092222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20296,6 +20398,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114241064500626280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20335,6 +20440,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114245914128100468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20374,6 +20482,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114247263612501518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20413,6 +20524,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114249197648734238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20452,6 +20566,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114250049801244964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20491,6 +20608,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114253297569483710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20530,6 +20650,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114268104599316248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20569,6 +20692,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114275931471536984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20608,6 +20734,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114276344697788002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20647,6 +20776,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114287689443458526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20686,6 +20818,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114288626453285332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20756,6 +20891,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114298356387746544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20816,6 +20954,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114303245463741080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20855,6 +20996,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114310590568176088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20894,6 +21038,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114319215979520906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20933,6 +21080,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114326089333933746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20972,6 +21122,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114326683613714712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21011,6 +21164,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114336276665828174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21050,6 +21206,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114337756001838582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21078,6 +21237,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114342836357509046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21117,6 +21279,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114347235435721726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21156,6 +21321,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114349506323362448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21195,6 +21363,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114353151882660496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21234,6 +21405,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114354756826775986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21273,6 +21447,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114374490232281572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21312,6 +21489,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114401109301523702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21351,6 +21531,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114405561531665330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21401,6 +21584,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114418689811477814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21440,6 +21626,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114424566427953232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21479,6 +21668,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114433847372678930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21518,6 +21710,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114449868208776006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21557,6 +21752,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114450215099962138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21596,6 +21794,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114450936623516336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21635,6 +21836,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114464468740958668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21674,6 +21878,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114464909718369354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21713,6 +21920,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114472056443867904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21752,6 +21962,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114486061998702914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21791,6 +22004,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114491626444455106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21830,6 +22046,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114499337822922518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21869,6 +22088,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114500271795945508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21908,6 +22130,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114520781443110370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21958,6 +22183,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114521820196988300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21997,6 +22225,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114533351693627646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22025,6 +22256,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114547701008916428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22064,6 +22298,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114550266908299294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22103,6 +22340,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114569370661263240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22142,6 +22382,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114571649510456774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22181,6 +22424,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114590822716957634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22209,6 +22455,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114591060034775852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22311,6 +22560,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114599305200849994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22350,6 +22602,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114627680326932538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22389,6 +22644,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114631400203698402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22428,6 +22686,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114657162858686488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22467,6 +22728,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114663206913736676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22506,6 +22770,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114693025529997276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22545,6 +22812,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114699969103495852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22597,6 +22867,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114710065887400722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22636,6 +22909,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114737383513451250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22647,7 +22923,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 48beda91ff99b2a42a33e1093e6b242c, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -22663,45 +22939,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114744965108322706
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522653338472462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 930d5889c57417143a0f55a18dbe0620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114288626453285332}
-        m_MethodName: startRecording
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: setUpDictation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  gazeExit: 0
 --- !u!114 &114755517186857466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22741,6 +22978,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114769237169476654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22780,6 +23020,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114780598668333752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22819,6 +23062,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114788379000304048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22858,6 +23104,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114790127685986540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22897,6 +23146,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114797628334948762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22956,6 +23208,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114802883372448064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23011,6 +23266,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114817113523715888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23050,6 +23308,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114821630104717500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23089,6 +23350,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114849148190495216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23140,6 +23404,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114855752421732022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23179,6 +23446,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114860796696601920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23218,6 +23488,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114873404756774822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23257,6 +23530,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114881273851299260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23296,6 +23572,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114883718944902612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23324,6 +23603,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114898973485604382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23363,6 +23645,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114906851562173574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23402,6 +23687,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114913600981028590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23441,6 +23729,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114918751197950090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23480,6 +23771,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114925309835504952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23508,6 +23802,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114930064446470802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23547,6 +23844,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114933746309861610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23586,6 +23886,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114939248325361574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23625,6 +23928,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114944209591463498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23653,6 +23959,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114957284490503896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23692,6 +24001,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114967342090231574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23731,6 +24043,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114974323481175166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23770,6 +24085,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114982807515812792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23809,6 +24127,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114983902928538320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23837,6 +24158,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114990181044178810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23896,6 +24220,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114994064880256052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23935,6 +24262,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!212 &212137399340278918
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -23970,12 +24300,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!212 &212147061316428042
+--- !u!212 &212204324504366344
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1701991973209976}
+  m_GameObject: {fileID: 1162543043998626}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

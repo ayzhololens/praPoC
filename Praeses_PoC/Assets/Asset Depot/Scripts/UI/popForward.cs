@@ -43,7 +43,7 @@ public class popForward : MonoBehaviour {
 
     public void moveBackward()
     {
-        Debug.Log("gazeOff");
+        //Debug.Log("gazeOff");
 
         if (scale)
         {

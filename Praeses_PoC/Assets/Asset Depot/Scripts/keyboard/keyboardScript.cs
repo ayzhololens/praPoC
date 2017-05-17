@@ -352,11 +352,15 @@ namespace HoloToolkit.Unity
 
         public void startRecording()
         {
-
+            print("hi");
             numpad.SetActive(false);
+            print("numpad");
             keypad.SetActive(false);
+            print("keypad");
             micOn.SetActive(true);
+            print("micon");
             isRecording = true;
+            print("isrecording");
         }
 
         public void finishRecording()

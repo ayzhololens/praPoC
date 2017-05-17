@@ -21,6 +21,7 @@ public class databaseMan : Singleton<databaseMan>
     public string defJsonText;
     public string valJsonText;
     public bool offsite;
+    public float popUp;
 
     public MainForm definitions;
     public ValuesClass values;
@@ -29,6 +30,7 @@ public class databaseMan : Singleton<databaseMan>
 
     private void Start()
     {
+        popUp = 0;
         definitionsDir = Path.Combine(Application.persistentDataPath, "JO_JJ.json");
         if (offsite && System.IO.File.Exists(Path.Combine(Application.persistentDataPath, "savedJson.json")))
         {
@@ -36,7 +38,7 @@ public class databaseMan : Singleton<databaseMan>
         }
         else
         {
-            valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_values.json");
+            valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_valuesPopUp.json");
         }
         saveDir = Path.Combine(Application.persistentDataPath, "savedJson.json");
     }

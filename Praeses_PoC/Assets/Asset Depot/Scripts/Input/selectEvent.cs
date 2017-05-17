@@ -51,7 +51,7 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
 
                 Event.Invoke();
 
-                Debug.Log("select");
+                //Debug.Log("select");
                 audioManager.Instance.src.Play();
             }
 

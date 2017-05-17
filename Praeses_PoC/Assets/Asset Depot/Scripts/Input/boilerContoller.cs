@@ -85,7 +85,7 @@ public class boilerContoller : MonoBehaviour {
         if (popUpBoiler[0].activeSelf)
         {
 
-
+            databaseMan.Instance.popUp = 0;
             normalBoiler.SetActive(true);
             for (int i = 0; i < popUpBoiler.Length; i++)
             {
@@ -106,6 +106,7 @@ public class boilerContoller : MonoBehaviour {
             for (int i = 0; i < popUpBoiler.Length; i++)
             {
 
+                databaseMan.Instance.popUp = 1;
                 popUpBoiler[i].SetActive(true);
 
                 if (System.IO.File.Exists(Path.Combine(Application.persistentDataPath, "JO_JJ_valuesPopUp.json")))

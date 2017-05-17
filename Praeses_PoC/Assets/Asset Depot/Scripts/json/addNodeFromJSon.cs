@@ -294,11 +294,11 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         Quaternion rot = new Quaternion(nodeClass.transform[3], nodeClass.transform[4], nodeClass.transform[5], nodeClass.transform[6]);
         Vector3 sca = new Vector3(nodeClass.transform[7], nodeClass.transform[8], nodeClass.transform[9]);
 
-        GameObject spawnedNode = Instantiate(nodeprefabs[nodeClass.type], pos, rot);
+        GameObject spawnedNode = Instantiate(nodeprefabs[nodeClass.type], Vector3.zero, new Quaternion(0,0,0,0));
         spawnedNode.transform.SetParent(offSiteHolder.transform);
         spawnedNode.transform.localPosition = pos;
         spawnedNode.transform.localRotation = rot;
-        spawnedNode.transform.localScale = sca * 4;
+        spawnedNode.transform.localScale = sca*4;
         spawnedNode.name = nodeClass.title;
         offsiteJSonLoader.Instance.nodes3DList.Add(nodeClass.indexNum, spawnedNode);
 

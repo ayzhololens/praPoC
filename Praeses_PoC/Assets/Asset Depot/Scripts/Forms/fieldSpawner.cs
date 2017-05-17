@@ -194,7 +194,7 @@ namespace HoloToolkit.Unity
                     spawnedField = Instantiate(stringFieldPrefab, transform.position, Quaternion.identity);
                 }
                 spawnedField.GetComponent<formFieldController>().showUpdate = true;
-                print(spawnedField.GetComponent<formFieldController>().showUpdate);
+                //print(spawnedField.GetComponent<formFieldController>().showUpdate);
                 spawnedField.transform.SetParent(FieldInspectionParent);
                 spawnedField.transform.localPosition = fieldStartPos.localPosition;
                 spawnedField.transform.localScale = stringFieldPrefab.transform.localScale;
@@ -207,7 +207,7 @@ namespace HoloToolkit.Unity
 
 
 
-                print(spawnedField.GetComponent<formFieldController>().showUpdate);
+                //print(spawnedField.GetComponent<formFieldController>().showUpdate);
                 IFCollection.Add(spawnedField);
             }
 

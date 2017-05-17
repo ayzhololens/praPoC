@@ -310,7 +310,7 @@ namespace HoloToolkit.Unity
 
                 focusedButton.SendMessage("OnSelect", SendMessageOptions.DontRequireReceiver);
                 BroadcastMessage("OnFocusExit");
-                Debug.Log("sent");
+                //Debug.Log("sent");
                 RadialMenu.SetActive(false);
                 RadialMenu.transform.position = RadialHolder.position;
                 RadialMenu.transform.LookAt(Camera.main.transform);

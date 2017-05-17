@@ -43,6 +43,7 @@ public class mediaPlayerWindowPopulator : Singleton<mediaPlayerWindowPopulator>
         if (node.type == 0)
         {
             simpleText.GetComponent<Text>().text = node.description;
+            filename.text = "Simple Text";
         }
         else if (node.type == 1)
         {
