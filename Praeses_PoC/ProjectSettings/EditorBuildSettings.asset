@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Stable Build/Integration/offsite/offsiteScene.unity
   - enabled: 1
     path: Assets/Scenes/Stable Build/Integration/preBuild.unity
+  - enabled: 1
+    path: Assets/Scenes/Stable Build/Integration/preBuild 1.unity

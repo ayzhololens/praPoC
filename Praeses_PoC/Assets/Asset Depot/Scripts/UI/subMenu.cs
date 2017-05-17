@@ -47,7 +47,7 @@ public class subMenu : MonoBehaviour {
     public void turnOffSubButtons()
     {
 
-        print("augh");
+
 
         if (!subButtonsOn)
         {
