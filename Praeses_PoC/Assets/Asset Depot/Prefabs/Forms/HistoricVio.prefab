@@ -16672,6 +16672,7 @@ MonoBehaviour:
   slideSpeed: -2
   slideDist: -30
   timer: 0
+  subMenu: {fileID: 0}
 --- !u!114 &114058995432284838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18552,8 +18553,8 @@ MonoBehaviour:
   YLimitMax: 0
   YLimitMin: 0
   lockSprites:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1503455054128670}
+  - {fileID: 1472805488117736}
   locked: 0
 --- !u!114 &114201124870179358
 MonoBehaviour:
@@ -19492,17 +19493,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114982562350023440}
-        m_MethodName: turnOnSubButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114268415269901392
@@ -19590,6 +19580,7 @@ MonoBehaviour:
   slideSpeed: -0.0005
   slideDist: -0.02
   timer: 1.5
+  subMenu: {fileID: 114982562350023440}
 --- !u!114 &114275540346064622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19824,6 +19815,7 @@ MonoBehaviour:
   slideSpeed: -2
   slideDist: -30
   timer: 0
+  subMenu: {fileID: 0}
 --- !u!114 &114284379128383362
 MonoBehaviour:
   m_ObjectHideFlags: 1

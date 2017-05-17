@@ -48,6 +48,7 @@ namespace HoloToolkit.Unity
         }
 
 
+
         public void spawnMiniMap()
         {
             //Debug.Log(miniMapHolder.transform.position);

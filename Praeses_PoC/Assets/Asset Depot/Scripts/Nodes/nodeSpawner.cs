@@ -119,6 +119,14 @@ namespace HoloToolkit.Unity
 
         public void lockNodePlacement()
         {
+
+            print("locpos, x: " + spawnedNode.transform.localPosition.x + ", y: " + spawnedNode.transform.localPosition.y + ", z: " + spawnedNode.transform.localPosition.z);
+            print("locrot, x: " + spawnedNode.transform.localRotation.x + ", y: " + spawnedNode.transform.localRotation.y + ", z: " + spawnedNode.transform.localRotation.z + ", w: " + spawnedNode.transform.localRotation.w);
+            print("locscale, x: " + spawnedNode.transform.localScale.x + ", y: " + spawnedNode.transform.localScale.y + ", z: " + spawnedNode.transform.localScale.z);
+            print("wpos, x: " + spawnedNode.transform.position.x + ", y: " + spawnedNode.transform.position.y + ", z: " + spawnedNode.transform.position.z);
+            print("wrot, x: " + spawnedNode.transform.rotation.x + ", y: " + spawnedNode.transform.rotation.y + ", z: " + spawnedNode.transform.rotation.z + ", w: " + spawnedNode.transform.rotation.w);
+
+
             placingInProgress = false;
             mediaManager.Instance.currentNode = spawnedNode;
             mediaManager.Instance.disableStatusIndicator();
@@ -175,12 +183,6 @@ namespace HoloToolkit.Unity
                 linkedField.enableAttachmentCapture();
 
             }
-            //print("locPos, X: " + spawnedNode.transform.localPosition.x + ", Y: " + spawnedNode.transform.localPosition.y + ", Z: " + spawnedNode.transform.localPosition.z);
-            //print("locRot, X: " + spawnedNode.transform.localRotation.x + ", Y: " + spawnedNode.transform.localRotation.y + ", Z: " + spawnedNode.transform.localRotation.z + ", W: " + spawnedNode.transform.localRotation.w);
-            //print("locScale, X: " + spawnedNode.transform.localScale.x + ", Y: " + spawnedNode.transform.localScale.y + ", Z: " + spawnedNode.transform.localScale.z);
-            //print("wPos, X: " + spawnedNode.transform.position.x + ", Y: " + spawnedNode.transform.position.y + ", Z: " + spawnedNode.transform.position.z);
-            //print("wRot, X: " + spawnedNode.transform.rotation.x + ", Y: " + spawnedNode.transform.rotation.y + ", Z: " + spawnedNode.transform.rotation.z + ", W: " + spawnedNode.transform.rotation.w);
-
 
 
         }

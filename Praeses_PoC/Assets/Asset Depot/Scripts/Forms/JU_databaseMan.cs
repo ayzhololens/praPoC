@@ -97,6 +97,17 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
     }
 
     [System.Serializable]
+    public class tempComment
+    {
+        //0 = simple, 1 =photo, 2 = video
+        public string content;
+        public string path;
+        public string user;
+        public string date;
+        public int type;
+    }
+
+    [System.Serializable]
     public class ValuesClass
     {
         public List<valueItem> equipmentData = new List<valueItem>();
@@ -194,22 +205,23 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
                 if (mediaItem.type == 2)
                 {
                     newNodeItem.photos.Add(newMedia);
-                }else if(mediaItem.type == 3)
+                }
+                else if (mediaItem.type == 3)
                 {
                     newNodeItem.videos.Add(newMedia);
                 }
-                
+
             }
             newNodeItem.indexNum = node.indexNum;
             newNodeItem.type = node.type;
 
             tempNodeList.Add(newNodeItem);
         }
-        foreach(nodeItem nodeItem in tempNodeList.OrderBy(si => si.date).ToList().Reverse<nodeItem>())
+        foreach (nodeItem nodeItem in tempNodeList.OrderBy(si => si.date).ToList().Reverse<nodeItem>())
         {
             nodesManager.nodes.Add(nodeItem);
         }
-        
+
     }
 
     public void loadViolationsCmd()
@@ -326,7 +338,7 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
     {
         ViolationsItem newViolation = new ViolationsItem();
 
-        newViolation.category = int.Parse(categoryParser(incomingItem.category,0));
+        newViolation.category = int.Parse(categoryParser(incomingItem.category, 0));
         newViolation.subCategory = int.Parse(categoryParser(incomingItem.category, 1));
         newViolation.specific = int.Parse(categoryParser(incomingItem.category, 2));
         newViolation.severity = incomingItem.classifications;
@@ -367,7 +379,7 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         }
         else
         {
-            print ("key : " + violation.category + " in category doesn't exist");
+            print("key : " + violation.category + " in category doesn't exist");
         }
 
         return (categoryString);

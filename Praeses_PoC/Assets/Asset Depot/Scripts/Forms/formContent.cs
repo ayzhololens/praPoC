@@ -92,7 +92,8 @@ namespace HoloToolkit.Unity
 
             if (Object != null)
             {
-                Object.text = database.definitions.LocationFields.LocationName;
+                Object.text = "Fire Tube Boiler";
+                //Object.text = database.definitions.LocationFields.LocationName;
 
             }
             #endregion
