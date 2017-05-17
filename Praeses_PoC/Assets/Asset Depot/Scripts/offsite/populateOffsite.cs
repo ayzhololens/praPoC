@@ -19,6 +19,7 @@ public class populateOffsite : MonoBehaviour {
     void Start () {
         Invoke("loadCommand", .2f);
         Invoke("populateForm", .5f);
+        Invoke("populateVio", .5f);
         loadSpatialMesh();
 
         //foreach (GameObject cam in cameras)
@@ -36,10 +37,15 @@ public class populateOffsite : MonoBehaviour {
     {
         offsiteJSonLoader.Instance.populateEquipment();
         offsiteJSonLoader.Instance.equipmentCollapse.toggleBox();
+        addNodeFromJSon.Instance.spawnNodeOffsiteList();
+    }
+
+    public void populateVio()
+    {
         violationsParentSpawner.Instance.populateViolations();
-        //fieldCollapseableBox.Instance.populateFieldDeltas();
-        //annotationsCollapseableBox.Instance.populateNodes();
-        //addNodeFromJSon.Instance.spawnNodeOffsiteList();
+        fieldCollapseableBox.Instance.populateFieldDeltas();
+        annotationsCollapseableBox.Instance.populateNodes();
+
         populateSummary();
     }
 

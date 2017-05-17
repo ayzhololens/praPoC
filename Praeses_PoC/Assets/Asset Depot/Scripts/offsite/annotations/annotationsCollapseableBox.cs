@@ -34,6 +34,10 @@ public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> 
 
     public Material photoMaterial;
 
+    //minimapPlanePLayback
+    public Material nodesCamMat;
+    public GameObject minimapPlane; 
+
     //   public bool boxState;
     //   public GameObject nextLiner;
     //   float initNextLinerY;

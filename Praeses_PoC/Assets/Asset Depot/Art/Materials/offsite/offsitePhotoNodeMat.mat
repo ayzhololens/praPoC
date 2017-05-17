@@ -8,13 +8,19 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: offsitePhotoNodeMat
   m_Shader: {fileID: 4800000, guid: 06790e211e4a6df409b1e04bc91c4810, type: 3}
-  m_ShaderKeywords: _EMISSION _USEMAINTEX_ON
+  m_ShaderKeywords: UNITY_UI_ALPHACLIP _EMISSION _USEMAINTEX_ON
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
+    - first:
+        name: _AlphaTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - first:
         name: _BumpMap
       second:
@@ -37,6 +43,12 @@ Material:
         name: _DetailNormalMap
       second:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 596d726ec462f554587ccab205e6e875, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -64,6 +76,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _OverlayTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _ParallaxMap
       second:
         m_Texture: {fileID: 0}
@@ -73,6 +91,9 @@ Material:
     - first:
         name: _BumpScale
       second: 1
+    - first:
+        name: _ColorMask
+      second: 15
     - first:
         name: _ColorWriteMask
       second: 15
@@ -119,6 +140,24 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
+        name: _Stencil
+      second: 0
+    - first:
+        name: _StencilComp
+      second: 8
+    - first:
+        name: _StencilOp
+      second: 0
+    - first:
+        name: _StencilReadMask
+      second: 255
+    - first:
+        name: _StencilWriteMask
+      second: 255
+    - first:
+        name: _Strength
+      second: 0.2
+    - first:
         name: _UVSec
       second: 0
     - first:
@@ -126,6 +165,9 @@ Material:
       second: 0
     - first:
         name: _UseMainTex
+      second: 1
+    - first:
+        name: _UseUIAlphaClip
       second: 1
     - first:
         name: _ZTest

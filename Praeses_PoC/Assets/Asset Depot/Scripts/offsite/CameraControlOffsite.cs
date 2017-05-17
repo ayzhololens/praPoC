@@ -19,6 +19,15 @@ public class CameraControlOffsite : MonoBehaviour
     {
         initPos = rotateCam.transform.position;
         tempInt = 0;
+
+#if UNITY_EDITOR
+            PanSensitivity = new Vector2(20, 20);
+            RotateSensitivity = new Vector2(600, 600);
+#elif WINDOWS_UWP
+            PanSensitivity = new Vector2(1, 1);
+            RotateSensitivity = new Vector2(20, 20);
+#endif
+
     }
 
     void Update()
@@ -56,6 +65,13 @@ public class CameraControlOffsite : MonoBehaviour
                                                     0.0f);
 
         }
+    }
+
+    public void lockCam()
+    {
+        PanSensitivity = new Vector2(0, 0);
+        RotateSensitivity = new Vector2(0, 0);
+        ZoomSensititity = 0;
     }
 
     public void focus(int nodeIndex)
