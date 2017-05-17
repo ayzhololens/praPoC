@@ -55,10 +55,17 @@ public class violationsCollapseableBox : MonoBehaviour {
     public void updateCollapseableContents()
     {
         JU_databaseMan.ViolationsItem vio = JU_databaseMan.Instance.violationsManager.violations[vioInt];
-        if(vio.nodeIndex != 0)
+        if (vio.nodeIndex != 0)
         {
-            inspector.text = JU_databaseMan.Instance.nodesManager.nodes[vio.nodeIndex].user;
-        }else
+            foreach(JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
+            {
+                if (node.indexNum == vio.nodeIndex)
+                {
+                    inspector.text = node.user;
+                }
+            }
+        }
+        else
         {
             inspector.text = metaManager.Instance.user;
         }

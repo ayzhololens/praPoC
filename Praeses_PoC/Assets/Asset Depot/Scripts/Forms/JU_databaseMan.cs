@@ -97,6 +97,17 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
     }
 
     [System.Serializable]
+    public class tempComment
+    {
+        //0 = simple, 1 =photo, 2 = video
+        public string content;
+        public string path;
+        public string user;
+        public string date;
+        public int type;
+    }
+
+    [System.Serializable]
     public class ValuesClass
     {
         public List<valueItem> equipmentData = new List<valueItem>();

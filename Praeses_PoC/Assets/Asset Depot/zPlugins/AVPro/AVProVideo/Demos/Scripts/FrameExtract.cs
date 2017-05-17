@@ -113,55 +113,6 @@ namespace RenderHeads.Media.AVProVideo.Demos
         void clear()
         {
             _mediaPlayer.Events.RemoveListener(OnMediaPlayerEvent);
-            //activeComment = null;
         }
-
-        ////offsite section====================================================================================================
-        //public void makeThumbnail_offsite()
-        //{
-        //    OnNewMediaReady_offsite();
-        //    _mediaPlayer.Events.AddListener(OnMediaPlayerEvent);
-
-        //}
-
-        //private void OnNewMediaReady_offsite()
-        //{
-        //    IMediaInfo info = _mediaPlayer.Info;
-
-        //    // Create a texture the same resolution as our video
-        //    if (_texture != null)
-        //    {
-        //        //Texture2D.Destroy(_texture);
-        //        _texture = null;
-        //    }
-        //    _texture = new Texture2D(info.GetVideoWidth(), info.GetVideoHeight(), TextureFormat.ARGB32, false);
-
-        //    _timeStepSeconds = (_mediaPlayer.Info.GetDurationMs() / 1000f) / (float)NumFrames;
-
-        //    ExtractNextFrame_offsite();
-        //}
-
-        //private void ExtractNextFrame_offsite()
-        //{
-
-        //    print("no texture");
-
-        //    // Extract the frame to Texture2D
-        //    float timeSeconds = _frameIndex * _timeStepSeconds;
-        //    _texture = _mediaPlayer.ExtractFrame(_texture, timeSeconds, _accurateSeek, _timeoutMs);
-        //    if (_texture != null)
-        //    {
-        //        activeComment.GetComponent<offsiteMediaPlayer>().vidThumbnail = _texture;
-        //        activeComment.GetComponent<offsiteMediaPlayer>().thumbMat.mainTexture = activeComment.GetComponent<offsiteMediaPlayer>().vidThumbnail;
-        //        activeComment.GetComponent<offsiteMediaPlayer>().thumbPlane.material= activeComment.GetComponent<offsiteMediaPlayer>().thumbMat;
-        //        Invoke("clear", 1);
-
-        //    }
-        //    else
-        //    {
-        //        print("no texture");
-        //    }
-
-        //}
     }
 }

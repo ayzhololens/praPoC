@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: offsiteVideoNodeMat
-  m_Shader: {fileID: 4800000, guid: 06790e211e4a6df409b1e04bc91c4810, type: 3}
+  m_Name: offsiteVideoUIMat
+  m_Shader: {fileID: 10761, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: UNITY_UI_ALPHACLIP _EMISSION _USEMAINTEX_ON
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1

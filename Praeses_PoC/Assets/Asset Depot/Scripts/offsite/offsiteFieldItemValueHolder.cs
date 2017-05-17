@@ -14,6 +14,7 @@ public class offsiteFieldItemValueHolder : MonoBehaviour {
     public string user;
     public string date;
     public int nodeIndex;
+    public JU_databaseMan.tempComment comment;
 
     public void onEditChangeUpdateJSon()
     {

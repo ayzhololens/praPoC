@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity;
 using UnityEngine.UI;
+using System.Linq;
+using RenderHeads.Media.AVProVideo;
 
 public class violationsParentSpawner : Singleton<violationsParentSpawner> {
 
@@ -20,6 +22,24 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
     public GameObject addNewCommentBox;
     public InputField field;
     public Button addNoteDone;
+    public MediaPlayer videoPlayer;
+
+    //cam
+    public CameraControlOffsite vioCam;
+
+    //mediaPLayback
+    public GameObject offsiteMediaWindow;
+    public GameObject mediaPlane;
+    public Material videoMaterial;
+    public Material videoMaterialUI;
+    public Material photoMaterial;
+    public Material photoMaterialUI;
+    public GameObject playButton;
+    public cameraZoomOverTime guidedTargetObj;
+
+    //minimapPlanePLayback
+    public Material vioCamMat;
+    public GameObject minimapPlane;
 
     // Use this for initialization
     void Start () {
@@ -59,19 +79,8 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
             newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().field = field;
             newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addNoteDone = addNoteDone;
 
-            foreach(JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
-            {
-                if (node.indexNum == vio.nodeIndex)
-                {
-                    foreach (JU_databaseMan.media media in node.videos)
-                    {
-                        newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addOneVideo();
-                    }
-                }
-            }    
-
             newItem.GetComponent<violationsCollapseableBox>().childItems.Add(childItem);
-            foreach(GameObject vioPre in spawnedVioPrefabs)
+            foreach (GameObject vioPre in spawnedVioPrefabs)
             {
                 vioPre.GetComponent<violationsCollapseableBox>().childItems.Add(newItem);
             }
@@ -80,9 +89,129 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
             newItem.GetComponent<violationsCollapseableBox>().vioInt = totalVio - 1;
             newItem.GetComponent<violationsCollapseableBox>().updateTitleContents();
             newItem.GetComponent<violationsCollapseableBox>().updateCollapseableContents();
+            populateVioComments(vio, newItem);
+
+            vioCam.lockCam();
+            for(int i =0; i<JU_databaseMan.Instance.nodesManager.nodes.Count; i++)
+            {
+                if (JU_databaseMan.Instance.nodesManager.nodes[i].indexNum == vio.nodeIndex)
+                {
+                    if (offsiteJSonLoader.Instance.nodes3DList.ContainsKey(i+1))
+                    {
+                        vioCam.focus(i+1);
+                    }else
+                    {
+                        print(offsiteJSonLoader.Instance.nodes3DList.Count);
+                    }
+                }
+            }
+
             spawnedVioPrefabs.Add(newItem);
         }
         bigBox.startCollapse += 25;
         bigBox.readjustBox();
+    }
+
+    public void populateVioComments(JU_databaseMan.ViolationsItem vio, GameObject newItem)
+    {
+        List<JU_databaseMan.tempComment> commentsList = reorderCommentsByDate(vio);
+        foreach(JU_databaseMan.tempComment comment in commentsList)
+        {
+            if (comment.type == 0)
+            {
+                newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addOneSimple(comment);
+            }
+            else if (comment.type == 1)
+            {
+                violationsCollapseableBox box = newItem.GetComponent<violationsCollapseableBox>();
+                GameObject newCom = box.addObject.GetComponent<addCommentButton>().addOnePhoto(comment);
+
+                newCom.GetComponent<offsiteFieldItemValueHolder>().meta.text = (comment.date
+                                                                                + " - "
+                                                                                + comment.user);
+                newCom.GetComponent<offsiteFieldItemValueHolder>().content.text = comment.content;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().user = comment.user;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().date = comment.date;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().nodeIndex = vio.nodeIndex;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().comment = comment;
+
+                newCom.GetComponent<offsiteMediaPlayer>().photoMaterial = photoMaterial;
+                newCom.GetComponent<offsiteMediaPlayer>().mediaWindow = offsiteMediaWindow;
+                newCom.GetComponent<offsiteMediaPlayer>().mediaPlane = mediaPlane;
+                newCom.GetComponent<offsiteMediaPlayer>().guidedTargetObj = guidedTargetObj;
+                newCom.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
+                newCom.GetComponent<offsiteMediaPlayer>().playButton = playButton;
+            }
+            else if (comment.type == 2)
+            {
+                newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().videoPlayer = videoPlayer;
+                GameObject newCom =  newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addOneVideo(comment);
+
+                newCom.GetComponent<offsiteFieldItemValueHolder>().meta.text = (comment.date
+                                                                + " - "
+                                                                + comment.user);
+                newCom.GetComponent<offsiteFieldItemValueHolder>().content.text = comment.content;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().user = comment.user;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().date = comment.date;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().nodeIndex = vio.nodeIndex;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().comment = comment;
+
+                newCom.GetComponent<offsiteMediaPlayer>().videoMaterial = videoMaterial;
+                newCom.GetComponent<offsiteMediaPlayer>().mediaWindow = offsiteMediaWindow;
+                newCom.GetComponent<offsiteMediaPlayer>().mediaPlane = mediaPlane;
+                newCom.GetComponent<offsiteMediaPlayer>().guidedTargetObj = guidedTargetObj;
+                newCom.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
+                newCom.GetComponent<offsiteMediaPlayer>().playButton = playButton;
+            }
+        }
+
+    }
+
+    public virtual List<JU_databaseMan.tempComment> reorderCommentsByDate(JU_databaseMan.ViolationsItem vio)
+    {
+        List<JU_databaseMan.tempComment> tempVioCommentsList = new List<JU_databaseMan.tempComment>();
+        List<JU_databaseMan.tempComment> vioCommentsList = new List<JU_databaseMan.tempComment>();
+        List<JU_databaseMan.tempComment> returnValue = new List<JU_databaseMan.tempComment>();
+
+        foreach (JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
+        {
+            if (node.indexNum == vio.nodeIndex)
+            {
+                foreach (JU_databaseMan.media media in node.videos)
+                {
+                    JU_databaseMan.tempComment tempComment = new JU_databaseMan.tempComment();
+                    tempComment.date = media.date;
+                    tempComment.user = media.user;
+                    tempComment.path = media.path;
+                    tempComment.type = 2;
+                    tempVioCommentsList.Add(tempComment);
+                }
+                foreach (JU_databaseMan.media media in node.photos)
+                {
+                    JU_databaseMan.tempComment tempComment = new JU_databaseMan.tempComment();
+                    tempComment.date = media.date;
+                    tempComment.user = media.user;
+                    tempComment.path = media.path;
+                    tempComment.type = 1;
+                    tempVioCommentsList.Add(tempComment);
+                }
+                foreach (JU_databaseMan.comment comment in node.comments)
+                {
+                    JU_databaseMan.tempComment tempComment = new JU_databaseMan.tempComment();
+                    tempComment.date = comment.date;
+                    tempComment.user = comment.user;
+                    tempComment.content = comment.content;
+                    tempComment.type = 0;
+                    tempVioCommentsList.Add(tempComment);
+                }
+                vioCommentsList = tempVioCommentsList.OrderBy(si => si.date).ToList();
+
+            }
+        }
+        foreach (JU_databaseMan.tempComment comment in vioCommentsList.Reverse<JU_databaseMan.tempComment>())
+        {
+            returnValue.Add(comment);
+        }
+        return returnValue;
     }
 }
