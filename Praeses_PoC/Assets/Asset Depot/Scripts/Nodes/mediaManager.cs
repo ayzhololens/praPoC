@@ -96,6 +96,7 @@ namespace HoloToolkit.Unity
             {
                 spawnedComment = commentManager.spawnPhotoComment();
                 com = spawnedComment.GetComponent<commentContents>();
+                spawnedComment.GetComponent<commentContents>().fileName = photoRecorder.filename;
                 commentClass.type = 2;
 
             }
@@ -104,6 +105,7 @@ namespace HoloToolkit.Unity
 
                 spawnedComment = commentManager.spawnVideoComment();
                 com = spawnedComment.GetComponent<commentContents>();
+                spawnedComment.GetComponent<commentContents>().fileName = vidRecorder.filename;
 
                 commentClass.type = 3;
             }

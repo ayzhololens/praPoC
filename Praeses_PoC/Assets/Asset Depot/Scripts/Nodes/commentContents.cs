@@ -22,6 +22,7 @@ namespace HoloToolkit.Unity
         public GameObject editButton;
         public InputField inputField;
         public string filepath;
+        public string fileName { get; set; }
         public GameObject linkedComponent;
         bool startedVideo;
         public GameObject playIcon;
