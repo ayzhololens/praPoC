@@ -203,7 +203,7 @@ public class databaseMan : Singleton<databaseMan>
 
 
     }
-
+    
     public void loadValCmd()
     {
 #if WINDOWS_UWP

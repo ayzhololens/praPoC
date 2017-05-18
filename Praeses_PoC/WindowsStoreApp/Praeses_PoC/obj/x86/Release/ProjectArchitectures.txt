@@ -1,0 +1,4 @@
+C:\Users\jvelez\Documents\GitHub\praeses-poc\Praeses_PoC\WindowsStoreApp\GeneratedProjects\UWP\Assembly-CSharp\Assembly-CSharp.csproj;x86
+C:\Users\jvelez\Documents\GitHub\praeses-poc\Praeses_PoC\WindowsStoreApp\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
+C:\Users\jvelez\Documents\GitHub\praeses-poc\Praeses_PoC\WindowsStoreApp\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
+C:\Users\jvelez\Documents\GitHub\praeses-poc\Praeses_PoC\WindowsStoreApp\Praeses_PoC\Praeses_PoC.csproj;x86

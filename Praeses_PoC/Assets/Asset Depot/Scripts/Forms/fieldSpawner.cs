@@ -25,7 +25,6 @@ namespace HoloToolkit.Unity
         // Use this for initialization
         void Start()
         {
-            fieldInitPos = fieldStartPos.localPosition;
 
         }
 
@@ -33,6 +32,25 @@ namespace HoloToolkit.Unity
         void Update()
         {
 
+        }
+
+        public void reloadForm()
+        {
+            IFCollection.Clear();
+            EDCollection.Clear();
+            LDCollection.Clear();
+            ExDCollection.Clear();
+
+            formController mForm = formController.Instance;
+
+            MasterForm = mForm.gameObject;
+            FieldInspectionParent = mForm.fieldTabs[2].transform;
+            LocationDataParent = mForm.fieldTabs[0].transform;
+            EquipmentDataParent = mForm.fieldTabs[1].transform;
+            ExtDataParent = mForm.submitInspection.contents[2];
+
+            fieldStartPos = mForm.fieldStartPos;
+            fieldInitPos = fieldStartPos.localPosition;
         }
 
         public void populateFields()

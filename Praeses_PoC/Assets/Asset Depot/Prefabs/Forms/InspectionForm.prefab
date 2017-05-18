@@ -1861,7 +1861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1752771742653324
 GameObject:
   m_ObjectHideFlags: 1
@@ -8315,9 +8315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf488ce6b75e0e44f90b39dd8361fe83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inspectionTab: {fileID: 1248937452463380}
-  equipmentTab: {fileID: 1722459107817586}
-  locationTab: {fileID: 1382062522605358}
   fieldTabs:
   - {fileID: 1382062522605358}
   - {fileID: 1722459107817586}
@@ -8328,6 +8325,7 @@ MonoBehaviour:
   - {fileID: 1150621795175428}
   - {fileID: 1106236651188398}
   - {fileID: 1077547089795022}
+  fieldStartPos: {fileID: 4486611670469190}
   contentHolder: {fileID: 1734258115892488}
   Sumbit: {fileID: 1534489426834804}
   submitInspection: {fileID: 114261622489200432}
@@ -9121,6 +9119,7 @@ MonoBehaviour:
   slideSpeed: -0.001
   slideDist: -0.02
   timer: 1.5
+  keptOut: 0
   subMenu: {fileID: 114122331147067730}
 --- !u!114 &114509150589263098
 MonoBehaviour:
@@ -9308,6 +9307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114557474267784044
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,11 +10,10 @@ namespace HoloToolkit.Unity
 
     public class formController : Singleton<formController> {
 
-        public GameObject inspectionTab;
-        public GameObject equipmentTab;
-        public GameObject locationTab;
+
         public GameObject[] fieldTabs;
         public GameObject[] fieldTabButtons;
+        public Transform fieldStartPos;
         public GameObject contentHolder;
         public GameObject Sumbit;
         public submitInspection submitInspection;
@@ -23,6 +22,7 @@ namespace HoloToolkit.Unity
         public int curFields { get; set; }
         public Transform frontHolder;
         public List<GameObject> fieldNodes;
+
 
         // Use this for initialization
         void Start() {
@@ -72,53 +72,6 @@ namespace HoloToolkit.Unity
         }
 
 
-        public void openEquipmentTab()
-        {
-            if (!equipmentTab.activeSelf)
-            {
-                equipmentTab.SetActive(true);
-            }
-            if (inspectionTab.activeSelf)
-            {
-                inspectionTab.SetActive(false);
-            }
-            if (locationTab.activeSelf)
-            {
-                locationTab.SetActive(false);
-            }
-        }
-
-        public void openLocationTab()
-        {
-            if (equipmentTab.activeSelf)
-            {
-                equipmentTab.SetActive(false);
-            }
-            if (inspectionTab.activeSelf)
-            {
-                inspectionTab.SetActive(false);
-            }
-            if (!locationTab.activeSelf)
-            {
-                locationTab.SetActive(true);
-            }
-        }
-
-        public void openInspectionTab()
-        {
-            if (equipmentTab.activeSelf)
-            {
-                equipmentTab.SetActive(false);
-            }
-            if (!inspectionTab.activeSelf)
-            {
-                inspectionTab.SetActive(true);
-            }
-            if (locationTab.activeSelf)
-            {
-                locationTab.SetActive(false);
-            }
-        }
 
         public void toggleForm()
         {
