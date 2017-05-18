@@ -19589,6 +19589,7 @@ MonoBehaviour:
   slideSpeed: -2
   slideDist: -30
   timer: 0
+  keptOut: 0
   subMenu: {fileID: 0}
 --- !u!114 &114258914896721910
 MonoBehaviour:
@@ -20721,7 +20722,8 @@ MonoBehaviour:
   submittedVioPos: {fileID: 4907622470093668}
   goToResolveVioButton: {fileID: 4258202143110226}
   resolutionField: {fileID: 1288594601434800}
-  offsetDist: 0.1
+  comManagers: []
+  offsetDist: 0.001
 --- !u!114 &114341408003005488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22728,7 +22730,8 @@ MonoBehaviour:
   slideSpeed: -0.0005
   slideDist: -0.02
   timer: 1.5
-  subMenu: {fileID: 0}
+  keptOut: 0
+  subMenu: {fileID: 114395020620205890}
 --- !u!114 &114503953782355592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23120,6 +23123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114527037111924266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24420,6 +24424,7 @@ MonoBehaviour:
   slideSpeed: -2
   slideDist: -30
   timer: 0
+  keptOut: 0
   subMenu: {fileID: 0}
 --- !u!114 &114624902013334936
 MonoBehaviour:

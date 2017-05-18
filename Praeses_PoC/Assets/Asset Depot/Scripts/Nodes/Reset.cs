@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace HoloToolkit.Unity
 {
@@ -33,6 +34,11 @@ namespace HoloToolkit.Unity
 
         }
 
+        public void reloadLvl()
+        {
+            SceneManager.LoadScene(0);
+        }
+
        
         public void wipeObjects()
         {
@@ -41,7 +47,9 @@ namespace HoloToolkit.Unity
             {
                 //clearedObjs.Add(reloadedObjects[i]);
                 DestroyImmediate(clearedObjs[i]);
-                Instantiate(reloadedObjects[i], transform.position, transform.rotation);
+                GameObject newObj = Instantiate(reloadedObjects[i], transform.position, transform.rotation);
+                clearedObjs.Clear();
+                clearedObjs.Add(newObj);
             }
             fieldSpawner.Instance.reloadForm();
         }
@@ -50,37 +58,40 @@ namespace HoloToolkit.Unity
         {
             foreach(GameObject node in mediaManager.Instance.activeNodes)
             {
-                    if (node.GetComponent<nodeMediaHolder>().fieldNode)
+                nodeMediaHolder nodeMedia = node.GetComponent<nodeMediaHolder>();
+                    if (nodeMedia.fieldNode)
                     {
                             foreach (GameObject comment in node.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().activeComments)
                             {
-                                if (comment.GetComponent<commentContents>().filepath != null)
+                                commentContents com = comment.GetComponent<commentContents>();
+                                if (com.filepath != null && !node.GetComponent<nodeController>().fromJSON)
                                 {
-                                    if (comment.GetComponent<commentContents>().isVideo && File.Exists(Path.Combine(Application.persistentDataPath, comment.GetComponent<commentContents>().filepath)))
+                                    if (com.isVideo && File.Exists(Path.Combine(Application.persistentDataPath, com.filepath)))
                                     {
-                                        File.Delete(Path.Combine(Application.persistentDataPath, comment.GetComponent<commentContents>().filepath));
+                                        File.Delete(Path.Combine(Application.persistentDataPath, com.filepath));
                                     }
-                                    else if (comment.GetComponent<commentContents>().isPhoto && File.Exists(comment.GetComponent<commentContents>().filepath))
+                                    else if (com.isPhoto && File.Exists(com.filepath))
                                     {
-                                        File.Delete(comment.GetComponent<commentContents>().filepath);
+                                        File.Delete(com.filepath);
                                     }
                                 }
                             }
                     }
-                    if (node.GetComponent<nodeMediaHolder>().violationNode)
+                    if (nodeMedia.violationNode)
                     {
                         foreach (GameObject comment in node.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().activeComments)
-                        {
-                            if (comment.GetComponent<commentContents>().filepath != null)
+                    {
+                        commentContents com = comment.GetComponent<commentContents>();
+                        if (com.filepath != null && !node.GetComponent<nodeController>().fromJSON)
                             {
                                
-                                if (comment.GetComponent<commentContents>().isVideo && File.Exists(Path.Combine(Application.persistentDataPath, comment.GetComponent<commentContents>().filepath)))
+                                if (com.isVideo && File.Exists(Path.Combine(Application.persistentDataPath, com.filepath)))
                                 {
-                                    File.Delete(Path.Combine(Application.persistentDataPath, comment.GetComponent<commentContents>().filepath));
+                                    File.Delete(Path.Combine(Application.persistentDataPath, com.filepath));
                                 }
-                                else if (comment.GetComponent<commentContents>().isPhoto && File.Exists(comment.GetComponent<commentContents>().filepath))
+                                else if (com.isPhoto && File.Exists(com.filepath))
                                 {
-                                    File.Delete(comment.GetComponent<commentContents>().filepath);
+                                    File.Delete(com.filepath);
                                 }
                             }
                         }
@@ -90,13 +101,13 @@ namespace HoloToolkit.Unity
 
                     }
 
-                    if (node.GetComponent<nodeMediaHolder>().activeFilepath.Length>1)
+                    if (nodeMedia.activeFilepath.Length>1)
                     {
-                        Debug.Log(Path.Combine(Application.persistentDataPath, node.GetComponent<nodeMediaHolder>().activeFilepath));
 
-                        if (File.Exists(node.GetComponent<nodeMediaHolder>().activeFilepath))
+
+                        if (File.Exists(Path.Combine(Application.persistentDataPath, nodeMedia.activeFilepath)) && !node.GetComponent<nodeController>().fromJSON)
                         {
-                            File.Delete(Path.Combine(Application.persistentDataPath, node.GetComponent<nodeMediaHolder>().activeFilepath));
+                        File.Delete(Path.Combine(Application.persistentDataPath, nodeMedia.activeFilepath));
 
                         }
                     }

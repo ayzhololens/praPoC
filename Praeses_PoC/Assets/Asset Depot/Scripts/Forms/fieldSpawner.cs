@@ -6,14 +6,14 @@ namespace HoloToolkit.Unity
 {
     public class fieldSpawner : Singleton<fieldSpawner>
     {
-        public GameObject MasterForm;
-        public Transform FieldInspectionParent;
-        public Transform EquipmentDataParent;
-        public Transform LocationDataParent;
-        public Transform ExtDataParent;
+        public GameObject MasterForm { get; set; }
+        public Transform FieldInspectionParent { get; set; }
+        public Transform EquipmentDataParent { get; set; }
+        public Transform LocationDataParent { get; set; }
+        public Transform ExtDataParent { get; set; }
         public GameObject stringFieldPrefab;
         public GameObject buttonFieldPrefab;
-        public Transform fieldStartPos;
+        public Transform fieldStartPos { get; set; }
         Vector3 fieldInitPos;
         public float offsetDist;
         public Dictionary<string, GameObject> ActiveFields = new Dictionary<string, GameObject>();
@@ -40,6 +40,7 @@ namespace HoloToolkit.Unity
             EDCollection.Clear();
             LDCollection.Clear();
             ExDCollection.Clear();
+            ActiveFields.Clear();
 
             formController mForm = formController.Instance;
 
@@ -51,66 +52,72 @@ namespace HoloToolkit.Unity
 
             fieldStartPos = mForm.fieldStartPos;
             fieldInitPos = fieldStartPos.localPosition;
+
+
         }
 
-        public void populateFields()
+        public void populateFields(bool reload)
         {
             populateIF();
             populateED();
             populateLD();
             populateExD();
 
-            //distribute location data
-            ActiveFields["address1"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.address1;
-            ActiveFields["address2"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.address2;
-            ActiveFields["City"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.City;
-            ActiveFields["County"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.County;
-            ActiveFields["Country"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.Country;
-            ActiveFields["LocationID"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.LocationID.ToString();
-            ActiveFields["LocationName"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.LocationName;
-            ActiveFields["State"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.State;
-            ActiveFields["Zip"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.Zip;
-
-
-            //distribute present values in field
-            foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.equipmentData)
+            if (!reload)
             {
-                if (ActiveFields.ContainsKey(valueItem.name))
-                {
-                    //print(valueItem.value+" applied to "+ ActiveFields[valueItem.name].GetComponent<formFieldController>().DisplayName.text);
-                    ActiveFields[valueItem.name].GetComponent<formFieldController>().Value.text = valueItem.value;
-                    ActiveFields[valueItem.name].GetComponent<formFieldController>().nodeIndex = valueItem.nodeIndex;
-                }
-                else
-                {
-                    //print(valueItem.name + " is not available");
-                }
+                //distribute location data)
+                ActiveFields["address1"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.address1;
+                ActiveFields["address2"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.address2;
+                ActiveFields["City"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.City;
+                ActiveFields["County"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.County;
+                ActiveFields["Country"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.Country;
+                ActiveFields["LocationID"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.LocationID.ToString();
+                ActiveFields["LocationName"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.LocationName;
+                ActiveFields["State"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.State;
+                ActiveFields["Zip"].GetComponent<formFieldController>().Value.text = JU_databaseMan.Instance.definitions.LocationFields.Zip;
 
-            }
 
-           // distribute historic values in field parentheses
-           foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.historicData)
-            {
-                ActiveFields[valueItem.name].GetComponent<formFieldController>().nodeIndex = valueItem.nodeIndex;
-
-                if (ActiveFields.ContainsKey(valueItem.name))
+                //distribute present values in field
+                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.equipmentData)
                 {
-                    //correct naming
-                    foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.EquipmentData.fields)
+                    if (ActiveFields.ContainsKey(valueItem.name))
                     {
-                            ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + valueItem.value + ")");
-
+                        //print(valueItem.value+" applied to "+ ActiveFields[valueItem.name].GetComponent<formFieldController>().DisplayName.text);
+                        ActiveFields[valueItem.name].GetComponent<formFieldController>().Value.text = valueItem.value;
+                        ActiveFields[valueItem.name].GetComponent<formFieldController>().nodeIndex = valueItem.nodeIndex;
+                    }
+                    else
+                    {
+                        //print(valueItem.name + " is not available");
                     }
 
-                    foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.InspectionFields.fields)
+                }
+
+                // distribute historic values in field parentheses
+                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.historicData)
+                {
+                    ActiveFields[valueItem.name].GetComponent<formFieldController>().nodeIndex = valueItem.nodeIndex;
+
+                    if (ActiveFields.ContainsKey(valueItem.name))
                     {
-                        if (field.Options.ContainsKey(valueItem.value))
+                        //correct naming
+                        foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.EquipmentData.fields)
                         {
-                            ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + field.Options[valueItem.value] + ")");
+                            ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + valueItem.value + ")");
+
+                        }
+
+                        foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.InspectionFields.fields)
+                        {
+                            if (field.Options.ContainsKey(valueItem.value))
+                            {
+                                ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + field.Options[valueItem.value] + ")");
+                            }
                         }
                     }
                 }
             }
+
         }
 
         void populateExD() {

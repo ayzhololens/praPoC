@@ -51,8 +51,9 @@ public class commentManager : MonoBehaviour {
         spawnedComment = Instantiate(simpleCommentPrefab, transform.position, Quaternion.identity);
         spawnedComment.transform.localEulerAngles = new Vector3(0, 0, 0);
 
-        activeComments.Add(spawnedComment);
 
+
+        activeComments.Add(spawnedComment);
         commentSetup(spawnedComment.GetComponent<commentContents>());
         spawnedComment.transform.localScale = simpleCommentPrefab.transform.localScale;
 
@@ -90,6 +91,8 @@ public class commentManager : MonoBehaviour {
         spawnedComment.transform.localEulerAngles = new Vector3(0, 0, 0);
 
         activeComments.Add(spawnedComment);
+
+
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
         spawnedComment.transform.localScale = simpleCommentPrefab.transform.localScale;
@@ -191,6 +194,8 @@ public class commentManager : MonoBehaviour {
         spawnedComment = Instantiate(videoCommentPrefab, transform.position, Quaternion.identity);
         activeComments.Add(spawnedComment);
 
+
+
         commentSetup(spawnedComment.GetComponent<commentContents>());
         spawnedComment.transform.localScale = videoCommentPrefab.transform.localScale;
 
@@ -216,6 +221,8 @@ public class commentManager : MonoBehaviour {
         //spawn simple comment
         spawnedComment = Instantiate(videoCommentPrefab, transform.position, Quaternion.identity);
         activeComments.Add(spawnedComment);
+
+
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
         spawnedComment.transform.localScale = videoCommentPrefab.transform.localScale;
@@ -268,6 +275,7 @@ public class commentManager : MonoBehaviour {
         spawnedComment = Instantiate(photoCommentPrefab, transform.position, Quaternion.identity);
         activeComments.Add(spawnedComment);
 
+
         commentSetup(spawnedComment.GetComponent<commentContents>());
         spawnedComment.transform.localScale = photoCommentPrefab.transform.localScale;
 
@@ -291,6 +299,8 @@ public class commentManager : MonoBehaviour {
         spawnedComment = Instantiate(photoCommentPrefab, transform.position, Quaternion.identity);
         activeComments.Add(spawnedComment);
 
+  
+
         commentSetup(spawnedComment.GetComponent<commentContents>());
         spawnedComment.transform.localScale = photoCommentPrefab.transform.localScale;
 
@@ -313,6 +323,7 @@ public class commentManager : MonoBehaviour {
         //spawn simple comment
         spawnedComment = Instantiate(photoCommentPrefab, transform.position, Quaternion.identity);
         activeComments.Add(spawnedComment);
+
 
         commentSetup(spawnedComment.GetComponent<commentContents>());
         spawnedComment.transform.localScale = photoCommentPrefab.transform.localScale;

@@ -66,42 +66,11 @@ namespace HoloToolkit.Unity
                     {
                         timerManager.Instance.radialCountDown();
                     }
-                    //radialCounter -= Time.deltaTime;
-                    //Debug.Log("shoulddaa");
-                    //if (!counting)
-                    //{
-                    //    startRadialCounter();
-                    //    counting = true;
-                    //}
-
-
-                    //if (radialCounter < .1f)
-                    //{
-
-                    //}
-
-                    //if (radialCounter < 0)
-                    //{
-                    //    turnOnRadialMenu();
-                    //    //radialCountIndicator.transform.GetChild(0).GetComponent<Animator>().SetTrigger("radialStop");
-                    //}
 
                 }
                 else if (!sourceManager.sourcePressed)
                 {
                     timerManager.Instance.CountInterrupt();
-
-                    //if (counting)
-                    //{
-                    //    radialCounter = countMax;
-                    //    radialCountIndicator.GetComponent<tumblerRadialCounter>().radialCounterInterrupt();
-                    //    //radialCountIndicator.GetComponent<tumblerRadialCounter>().toggleAnim();
-
-                    //    counting = false;
-                    //}
-
-                    //radialCountIndicator.transform.GetChild(0).GetComponent<Animator>().SetTrigger("radialStop");
-
                 }
 
                 if (!hands)
@@ -181,45 +150,6 @@ namespace HoloToolkit.Unity
 
         void HandRadial()
         {
-
-
-            //released so keep it open
-            //if (!sourceManager.sourcePressed && isActive && !annotManager.annotating && focusedButton == null)
-            //{
-            //    radialOpenNotClicked = true;
-
-            //}
-
-            ////released pinch and radial is still active so hide the line or hide line if not looking at menu
-            //if ((focusedButton!=null && radHands.focusedObj.tag != "Backplate") || radialOpenNotClicked)
-            //{
-            //    line.GetComponent<LineTest>().line.SetActive(false);
-            //    line.SetActive(false);
-            //    Debug.Log("line off");
-            //}
-
-            ////looking at menu so dont hide the line
-            //else if (!line.activeSelf && (focusedButton != null || radHands.focusedObj.tag == "Backplate") && !radialOpenNotClicked)
-            //{
-            //    line.SetActive(true);
-            //    line.GetComponent<LineTest>().line.SetActive(true);
-            //    Debug.Log("line on");
-
-            //}
-            ////tapping off radial menu so turn it off
-            //if (sourceManager.sourcePressed && isActive && gazeManager.HitObject.tag != "Button")
-            //{
-            //    turnOffRadialMenu();
-            //    radialOpenNotClicked = false;
-            //}
-
-            ////tapping on radial menu so turn it off
-            //if (sourceManager.sourcePressed && isActive && radialOpenNotClicked && gazeManager.HitObject.tag == "Button")
-            //{
-            //    turnOffRadialMenu();
-            //    radialOpenNotClicked = false;
-            //}
-
             //released over button 
             if (!sourceManager.sourcePressed && isActive)
             {
@@ -331,5 +261,15 @@ namespace HoloToolkit.Unity
 
         }
 
+        public void openForm()
+        {
+            formController.Instance.openForm();
+        }
+
+        public void openReview()
+        {
+            formController.Instance.openForm();
+            formController.Instance.goToTab(3);
+        }
     }
 }
