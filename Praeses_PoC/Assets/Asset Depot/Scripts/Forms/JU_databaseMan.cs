@@ -157,13 +157,13 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
 
     public void loadDefCmd()
     {
-        readLocationFields();
         readEquipmentFields();
         readInspectionFields();
     }
 
     public void loadValCmd()
     {
+        readLocationFields();
         loadEquipmentData();
         loadHistoric();
         loadCurrentData();
