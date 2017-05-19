@@ -50,15 +50,14 @@ public class violationsLib : Singleton<violationsLib> {
     void defineViolationsDicts()
     {
         //severity
-        violationsSeverity.Add(0, "MINOR");
-        violationsSeverity.Add(1, "MODERATE");
-        violationsSeverity.Add(2, "SEVERE");
-        violationsSeverity.Add(3, "FIXED");
+        violationsSeverity.Add(0, "STANDARD");
+        violationsSeverity.Add(1, "HAZARDOUS");
 
         //status
-        violationsStatus.Add(0, "resolved");
-        violationsStatus.Add(1, "not resolved");
-        violationsStatus.Add(2, "other");
+        violationsStatus.Add(0, "NEW");
+        violationsStatus.Add(1, "FIXED");
+        violationsStatus.Add(2, "NOT FIXED");
+        violationsStatus.Add(3, "OTHER");
 
         //category
         violationsCategory.Add(1, "Boiler Controls");

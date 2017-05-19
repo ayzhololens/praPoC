@@ -157,19 +157,19 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
 
     public void loadDefCmd()
     {
-        readLocationFields();
         readEquipmentFields();
         readInspectionFields();
-        loadNodesCmd();
-        loadViolationsCmd();
-        loadValCmd();
+
     }
 
     public void loadValCmd()
     {
+        readLocationFields();
         loadEquipmentData();
         loadHistoric();
         loadCurrentData();
+        loadNodesCmd();
+        loadViolationsCmd();
     }
 
     public void loadNodesCmd()
@@ -353,7 +353,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
 
     public virtual List<string> categoryStringer(ViolationsItem violation)
     {
+
         List<string> categoryString = new List<string>();
+
         if (violationsLib.Instance.categoryLib.categoryList.ContainsKey(violation.category))
         {
             string tempString = violationsLib.Instance.categoryLib.categoryList[violation.category].name;
@@ -370,16 +372,22 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
                 else
                 {
                     print("key : " + violation.specific + " in specific doesn't exist");
+                    categoryString.Add("Handhole or gasket or gasket seat installation is not satisfactory");
                 }
             }
             else
             {
                 print("key : " + violation.subCategory + " in subcategory doesn't exist");
+                categoryString.Add("Water Leaks");
+                categoryString.Add("Handhole or gasket or gasket seat installation is not satisfactory");
             }
         }
         else
         {
             print("key : " + violation.category + " in category doesn't exist");
+            categoryString.Add("Boiler Components");
+            categoryString.Add("Water Leaks");
+            categoryString.Add("Handhole or gasket or gasket seat installation is not satisfactory");
         }
 
         return (categoryString);

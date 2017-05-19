@@ -1253,6 +1253,7 @@ GameObject:
   - component: {fileID: 114855112614939080}
   - component: {fileID: 82641189637157312}
   - component: {fileID: 114700706367890510}
+  - component: {fileID: 114486916516450986}
   m_Layer: 0
   m_Name: OtherManager
   m_TagString: Untagged
@@ -1632,7 +1633,6 @@ GameObject:
   - component: {fileID: 4252370643414844}
   - component: {fileID: 114357921936230014}
   - component: {fileID: 114629476419775304}
-  - component: {fileID: 114602818878778950}
   m_Layer: 0
   m_Name: RadialManager
   m_TagString: Untagged
@@ -4763,7 +4763,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.012999999, y: 0.0039999997, z: 0.011031128}
+  m_Size: {x: 0.01, y: 0.0039999997, z: 0.0095}
   m_Center: {x: -0.000000001862645, y: 0, z: 0}
 --- !u!65 &65103786459830216
 BoxCollider:
@@ -4787,7 +4787,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.012999999, y: 0.0039999997, z: 0.011031126}
+  m_Size: {x: 0.01, y: 0.0039999997, z: 0.0095}
   m_Center: {x: 0.000000001862645, y: 0, z: 0.000000001862645}
 --- !u!65 &65151088322430564
 BoxCollider:
@@ -4800,7 +4800,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.009999999, y: 0.0039999997, z: 0.011031124}
-  m_Center: {x: 0, y: 0, z: 9.313226e-10}
+  m_Center: {x: 0, y: 0, z: 0.002}
 --- !u!65 &65161913682745938
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4883,8 +4883,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010000002, y: 0.0039999997, z: 0.0105}
-  m_Center: {x: 9.313226e-10, y: 0, z: 0}
+  m_Size: {x: 0.0085, y: 0.0039999997, z: 0.009}
+  m_Center: {x: 9.313226e-10, y: 0, z: -0.0015}
 --- !u!65 &65823077524870148
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4919,7 +4919,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.012999999, y: 0.0039999997, z: 0.011031128}
+  m_Size: {x: 0.01, y: 0.0039999997, z: 0.0095}
   m_Center: {x: 4.656613e-10, y: 0, z: 0.0000000027939675}
 --- !u!82 &82641189637157312
 AudioSource:
@@ -5212,10 +5212,13 @@ MonoBehaviour:
       fields: []
     InspectionFields:
       fields: []
+    ExtraFields:
+      fields: []
   values:
     equipmentData: []
     historicData: []
     currentData: []
+    extraData: []
   nodesManager:
     nodes: []
   violationsManager:
@@ -5931,6 +5934,7 @@ MonoBehaviour:
   FieldInspectionParent: {fileID: 0}
   EquipmentDataParent: {fileID: 0}
   LocationDataParent: {fileID: 0}
+  ExtDataParent: {fileID: 0}
   stringFieldPrefab: {fileID: 1201654596242484, guid: b2bedb3411ce5f049b36eb894c6484e0,
     type: 2}
   buttonFieldPrefab: {fileID: 1766372532663484, guid: 51a5c582111ccae44a461ac8da55abc3,
@@ -5940,6 +5944,7 @@ MonoBehaviour:
   IFCollection: []
   EDCollection: []
   LDCollection: []
+  ExDCollection: []
 --- !u!114 &114234066634813678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6568,7 +6573,7 @@ MonoBehaviour:
   _timeoutMs: 1
   _texture: {fileID: 0}
   activeComment: {fileID: 0}
-  filePath: 
+  filePath: videoNote2.mp4
 --- !u!114 &114475990382951120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6603,6 +6608,18 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
+--- !u!114 &114486916516450986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1699194472853180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc07d58cb9a8de4b872b04aec1b5e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Indicator: {fileID: 0}
 --- !u!114 &114489900081937688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6614,6 +6631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114499551168669488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6752,18 +6770,6 @@ MonoBehaviour:
   upHolder: {fileID: 0}
   speed: 0
   moving: 0
---- !u!114 &114602818878778950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1936194483011256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dc07d58cb9a8de4b872b04aec1b5e80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Indicator: {fileID: 0}
 --- !u!114 &114608681545669052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6776,7 +6782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_VideoLocation: 4
-  m_VideoPath: 
+  m_VideoPath: videoNote.mp4
   m_AutoOpen: 1
   m_AutoStart: 0
   m_Loop: 0
@@ -6950,6 +6956,7 @@ MonoBehaviour:
   violationPreview: {fileID: 0}
   violationPreviewField: {fileID: 1346665285803976, guid: e6fac1182eedc524aac072f9caa047f7,
     type: 2}
+  successContentHolder: {fileID: 0}
   rowLengthBox: 2
   hOffsetBox: 0.2
   vOffsetBox: 0.055
@@ -7422,13 +7429,24 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114602818878778950}
-        m_MethodName: startUpload
+      - m_Target: {fileID: 0}
+        m_MethodName: openForm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: goToTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7472,6 +7490,8 @@ MonoBehaviour:
   valuesDir: 
   defJsonText: 
   valJsonText: 
+  offsite: 0
+  popUp: 0
   definitions:
     EquipmentFields:
       threeNine: []
@@ -7490,7 +7510,6 @@ MonoBehaviour:
         State: 
         Zip: 
       Equipment: []
-  testItem: {fileID: 0}
 --- !u!114 &114735703967630496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7729,6 +7748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc66632ebaa49844eb2e2c8bfefababc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  onlyY: 0
 --- !u!114 &114855112614939080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7803,7 +7824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0d22110b0eb18459c9a38d8dd7c3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filename: BigBuckBunny_720p30.mp4
+  filename: videoNote2.mp4
   filepath: 
   vidCounter: 0
   fileList: []
@@ -8110,8 +8131,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_MethodName: preloadData
+        - m_Target: {fileID: 114734879544203838}
+          m_MethodName: loadValCmd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8134,6 +8155,17 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 114325065263516884}
           m_MethodName: spawnNodeList
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_MethodName: preloadData
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8214,42 +8246,13 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  - Keyword: begin
-    KeyCode: 116
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_MethodName: goToTab
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 5
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
   - Keyword: open form
-    KeyCode: 116
+    KeyCode: 103
     Response:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_MethodName: 
+          m_MethodName: openMainMenu
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8266,8 +8269,8 @@ MonoBehaviour:
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: exportAllMeshes
+        - m_Target: {fileID: 114734879544203838}
+          m_MethodName: saveCmd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -93,7 +93,7 @@ namespace HoloToolkit.Unity
             }
 
             violationSubmittedData[8].text = metaManager.Instance.user;
-            violationSubmittedData[9].text = metaManager.Instance.date;
+            violationSubmittedData[9].text = metaManager.Instance.date();
 
 
             violationControl.goToTab(8);
@@ -111,7 +111,7 @@ namespace HoloToolkit.Unity
             {
                 violatoinSpawner.Instance.successContentHolder.SetActive(true);
                 violatoinSpawner.Instance.successContentHolder.transform.position = this.transform.position;
-                //databaseMan.Instance.syncViolation(violationControl);
+                databaseMan.Instance.syncViolation(violationControl);
 
             }
         }

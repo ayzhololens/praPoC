@@ -55,6 +55,7 @@ public class boilerTransformRecorder : MonoBehaviour {
 
         if (boilerClass.transform[10] == 0)
         {
+            print("boiler type: main");
             foreach(GameObject obj in boilerMain)
             {
                 obj.SetActive(true);
@@ -63,8 +64,9 @@ public class boilerTransformRecorder : MonoBehaviour {
             {
                 obj.SetActive(false);
             }
-        }else if (boilerClass.transform[10] == 0)
+        }else if (boilerClass.transform[10] == 1)
         {
+            print("boiler type: travel");
             foreach (GameObject obj in boilerPopUp)
             {
                 obj.SetActive(true);

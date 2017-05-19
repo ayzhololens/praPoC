@@ -56,7 +56,7 @@ public class addCommentButton : MonoBehaviour {
                                                                             script.contentParent.GetComponent<RectTransform>().rect.height);
         newItem.GetComponent<offsiteFieldItemValueHolder>().content.text = field.text;
         newItem.GetComponent<offsiteFieldItemValueHolder>().user = metaManager.Instance.user;
-        newItem.GetComponent<offsiteFieldItemValueHolder>().date = metaManager.Instance.date;
+        newItem.GetComponent<offsiteFieldItemValueHolder>().date = metaManager.Instance.date();
 
         script.commentHolder.Add(newItem);
         closeWindow();

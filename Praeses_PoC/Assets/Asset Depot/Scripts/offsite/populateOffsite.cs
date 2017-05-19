@@ -31,10 +31,12 @@ public class populateOffsite : MonoBehaviour {
     void loadCommand()
     {
         databaseMan.Instance.loadDefCmd();
+        databaseMan.Instance.loadValCmd();
     }
 
     public void populateForm()
     {
+        offsiteJSonLoader.Instance.populateAddress();
         offsiteJSonLoader.Instance.populateEquipment();
         offsiteJSonLoader.Instance.equipmentCollapse.toggleBox();
         addNodeFromJSon.Instance.spawnNodeOffsiteList();

@@ -40,7 +40,7 @@ public class submittedViolationController : MonoBehaviour {
         vioPreviewComponent vioPreview = spawnedPreview.GetComponent<vioPreviewComponent>();
         vioPreview.setResolution(index);
         vioPreview.user.text = metaManager.Instance.user;
-        vioPreview.date.text = metaManager.Instance.date;
+        vioPreview.date.text = metaManager.Instance.date();
 
 
         goToResolveVioButton.position = new Vector3(goToResolveVioButton.position.x, goToResolveVioButton.position.y-offsetDist, goToResolveVioButton.position.z);
