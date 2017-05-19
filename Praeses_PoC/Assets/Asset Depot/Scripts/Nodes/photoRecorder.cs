@@ -72,6 +72,8 @@ namespace HoloToolkit.Unity
                 
                 //photoCaptureObject.TakePhotoAsync(OnCapturedPhotoToMemory);
                 Invoke("loadPhoto", 1);
+
+                index += 1;
             }
             else
             {

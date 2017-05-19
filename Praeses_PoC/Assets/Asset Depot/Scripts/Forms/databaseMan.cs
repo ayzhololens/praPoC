@@ -38,7 +38,7 @@ public class databaseMan : Singleton<databaseMan>
         }
         else
         {
-            valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_valuesPopUp.json");
+            valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_values.json");
         }
         saveDir = Path.Combine(Application.persistentDataPath, "savedJson.json");
     }
@@ -200,12 +200,11 @@ public class databaseMan : Singleton<databaseMan>
         //definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
 
         print("jsonDefinitionsLoaded");
-        loadValCmd();
         JU_databaseMan.Instance.loadDefCmd();
 
 
     }
-
+    
     public void loadValCmd()
     {
 #if WINDOWS_UWP
@@ -218,6 +217,7 @@ public class databaseMan : Singleton<databaseMan>
         //values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
 
         print("jsonValuesLoaded");
+        JU_databaseMan.Instance.loadValCmd();
     }
 
     //public void storeNodesList()

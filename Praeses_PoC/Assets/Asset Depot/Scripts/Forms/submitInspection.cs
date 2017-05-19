@@ -30,6 +30,12 @@ public class submitInspection : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void submitInspect()
+    {
+        submitState.Instance.startUpload();
+        databaseMan.Instance.saveCmd();
+    }
     
 
     public void addVioPreview(int index, violationController vioCont)

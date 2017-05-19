@@ -24,6 +24,7 @@ namespace HoloToolkit.Unity
         public List<GameObject> curButtons;
         int currCommentType;
         public bool showUpdate;
+        public bool ignoreDeltaCheck { get; set; }
 
 
 
@@ -135,11 +136,15 @@ namespace HoloToolkit.Unity
 
         public void checkDelta()
         {
-            string tempVal = "(" + Value.text + ")";
-            if (tempVal != previousValue.text)
+            if (!ignoreDeltaCheck)
             {
-                formController.Instance.submitInspection.addChangedValue(DisplayName.text, previousValue.text, Value.text);
+                string tempVal = "(" + Value.text + ")";
+                if (tempVal != previousValue.text)
+                {
+                    formController.Instance.submitInspection.addChangedValue(DisplayName.text, previousValue.text, Value.text);
+                }
             }
+
 
         }
 

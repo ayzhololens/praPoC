@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleMult: 0.005
-  moveMult: 0
+  moveDist: 0
   scale: 1
   move: 0
 --- !u!114 &114038947148813320
@@ -895,6 +895,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114060075258891704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -928,8 +931,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMat: {fileID: 0}
   highlightMat: {fileID: 0}
+  altMat: {fileID: 0}
   isPanel: 1
   panelHighlight: {r: 0, g: 0.7529412, b: 1, a: 1}
+  objectOverride: {fileID: 0}
 --- !u!114 &114077442057018038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1126,8 +1131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMat: {fileID: 2100000, guid: 984d7bd7f14663d4fb347cd58e392b1c, type: 2}
   highlightMat: {fileID: 2100000, guid: 14ebb126784058a4bb56d8241c441a5d, type: 2}
+  altMat: {fileID: 0}
   isPanel: 0
   panelHighlight: {r: 0, g: 0, b: 0, a: 0}
+  objectOverride: {fileID: 0}
 --- !u!114 &114191557401323080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1160,6 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114264521425137520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1280,6 +1288,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 1
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114412441463866546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1552,6 +1563,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
+  clickMotion: 0
+  moveSpeed: 0
+  moveDist: 0
 --- !u!114 &114766434601559324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1580,7 +1594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TagalongDistance: 1.25
-  EnforceDistance: 1
+  EnforceDistance: 0
   PositionUpdateSpeed: 9.8
   SmoothMotion: 1
   SmoothingFactor: 0.75
@@ -1589,6 +1603,7 @@ MonoBehaviour:
   lockSprites:
   - {fileID: 1426222127899950}
   - {fileID: 1544744397207580}
+  locked: 0
 --- !u!114 &114782137539629912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1602,8 +1617,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMat: {fileID: 2100000, guid: 984d7bd7f14663d4fb347cd58e392b1c, type: 2}
   highlightMat: {fileID: 2100000, guid: 14ebb126784058a4bb56d8241c441a5d, type: 2}
+  altMat: {fileID: 0}
   isPanel: 0
   panelHighlight: {r: 0, g: 0, b: 0, a: 0}
+  objectOverride: {fileID: 0}
 --- !u!114 &114809151683939832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1649,7 +1666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleMult: 0.005
-  moveMult: 0
+  moveDist: 0
   scale: 1
   move: 0
 --- !u!114 &114877608294454368
