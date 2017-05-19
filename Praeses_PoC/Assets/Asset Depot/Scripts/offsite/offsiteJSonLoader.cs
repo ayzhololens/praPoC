@@ -32,6 +32,59 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
     public CameraControlOffsite nodesMinimapCam;
     public GameObject metaObject;
 
+    //for address
+    public Text Location;
+    public Text IDNum;
+    public Text Address;
+    public Text CertType;
+
+    public Text inspector;
+    public Text date;
+
+    string certCode;
+    string optionsText;
+    string expDate;
+
+    public void populateAddress()
+    {
+        inspector.text = metaManager.Instance.user;
+        date.text = metaManager.Instance.date();
+
+        Location.text = JU_databaseMan.Instance.definitions.LocationFields.LocationName;
+        IDNum.text = JU_databaseMan.Instance.definitions.LocationFields.LocationID.ToString();
+        if(JU_databaseMan.Instance.definitions.LocationFields.address2 != null)
+        {
+            Address.text = JU_databaseMan.Instance.definitions.LocationFields.address1 + ", " + JU_databaseMan.Instance.definitions.LocationFields.address2;
+        }else
+        {
+            Address.text = JU_databaseMan.Instance.definitions.LocationFields.address1;
+        }
+        foreach (JU_databaseMan.valueItem val in JU_databaseMan.Instance.values.extraData)
+        {
+            if (val.name == "intActivityTypeID")
+            {
+                certCode = val.value;
+            }
+        }
+        foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.ExtraFields.fields)
+        {
+            if (field.Name == "intActivityTypeID")
+            {
+                optionsText = field.Options[certCode];
+            }
+        }
+
+        foreach (JU_databaseMan.valueItem val in JU_databaseMan.Instance.values.equipmentData)
+        {
+            if (val.name == "dtCertExpire")
+            {
+                expDate = val.value;
+            }
+        }
+
+        CertType.text = optionsText + "- Exp: " + expDate;
+    }
+
     public void populateEquipment()
     {
         //definitions

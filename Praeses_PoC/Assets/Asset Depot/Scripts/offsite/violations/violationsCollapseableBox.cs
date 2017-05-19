@@ -34,21 +34,22 @@ public class violationsCollapseableBox : MonoBehaviour {
     {
         dateAddedValue.text = JU_databaseMan.Instance.violationsManager.violations[vioInt].violationDate;
         dueValue.text = JU_databaseMan.Instance.violationsManager.violations[vioInt].resolveDate;
-        string code = JU_databaseMan.Instance.violationsManager.violations[vioInt].category.ToString() + "." 
+        string code = JU_databaseMan.Instance.violationsManager.violations[vioInt].category.ToString() + "."
                     + JU_databaseMan.Instance.violationsManager.violations[vioInt].subCategory.ToString() + "."
                     + JU_databaseMan.Instance.violationsManager.violations[vioInt].specific.ToString();
         string strTitle = JU_databaseMan.Instance.categoryStringer(JU_databaseMan.Instance.violationsManager.violations[vioInt])[2];
         title.text = code + " - " + strTitle;
-        severity.text = violationsLib.Instance.violationsSeverity[JU_databaseMan.Instance.violationsManager.violations[vioInt].severity];
-        if(JU_databaseMan.Instance.violationsManager.violations[vioInt].severity == 3)//fixed
+        if (JU_databaseMan.Instance.violationsManager.violations[vioInt].status == 1)//fixed
         {
             //then color is green
             severityBox.color = new Color(.059f, .545f, .122f);
+            severity.text = violationsLib.Instance.violationsStatus[JU_databaseMan.Instance.violationsManager.violations[vioInt].status];
         }
         else
         {
             //then color is orange
             severityBox.color = new Color(.917f, .443f, .122f);
+            severity.text = violationsLib.Instance.violationsSeverity[JU_databaseMan.Instance.violationsManager.violations[vioInt].severity];
         }
     }
 

@@ -123,7 +123,7 @@ namespace HoloToolkit.Unity
             string tempDate = "";
             for (int i = 0; i < optionContent.Length; i++)
             {
-                if(i!= optionContent.Length-1)
+                if (i != optionContent.Length - 1)
                 {
                     if (optionContent[i].text.Length == 0)
                     {
@@ -146,6 +146,7 @@ namespace HoloToolkit.Unity
                     }
                 }
 
+            tempDate = System.DateTime.Now.AddDays(180).ToString("MM/dd/yyyy");
 
             }
 

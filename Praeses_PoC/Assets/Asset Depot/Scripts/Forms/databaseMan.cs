@@ -3,8 +3,8 @@ using Newtonsoft.Json;
 using System.Collections;
 #endif
 
-//using Newtonsoft.Json;
-//using System.Collections;
+using Newtonsoft.Json;
+using System.Collections;
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -183,8 +183,8 @@ public class databaseMan : Singleton<databaseMan>
         System.IO.File.WriteAllText(saveDir, json);
 #endif
 
-        //string json = JsonConvert.SerializeObject(values, Formatting.Indented);
-        //System.IO.File.WriteAllText(saveDir, json);
+        string json = JsonConvert.SerializeObject(values, Formatting.Indented);
+        System.IO.File.WriteAllText(saveDir, json);
 
         print("jsonSaved");
     }
@@ -196,13 +196,11 @@ public class databaseMan : Singleton<databaseMan>
         definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
 #endif
 
-        //defJsonText = File.ReadAllText(definitionsDir);
-        //definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
+        defJsonText = File.ReadAllText(definitionsDir);
+        definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
 
         print("jsonDefinitionsLoaded");
         JU_databaseMan.Instance.loadDefCmd();
-
-
     }
     
     public void loadValCmd()
@@ -213,8 +211,8 @@ public class databaseMan : Singleton<databaseMan>
         values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
 #endif
 
-        //valJsonText = File.ReadAllText(valuesDir);
-        //values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
+        valJsonText = File.ReadAllText(valuesDir);
+        values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
 
         print("jsonValuesLoaded");
         JU_databaseMan.Instance.loadValCmd();
@@ -324,7 +322,13 @@ public class databaseMan : Singleton<databaseMan>
         }
 
 
-        if (newNode.type == 2)
+        if (newNode.type == 0)
+        {
+            newNode.title = "Simple Text";
+            newNode.description = nodeObj.GetComponent<nodeMediaHolder>().Description.text;
+            newNode.audioPath = nodeObj.GetComponent<nodeMediaHolder>().audioPath;
+        }
+        else if (newNode.type == 2)
         {
             print("ahh");
             newNode.title = nodeObj.GetComponent<nodeController>().linkedField.GetComponent<formFieldController>().DisplayName.text;
@@ -469,7 +473,7 @@ public class databaseMan : Singleton<databaseMan>
         ViolationsClass vioClass = new ViolationsClass();
         vioClass.category = (violation.violationIndices[0].ToString() + "." + violation.violationIndices[1].ToString() + "." + violation.violationIndices[2].ToString());
         vioClass.classifications = violation.violationIndices[3];
-        vioClass.violationDate = metaManager.Instance.date;
+        vioClass.violationDate = metaManager.Instance.dateShort();
         vioClass.status = 1;
         vioClass.resolveDate = violation.violationData[4];
         vioClass.conditions = violation.violationData[5];

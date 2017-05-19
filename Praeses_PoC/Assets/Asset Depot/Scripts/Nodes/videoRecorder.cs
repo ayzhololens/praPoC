@@ -40,7 +40,9 @@ namespace HoloToolkit.Unity
 
         public void startRecordingVideo()
         {
+#if !UNITY_EDITOR
             VideoCapture.CreateAsync(false, OnVideoCaptureCreated);
+#endif
         }
 
 
@@ -97,7 +99,9 @@ namespace HoloToolkit.Unity
 
         public void StopRecordingVideo(bool activateMedia)
         {
+#if !UNITY_EDITOR
             m_VideoCapture.StopRecordingAsync(OnStoppedRecordingVideo);
+#endif
             if (activateMedia)
             {
                 mediaManager.Instance.activateMedia();

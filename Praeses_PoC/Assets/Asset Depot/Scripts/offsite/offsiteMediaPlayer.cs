@@ -40,12 +40,23 @@ public class offsiteMediaPlayer : MonoBehaviour {
             annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = false;
             stopVideo();
             mediaWindow.SetActive(false);
+        }else
+        {
+
         }
+
+    }
+
+    private void OnMouseUp()
+    {
+        if (closer)
+        { }
         else
         {
+            scrollerCheck scrollScript;
             JU_databaseMan.tempComment nullComment = new JU_databaseMan.tempComment();
             int nodeIndex = gameObject.GetComponent<offsiteFieldItemValueHolder>().nodeIndex;
-            foreach(JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
+            foreach (JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
             {
                 if (node.indexNum == nodeIndex)
                 {
@@ -55,58 +66,76 @@ public class offsiteMediaPlayer : MonoBehaviour {
 
             if (currentNode.type == 3)
             {
-                if (gameObject.GetComponent<offsiteFieldItemValueHolder>().comment.type == 1)
+                scrollScript = transform.parent.parent.parent.gameObject.GetComponent<scrollerCheck>();
+
+                if (!scrollScript.clickBlocker)
                 {
-                    mediaPlane.SetActive(true);
-                    mediaPlane.GetComponent<Renderer>().material = thumbMat;
-                    playButton.SetActive(false);
-                }
-                else if(gameObject.GetComponent<offsiteFieldItemValueHolder>().comment.type == 2)
-                {
-                    mediaPlane.SetActive(true);
-                    mediaPlane.GetComponent<Renderer>().material = videoMaterial;
-                    loadVideo();
-                    playButton.SetActive(true);
+                    if (gameObject.GetComponent<offsiteFieldItemValueHolder>().comment.type == 1)
+                    {
+                        mediaPlane.SetActive(true);
+                        mediaPlane.GetComponent<Renderer>().material = thumbMat;
+                        playButton.SetActive(false);
+                    }
+                    else if (gameObject.GetComponent<offsiteFieldItemValueHolder>().comment.type == 2)
+                    {
+                        mediaPlane.SetActive(true);
+                        mediaPlane.GetComponent<Renderer>().material = videoMaterial;
+                        loadVideo();
+                        playButton.SetActive(true);
+                    }
+
+                    nullComment = gameObject.GetComponent<offsiteFieldItemValueHolder>().comment;
+                    violationsParentSpawner.Instance.minimapPlane.GetComponent<Image>().material = violationsParentSpawner.Instance.vioCamMat;
+
+                    guidedTargetObj.targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
+                    guidedTargetObj.smoothZoom(offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum].transform);
+                    mediaPlayerWindowPopulator.Instance.populateMediaPlayerWindow(currentNode, nullComment);
+                    annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = true;
+                    mediaWindow.SetActive(true);
                 }
 
-                nullComment = gameObject.GetComponent<offsiteFieldItemValueHolder>().comment;
-                violationsParentSpawner.Instance.minimapPlane.GetComponent<Image>().material = violationsParentSpawner.Instance.vioCamMat;
             }
             else
             {
                 offsiteJSonLoader.Instance.populateComments(currentNode);
                 annotationsCollapseableBox.Instance.minimapPlane.GetComponent<Image>().material = annotationsCollapseableBox.Instance.nodesCamMat;
+                scrollScript = transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<scrollerCheck>();
+                print(scrollScript.gameObject.name);
+                if (!scrollScript.clickBlocker)
+                {
+                    if (currentNode.type == 0)
+                    {
+                        mediaPlane.SetActive(false);
+                        playButton.SetActive(false);
+                        //print("simple");
+                    }
+                    else if (currentNode.type == 1)
+                    {
+                        mediaPlane.SetActive(true);
+                        mediaPlane.GetComponent<Renderer>().material = photoMaterial;
+                        playButton.SetActive(false);
+                        //print("photo");
+                    }
+                    else if (currentNode.type == 4)
+                    {
+                        mediaPlane.SetActive(true);
+                        mediaPlane.GetComponent<Renderer>().material = videoMaterial;
+                        loadVideo();
+                        playButton.SetActive(true);
+                        //print("video");
+                    }
+                    guidedTargetObj.targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
+                    guidedTargetObj.smoothZoom(offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum].transform);
+                    mediaPlayerWindowPopulator.Instance.populateMediaPlayerWindow(currentNode, nullComment);
+                    annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = true;
+                    mediaWindow.SetActive(true);
+                }
             }
-
-            if (currentNode.type == 0)
-            {
-                mediaPlane.SetActive(false);
-                playButton.SetActive(false);
-                //print("simple");
-            }
-            else if (currentNode.type == 1)
-            {
-                mediaPlane.SetActive(true);
-                mediaPlane.GetComponent<Renderer>().material = photoMaterial;
-                playButton.SetActive(false);
-                //print("photo");
-            }
-            else if (currentNode.type == 4)
-            {
-                mediaPlane.SetActive(true);
-                mediaPlane.GetComponent<Renderer>().material = videoMaterial;
-                loadVideo();
-                playButton.SetActive(true);
-                //print("video");
-            }
-
-            guidedTargetObj.targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
-            guidedTargetObj.smoothZoom(offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum].transform);   
-            mediaPlayerWindowPopulator.Instance.populateMediaPlayerWindow(currentNode, nullComment);
-            annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = true;
-            mediaWindow.SetActive(true);
         }
-    }   
+
+        
+
+    }
 
     void loadVideo()
     {

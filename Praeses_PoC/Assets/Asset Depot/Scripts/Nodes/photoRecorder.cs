@@ -43,7 +43,13 @@ namespace HoloToolkit.Unity
 
         public void CapturePhoto()
         {
+
+#if !UNITY_EDITOR
             PhotoCapture.CreateAsync(false, OnPhotoCaptureCreated);
+#else
+            Invoke("loadPhoto", 1);
+#endif
+
         }
 
 

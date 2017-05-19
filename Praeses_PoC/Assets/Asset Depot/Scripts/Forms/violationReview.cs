@@ -93,7 +93,7 @@ namespace HoloToolkit.Unity
             }
 
             violationSubmittedData[8].text = metaManager.Instance.user;
-            violationSubmittedData[9].text = metaManager.Instance.date;
+            violationSubmittedData[9].text = metaManager.Instance.date();
 
 
             violationControl.goToTab(8);
