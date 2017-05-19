@@ -12,7 +12,7 @@ namespace HoloToolkit.Unity
         [Header("Content and Location")]
         public GameObject contentHolder;
         public Transform contentStartLoc;
-        public GameObject parentNode { get; set; }
+        public GameObject parentNode;
         public GameObject miniNode { get; set; }
         public bool isMiniNode;
         SimpleTagalong nodeTagalong;
@@ -55,7 +55,10 @@ namespace HoloToolkit.Unity
 
         //Open node's content
         public void openNode()
-        {
+        {   
+            //close every node that could be open
+            closeAllNodes(parentNode);
+
             // if mini node, open the parent
             if (isMiniNode)
             {
@@ -64,13 +67,12 @@ namespace HoloToolkit.Unity
                 parentNode.GetComponent<AudioSource>().Play();
                
 
-                //close every node that could be open
-                closeAllNodes(parentNode);
+
             }
             else
             {
                 //close every node that could be open
-                closeAllNodes(gameObject);
+                //closeAllNodes(gameObject);
 
                 //open node content
                 contentOpen = true;
@@ -78,7 +80,8 @@ namespace HoloToolkit.Unity
                 contentHolder.GetComponent<DirectionIndicator>().enabled = true;
                 contentHolder.GetComponent<DirectionIndicator>().hasGazed = false;
                 contentHolder.transform.position = contentStartLoc.position;
-                
+
+                print("open " + gameObject.name);
 
                 if (GetComponent<nodeMediaHolder>().videoNode)
                 {

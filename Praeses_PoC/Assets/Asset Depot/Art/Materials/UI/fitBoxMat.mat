@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: fitBoxMat
-  m_Shader: {fileID: 4800000, guid: 0d08dd59087697b44a68a02cc9a7c3a2, type: 3}
-  m_ShaderKeywords: _EMISSION
+  m_Shader: {fileID: 4800000, guid: 06790e211e4a6df409b1e04bc91c4810, type: 3}
+  m_ShaderKeywords: _EMISSION _USECOLOR_ON
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -74,6 +74,12 @@ Material:
         name: _BumpScale
       second: 1
     - first:
+        name: _ColorWriteMask
+      second: 15
+    - first:
+        name: _Cull
+      second: 2
+    - first:
         name: _Cutoff
       second: 0.5
     - first:
@@ -116,8 +122,17 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _UseColor
+      second: 1
+    - first:
+        name: _UseMainTex
+      second: 0
+    - first:
         name: _WireThickness
       second: 712
+    - first:
+        name: _ZTest
+      second: 4
     - first:
         name: _ZWrite
       second: 1
@@ -127,7 +142,7 @@ Material:
       second: {r: 0, g: 0.39224148, b: 0.625, a: 1}
     - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.36764705, g: 0.7121705, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

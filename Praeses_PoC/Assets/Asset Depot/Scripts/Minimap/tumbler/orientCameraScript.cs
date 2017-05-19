@@ -15,6 +15,11 @@ public class orientCameraScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        if(mainCamera == null)
+        {
+            mainCamera = Camera.main.transform;
+        }
+
         if (onlyY)
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, 
