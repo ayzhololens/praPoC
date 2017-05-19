@@ -13,6 +13,10 @@ public class submittedViolationController : MonoBehaviour {
     public Transform goToResolveVioButton;
     public GameObject resolutionField;
     GameObject spawnedPreview;
+    commentManager vioComManager;
+    public int tempIndex { get; set; }
+    public string resName { get; set; }
+
 
     public float offsetDist;
     
@@ -20,17 +24,33 @@ public class submittedViolationController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        vioComManager = vioController.gameObject.GetComponent<commentManager>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
+    public void setIndex(int index)
+    {
+        tempIndex = index;
+    }
+
+    public void submit()
+    {
+        vioController.violationData.Add(resName);
+        vioController.violationIndices.Add(tempIndex);
+        databaseMan.Instance.syncViolation(vioController);
+    }
+
     public void addPreview(int index)
     {
-
+            if(index == 10)
+            {
+                index = tempIndex;
+            }
 
         Vector3 offset = new Vector3(submittedVioPos.position.x, submittedVioPos.position.y - (previewCount * offsetDist), submittedVioPos.position.z);
         spawnedPreview = Instantiate(submittedVioPrefab, offset, Quaternion.identity);
@@ -60,39 +80,45 @@ public class submittedViolationController : MonoBehaviour {
         int pCounter = 0;
         int vCounter = 0;
 
-        foreach (GameObject activeComment in vioController.gameObject.GetComponent<commentManager>().activeComments)
-        {
-            if (activeComment.GetComponent<commentContents>().isSimple)
-            {
 
-                sCounter += 1;
-                GameObject simpleComment = spawnedPreview.GetComponent<commentManager>().spawnSimpleCommentFromJSON();
-                simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
-                simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-                simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+            foreach (GameObject activeComment in vioController.gameObject.GetComponent<commentManager>().activeComments)
+            {
+                if (activeComment.GetComponent<commentContents>().isSimple)
+                {
+
+                    sCounter += 1;
+                    GameObject simpleComment = spawnedPreview.GetComponent<commentManager>().spawnSimpleCommentFromJSON();
+                    simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
+                    simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+                    simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+
+                }
+                if (activeComment.GetComponent<commentContents>().isVideo)
+                {
+                    vCounter += 1;
+                    GameObject videoComment = spawnedPreview.GetComponent<commentManager>().spawnVideoCommentFromJSON();
+                    videoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+                    videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+                    videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+                }
+                if (activeComment.GetComponent<commentContents>().isPhoto)
+                {
+
+                    pCounter += 1;
+                    GameObject photoComment = spawnedPreview.GetComponent<commentManager>().spawnPhotoCommentFromJSON();
+                    photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;
+                    photoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+                    photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+                    photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+                }
+
 
             }
-            if (activeComment.GetComponent<commentContents>().isVideo)
-            {
-                vCounter += 1;
-                GameObject videoComment = spawnedPreview.GetComponent<commentManager>().spawnVideoCommentFromJSON();
-                videoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
-                videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-                videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-            }
-            if (activeComment.GetComponent<commentContents>().isPhoto)
-            {
+        
 
-                pCounter += 1;
-                GameObject photoComment = spawnedPreview.GetComponent<commentManager>().spawnPhotoCommentFromJSON();
-                photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;
-                photoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
-                photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-                photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-            }
+     
 
 
-        }
 
         vioPreviewComponent preview = spawnedPreview.GetComponent<vioPreviewComponent>();
         if (pCounter > 0)
@@ -135,8 +161,53 @@ public class submittedViolationController : MonoBehaviour {
 
     }
 
+
+    public void updateComManager()
+    {
+        foreach (GameObject activeComment in vioComManager.activeComments)
+        {
+            Destroy(activeComment);
+        }
+        vioComManager.activeComments.Clear();
+
+        foreach (GameObject activeComment in resolutionField.GetComponent<commentManager>().activeComments)
+        {
+            if (activeComment.GetComponent<commentContents>().isSimple)
+            {
+                GameObject simpleComment = vioComManager.spawnSimpleCommentFromJSON();
+                simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
+                simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+                simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+
+                // resolveComs.Add(simpleComment);
+            }
+            if (activeComment.GetComponent<commentContents>().isVideo)
+            {
+                GameObject videoComment = vioComManager.spawnVideoCommentFromJSON();
+                videoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+                videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+                videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+                // resolveComs.Add(videoComment);
+            }
+            if (activeComment.GetComponent<commentContents>().isPhoto)
+            {
+                GameObject photoComment = vioComManager.spawnPhotoCommentFromJSON();
+                photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;
+                photoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+                photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+                photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+
+                //resolveComs.Add(photoComment);
+            }
+        }
+    }
+
     public void setResolveFieldComments()
     {
+
+
+
+            List<GameObject> resolveComs = new List<GameObject>();
         int sCounter = 0;
         int pCounter = 0;
         int vCounter = 0;
@@ -146,7 +217,10 @@ public class submittedViolationController : MonoBehaviour {
             Destroy(activeComment);
         }
 
-        foreach (GameObject activeComment in vioController.gameObject.GetComponent<commentManager>().activeComments)
+
+
+
+            foreach (GameObject activeComment in vioController.gameObject.GetComponent<commentManager>().activeComments)
         {
             if (activeComment.GetComponent<commentContents>().isSimple)
             {
@@ -156,8 +230,7 @@ public class submittedViolationController : MonoBehaviour {
                 simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
                 simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
 
-
-
+               // resolveComs.Add(simpleComment);
             }
             if (activeComment.GetComponent<commentContents>().isVideo)
             {
@@ -166,7 +239,7 @@ public class submittedViolationController : MonoBehaviour {
                 videoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
                 videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
                 videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-
+               // resolveComs.Add(videoComment);
             }
             if (activeComment.GetComponent<commentContents>().isPhoto)
             {
@@ -177,10 +250,12 @@ public class submittedViolationController : MonoBehaviour {
                 photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
                 photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
 
-
+                //resolveComs.Add(photoComment);
             }
 
 
         }
+
+
     }
 }

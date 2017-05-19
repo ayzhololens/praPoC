@@ -1,0 +1,8 @@
+Assembly-CSharp.dll
+UnityEngine.Analytics.dll
+UnityEngine.UI.dll
+UnityEngine.HoloLens.dll
+Newtonsoft.Json.dll
+UnityEngine.Networking.dll
+HoloLensXboxController.dll
+UnityEngine.VR.dll

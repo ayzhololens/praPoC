@@ -7,7 +7,7 @@ using HoloToolkit.Unity;
 
 namespace HoloToolkit.Unity
 {
-    public class mainMenuController : MonoBehaviour {
+    public class mainMenuController : Singleton<mainMenuController> {
 
         public GameObject[] tabs;
         public formContent[] preloadedDataFields;

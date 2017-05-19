@@ -16,6 +16,11 @@ public class followCam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(cameraTra == null)
+        {
+            cameraTra = Camera.main.transform;
+        }
         transform.position = new Vector3(cameraTra.position.x,
                                         initHeight,
                                         cameraTra.position.z);
