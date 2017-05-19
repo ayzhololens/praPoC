@@ -12,7 +12,6 @@ namespace HoloToolkit.Unity
         public GameObject[] tabs;
         public formContent[] preloadedDataFields;
         public GameObject contentHolder;
-        public GameObject aligner;
         public GameObject alignerIndicator;
         bool startedAlignment;
         int curTab;
@@ -116,7 +115,7 @@ namespace HoloToolkit.Unity
 
         public void goBackTab()
         {
-            if (curTab == 3)
+            if (curTab == 3 || curTab == 4)
             {
 
                 goToTab(curTab - 2);

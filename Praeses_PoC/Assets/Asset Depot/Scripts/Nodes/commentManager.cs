@@ -246,6 +246,7 @@ public class commentManager : MonoBehaviour {
         capturingPhoto = true;
         mediaManager.Instance.commentManager = GetComponent<commentManager>();
         mediaManager.Instance.setStatusIndicator("Tap to capture photo");
+        mediaManager.Instance.recordingIndicator.SetActive(true);
 
         //clear source manager
         sourceManager.Instance.sourcePressed = false;
@@ -262,6 +263,7 @@ public class commentManager : MonoBehaviour {
 
         //capture photo, save it, activeMedia() when done
         mediaManager.Instance.photoRecorder.CapturePhoto();
+        mediaManager.Instance.recordingIndicator.SetActive(false);
     }
 
     public void spawnPComment()

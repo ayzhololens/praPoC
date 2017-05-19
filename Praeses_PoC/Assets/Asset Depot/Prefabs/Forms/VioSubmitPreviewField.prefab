@@ -1564,8 +1564,8 @@ MonoBehaviour:
   resolutionBox: {fileID: 1494460088567280}
   resolutionOptions:
   - NEW
-  - NOT FIXED
   - FIXED
+  - NOT FIXED
   - OTHER
   resolutionText: {fileID: 114154011374075266}
   user: {fileID: 114760319303883178}
