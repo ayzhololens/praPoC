@@ -90,6 +90,7 @@ namespace HoloToolkit.Unity
 
         public void spawnMiniNode(GameObject parentNode, int spawnIndex)
         {
+
             //get minimap components, scale and offset it to real space
             minimapSpawn miniMapComponent = minimapSpawn.Instance;
             Vector3 boilerPos = miniMapComponent.boilerPivot;
@@ -105,6 +106,9 @@ namespace HoloToolkit.Unity
             //spawn miniNode and parent it correctly
             GameObject miniNode = Instantiate(miniNodePrefab[spawnIndex], parentNode.transform.position, parentNode.transform.rotation);
             miniNode.GetComponent<nodeController>().parentNode = parentNode;
+
+
+
 
 
             //reset rotator group to position miniNode

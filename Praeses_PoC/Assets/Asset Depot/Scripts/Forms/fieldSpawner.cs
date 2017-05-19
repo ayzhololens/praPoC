@@ -52,12 +52,16 @@ namespace HoloToolkit.Unity
 
             fieldStartPos = mForm.fieldStartPos;
             fieldInitPos = fieldStartPos.localPosition;
+            
 
 
         }
 
         public void populateFields(bool reload)
         {
+
+            MasterForm.GetComponent<formController>().preloadFormData();
+
             populateIF();
             populateED();
             populateLD();
@@ -139,6 +143,7 @@ namespace HoloToolkit.Unity
                     spawnedField.GetComponent<formFieldController>().curButtons[2].GetComponent<formButtonController>().buttonIndex = 2;
 
                     spawnedField.GetComponent<formFieldController>().showUpdate = true;
+                    spawnedField.GetComponent<formFieldController>().ignoreDeltaCheck = true;
                     spawnedField.transform.SetParent(ExtDataParent);
                     submitInspection submitIns = MasterForm.GetComponent<formController>().submitInspection;
                     spawnedField.transform.localPosition = submitIns.issuePos.localPosition;
@@ -219,7 +224,7 @@ namespace HoloToolkit.Unity
                     spawnedField = Instantiate(stringFieldPrefab, transform.position, Quaternion.identity);
                 }
                 spawnedField.GetComponent<formFieldController>().showUpdate = true;
-                print(spawnedField.GetComponent<formFieldController>().showUpdate);
+
                 spawnedField.transform.SetParent(FieldInspectionParent);
                 spawnedField.transform.localPosition = fieldStartPos.localPosition;
                 spawnedField.transform.localScale = stringFieldPrefab.transform.localScale;
@@ -259,6 +264,8 @@ namespace HoloToolkit.Unity
                 spawnedField.GetComponent<formFieldController>().trueName = JU_databaseMan.Instance.definitions.EquipmentData.fields[i].Name;
                 ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
                 EDCollection.Add(spawnedField);
+
+                spawnedField.SetActive(false);
             }
         }
 
@@ -280,6 +287,7 @@ namespace HoloToolkit.Unity
                 spawnedField.GetComponent<formFieldController>().trueName = key;
                 ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
                 LDCollection.Add(spawnedField);
+                spawnedField.SetActive(false);
             }
         }
 

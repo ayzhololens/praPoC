@@ -38,7 +38,7 @@ public class submittedViolationController : MonoBehaviour {
 
     public void addPreview(int index)
     {
-            if(index == 0)
+            if(index == 10)
             {
                 index = tempIndex;
             }

@@ -15,6 +15,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
     public void spawnNode(JU_databaseMan.nodeItem nodeClass)
     {
+        print("hey");
         Vector3 pos = new Vector3(nodeClass.transform[0], nodeClass.transform[1], nodeClass.transform[2]);
         Quaternion rot = new Quaternion(nodeClass.transform[3], nodeClass.transform[4], nodeClass.transform[5], nodeClass.transform[6]);
         Vector3 sca = new Vector3(nodeClass.transform[7], nodeClass.transform[8], nodeClass.transform[9]);
@@ -58,7 +59,11 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                     spawnedNode.GetComponent<nodeController>().contentHolder = fieldSpawner.Instance.MasterForm.GetComponent<formController>().contentHolder;
                     fieldSpawner.Instance.MasterForm.GetComponent<formController>().fieldNodes.Add(spawnedNode);
 
-                    nodeSpawner.Instance.spawnMiniNode(spawnedNode, 4);
+                    if(spawnedNode.GetComponent<nodeController>().miniNode == null)
+                    {
+                        nodeSpawner.Instance.spawnMiniNode(spawnedNode, 4);
+
+                    }
 
                     //link field 
                     if (valueJU.nodeIndex == nodeClass.indexNum)
