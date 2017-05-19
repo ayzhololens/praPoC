@@ -103,6 +103,8 @@ namespace HoloToolkit.Unity
                 + violationControl.violationIndices[2].ToString());
             submittedViolationHolder.SetActive(true);
             submittedViolationHolder.GetComponent<submittedViolationController>().addPreview(0);
+            submittedViolationHolder.GetComponent<submittedViolationController>().tempIndex = 0;
+            submittedViolationHolder.GetComponent<submittedViolationController>().resName = "New";
             addingViolationHolder.SetActive(false);
             violationControl.closeViolation();
 
@@ -111,7 +113,7 @@ namespace HoloToolkit.Unity
             {
                 violatoinSpawner.Instance.successContentHolder.SetActive(true);
                 violatoinSpawner.Instance.successContentHolder.transform.position = this.transform.position;
-                //databaseMan.Instance.syncViolation(violationControl);
+                databaseMan.Instance.syncViolation(violationControl);
 
             }
         }

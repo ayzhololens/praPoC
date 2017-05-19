@@ -198,7 +198,6 @@ public class databaseMan : Singleton<databaseMan>
         definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
 
         print("jsonDefinitionsLoaded");
-        loadValCmd();
         JU_databaseMan.Instance.loadDefCmd();
 
 
@@ -214,9 +213,9 @@ public class databaseMan : Singleton<databaseMan>
 
         valJsonText = File.ReadAllText(valuesDir);
         values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
-        JU_databaseMan.Instance.loadValCmd();
 
         print("jsonValuesLoaded");
+        JU_databaseMan.Instance.loadValCmd();
     }
 
     //public void storeNodesList()

@@ -15,6 +15,8 @@ public class submittedViolationController : MonoBehaviour {
     GameObject spawnedPreview;
     commentManager vioComManager;
     public int tempIndex { get; set; }
+    public string resName { get; set; }
+
 
     public float offsetDist;
     
@@ -34,6 +36,13 @@ public class submittedViolationController : MonoBehaviour {
     public void setIndex(int index)
     {
         tempIndex = index;
+    }
+
+    public void submit()
+    {
+        vioController.violationData.Add(resName);
+        vioController.violationIndices.Add(tempIndex);
+        databaseMan.Instance.syncViolation(vioController);
     }
 
     public void addPreview(int index)
@@ -195,14 +204,7 @@ public class submittedViolationController : MonoBehaviour {
 
     public void setResolveFieldComments()
     {
-        if(vioComManager.CommmentStartPos != resolutionField.GetComponent<commentManager>().CommmentStartPos)
-        {
-            //vioComManager.CommmentStartPos = resolutionField.GetComponent<commentManager>().CommmentStartPos;
-            //vioComManager.commentParent = resolutionField.GetComponent<commentManager>().commentParent;
-            //vioComManager.simpleCommentPrefab = resolutionField.GetComponent<commentManager>().simpleCommentPrefab;
-            //vioComManager.photoCommentPrefab = resolutionField.GetComponent<commentManager>().photoCommentPrefab;
-            //vioComManager.videoCommentPrefab = resolutionField.GetComponent<commentManager>().videoCommentPrefab;
-        }
+
 
 
             List<GameObject> resolveComs = new List<GameObject>();
@@ -254,9 +256,6 @@ public class submittedViolationController : MonoBehaviour {
 
         }
 
-        for(int i = 0; i<resolveComs.Count; i++)
-        {
-            //vioController.gameObject.GetComponent<commentManager>().activeComments.Add(resolveComs[i]);
-        }
+
     }
 }
