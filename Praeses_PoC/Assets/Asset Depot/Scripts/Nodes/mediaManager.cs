@@ -59,6 +59,7 @@ namespace HoloToolkit.Unity
             {
                 //send photo file path to be stored and loaded on node
                 nodeMedia.activeFilepath = photoRecorder.filePath;
+                nodeMedia.fileName = photoRecorder.filename;
                 nodeMedia.loadPhoto(photoRecorder.filePath);
                 fovHider.Instance.toggleFOVHider(false);
 
@@ -68,6 +69,7 @@ namespace HoloToolkit.Unity
                 //send video name to node and load it
                 //using filename instead of path because the media player is set to persistent data path
                 nodeMedia.activeFilepath = vidRecorder.filename;
+                nodeMedia.fileName = vidRecorder.filename;
                 nodeMedia.LoadVideo();
 
             }
@@ -77,7 +79,7 @@ namespace HoloToolkit.Unity
 
             //set user and date
             nodeMedia.User = metaManager.Instance.user;
-            nodeMedia.Date = System.DateTime.Now.ToString();
+            nodeMedia.Date = metaManager.Instance.date();
             currentNode.GetComponent<nodeController>().setUpNode();
 
             print(currentNode);

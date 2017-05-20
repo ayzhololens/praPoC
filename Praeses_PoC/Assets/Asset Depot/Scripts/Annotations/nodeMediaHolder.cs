@@ -13,6 +13,7 @@ namespace HoloToolkit.Unity
 
         public List<string> filepath;
         public string activeFilepath;
+        public string fileName;
         MediaPlayer videoPlayer;
         public List<GameObject> activeComments;
         public GameObject playIcon;

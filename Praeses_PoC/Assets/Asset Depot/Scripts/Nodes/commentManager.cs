@@ -112,7 +112,7 @@ public class commentManager : MonoBehaviour {
         newComment.transform.localPosition = CommmentStartPos.localPosition;
 
         //define comment metas
-        newComment.Date = System.DateTime.Now.ToString();
+        newComment.Date = metaManager.Instance.date();
         newComment.user = metaManager.Instance.user;
         newComment.commentMetaUser.text = newComment.user;
         newComment.commentMetaDate.text = newComment.Date;

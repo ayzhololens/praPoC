@@ -284,7 +284,7 @@ public class databaseMan : Singleton<databaseMan>
             {
                 newMedia.type = 3;
             }
-            newMedia.path = nodeObj.GetComponent<nodeMediaHolder>().activeFilepath;
+            newMedia.path = nodeObj.GetComponent<nodeMediaHolder>().fileName;
             newMedia.user = nodeObj.GetComponent<nodeMediaHolder>().User;
             newMedia.date = nodeObj.GetComponent<nodeMediaHolder>().Date;
             newNode.medias.Add(newMedia);

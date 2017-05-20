@@ -71,7 +71,7 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
             GameObject newItem;
             newItem = Instantiate(violationPrefab);
             newItem.transform.SetParent(parentObj.transform);
-            newItem.GetComponent<RectTransform>().localPosition = new Vector3(0, (totalVio-1) * -175, 0);
+            newItem.GetComponent<RectTransform>().localPosition = new Vector3(0, (totalVio - 1) * -175, 0);
             newItem.GetComponent<RectTransform>().localScale = Vector3.one;
             newItem.GetComponent<violationsCollapseableBox>().vioBox = VioBox.gameObject;
 
@@ -92,14 +92,15 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
             populateVioComments(vio, newItem);
 
             vioCam.lockCam();
-            for(int i =0; i<JU_databaseMan.Instance.nodesManager.nodes.Count; i++)
+            for (int i = 0; i < JU_databaseMan.Instance.nodesManager.nodes.Count; i++)
             {
                 if (JU_databaseMan.Instance.nodesManager.nodes[i].indexNum == vio.nodeIndex)
                 {
-                    if (offsiteJSonLoader.Instance.nodes3DList.ContainsKey(i+1))
+                    if (offsiteJSonLoader.Instance.nodes3DList.ContainsKey(i + 1))
                     {
-                        vioCam.focus(i+1);
-                    }else
+                        vioCam.focus(i + 1);
+                    }
+                    else
                     {
                         print(offsiteJSonLoader.Instance.nodes3DList.Count);
                     }
