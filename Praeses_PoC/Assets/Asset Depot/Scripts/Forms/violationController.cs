@@ -23,6 +23,7 @@ namespace HoloToolkit.Unity
         public violationReview vioReview;
         public GameObject linkedPreview;
         public Transform frontHolder;
+        public bool fromJson { get; set; }
 
         // Use this for initialization
         void Start()

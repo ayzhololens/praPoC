@@ -18,6 +18,8 @@ public class submittedViolationController : MonoBehaviour {
     public string resName { get; set; }
 
 
+
+
     public float offsetDist;
     
     int previewCount;
@@ -70,6 +72,7 @@ public class submittedViolationController : MonoBehaviour {
         Invoke("setPreviewComments", .5f);
 
         formController.Instance.submitInspection.addVioPreview(index, vioController);
+        viewViolationController.Instance.addVioPreview(index, vioController,vioController.fromJson);
 
     }
 

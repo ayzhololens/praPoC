@@ -30,8 +30,7 @@ namespace HoloToolkit.Unity
 
         public void openContent()
         {
-            linkedViolation.GetComponent<violationController>().linkedNode.GetComponent<nodeController>().openNode();
-            viewViolationHolder.GetComponent<viewViolationController>().closeViewer();
+
         }
     }
 }

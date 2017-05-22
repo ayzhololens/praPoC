@@ -58,7 +58,7 @@ public class deleteNode : MonoBehaviour {
                             }
                         }
                     }
-                    node.GetComponent<nodeController>().linkedField.GetComponent<violationController>().linkedPreview.GetComponent<viewViolationContent>().viewViolationHolder.GetComponent<viewViolationController>().vioFields.Remove(node.GetComponent<nodeController>().linkedField.GetComponent<violationController>().linkedPreview);
+
                     DestroyImmediate(node.GetComponent<nodeController>().linkedField.GetComponent<violationController>().linkedPreview);
                     DestroyImmediate(node.GetComponent<nodeController>().linkedField);
 
@@ -101,7 +101,7 @@ public class deleteNode : MonoBehaviour {
                         }
                     }
                 }
-                node.GetComponent<nodeController>().linkedField.GetComponent<violationController>().linkedPreview.GetComponent<viewViolationContent>().viewViolationHolder.GetComponent<viewViolationController>().vioFields.Remove(node.GetComponent<nodeController>().linkedField.GetComponent<violationController>().linkedPreview);
+
                 DestroyImmediate(node.GetComponent<nodeController>().linkedField.GetComponent<violationController>().linkedPreview);
                 DestroyImmediate(node.GetComponent<nodeController>().linkedField);
 
