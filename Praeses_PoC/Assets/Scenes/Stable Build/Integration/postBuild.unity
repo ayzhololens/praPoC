@@ -4453,6 +4453,21 @@ Prefab:
       propertyPath: frontHolder
       value: 
       objectReference: {fileID: 1912778991}
+    - target: {fileID: 114608681545669052, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: m_VideoPath
+      value: C:/Users/jvelez/AppData/LocalLow/DefaultCompany/Praeses_PoC/videoNote.mp4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608681545669052, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: m_VideoLocation
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114955019297564206, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[9].Response.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
   m_IsPrefabParent: 0
@@ -5983,6 +5998,10 @@ Prefab:
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1481852287}
+    - target: {fileID: 1631111141883210, guid: ce33e945c1fb5d7489d025d20ff4bcaf, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce33e945c1fb5d7489d025d20ff4bcaf, type: 2}
   m_IsPrefabParent: 0
@@ -7467,6 +7486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filepath: []
   activeFilepath: 
+  fileName: 
   activeComments: []
   playIcon: {fileID: 0}
   pauseIcon: {fileID: 0}

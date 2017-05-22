@@ -15,7 +15,6 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
     public void spawnNode(JU_databaseMan.nodeItem nodeClass)
     {
-        print("hey");
         Vector3 pos = new Vector3(nodeClass.transform[0], nodeClass.transform[1], nodeClass.transform[2]);
         Quaternion rot = new Quaternion(nodeClass.transform[3], nodeClass.transform[4], nodeClass.transform[5], nodeClass.transform[6]);
         Vector3 sca = new Vector3(nodeClass.transform[7], nodeClass.transform[8], nodeClass.transform[9]);
@@ -152,9 +151,9 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         //h
         else if (nodeClass.type == 3)// type = 3 violation
         {
+            print("eeeeeee");
             violatoinSpawner.Instance.spawnViolationFromJSON(spawnedNode);
             nodeSpawner.Instance.spawnMiniNode(spawnedNode, 3);
-
 
             List<databaseMan.tempComment> tempList = new List<databaseMan.tempComment>();
             List<databaseMan.tempComment> spawnList = new List<databaseMan.tempComment>();
@@ -166,6 +165,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 newItem.user = commentJU.user;
                 newItem.content = commentJU.content;
                 tempList.Add(newItem);
+                Debug.Log("section2");
             }
             foreach (JU_databaseMan.media photoJU in nodeClass.photos)
             {
@@ -174,6 +174,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 newItem.type = 2;
                 newItem.path = photoJU.path;
                 tempList.Add(newItem);
+                Debug.Log("section3");
             }
             foreach (JU_databaseMan.media videoJU in nodeClass.videos)
             {
@@ -182,12 +183,14 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 newItem.type = 3;
                 newItem.path = videoJU.path;
                 tempList.Add(newItem);
+                Debug.Log("section4");
             }
 
             spawnList = tempList.OrderBy(si => si.date).ToList();
 
             foreach (databaseMan.tempComment comment in spawnList.Reverse<databaseMan.tempComment>())
             {
+                Debug.Log("section5");
                 if (comment.type == 1 && spawnedNode.GetComponent<nodeController>().linkedField != null)
                 {
                     GameObject comment3D = spawnedNode.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().spawnSimpleCommentFromJSON();
@@ -226,6 +229,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         }
         else
         {
+            Debug.Log("section6");
             spawnedNode.GetComponent<nodeMediaHolder>().Title.text = nodeClass.title;
             spawnedNode.GetComponent<nodeMediaHolder>().Description.text = nodeClass.description;
             foreach (JU_databaseMan.comment commentJU in nodeClass.comments)

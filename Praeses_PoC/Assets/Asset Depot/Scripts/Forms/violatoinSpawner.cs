@@ -339,10 +339,15 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
     void populateSeverityFromJSON()
     {
+        Debug.Log("section1");
         if (activeViolationController.violationData.Count == 3)
         {
             activeViolationController.violationData.Add(vioLib.violationsSeverity[JU_databaseMan.Instance.violationsManager.violations[0].severity]);
+
+
+            Debug.Log("section3");
             activeViolationController.violationIndices.Add(JU_databaseMan.Instance.violationsManager.violations[0].severity);
+            Debug.Log("section4");
         }
         populateDueDateFromJSON();
     }
