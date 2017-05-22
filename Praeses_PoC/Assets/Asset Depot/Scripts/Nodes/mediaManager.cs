@@ -133,6 +133,7 @@ namespace HoloToolkit.Unity
             isCapturing = true;
             photoCaptureEnabled = true;
             setStatusIndicator("Tap to capture photo");
+            recordingIndicator.SetActive(true);
 
             //clear source manager
             sourceManager.Instance.sourcePressed = false;
@@ -150,6 +151,7 @@ namespace HoloToolkit.Unity
             //capture photo, save it, activeMedia() when done
             photoRecorder.activateMedia = true;
             photoRecorder.CapturePhoto();
+            recordingIndicator.SetActive(false);
         } 
 
         public void enableVideoRecording()

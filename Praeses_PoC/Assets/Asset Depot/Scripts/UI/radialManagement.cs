@@ -271,5 +271,10 @@ namespace HoloToolkit.Unity
             formController.Instance.openForm();
             formController.Instance.goToTab(3);
         }
+
+        public void toggleViewVios()
+        {
+            viewViolationController.Instance.toggleContent();
+        }
     }
 }

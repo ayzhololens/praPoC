@@ -59,6 +59,7 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
 
         //link violation and node
         violationController curVio = spawnedViolation.GetComponent<violationController>();
+        curVio.fromJson = true;
         vioNode.GetComponent<nodeController>().linkedField = spawnedViolation;
         vioNode.GetComponent<nodeController>().contentHolder = curVio.contentHolder;
         curVio.linkedNode = vioNode;
@@ -385,33 +386,5 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
         activeViolationController.goToTab(8);
         //activeViolationController.vioReview.submitReview(true);
         //populatePreviewField();
-    }
-
-
-    public void populatePreviewField()
-    {
-
-        if(activeViolationController.linkedPreview == null)
-        {
-            violationPreview.GetComponent<viewViolationController>().repositionFields();
-            GameObject spawnedPreview = Instantiate(violationPreviewField, violationPreview.transform.position, Quaternion.identity);
-            spawnedPreview.transform.SetParent(violationPreview.GetComponent<viewViolationController>().fieldParent);
-            spawnedPreview.transform.position = violationPreview.GetComponent<viewViolationController>().activePos.position;
-            spawnedPreview.transform.localScale = violationPreviewField.transform.localScale;
-            spawnedPreview.transform.localRotation = violationPreviewField.transform.localRotation;
-            spawnedPreview.GetComponent<viewViolationContent>().linkedViolation = activeViolationController.gameObject;
-            spawnedPreview.GetComponent<viewViolationContent>().viewViolationHolder = violationPreview;
-            activeViolationController.linkedPreview = spawnedPreview;
-            violationPreview.GetComponent<viewViolationController>().vioFields.Add(spawnedPreview);
-        }
-
-        viewViolationContent spawnedContent = activeViolationController.linkedPreview.GetComponent<viewViolationContent>();
-        spawnedContent.ViolationName.text = activeViolationController.violationData[2];
-        spawnedContent.DueDate.text = "Due: " + activeViolationController.violationData[4];
-        spawnedContent.DueDate.text = spawnedContent.DueDate.text.Substring(0, spawnedContent.DueDate.text.Length-11);
-        spawnedContent.Severity.text = "Severity: " + activeViolationController.violationData[3];
-        spawnedContent.metaDate.text = "Added: " + activeViolationController.linkedNode.GetComponent<nodeMediaHolder>().Date;
-        spawnedContent.metaDate.text = spawnedContent.metaDate.text.Substring(0, spawnedContent.metaDate.text.Length - 11);
-
     }
 }
