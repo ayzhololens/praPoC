@@ -100,7 +100,7 @@ namespace HoloToolkit.Unity
 
             if(sourceManager.Instance.sourcePressed && tapToPlaceBoiler)
             {
-                print("eh");
+
                 LockBoiler();
             }
 
