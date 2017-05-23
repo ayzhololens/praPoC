@@ -117,11 +117,11 @@ namespace HoloToolkit.Unity
             if (CertType != null)
             {
 
-                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.extraData)
+                foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.equipmentData)
                 {
                     if (valueItem.name == "intActivityTypeID")
                     {
-                        foreach (JU_databaseMan.fieldItem fieldItem in database.definitions.ExtraFields.fields)
+                        foreach (JU_databaseMan.fieldItem fieldItem in database.definitions.EquipmentData.fields)
                         {
                             if (fieldItem.Name == "intActivityTypeID")
                             {

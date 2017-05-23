@@ -151,7 +151,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         //h
         else if (nodeClass.type == 3)// type = 3 violation
         {
-            print("eeeeeee");
+
             violatoinSpawner.Instance.spawnViolationFromJSON(spawnedNode);
             nodeSpawner.Instance.spawnMiniNode(spawnedNode, 3);
 
@@ -165,7 +165,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 newItem.user = commentJU.user;
                 newItem.content = commentJU.content;
                 tempList.Add(newItem);
-                Debug.Log("section2");
+
             }
             foreach (JU_databaseMan.media photoJU in nodeClass.photos)
             {
@@ -174,7 +174,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 newItem.type = 2;
                 newItem.path = photoJU.path;
                 tempList.Add(newItem);
-                Debug.Log("section3");
+
             }
             foreach (JU_databaseMan.media videoJU in nodeClass.videos)
             {
@@ -190,7 +190,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
             foreach (databaseMan.tempComment comment in spawnList.Reverse<databaseMan.tempComment>())
             {
-                Debug.Log("section5");
+
                 if (comment.type == 1 && spawnedNode.GetComponent<nodeController>().linkedField != null)
                 {
                     GameObject comment3D = spawnedNode.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().spawnSimpleCommentFromJSON();
@@ -229,7 +229,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         }
         else
         {
-            Debug.Log("section6");
+
             spawnedNode.GetComponent<nodeMediaHolder>().Title.text = nodeClass.title;
             spawnedNode.GetComponent<nodeMediaHolder>().Description.text = nodeClass.description;
             foreach (JU_databaseMan.comment commentJU in nodeClass.comments)

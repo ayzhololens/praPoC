@@ -100,19 +100,32 @@ namespace HoloToolkit.Unity
                 // distribute historic values in field parentheses
                 foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.historicData)
                 {
+                    print(valueItem.name);
                     ActiveFields[valueItem.name].GetComponent<formFieldController>().nodeIndex = valueItem.nodeIndex;
-
+                    print("arfter");
                     if (ActiveFields.ContainsKey(valueItem.name))
                     {
                         //correct naming
                         foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.EquipmentData.fields)
                         {
-                            ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + valueItem.value + ")");
-
+                            if (field.Options.ContainsKey(valueItem.value))
+                            {
+                                ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + valueItem.value + ")");
+                            }
                         }
 
                         foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.InspectionFields.fields)
                         {
+                            if (field.Options.ContainsKey(valueItem.value))
+                            {
+                                ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + field.Options[valueItem.value] + ")");
+                            }
+                        }
+
+                        foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.ExtraFields.fields)
+                        {
+                            print(field.Name);
+
                             if (field.Options.ContainsKey(valueItem.value))
                             {
                                 ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + field.Options[valueItem.value] + ")");
@@ -133,14 +146,44 @@ namespace HoloToolkit.Unity
                 GameObject spawnedField;
                 if (JU_databaseMan.Instance.definitions.ExtraFields.fields[i].FieldType == 16)
                 {
+
+
+
+                    //spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
+                    //spawnedField.GetComponent<formFieldController>().populateButtons(3);
+                    //spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonText.text = "Yes";
+                    //spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonIndex = 1;
+                    //spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonText.text = "No";
+                    //spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonIndex = 0;
+                    //spawnedField.GetComponent<formFieldController>().curButtons[2].GetComponent<formButtonController>().buttonText.text = "Other";
+                    //spawnedField.GetComponent<formFieldController>().curButtons[2].GetComponent<formButtonController>().buttonIndex = 2;
+
+                    
+
                     spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
-                    spawnedField.GetComponent<formFieldController>().populateButtons(3);
-                    spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonText.text = "Yes";
-                    spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonIndex = 1;
-                    spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonText.text = "No";
-                    spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonIndex = 0;
-                    spawnedField.GetComponent<formFieldController>().curButtons[2].GetComponent<formButtonController>().buttonText.text = "Other";
-                    spawnedField.GetComponent<formFieldController>().curButtons[2].GetComponent<formButtonController>().buttonIndex = 2;
+
+                    spawnedField.GetComponent<formFieldController>().populateButtons(JU_databaseMan.Instance.definitions.ExtraFields.fields[i].Options.Count);
+
+                    List<string> keyCollection = new List<string>();
+                    foreach (string keyIn in JU_databaseMan.Instance.definitions.ExtraFields.fields[i].Options.Keys)
+                    {
+                        keyCollection.Add(keyIn);
+
+                    }
+                    List<int> keyInts = new List<int>();
+                    foreach (string keyStr in keyCollection)
+                    {
+                        int temp = int.Parse(keyStr);
+                        keyInts.Add(temp);
+                    }
+                    for (int m = 0; m < keyCollection.Count; m++)
+                    {
+
+
+                        spawnedField.GetComponent<formFieldController>().curButtons[m].GetComponent<formButtonController>().buttonText.text = (JU_databaseMan.Instance.definitions.ExtraFields.fields[i].Options[keyCollection[m]]);
+                        spawnedField.GetComponent<formFieldController>().curButtons[m].GetComponent<formButtonController>().buttonIndex = keyInts[m];
+                    }
+
 
                     spawnedField.GetComponent<formFieldController>().showUpdate = true;
                     spawnedField.GetComponent<formFieldController>().ignoreDeltaCheck = true;
@@ -149,6 +192,9 @@ namespace HoloToolkit.Unity
                     spawnedField.transform.localPosition = submitIns.issuePos.localPosition;
                     spawnedField.transform.localScale = submitIns.issuePos.localScale;
                     spawnedField.transform.localEulerAngles = new Vector3(0, 0, 0);
+
+
+
 
                     for (int o = 3; o < submitIns.contents.Length; o++)
                     {

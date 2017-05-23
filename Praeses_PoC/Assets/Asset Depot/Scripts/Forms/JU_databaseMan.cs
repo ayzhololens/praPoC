@@ -306,10 +306,8 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
             {
                 values.extraData.Add(newValueItem);
             }
-            else
-            {
-                values.historicData.Add(newValueItem);
-            }
+            values.historicData.Add(newValueItem);
+
         }
     }
 

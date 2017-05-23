@@ -113,7 +113,7 @@ namespace HoloToolkit.Unity
 
         public void preloadFormData()
         {
-            print("e");
+
             for (int i = 0; i < preloadedData.Length; i++)
             {
                 preloadedData[i].loadDetails();

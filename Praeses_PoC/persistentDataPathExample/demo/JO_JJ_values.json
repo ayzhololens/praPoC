@@ -69,6 +69,16 @@
                   "value":"F14H20295130",
                   "nodeIndex":0
                },
+			   {
+                  "name":"intActivityTypeID",
+                  "value":"6",
+                  "nodeIndex":0
+               },
+			   {
+                  "name":"dtActivityDate",
+                  "value":"08/09/2016",
+                  "nodeIndex":0
+               },
                {
                   "name":"strOwnerNumber",
                   "value":null,
@@ -78,11 +88,7 @@
             "PreviousInspection":[
                {
                   "InspectionData":[
-                     {
-                        "name":"intActivityTypeID",
-                        "value":"6",
-                        "nodeIndex":0
-                     },
+
                      {
                         "name":"intActivityInspectSV1Capacity",
                         "value":"1300000",
@@ -91,11 +97,6 @@
                      {
                         "name":"intActivityInspectSVCapacityBasedOnID",
                         "value":"240463",
-                        "nodeIndex":0
-                     },
-                     {
-                        "name":"dtActivityDate",
-                        "value":"08/09/2016",
                         "nodeIndex":0
                      },
                      {
