@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: boilerMat
+  m_Name: contentMatLightGreen_kh
   m_Shader: {fileID: 4800000, guid: b21aa08825c93084cb4072b24fc90532, type: 3}
   m_ShaderKeywords: _EMISSION _USECOLOR_ON
   m_LightmapFlags: 1
@@ -54,7 +54,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 89756d2e84d7799499b64043123ddf38, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -128,6 +128,9 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _UseBumpMap
+      second: 0
+    - first:
         name: _UseColor
       second: 1
     - first:
@@ -137,9 +140,6 @@ Material:
         name: _UseMainTex
       second: 0
     - first:
-        name: _WireThickness
-      second: 544
-    - first:
         name: _ZTest
       second: 4
     - first:
@@ -147,14 +147,8 @@ Material:
       second: 1
     m_Colors:
     - first:
-        name: _BaseColor
-      second: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 1}
-    - first:
         name: _Color
-      second: {r: 0.5661765, g: 0.5661765, b: 0.5661765, a: 1}
+      second: {r: 0.63529414, g: 0.45172414, b: 0.21663532, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _WireColor
-      second: {r: 0.7058823, g: 0.7058823, b: 0.7058823, a: 1}
