@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: contentMatGreen
-  m_Shader: {fileID: 4800000, guid: 06790e211e4a6df409b1e04bc91c4810, type: 3}
-  m_ShaderKeywords: _EMISSION _USECOLOR_ON
+  m_Shader: {fileID: 4800000, guid: 5f798bc89d23aaa43bc6d51e147b544a, type: 3}
+  m_ShaderKeywords: _EMISSION _USECOLOR_ON _USEEMISSIONTEX_ON
   m_LightmapFlags: 1
   m_CustomRenderQueue: 998
   stringTagMap: {}
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _EmissionTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 485bbdbd55d675e498cfd471b1c75481, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -95,6 +95,9 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _GlossAmount
+      second: 0.1
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
@@ -119,6 +122,9 @@ Material:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
+        name: _SpecularAmount
+      second: 0.05
+    - first:
         name: _SpecularHighlights
       second: 1
     - first:
@@ -134,10 +140,19 @@ Material:
         name: _UseColor
       second: 1
     - first:
-        name: _UseEmissionTex
+        name: _UseDiffuse
       second: 0
     - first:
+        name: _UseEmissionColor
+      second: 0
+    - first:
+        name: _UseEmissionTex
+      second: 1
+    - first:
         name: _UseMainTex
+      second: 0
+    - first:
+        name: _UseSpecular
       second: 0
     - first:
         name: _ZTest
@@ -152,3 +167,9 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _MainColor
+      second: {r: 0, g: 0.2073023, b: 0.41176468, a: 1}
+    - first:
+        name: _SpecularColor
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}

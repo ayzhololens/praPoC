@@ -1,0 +1,279 @@
+{  
+  "Location":{  
+    "LocationID":164159,
+    "LocationName":"Microsoft Corp. Bldg 34 Cafe",
+    "Address":{  
+      "address1":"3720 159th Ave NE",
+      "address2":null,
+      "City":"Redmond",
+      "County":"King",
+      "Country":"USA",
+      "State":"WA",
+      "Zip":"98052-6306"
+    },  "Equipment":[
+         {
+            "EquipmentData":[
+               {
+                  "name":"strJurisNumber",
+                  "value":"07120-14W",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"dtCertExpire",
+                  "value":"09/09/2016",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"strNBNumber",
+                  "value":"295130",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"intObjCategoryID",
+                  "value":"2",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"intObjID",
+                  "value":"5719550",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"intObjStatusId",
+                  "value":"123",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"fltSV1SizeIn",
+                  "value":"1912000",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"intObjSizeTypeID",
+                  "value":"251775",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"intObjTypeId",
+                  "value":"252243",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"intStampedMAWP",
+                  "value":"160",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"strOtherNumber",
+                  "value":"F14H20295130",
+                  "nodeIndex":0
+               },
+			   {
+                  "name":"intActivityTypeID",
+                  "value":"6",
+                  "nodeIndex":0
+               },
+			   {
+                  "name":"dtActivityDate",
+                  "value":"08/09/2016",
+                  "nodeIndex":0
+               },
+               {
+                  "name":"strOwnerNumber",
+                  "value":null,
+                  "nodeIndex":0
+               }
+            ],
+        "PreviousInspection":[  
+          {  
+            "InspectionData":[  
+              {  
+                "name":"intActivityTypeID",
+                "value":"6",
+                "nodeIndex":0
+              },
+              {  
+                "name":"intActivityInspectSV1Capacity",
+                "value":"1300000",
+                "nodeIndex":2
+              },
+              {  
+                "name":"intActivityInspectSVCapacityBasedOnID",
+                "value":"240463",
+                "nodeIndex":0
+              },
+              {  
+                "name":"dtActivityDate",
+                "value":"08/09/2016",
+                "nodeIndex":0
+              },
+              {  
+                "name":"intActivityInspectBoilerSVSetPoint",
+                "value":"30",
+                "nodeIndex":0
+              },
+              {  
+                "name":"intObjBoilerPressureAllowed",
+                "value":"160",
+                "nodeIndex":1
+              },
+              {  
+                "name":"blnIssueCertOK",
+                "value":"1",
+                "nodeIndex":0
+              }
+            ]
+          }
+        ],
+        "CurrentInspection":[  
+          {  
+            "name":"intActivityTypeID",
+            "value":"5",
+            "nodeIndex":0
+          },
+          {  
+            "name":"intObjBoilerPressureAllowed",
+            "value":"161",
+            "nodeIndex":0
+          }
+        ],
+        "Violations":[
+          {
+            "category": "1.1.23",
+            "classifications": 1,
+            "violationDate": "01/23/2016",
+            "status": 1,
+            "resolveDate": "07/04/2017",
+            "requirements": "Install or repair or replace item in accordance with State Law & Regs, ASME BPV Code, National Board Inspection Code and Manufacturer Specifications.",
+            "conditions": "Low Water Cutoff is not installed or installed incorrectly or inoperable or damaged or leaking.",
+            "nodeIndex": 4
+          }
+        ],
+        "Nodes":[  
+          {  
+            "transform":[  
+              -0.057,
+              0.343,
+              -0.032,
+              -0.252,
+              0.0,
+              0.660,
+              0.7071,
+              0.11,
+              0.11,
+              0.11
+            ],
+            "title":"intObjBoilerPressureAllowed",
+            "user":"Nina Garcia",
+            "date":"01/04/17 2:17 PM",
+            "description":"",
+            "audioPath":"",
+            "comments":[  
+
+            ],
+            "medias":[  
+            
+            ],
+            "indexNum":1,
+            "type":2
+          },
+          {  
+            "transform":[  
+              0.051,
+              0.335,
+              -0.011,
+              -0.0432,
+              0.0,
+              -0.7057,
+              0.7071,
+              0.11,
+              0.11,
+              0.11
+            ],
+            "title":"intActivityInspectSV1Capacity",
+            "user":"Nina Garcia",
+            "date":"01/04/17 2:17 PM",
+            "description":"",
+            "audioPath":"",
+            "comments":[  
+
+            ],
+            "medias":[  
+
+            ],
+            "indexNum":2,
+            "type":2
+          },
+          {  
+            "transform":[  
+              0.0284,
+              0.0736,
+              0.055,
+              0.630,
+              0.0,
+              -0.321,
+              0.707,
+              0.11,
+              0.11,
+              0.11
+            ],
+            "title":"Rust",
+            "user":"Nina Garcia",
+            "date":"01/04/17 2:19 PM",
+            "description":"Rust accumulation on handhold",
+            "audioPath":"",
+            "comments":[  
+
+            ],
+            "medias":[  
+              {  
+                "type":3,
+                "path":"videoNote.mp4",
+                "user":"Nina Garcia",
+                "date":"01/04/17 2:20 PM"
+              }
+            ],
+            "indexNum":3,
+            "type":4
+          },
+          {  
+            "transform":[  
+              -0.062,
+              0.240,
+              -0.002,
+              -0.110,
+              0.0,
+              0.698,
+              0.7071,
+              0.11,
+              0.11,
+              0.11
+            ],
+            "title":"Water Leakage",
+            "user":"Nina Garcia",
+            "date":"01/04/17 2:30 PM",
+            "description":"",
+            "audioPath":"",
+            "comments":[  
+              {  
+                "content":"Water Level Indicator Glass is dirty, unable to determine water level. The glass needs to be replaced.",
+                "user":"Nina Garcia",
+                "date":"01/04/17 2:30 PM"
+              }
+            ],
+            "medias":[  
+              {  
+                "type":2,
+                "path":"violationPhoto.jpg",
+                "user":"Nina Garcia",
+                "date":"01/04/17 2:30 PM"
+              }
+            ],
+            "indexNum":4,
+            "type":3
+          }
+        ]
+      }
+    ]
+  }
+}

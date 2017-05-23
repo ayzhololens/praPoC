@@ -234,7 +234,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
             spawnedNode.GetComponent<nodeMediaHolder>().Description.text = nodeClass.description;
             foreach (JU_databaseMan.comment commentJU in nodeClass.comments)
             {
-                GameObject comment3D = spawnedNode.GetComponent<commentManager>().spawnNewCommentFromJSon();
+                GameObject comment3D = spawnedNode.GetComponent<commentManager>().spawnSimpleCommentFromJSON();
 
                 comment3D.GetComponent<commentContents>().Date = commentJU.date;
                 comment3D.GetComponent<commentContents>().user = commentJU.user;

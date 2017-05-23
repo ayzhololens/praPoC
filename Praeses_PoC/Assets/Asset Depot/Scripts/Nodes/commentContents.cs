@@ -23,6 +23,7 @@ namespace HoloToolkit.Unity
         public InputField inputField;
         public string filepath;
         public string fileName { get; set; }
+        public commentManager linkedComManager { get; set; }
         public GameObject linkedComponent;
         bool startedVideo;
         public GameObject playIcon;
@@ -32,6 +33,8 @@ namespace HoloToolkit.Unity
         public Material vidMat;
         public Material vidThumbMat;
         public Material thumbMat;
+        Vector3 initPos;
+        public float expandScale;
 
         // Use this for initialization
         void Start() {
@@ -144,6 +147,32 @@ namespace HoloToolkit.Unity
                 GetComponent<Renderer>().material = thumbMat;
 
             }
+        }
+
+        public void expandComment()
+        {
+            initPos = transform.localPosition;
+
+            for (int i = 0; i<linkedComManager.activeComments.Count; i++)
+            {
+                linkedComManager.activeComments[i].SetActive(false);
+            }
+            transform.localPosition = linkedComManager.expandPos.localPosition ;
+            transform.localScale *= expandScale;
+
+
+        }
+
+        public void contractComment()
+        {
+            for (int i = 0; i < linkedComManager.activeComments.Count; i++)
+            {
+                linkedComManager.activeComments[i].SetActive(true);
+            }
+            transform.localPosition = initPos;
+            transform.localScale /= expandScale;
+
+
         }
     }
 }

@@ -12,7 +12,7 @@ public class commentManager : MonoBehaviour {
     public int commentCount;
     public Transform commentParent;
     public Transform CommmentStartPos;
-    Vector3 startPos;
+    public Transform expandPos;
     public GameObject simpleCommentPrefab;
     public GameObject videoCommentPrefab;
     public GameObject photoCommentPrefab;
@@ -112,6 +112,7 @@ public class commentManager : MonoBehaviour {
         newComment.transform.localPosition = CommmentStartPos.localPosition;
 
         //define comment metas
+        newComment.linkedComManager = this;
         newComment.Date = metaManager.Instance.date();
         newComment.user = metaManager.Instance.user;
         newComment.commentMetaUser.text = newComment.user;
@@ -370,39 +371,7 @@ public class commentManager : MonoBehaviour {
     }
 
 
-    public virtual  GameObject spawnNewCommentFromJSon()
-    {
-        GameObject output;
 
-        startPos = CommmentStartPos.position;
-        if (commentCount == 0)
-        {
-            commentParent.parent.gameObject.SetActive(true);
-        }
-
-        if (commentCount == 2)
-        {
-            //scrollBoxCollider.enabled = true;
-        }
-
-        for (int i = 0; i < activeComments.Count; i++)
-        {
-            activeComments[i].transform.position = new Vector3(activeComments[i].transform.position.x,
-                                                                activeComments[i].transform.position.y - offsetDist,
-                                                                activeComments[i].transform.position.z);
-        }
-
-        activeComments.Add((GameObject)Instantiate(simpleCommentPrefab, transform.position, Quaternion.identity));
-        activeComments[commentCount].transform.SetParent(commentParent);
-        activeComments[commentCount].transform.localScale = simpleCommentPrefab.transform.localScale;
-        activeComments[commentCount].transform.position = startPos;
-        activeComments[commentCount].transform.localRotation = CommmentStartPos.localRotation;
-        output = activeComments[commentCount];
-        GetComponent<nodeMediaHolder>().activeComments.Add(activeComments[commentCount]);
-        activeComments[commentCount].GetComponent<commentContents>().linkedComponent = this.gameObject;
-        commentCount += 1;
-        return output;
-    }
 
     void fieldActivator()
     {
