@@ -43,11 +43,12 @@ namespace HoloToolkit.Unity
         public void wipeObjects()
         {
 
-            for (int i = 0; i < reloadedObjects.Length; i++)
+            for (int i = 0; i < 1; i++)
             {
                 //clearedObjs.Add(reloadedObjects[i]);
                 DestroyImmediate(clearedObjs[i]);
                 GameObject newObj = Instantiate(reloadedObjects[i], transform.position, transform.rotation);
+                newObj.transform.position = Camera.main.transform.forward;
                 clearedObjs.Clear();
                 clearedObjs.Add(newObj);
             }

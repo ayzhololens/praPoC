@@ -124,11 +124,11 @@ namespace HoloToolkit.Unity
         public void lockNodePlacement()
         {
 
-            print("locpos, x: " + spawnedNode.transform.localPosition.x + ", y: " + spawnedNode.transform.localPosition.y + ", z: " + spawnedNode.transform.localPosition.z);
-            print("locrot, x: " + spawnedNode.transform.localRotation.x + ", y: " + spawnedNode.transform.localRotation.y + ", z: " + spawnedNode.transform.localRotation.z + ", w: " + spawnedNode.transform.localRotation.w);
-            print("locscale, x: " + spawnedNode.transform.localScale.x + ", y: " + spawnedNode.transform.localScale.y + ", z: " + spawnedNode.transform.localScale.z);
-            print("wpos, x: " + spawnedNode.transform.position.x + ", y: " + spawnedNode.transform.position.y + ", z: " + spawnedNode.transform.position.z);
-            print("wrot, x: " + spawnedNode.transform.rotation.x + ", y: " + spawnedNode.transform.rotation.y + ", z: " + spawnedNode.transform.rotation.z + ", w: " + spawnedNode.transform.rotation.w);
+            //print("locpos, x: " + spawnedNode.transform.localPosition.x + ", y: " + spawnedNode.transform.localPosition.y + ", z: " + spawnedNode.transform.localPosition.z);
+            //print("locrot, x: " + spawnedNode.transform.localRotation.x + ", y: " + spawnedNode.transform.localRotation.y + ", z: " + spawnedNode.transform.localRotation.z + ", w: " + spawnedNode.transform.localRotation.w);
+            //print("locscale, x: " + spawnedNode.transform.localScale.x + ", y: " + spawnedNode.transform.localScale.y + ", z: " + spawnedNode.transform.localScale.z);
+            //print("wpos, x: " + spawnedNode.transform.position.x + ", y: " + spawnedNode.transform.position.y + ", z: " + spawnedNode.transform.position.z);
+            //print("wrot, x: " + spawnedNode.transform.rotation.x + ", y: " + spawnedNode.transform.rotation.y + ", z: " + spawnedNode.transform.rotation.z + ", w: " + spawnedNode.transform.rotation.w);
 
 
             placingInProgress = false;
