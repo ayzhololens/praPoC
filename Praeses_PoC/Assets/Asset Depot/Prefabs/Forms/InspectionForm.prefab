@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4309545218686272}
   - component: {fileID: 65268754770126394}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: BackPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3618,8 +3618,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054354673479204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0081, y: -0.161, z: 0.02}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.068, y: -0.161, z: -0.0046}
+  m_LocalScale: {x: 1.4718115, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4473048301072892}
   m_RootOrder: 9
@@ -7723,6 +7723,7 @@ MonoBehaviour:
   vidMat: {fileID: 2100000, guid: 40d52c679136afa47b84c82b28c489ad, type: 2}
   vidThumbMat: {fileID: 2100000, guid: e95a922f0483fe644b152474cfa971a2, type: 2}
   thumbMat: {fileID: 0}
+  expandScale: 0
 --- !u!114 &114007306182122816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8294,6 +8295,7 @@ MonoBehaviour:
   vidMat: {fileID: 0}
   vidThumbMat: {fileID: 0}
   thumbMat: {fileID: 0}
+  expandScale: 0
 --- !u!114 &114149774392120328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9114,6 +9116,7 @@ MonoBehaviour:
   vidMat: {fileID: 2100000, guid: 40d52c679136afa47b84c82b28c489ad, type: 2}
   vidThumbMat: {fileID: 2100000, guid: e95a922f0483fe644b152474cfa971a2, type: 2}
   thumbMat: {fileID: 0}
+  expandScale: 0
 --- !u!114 &114316595897138364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11770,6 +11773,7 @@ MonoBehaviour:
   vidMat: {fileID: 0}
   vidThumbMat: {fileID: 0}
   thumbMat: {fileID: 0}
+  expandScale: 0
 --- !u!114 &114801241789849508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12497,6 +12501,7 @@ MonoBehaviour:
   commentCount: 0
   commentParent: {fileID: 4854033320150248}
   CommmentStartPos: {fileID: 4782637589766928}
+  expandPos: {fileID: 0}
   simpleCommentPrefab: {fileID: 1286874945437498, guid: 77208e696eee1014d8676bd85a450bff,
     type: 2}
   videoCommentPrefab: {fileID: 1384820107043936, guid: 9a097846d0044934fb43c51fe711c367,
@@ -12707,6 +12712,7 @@ MonoBehaviour:
   vidMat: {fileID: 2100000, guid: 40d52c679136afa47b84c82b28c489ad, type: 2}
   vidThumbMat: {fileID: 2100000, guid: e95a922f0483fe644b152474cfa971a2, type: 2}
   thumbMat: {fileID: 0}
+  expandScale: 0
 --- !u!114 &114966501333935618
 MonoBehaviour:
   m_ObjectHideFlags: 1

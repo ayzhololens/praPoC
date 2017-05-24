@@ -34,7 +34,11 @@ namespace HoloToolkit.Unity
         public Material vidThumbMat;
         public Material thumbMat;
         Vector3 initPos;
+        public GameObject expandIndicator;
+        public GameObject exit;
         public float expandScale;
+        bool expanded;
+
 
         // Use this for initialization
         void Start() {
@@ -149,14 +153,44 @@ namespace HoloToolkit.Unity
             }
         }
 
+        public void revealExpansion()
+        {
+            if (!expanded)
+            {
+                expandIndicator.SetActive(true);
+
+            }
+        }
+        public void hideExpansion()
+        {
+            if (!expanded)
+            {
+                expandIndicator.SetActive(false);
+            }
+            
+        }
+
         public void expandComment()
         {
             initPos = transform.localPosition;
 
             for (int i = 0; i<linkedComManager.activeComments.Count; i++)
             {
-                linkedComManager.activeComments[i].SetActive(false);
+                if(linkedComManager.activeComments[i] != this.gameObject)
+                {
+                    linkedComManager.activeComments[i].SetActive(false);
+
+                }
             }
+
+            if (isVideo)
+            {
+                playIcon.SetActive(true);
+            }
+
+            expanded = true;
+            expandIndicator.SetActive(false);
+            exit.SetActive(true);
             transform.localPosition = linkedComManager.expandPos.localPosition ;
             transform.localScale *= expandScale;
 
@@ -167,8 +201,19 @@ namespace HoloToolkit.Unity
         {
             for (int i = 0; i < linkedComManager.activeComments.Count; i++)
             {
-                linkedComManager.activeComments[i].SetActive(true);
+                if (linkedComManager.activeComments[i] != this.gameObject)
+                {
+                    linkedComManager.activeComments[i].SetActive(true);
+
+                }
             }
+
+            if (isVideo)
+            {
+                playIcon.SetActive(false);
+            }
+            expanded = false;
+            exit.SetActive(false);
             transform.localPosition = initPos;
             transform.localScale /= expandScale;
 
