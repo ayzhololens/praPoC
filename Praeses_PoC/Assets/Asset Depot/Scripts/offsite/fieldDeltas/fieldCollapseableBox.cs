@@ -31,11 +31,6 @@ public class fieldCollapseableBox : Singleton<fieldCollapseableBox> {
         List<JU_databaseMan.valueItem> tempItemValuesList = new List<JU_databaseMan.valueItem>();
         List<JU_databaseMan.fieldItem> tempItemDefinitionsList = new List<JU_databaseMan.fieldItem>();
 
-        foreach (JU_databaseMan.valueItem extra in JU_databaseMan.Instance.values.extraData)
-        {
-            tempItemValuesList.Add(extra);
-        }
-
         foreach (JU_databaseMan.valueItem hist in JU_databaseMan.Instance.values.historicData)
         {
             tempItemValuesList.Add(hist);

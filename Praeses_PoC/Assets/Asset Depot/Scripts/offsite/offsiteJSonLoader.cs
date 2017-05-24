@@ -52,14 +52,15 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
 
         Location.text = JU_databaseMan.Instance.definitions.LocationFields.LocationName;
         IDNum.text = JU_databaseMan.Instance.definitions.LocationFields.LocationID.ToString();
-        if(JU_databaseMan.Instance.definitions.LocationFields.address2 != null)
+        if (JU_databaseMan.Instance.definitions.LocationFields.address2 != null)
         {
             Address.text = JU_databaseMan.Instance.definitions.LocationFields.address1 + ", " + JU_databaseMan.Instance.definitions.LocationFields.address2;
-        }else
+        }
+        else
         {
             Address.text = JU_databaseMan.Instance.definitions.LocationFields.address1;
         }
-        foreach (JU_databaseMan.valueItem val in JU_databaseMan.Instance.values.extraData)
+        foreach (JU_databaseMan.valueItem val in JU_databaseMan.Instance.values.equipmentData)
         {
             if (val.name == "intActivityTypeID")
             {

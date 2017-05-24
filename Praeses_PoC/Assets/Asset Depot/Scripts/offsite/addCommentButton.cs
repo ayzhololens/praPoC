@@ -62,7 +62,7 @@ public class addCommentButton : MonoBehaviour {
         closeWindow();
     }
 
-    public void addOneSimple(JU_databaseMan.tempComment comment)
+    public virtual GameObject addOneSimple(JU_databaseMan.tempComment comment)
     {
         GameObject newItem;
         newItem = Instantiate(commentSimplePrefab);
@@ -76,6 +76,7 @@ public class addCommentButton : MonoBehaviour {
         newItem.GetComponent<offsiteFieldItemValueHolder>().user = comment.user;
         newItem.GetComponent<offsiteFieldItemValueHolder>().date = comment.date;
         commentHolder.Add(newItem);
+        return newItem;
     }
 
     public virtual GameObject addOnePhoto(JU_databaseMan.tempComment comment)

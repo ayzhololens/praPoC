@@ -53,10 +53,18 @@ public class boilerTransformRecorder : MonoBehaviour {
         offsiteBoilerHolder.transform.localRotation = new Quaternion(boilerClass.transform[3], boilerClass.transform[4], boilerClass.transform[5], boilerClass.transform[6]);
         //offsiteBoilerHolder.transform.localScale = new Vector3(boilerClass.transform[7], boilerClass.transform[8], boilerClass.transform[9]);
 
+    }
+
+    public void boilerType()
+    {
+        string json = File.ReadAllText(Path.Combine(Application.persistentDataPath, "boilerTransform.json"));
+        boilerClass.transform.Clear();
+        boilerClass = JsonUtility.FromJson<geometryInfo>(json);
+
         if (boilerClass.transform[10] == 0)
         {
             print("boiler type: main");
-            foreach(GameObject obj in boilerMain)
+            foreach (GameObject obj in boilerMain)
             {
                 obj.SetActive(true);
             }
@@ -64,7 +72,8 @@ public class boilerTransformRecorder : MonoBehaviour {
             {
                 obj.SetActive(false);
             }
-        }else if (boilerClass.transform[10] == 1)
+        }
+        else if (boilerClass.transform[10] == 1)
         {
             print("boiler type: travel");
             foreach (GameObject obj in boilerPopUp)

@@ -16,13 +16,20 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
     public collapsableManager bigBox { get; set; }
     public GameObject childItem;
 
-    List<GameObject> spawnedVioPrefabs = new List<GameObject>();
-
     //for adding comments
     public GameObject addNewCommentBox;
     public InputField field;
     public Button addNoteDone;
     public MediaPlayer videoPlayer;
+
+    [System.Serializable]
+    public class vioListItem
+    {
+        public GameObject vioPrefab;
+        public List<GameObject> violationMedias = new List<GameObject>();
+    }
+
+    public List<vioListItem> spawnedVioPrefabs = new List<vioListItem>();
 
     //cam
     public CameraControlOffsite vioCam;
@@ -80,51 +87,53 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
             newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addNoteDone = addNoteDone;
 
             newItem.GetComponent<violationsCollapseableBox>().childItems.Add(childItem);
-            foreach (GameObject vioPre in spawnedVioPrefabs)
+            foreach (vioListItem vioPre in spawnedVioPrefabs)
             {
-                vioPre.GetComponent<violationsCollapseableBox>().childItems.Add(newItem);
+                vioPre.vioPrefab.GetComponent<violationsCollapseableBox>().childItems.Add(newItem);
             }
             expandBox(totalVio);
 
             newItem.GetComponent<violationsCollapseableBox>().vioInt = totalVio - 1;
             newItem.GetComponent<violationsCollapseableBox>().updateTitleContents();
             newItem.GetComponent<violationsCollapseableBox>().updateCollapseableContents();
-            populateVioComments(vio, newItem);
 
             vioCam.lockCam();
-            for (int i = 0; i < JU_databaseMan.Instance.nodesManager.nodes.Count; i++)
-            {
-                if (JU_databaseMan.Instance.nodesManager.nodes[i].indexNum == vio.nodeIndex)
-                {
-                    if (offsiteJSonLoader.Instance.nodes3DList.ContainsKey(i + 1))
-                    {
-                        vioCam.focus(i + 1);
-                    }
-                    else
-                    {
-                        print(offsiteJSonLoader.Instance.nodes3DList.Count);
-                    }
-                }
-            }
-
-            spawnedVioPrefabs.Add(newItem);
+            //for (int i = 0; i < JU_databaseMan.Instance.nodesManager.nodes.Count; i++)
+            //{
+            //    if (JU_databaseMan.Instance.nodesManager.nodes[i].indexNum == vio.nodeIndex)
+            //    {
+            //        if (offsiteJSonLoader.Instance.nodes3DList.ContainsKey(i + 1))
+            //        {
+            //            vioCam.focus(i + 1);
+            //        }
+            //        else
+            //        {
+            //            print(offsiteJSonLoader.Instance.nodes3DList.Count);
+            //        }
+            //    }
+            //}
+            vioListItem newVio = new vioListItem();
+            newVio.vioPrefab = newItem;
+            populateVioComments(vio, newVio);
+            spawnedVioPrefabs.Add(newVio);
         }
         bigBox.startCollapse += 25;
         bigBox.readjustBox();
     }
 
-    public void populateVioComments(JU_databaseMan.ViolationsItem vio, GameObject newItem)
+    public void populateVioComments(JU_databaseMan.ViolationsItem vio, vioListItem newVio)
     {
         List<JU_databaseMan.tempComment> commentsList = reorderCommentsByDate(vio);
         foreach(JU_databaseMan.tempComment comment in commentsList)
         {
             if (comment.type == 0)
             {
-                newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addOneSimple(comment);
+                GameObject newCom = newVio.vioPrefab.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addOneSimple(comment);
+                newVio.violationMedias.Add(newCom);
             }
             else if (comment.type == 1)
             {
-                violationsCollapseableBox box = newItem.GetComponent<violationsCollapseableBox>();
+                violationsCollapseableBox box = newVio.vioPrefab.GetComponent<violationsCollapseableBox>();
                 GameObject newCom = box.addObject.GetComponent<addCommentButton>().addOnePhoto(comment);
 
                 newCom.GetComponent<offsiteFieldItemValueHolder>().meta.text = (comment.date
@@ -142,11 +151,12 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
                 newCom.GetComponent<offsiteMediaPlayer>().guidedTargetObj = guidedTargetObj;
                 newCom.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
                 newCom.GetComponent<offsiteMediaPlayer>().playButton = playButton;
+                newVio.violationMedias.Add(newCom);
             }
             else if (comment.type == 2)
             {
-                newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().videoPlayer = videoPlayer;
-                GameObject newCom =  newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addOneVideo(comment);
+                newVio.vioPrefab.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().videoPlayer = videoPlayer;
+                GameObject newCom =  newVio.vioPrefab.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addOneVideo(comment);
 
                 newCom.GetComponent<offsiteFieldItemValueHolder>().meta.text = (comment.date
                                                                 + " - "
@@ -163,6 +173,7 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
                 newCom.GetComponent<offsiteMediaPlayer>().guidedTargetObj = guidedTargetObj;
                 newCom.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
                 newCom.GetComponent<offsiteMediaPlayer>().playButton = playButton;
+                newVio.violationMedias.Add(newCom);
             }
         }
 

@@ -9,7 +9,7 @@ public class parentOnSpawn : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (!isServer) { return; };
+        if (isServer) { return; };
         spawnPoints = FindObjectsOfType<NetworkStartPosition>();
         transform.SetParent(spawnPoints[0].transform);
     }

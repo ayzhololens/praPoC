@@ -88,7 +88,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
                     violationsParentSpawner.Instance.minimapPlane.GetComponent<Image>().material = violationsParentSpawner.Instance.vioCamMat;
 
                     guidedTargetObj.targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
-                    guidedTargetObj.smoothZoom(offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum].transform);
+                    guidedTargetObj.smoothZoom();
                     mediaPlayerWindowPopulator.Instance.populateMediaPlayerWindow(currentNode, nullComment);
                     annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = true;
                     mediaWindow.SetActive(true);
@@ -125,7 +125,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
                         //print("video");
                     }
                     guidedTargetObj.targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
-                    guidedTargetObj.smoothZoom(offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum].transform);
+                    guidedTargetObj.smoothZoom();
                     mediaPlayerWindowPopulator.Instance.populateMediaPlayerWindow(currentNode, nullComment);
                     annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = true;
                     mediaWindow.SetActive(true);
@@ -137,7 +137,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
 
     }
 
-    void loadVideo()
+    public void loadVideo()
     {
         videoPlayer.m_VideoPath = gameObject.GetComponent<offsiteFieldItemValueHolder>().path.text;
         videoPlayer.LoadVideoPlayer();

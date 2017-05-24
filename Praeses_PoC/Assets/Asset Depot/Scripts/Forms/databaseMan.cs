@@ -218,16 +218,6 @@ public class databaseMan : Singleton<databaseMan>
         JU_databaseMan.Instance.loadValCmd();
     }
 
-    //public void storeNodesList()
-    //{
-    //    values.Location.Equipment[0].Nodes.Clear();
-    //    foreach (GameObject node in mediaManager.Instance.activeNodes)
-    //    {
-    //        addAnnotation(node);
-    //    }
-    //    saveCmd();
-    //}
-
     public void addAnnotation(GameObject nodeObj)
     {
         NodeClass newNode = new NodeClass();
