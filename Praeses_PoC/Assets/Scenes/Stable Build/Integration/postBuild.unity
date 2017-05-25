@@ -3424,6 +3424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 1912778991}
+  yOffset: 0.1
 --- !u!1 &675336681
 GameObject:
   m_ObjectHideFlags: 0
