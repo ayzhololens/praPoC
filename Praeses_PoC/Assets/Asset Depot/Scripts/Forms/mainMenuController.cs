@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 using HoloToolkit.Unity;
-using UnityEngine.SceneManagement;
 
 namespace HoloToolkit.Unity
 {
@@ -28,11 +27,6 @@ namespace HoloToolkit.Unity
                 findZone();
             }
 
-        }
-
-        public void launchShared()
-        {
-            SceneManager.LoadScene("inDeviceOffsiteScene", LoadSceneMode.Single);
         }
 
         public void goToTab(int tabIndex)

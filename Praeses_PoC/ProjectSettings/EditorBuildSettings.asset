@@ -6,11 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Stable Build/Integration/preBuild.unity
+    path: Assets/Scenes/Stable Build/Integration/old/preBuild.unity
   - enabled: 0
     path: Assets/Scenes/Stable Build/Integration/offsite/offsiteScene.unity
   - enabled: 0
     path: Assets/Scenes/Stable Build/Integration/numpadFix.unity
   - enabled: 1
+    path: Assets/Scenes/Stable Build/Integration/postBuildToOffsite.unity
+  - enabled: 1
     path: Assets/Scenes/Stable Build/Integration/offsite/inDeviceOffsiteScene.unity
-
