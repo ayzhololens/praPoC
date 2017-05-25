@@ -15227,8 +15227,8 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114814664805640216}
-        m_MethodName: launchShared
+      - m_Target: {fileID: 114105686082385624}
+        m_MethodName: highlight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17331,9 +17331,9 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114941900978651622}
-        m_MethodName: goToTab
-        m_Mode: 3
+      - m_Target: {fileID: 114814664805640216}
+        m_MethodName: launchShared
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17344,7 +17344,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  gazeExit: 1
+  gazeExit: 0
   clickMotion: 1
   soundIndex: 0
   moveSpeed: 0
