@@ -3404,7 +3404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 1912778991}
-  yOffset: 0.1
 --- !u!1 &675336681
 GameObject:
   m_ObjectHideFlags: 0
@@ -4865,6 +4864,11 @@ Prefab:
       propertyPath: closeSound
       value: 
       objectReference: {fileID: 8300000, guid: d0fe7ee6dc2f75848b22049ff6cf79aa, type: 3}
+    - target: {fileID: 114357921936230014, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: radialHolder
+      value: 
+      objectReference: {fileID: 1912778984}
     m_RemovedComponents:
     - {fileID: 114663073116832346, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
     - {fileID: 33456105354614660, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}

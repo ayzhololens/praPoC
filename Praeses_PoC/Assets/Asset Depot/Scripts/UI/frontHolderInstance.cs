@@ -6,7 +6,6 @@ using HoloToolkit.Unity;
 public class frontHolderInstance : Singleton<frontHolderInstance> {
 
     public GameObject holder;
-    public float yOffset;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +21,6 @@ public class frontHolderInstance : Singleton<frontHolderInstance> {
     {
         GameObject frontHolder = holder;
         frontHolder.transform.position = Camera.main.transform.forward * dist;
-        frontHolder.transform.position += new Vector3(0, yOffset, 0);
 
         return frontHolder;
     }
