@@ -175,6 +175,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!23 &12703156
@@ -1854,6 +1855,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &183959734
@@ -5384,6 +5386,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &577654829
@@ -6971,12 +6974,12 @@ GameObject:
   - component: {fileID: 795637529}
   - component: {fileID: 795637528}
   m_Layer: 0
-  m_Name: Finalize
+  m_Name: reloadLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &795637527
 Transform:
   m_ObjectHideFlags: 0
@@ -7025,129 +7028,8 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: spawnMiniMap
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: loadDefCmd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: loadValCmd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: populateFields
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 571834024}
-        m_MethodName: toggleMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: spawnNodeList
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: preloadData
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: toggleFitbox
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: toggleMiniMap
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: placeMapByBoiler
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SaveSpatialMeshes
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: JU_spatialMesh
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: exportData
+      - m_Target: {fileID: 2096731460}
+        m_MethodName: reloadLvl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7161,6 +7043,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &795637530
@@ -8934,6 +8817,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &981809124
@@ -9716,8 +9600,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 34274294}
   m_HandleRect: {fileID: 34274293}
   m_Direction: 2
-  m_Value: 0.995968
-  m_Size: 0.27500066
+  m_Value: 0.9959682
+  m_Size: 0.27499995
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9843,6 +9727,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &1073015180
@@ -10768,6 +10653,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &1146210314
@@ -11202,6 +11088,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!23 &1182624251
@@ -11622,6 +11509,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &1267906400
@@ -12192,7 +12080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc07d58cb9a8de4b872b04aec1b5e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Indicator: {fileID: 0}
+  successContent: {fileID: 0}
 --- !u!114 &1358676273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12301,6 +12189,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightSound: {fileID: 8300000, guid: 3cde9666342dfd5489bc42d557c141c5, type: 3}
   selectSound: {fileID: 8300000, guid: a6cf41f9066e5ff4cb13094270e1cb45, type: 3}
+  successSound: {fileID: 0}
+  verifyContinueSound: {fileID: 0}
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
   src: {fileID: 1358676274}
 --- !u!114 &1358676276
 MonoBehaviour:
@@ -13148,6 +13040,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &1467417849
@@ -17763,6 +17656,7 @@ GameObject:
   - component: {fileID: 2096731463}
   - component: {fileID: 2096731462}
   - component: {fileID: 2096731461}
+  - component: {fileID: 2096731460}
   m_Layer: 0
   m_Name: connectScript
   m_TagString: Untagged
@@ -17770,6 +17664,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2096731460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2096731459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d413620bad6d64686c0448e6559230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadedObjects: []
+  clearedNodes: []
+  clearedObjs: []
 --- !u!114 &2096731461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18352,7 +18260,9 @@ TextMesh:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2136186829}
-  m_Text: Finalize
+  m_Text: 'Reload
+
+    Level'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
