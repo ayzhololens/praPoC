@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity.InputModule;
@@ -16,7 +16,7 @@ namespace HoloToolkit.Unity
         //public GameObject RadialAlt3;
         //public int radialCounter;
         //public int radialMode;
-        
+        public Transform radialHolder;
         sourceManager sourceManager;
         GazeManager gazeManager;
         public bool isActive;
@@ -191,7 +191,7 @@ namespace HoloToolkit.Unity
             radHands.canManipulate = true;
             //Cursor.SetActive(false);
             RadialMenu.SetActive(true);
-            RadialMenu.transform.position = frontHolderInstance.Instance.setFrontHolder(1.0f).transform.position;
+            RadialMenu.transform.position = radialHolder.position;
             RadialMenu.transform.LookAt(Camera.main.transform);
             RadialMenu.GetComponent<BoxCollider>().enabled = false;
             isActive = true;
@@ -224,7 +224,7 @@ namespace HoloToolkit.Unity
             {
                 BroadcastMessage("OnFocusExit", SendMessageOptions.DontRequireReceiver);
                 RadialMenu.SetActive(false);
-                RadialMenu.transform.position = frontHolderInstance.Instance.setFrontHolder(1.0f).transform.position;
+                RadialMenu.transform.position = radialHolder.position;
                 RadialMenu.transform.LookAt(Camera.main.transform);
                 isActive = false;
                 lineCenter.GetComponent<LineTest>().line.transform.localScale = new Vector3(lineScale, lineScale, lineScale);
@@ -241,7 +241,7 @@ namespace HoloToolkit.Unity
                 BroadcastMessage("OnFocusExit");
                 //Debug.Log("sent");
                 RadialMenu.SetActive(false);
-                RadialMenu.transform.position = frontHolderInstance.Instance.setFrontHolder(1.0f).transform.position;
+                RadialMenu.transform.position = radialHolder.position;
                 RadialMenu.transform.LookAt(Camera.main.transform);
                 focusedButton = null;
                 isActive = false;
