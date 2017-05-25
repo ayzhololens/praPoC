@@ -10,12 +10,7 @@ public class videoPlayButton : MonoBehaviour {
 
     private void OnMouseDown()
     {
-
-        playVideo();
-        gameObject.GetComponent<Collider>().enabled = false;
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        pauseButton.GetComponent<Collider>().enabled = true;
- 
+        OnMouseDownProxy();
     }
 
     private void Update()
@@ -33,4 +28,11 @@ public class videoPlayButton : MonoBehaviour {
         videoPlayer.Control.Play();
     }
 
+    public void OnMouseDownProxy()
+    {
+        playVideo();
+        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        pauseButton.GetComponent<Collider>().enabled = true;
+    }
 }

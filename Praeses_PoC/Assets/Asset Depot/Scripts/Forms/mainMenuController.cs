@@ -4,7 +4,6 @@ using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 using HoloToolkit.Unity;
 
-
 namespace HoloToolkit.Unity
 {
     public class mainMenuController : Singleton<mainMenuController> {

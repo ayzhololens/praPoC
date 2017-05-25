@@ -311,6 +311,11 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         spawnedNode.name = nodeClass.title;
         offsiteJSonLoader.Instance.nodes3DList.Add(nodeClass.indexNum, spawnedNode);
 
+        if (nodeClass.indexNum == 4)
+        {
+            GameObject connectObj = GameObject.Find("guidedTargetDemo");
+            connectObj.GetComponent<cameraZoomOverTime>().targetObject = spawnedNode;
+        }
         //spawnedNode.GetComponent<nodeMediaHolder>().type = nodeClass.type;
         //spawnedNode.GetComponent<nodeMediaHolder>().User = nodeClass.user;
         //spawnedNode.GetComponent<nodeMediaHolder>().Date = nodeClass.date;

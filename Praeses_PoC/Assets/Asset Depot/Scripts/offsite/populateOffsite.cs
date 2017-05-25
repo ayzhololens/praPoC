@@ -14,13 +14,20 @@ public class populateOffsite : MonoBehaviour {
     public Text vioNum;
     public Text anoNum;
     public Text fieNum;
+    public bool inDevice;
 
     // Use this for initialization
     void Start () {
         Invoke("loadCommand", .2f);
         Invoke("populateForm", .5f);
         Invoke("populateVio", .5f);
-        loadSpatialMesh();
+        boilerType();
+
+        if (inDevice) { }
+        else
+        {
+            loadSpatialMesh();
+        }
 
         //foreach (GameObject cam in cameras)
         //{
@@ -55,6 +62,11 @@ public class populateOffsite : MonoBehaviour {
     {
         spatialMap.GetComponent<boilerTransformRecorder>().importData();
         spatialMap.GetComponent<SpatialMappingObserver>().LoadSpatialMeshes("JU_spatialMesh");
+    }
+
+    public void boilerType()
+    {
+        spatialMap.GetComponent<boilerTransformRecorder>().boilerType();
     }
 
     void populateSummary()

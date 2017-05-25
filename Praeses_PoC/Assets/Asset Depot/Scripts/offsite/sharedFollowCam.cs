@@ -9,20 +9,34 @@ public class sharedFollowCam : NetworkBehaviour {
     public Transform cameraTra{get;set;}
     public GameObject headRot;
 
+    [SyncVar]
+    public Vector3 position;
+
+    [SyncVar]
+    public Vector3 rotation;
+
+    [SyncVar]
+    public Vector3 headRotation;
+
     public List<GameObject> meshViz;
 
     // Use this for initialization
     void Start () {
         initHeight = transform.position.y;
         cameraTra = Camera.main.transform;
-        if (isServer)
+        if (!isServer)
         {
             if (isLocalPlayer)
             {
-                //Destroy(gameObject);
+                Destroy(gameObject);
             }
-        }else
+        }
+        else
         {
+            if (!isLocalPlayer)
+            {
+            Destroy(gameObject);
+            }
             if (NetworkServer.connections.Count < 2)
             {
                 foreach (GameObject obj in meshViz)
@@ -39,17 +53,30 @@ public class sharedFollowCam : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isServer) { return; };
-        if (isLocalPlayer)
+        if (isServer)
         {
-            transform.localPosition = new Vector3(cameraTra.position.x,
-                                initHeight,
-                                cameraTra.position.z);
-            transform.localRotation = new Quaternion(transform.rotation.x,
-                                    cameraTra.rotation.y,
-                                    transform.rotation.z, transform.rotation.w);
-            headRot.transform.localRotation = cameraTra.rotation;
+            if (isLocalPlayer)
+            {
+                transform.localPosition = new Vector3(cameraTra.position.x,
+                                    initHeight,
+                                    cameraTra.position.z);
+                transform.localRotation = new Quaternion(transform.rotation.x,
+                                        cameraTra.rotation.y,
+                                        transform.rotation.z, transform.rotation.w);
+                headRot.transform.localRotation = cameraTra.rotation;
+
+                position = transform.localPosition;
+                rotation = transform.localEulerAngles;
+                headRotation = headRot.transform.localEulerAngles;
+            }
         }
+        else
+        {
+            transform.localPosition = position;
+            transform.localEulerAngles = rotation;
+            headRot.transform.localEulerAngles = headRotation;
+        }
+
 
 
     }

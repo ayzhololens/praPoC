@@ -47,7 +47,7 @@ public class cameraZoomOverTime : MonoBehaviour {
         cameraToMove.transform.eulerAngles = new Vector3(20, 0, 0);
     }
 
-    public void smoothZoom(Transform target)
+    public void smoothZoom()
     {
         resetCam();
         focusObj(targetObject.transform);
