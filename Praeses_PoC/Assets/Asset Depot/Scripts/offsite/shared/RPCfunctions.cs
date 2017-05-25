@@ -23,12 +23,14 @@ public class RPCfunctions : NetworkBehaviour {
         //for scripted open panel
         int vioCount;
         int commentCount;
+        int vioNodeNum;
         vioCount = violationsParentSpawner.Instance.spawnedVioPrefabs.Count -1;
         commentCount = violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias.Count -1;
         mediaNode = violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[commentCount];
+        vioNodeNum = JU_databaseMan.Instance.violationsManager.violations[vioCount].nodeIndex;
         foreach (JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
         {
-            if (node.indexNum == 4)
+            if (node.indexNum == vioNodeNum)
             {
                 currentNode = node;
             }

@@ -7028,6 +7028,17 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2096731461}
+        m_MethodName: disconnectAsHololensHost
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2096731460}
         m_MethodName: reloadLvl
         m_Mode: 1
@@ -9600,8 +9611,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 34274294}
   m_HandleRect: {fileID: 34274293}
   m_Direction: 2
-  m_Value: 0.99595845
-  m_Size: 0.27499998
+  m_Value: 0.9959535
+  m_Size: 0.27499986
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14668,7 +14679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -929.9921, y: 11.7126465}
+  m_AnchoredPosition: {x: -929.9921, y: 11.727783}
   m_SizeDelta: {x: 1860, y: 4000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1710704115
