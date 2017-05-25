@@ -62,7 +62,7 @@ namespace HoloToolkit.Unity
         {
 
             contentHolder.SetActive(true);
-            contentHolder.transform.position = GameObject.Find("Front Holder_1.5").transform.position;
+            contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
         }
 
 
@@ -88,6 +88,7 @@ namespace HoloToolkit.Unity
         void finishAlignment()
         {
             mediaManager.Instance.setStatusIndicator("Success!");
+            audioManager.Instance.setAndPlayAudio(1);
             minimapSpawn.Instance.gameObject.GetComponent<spatialRadiate>().spatRadiate();
             alignerIndicator.GetComponent<Renderer>().material.color = new Color(1, 1, 1, .2f);
             alignerIndicator.SetActive(false);

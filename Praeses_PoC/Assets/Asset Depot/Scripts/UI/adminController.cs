@@ -23,6 +23,7 @@ public class adminController : MonoBehaviour {
 
     public void toggleMenu()
     {
+        BroadcastMessage("revertMat");
         contentHolder.SetActive(!contentHolder.activeSelf);
     }
 }

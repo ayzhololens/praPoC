@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity;
+using HoloToolkit.Unity.InputModule;
 
 public class submitState : Singleton<submitState>
 
 {
-    public GameObject Indicator;
+    public GameObject successContent;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -21,20 +23,16 @@ public class submitState : Singleton<submitState>
     public void startUpload()
     {
         formController.Instance.closeForm();
-        Indicator.SetActive(true);
-        Indicator.GetComponent<TextMesh>().text = "Compiling Inspection Data...";
-        Invoke("success", 2.5f);
+        mediaManager.Instance.setStatusIndicator("Compiling Inspection Data...");
+        Invoke("success", 2f);
 
     }
 
     void success()
     {
-        Indicator.GetComponent<TextMesh>().text = "Success!";
-        Invoke("turnOff", 5);
-    }
-
-    void turnOff()
-    {
-        Indicator.SetActive(false);
+        audioManager.Instance.setAndPlayAudio(1);
+        successContent.SetActive(true);
+        successContent.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
+        mediaManager.Instance.disableStatusIndicator();
     }
 }

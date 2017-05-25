@@ -20,7 +20,6 @@ namespace HoloToolkit.Unity
         public Text fieldStatus;
         public int totalFields { get; set; }
         public int curFields { get; set; }
-        public Transform frontHolder;
         public List<GameObject> fieldNodes;
         public formContent[] preloadedData;
 
@@ -96,11 +95,8 @@ namespace HoloToolkit.Unity
 
         public void openForm()
         {
-            if(frontHolder == null)
-            {
-                frontHolder = GameObject.Find("Front Holder_1.5").transform;
-            }
-            contentHolder.transform.position = frontHolder.position;
+
+            contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
             checkTab();
             contentHolder.SetActive(true);
         }

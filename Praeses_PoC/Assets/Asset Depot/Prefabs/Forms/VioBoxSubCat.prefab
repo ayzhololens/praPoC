@@ -281,6 +281,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 2
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114320365141461508

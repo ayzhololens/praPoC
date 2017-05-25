@@ -11,6 +11,7 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     bool focused;
     public bool gazeExit;
     public bool clickMotion;
+    public int soundIndex;
     public float moveSpeed;
     public float moveDist;
 
@@ -52,7 +53,7 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
                 Event.Invoke();
 
                 //Debug.Log("select");
-                audioManager.Instance.src.Play();
+                audioManager.Instance.setAndPlayAudio(soundIndex);
             }
 
             if (GetComponent<gazeLeaveEvent>() != null && gazeExit)
@@ -71,7 +72,7 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
         if (Event != null)
         {
             Debug.Log("select");
-            audioManager.Instance.src.Play();
+            audioManager.Instance.setAndPlayAudio(soundIndex);
 
             Event.Invoke();
 

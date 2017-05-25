@@ -12,12 +12,12 @@ namespace HoloToolkit.Unity
         public GameObject boiler;
         GameObject boilerClone;
         public GameObject desk;
+        public Color darkColor;
         bool tapToPlaceBoiler;
         public GameObject SpatialMapping;
         public bool isObj;
         GameObject activeObj;
-
-        public GameObject frontHolder;
+        
         Vector3 initBoilerPos;
 
         // Use this for initialization
@@ -64,6 +64,8 @@ namespace HoloToolkit.Unity
 
         public void PlaceBoiler()
         {
+
+
             if (activeObj == null)
             {
                 activeObj = boiler;
@@ -80,6 +82,8 @@ namespace HoloToolkit.Unity
 
 
             }
+
+            activeObj.transform.GetChild(0).GetComponent<Renderer>().material.color = darkColor;
             if (!tapToPlaceBoiler)
             {
                 sourceManager.Instance.sourcePressed = false;
@@ -89,7 +93,7 @@ namespace HoloToolkit.Unity
 
             if (isObj)
             {
-                activeObj.transform.position = frontHolder.transform.position;
+                activeObj.transform.position = frontHolderInstance.Instance.setFrontHolder(1.0f).transform.position;
             }
 
             if (!isObj)
@@ -108,6 +112,7 @@ namespace HoloToolkit.Unity
 
         public void LockBoiler()
         {
+            activeObj.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.white;
             tapToPlaceBoiler = false;
             for (int i = 0; i < activeObj.transform.childCount; i++)
             {

@@ -174,7 +174,9 @@ public class commentManager : MonoBehaviour {
         //stop recording, finish encoding then spawn video frame when done
         mediaManager.Instance.vidRecorder.StopRecordingVideo(false);
         Debug.Log("before status disable");
-        mediaManager.Instance.disableStatusIndicator();
+        mediaManager.Instance.setStatusIndicator("Video capture complete!");
+        mediaManager.Instance.invokeStatusDisable(2.0f);
+        audioManager.Instance.setAndPlayAudio(1);
         mediaManager.Instance.recordingIndicator.SetActive(false);
         recordingInProgress = false;
 
@@ -259,12 +261,14 @@ public class commentManager : MonoBehaviour {
 
     void capturePhoto()
     {
-        mediaManager.Instance.disableStatusIndicator();
         photoCaptureEnabled = false;
 
         //capture photo, save it, activeMedia() when done
         mediaManager.Instance.photoRecorder.CapturePhoto();
         mediaManager.Instance.recordingIndicator.SetActive(false);
+        mediaManager.Instance.setStatusIndicator("Photo capture complete!");
+        mediaManager.Instance.invokeStatusDisable(2.0f);
+        audioManager.Instance.setAndPlayAudio(1);
     }
 
     public void spawnPComment()

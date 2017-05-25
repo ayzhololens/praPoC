@@ -22,13 +22,11 @@ namespace HoloToolkit.Unity
         public GameObject linkedNode;
         public violationReview vioReview;
         public GameObject linkedPreview;
-        public Transform frontHolder;
         public bool fromJson { get; set; }
 
         // Use this for initialization
         void Start()
         {
-            frontHolder = Camera.main.transform.GetChild(0);
         }
 
         // Update is called once per frame
@@ -250,7 +248,7 @@ namespace HoloToolkit.Unity
 
         public void openViolation()
         {
-            contentHolder.transform.position = frontHolder.position;
+            contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.0f).transform.position;
             linkedNode.GetComponent<nodeController>().openNode();
         }
         public void closeViolation()

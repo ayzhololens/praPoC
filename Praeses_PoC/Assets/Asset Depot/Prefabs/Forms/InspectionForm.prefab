@@ -7723,6 +7723,8 @@ MonoBehaviour:
   vidMat: {fileID: 2100000, guid: 40d52c679136afa47b84c82b28c489ad, type: 2}
   vidThumbMat: {fileID: 2100000, guid: e95a922f0483fe644b152474cfa971a2, type: 2}
   thumbMat: {fileID: 0}
+  expandIndicator: {fileID: 0}
+  exit: {fileID: 0}
   expandScale: 0
 --- !u!114 &114007306182122816
 MonoBehaviour:
@@ -8263,6 +8265,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114147086058388748
@@ -8295,6 +8298,8 @@ MonoBehaviour:
   vidMat: {fileID: 0}
   vidThumbMat: {fileID: 0}
   thumbMat: {fileID: 0}
+  expandIndicator: {fileID: 0}
+  exit: {fileID: 0}
   expandScale: 0
 --- !u!114 &114149774392120328
 MonoBehaviour:
@@ -8818,6 +8823,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.005
 --- !u!114 &114233651211325632
@@ -8876,6 +8882,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 2
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114251052166878192
@@ -9046,6 +9053,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 0
+  soundIndex: 4
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114282265573934650
@@ -9116,6 +9124,8 @@ MonoBehaviour:
   vidMat: {fileID: 2100000, guid: 40d52c679136afa47b84c82b28c489ad, type: 2}
   vidThumbMat: {fileID: 2100000, guid: e95a922f0483fe644b152474cfa971a2, type: 2}
   thumbMat: {fileID: 0}
+  expandIndicator: {fileID: 0}
+  exit: {fileID: 0}
   expandScale: 0
 --- !u!114 &114316595897138364
 MonoBehaviour:
@@ -9298,6 +9308,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114355816449273836
@@ -9463,6 +9474,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.006
 --- !u!114 &114376069901993744
@@ -9550,7 +9562,6 @@ MonoBehaviour:
   Sumbit: {fileID: 1534489426834804}
   submitInspection: {fileID: 114261622489200432}
   fieldStatus: {fileID: 114317782664907384}
-  frontHolder: {fileID: 0}
   fieldNodes: []
   preloadedData:
   - {fileID: 114130353845007488}
@@ -9787,6 +9798,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.005
 --- !u!114 &114409456931046622
@@ -9818,6 +9830,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114409887105722954
@@ -10056,6 +10069,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114460758253273940
@@ -10718,6 +10732,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114550203675425030
@@ -10761,6 +10776,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114567011850900678
@@ -11022,6 +11038,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.005
 --- !u!114 &114645138508135318
@@ -11337,6 +11354,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114707552924650204
@@ -11453,6 +11471,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114744927267274268
@@ -11773,6 +11792,8 @@ MonoBehaviour:
   vidMat: {fileID: 0}
   vidThumbMat: {fileID: 0}
   thumbMat: {fileID: 0}
+  expandIndicator: {fileID: 0}
+  exit: {fileID: 0}
   expandScale: 0
 --- !u!114 &114801241789849508
 MonoBehaviour:
@@ -12243,6 +12264,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.005
 --- !u!114 &114872936203690532
@@ -12324,6 +12346,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114895706048130612
@@ -12647,6 +12670,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114962858661876684
@@ -12712,6 +12736,8 @@ MonoBehaviour:
   vidMat: {fileID: 2100000, guid: 40d52c679136afa47b84c82b28c489ad, type: 2}
   vidThumbMat: {fileID: 2100000, guid: e95a922f0483fe644b152474cfa971a2, type: 2}
   thumbMat: {fileID: 0}
+  expandIndicator: {fileID: 0}
+  exit: {fileID: 0}
   expandScale: 0
 --- !u!114 &114966501333935618
 MonoBehaviour:
@@ -12742,6 +12768,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114973633689760196
@@ -12839,6 +12866,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114988067505801516

@@ -21,6 +21,7 @@ public class fitBoxControl : Singleton<fitBoxControl> {
         if (fitBox.activeSelf)
         {
             mainMenuController.Instance.openMainMenu();
+            mainMenuController.Instance.contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position; 
         }
         fitBox.SetActive(!fitBox.activeSelf);
     }

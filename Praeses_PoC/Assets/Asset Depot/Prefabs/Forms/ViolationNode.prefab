@@ -817,7 +817,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 65de49df12efd0240ae3e5ce748cb548, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 67f837c7128ad43498d22529a8f292ee, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -992,6 +992,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 10
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114467060268357056
@@ -1005,6 +1006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114491752697835938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1018,6 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filepath: []
   activeFilepath: 
+  fileName: 
   activeComments: []
   playIcon: {fileID: 0}
   pauseIcon: {fileID: 0}
@@ -1137,6 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114871801326812846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1150,6 +1154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentHolder: {fileID: 0}
   contentStartLoc: {fileID: 4842617547686576}
+  parentNode: {fileID: 0}
   isMiniNode: 0
   distanceThreshold: 2
   moveSpeed: 0.01

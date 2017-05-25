@@ -144,7 +144,6 @@ namespace HoloToolkit.Unity
         
         void capturePhoto()
         {
-            disableStatusIndicator();
             photoCaptureEnabled = false;
             isCapturing = false;
 
@@ -152,6 +151,10 @@ namespace HoloToolkit.Unity
             photoRecorder.activateMedia = true;
             photoRecorder.CapturePhoto();
             recordingIndicator.SetActive(false);
+            setStatusIndicator("Photo capture complete!");
+            invokeStatusDisable(2.0f);
+
+            audioManager.Instance.setAndPlayAudio(1);
         } 
 
         public void enableVideoRecording()
@@ -182,7 +185,9 @@ namespace HoloToolkit.Unity
         {   
             //stop recording, finish encoding then calling activateMedia() when done
             vidRecorder.StopRecordingVideo(true);
-            disableStatusIndicator();
+            setStatusIndicator("Video capture complete!");
+            invokeStatusDisable(2.0f);
+            audioManager.Instance.setAndPlayAudio(1);
             recordingIndicator.SetActive(false);
             recordingInProgress = false;
             isCapturing = false;
@@ -205,7 +210,11 @@ namespace HoloToolkit.Unity
                 stateIndicator.SetActive(false);
             }
             stateIndicator.GetComponent<TextMesh>().text = null;
+        }
 
+        public void invokeStatusDisable (float delay)
+        {
+            Invoke("disableStatusIndicator", delay);
         }
 
         void stopCapturing()

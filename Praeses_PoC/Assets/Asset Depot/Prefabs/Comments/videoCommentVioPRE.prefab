@@ -397,7 +397,7 @@ MonoBehaviour:
   thumbMat: {fileID: 0}
   expandIndicator: {fileID: 0}
   exit: {fileID: 0}
-  expandScale: 2
+  expandScale: 3
 --- !u!114 &114405855837894706
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,7 +21,7 @@ namespace HoloToolkit.Unity
             for (int i = 0; i < reloadedObjects.Length; i++)
             {
                 GameObject newObj = Instantiate(reloadedObjects[i], transform.position, transform.rotation);
-
+                newObj.transform.position = frontHolderInstance.Instance.setFrontHolder(2.0f).transform.position;
                 clearedObjs.Add(newObj);
             }
 
@@ -53,6 +53,8 @@ namespace HoloToolkit.Unity
                 clearedObjs.Add(newObj);
             }
             fieldSpawner.Instance.reloadForm();
+            mainMenuController.Instance.goToTab(0);
+            fitBoxControl.Instance.toggleFitbox();
         }
 
         public void clearNodes()

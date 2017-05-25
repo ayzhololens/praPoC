@@ -5192,7 +5192,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 65de49df12efd0240ae3e5ce748cb548, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 67f837c7128ad43498d22529a8f292ee, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5448,6 +5448,8 @@ MonoBehaviour:
   slideSpeed: -2
   slideDist: -25
   timer: 0
+  keptOut: 0
+  subMenu: {fileID: 0}
 --- !u!114 &114042384839859614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5766,6 +5768,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114157873240648556
@@ -5853,6 +5856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filepath: []
   activeFilepath: 
+  fileName: 
   activeComments: []
   playIcon: {fileID: 1360073485512216}
   pauseIcon: {fileID: 1426265641116178}
@@ -5907,6 +5911,8 @@ MonoBehaviour:
   slideSpeed: -2
   slideDist: -38
   timer: 0
+  keptOut: 0
+  subMenu: {fileID: 0}
 --- !u!114 &114230875876286528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5918,6 +5924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114233473961585042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5956,6 +5963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114244171762104794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6060,6 +6068,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114273245772557832
@@ -6077,6 +6086,7 @@ MonoBehaviour:
   commentCount: 0
   commentParent: {fileID: 4844496039005684}
   CommmentStartPos: {fileID: 4459270937512632}
+  expandPos: {fileID: 0}
   simpleCommentPrefab: {fileID: 1949503462865266, guid: 6011e403db4f02e4f803595ef603c0d6,
     type: 2}
   videoCommentPrefab: {fileID: 0}
@@ -6112,6 +6122,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 10
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114284435690167770
@@ -6669,6 +6680,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114476389617337360
@@ -6857,6 +6869,8 @@ MonoBehaviour:
   slideSpeed: -2
   slideDist: -30
   timer: 0
+  keptOut: 0
+  subMenu: {fileID: 0}
 --- !u!114 &114509617852152050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6886,6 +6900,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114516037317974272
@@ -6917,6 +6932,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114524253112851782
@@ -7002,6 +7018,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114554459700526732
@@ -7033,6 +7050,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114559476064444796
@@ -7129,6 +7147,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114576604611009916
@@ -7338,6 +7357,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114629514972043034
@@ -7602,6 +7622,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114703995225143138
@@ -8059,6 +8080,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 0
+  soundIndex: 4
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114829625642177668
@@ -8132,6 +8154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentHolder: {fileID: 1347992105135240}
   contentStartLoc: {fileID: 4923510843919730}
+  parentNode: {fileID: 0}
   isMiniNode: 0
   distanceThreshold: 2
   moveSpeed: 0.01
@@ -8247,6 +8270,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114861578802023752
@@ -8382,6 +8406,9 @@ MonoBehaviour:
   vidMat: {fileID: 0}
   vidThumbMat: {fileID: 0}
   thumbMat: {fileID: 0}
+  expandIndicator: {fileID: 0}
+  exit: {fileID: 0}
+  expandScale: 0
 --- !u!114 &114906336904044384
 MonoBehaviour:
   m_ObjectHideFlags: 1
