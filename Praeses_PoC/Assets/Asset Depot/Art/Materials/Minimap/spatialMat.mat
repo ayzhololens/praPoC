@@ -7,10 +7,11 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: spatialMat
-  m_Shader: {fileID: 4800000, guid: b21aa08825c93084cb4072b24fc90532, type: 3}
-  m_ShaderKeywords: _EMISSION _USECOLOR_ON
-  m_LightmapFlags: 1
-  m_CustomRenderQueue: 998
+  m_Shader: {fileID: 4800000, guid: 30a212a88e1063a428c85e50b1e427f2, type: 3}
+  m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF _USECOLOR_ON
+    _USEWIREFRAME_ON
+  m_LightmapFlags: 0
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -99,10 +100,10 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0.5
+      second: 0.525
     - first:
         name: _GlossyReflections
-      second: 1
+      second: 0
     - first:
         name: _Metallic
       second: 0
@@ -116,11 +117,17 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _PulseWidth
+      second: 1
+    - first:
+        name: _Radius
+      second: 1
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
         name: _SpecularHighlights
-      second: 1
+      second: 0
     - first:
         name: _SrcBlend
       second: 1
@@ -137,6 +144,12 @@ Material:
         name: _UseMainTex
       second: 0
     - first:
+        name: _UseWireframe
+      second: 1
+    - first:
+        name: _WireframeFill
+      second: 0.1
+    - first:
         name: _ZTest
       second: 4
     - first:
@@ -144,8 +157,17 @@ Material:
       second: 1
     m_Colors:
     - first:
+        name: _Center
+      second: {r: 0, g: 0, b: 0, a: -1}
+    - first:
         name: _Color
       second: {r: 0.20588236, g: 0.7699798, b: 1, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: -0, g: 1, b: 0.66896534, a: 1}
+      second: {r: 0.08954999, g: 0.12642449, b: 0.14999998, a: 1}
+    - first:
+        name: _PulseColor
+      second: {r: 0.145, g: 0.447, b: 0.922, a: 1}
+    - first:
+        name: _WireframeColor
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}

@@ -1545,7 +1545,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1530018824308066}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.883, y: -0.362, z: -0.06311365}
+  m_LocalPosition: {x: 0.542, y: -0.362, z: -0.016}
   m_LocalScale: {x: 0.62979954, y: 0.51640016, z: 0.54160583}
   m_Children:
   - {fileID: 4521078222648340}
@@ -1652,7 +1652,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1388291549910722}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.272, y: 0.45, z: 0}
+  m_LocalPosition: {x: -0.36, y: 0.45, z: 0}
   m_LocalScale: {x: 1.078588, y: 1, z: 1}
   m_Children:
   - {fileID: 4369856704394576}
@@ -2851,7 +2851,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 406466cfba51f6a44a3d868a0fce64b8, type: 2}
+  - {fileID: 2100000, guid: bab94be68e1d2d84ba6173b2d37f33a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3161,7 +3161,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bab94be68e1d2d84ba6173b2d37f33a6, type: 2}
+  - {fileID: 2100000, guid: 406466cfba51f6a44a3d868a0fce64b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4255,6 +4255,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114174219592781718
@@ -4840,6 +4841,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114726796106002392
@@ -4950,6 +4952,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114897748776661080
@@ -5026,6 +5029,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114970041554602590
