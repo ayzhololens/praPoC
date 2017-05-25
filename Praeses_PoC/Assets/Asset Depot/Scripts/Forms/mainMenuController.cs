@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 using HoloToolkit.Unity;
+using RenderHeads.Media.AVProVideo;
 
 namespace HoloToolkit.Unity
 {
@@ -14,6 +15,7 @@ namespace HoloToolkit.Unity
         public GameObject alignerIndicator;
         bool startedAlignment;
         int curTab;
+        public MediaPlayer radAnim;
 
         // Use this for initialization
         void Start() {
@@ -103,10 +105,15 @@ namespace HoloToolkit.Unity
 
         public void completeMainMenu()
         {
-            closeMainMenu();
-            mediaManager.Instance.setStatusIndicator("Inspection started.  Tap and hold to open radial menu");
-            Invoke("turnOffInd", 3);
+            goToTab(7);
+            radAnim.Control.Play();
         }
+
+        public void stopRad()
+        {
+            radAnim.Control.Stop();
+        }
+
 
         void turnOffInd()
         {

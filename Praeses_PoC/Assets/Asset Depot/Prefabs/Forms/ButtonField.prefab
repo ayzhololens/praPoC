@@ -707,7 +707,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1736037606014444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: -0.1239, y: -0.0006667644, z: 0.008}
+  m_LocalPosition: {x: -0.1477, y: -0.0006667644, z: 0.008}
   m_LocalScale: {x: 0.07147629, y: 0.024545548, z: 0.00052051694}
   m_Children: []
   m_Father: {fileID: 4876000951355542}
@@ -1215,6 +1215,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.006
 --- !u!114 &114088527822936396
@@ -1306,6 +1307,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.005
 --- !u!114 &114150636371287886
@@ -1454,7 +1456,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114015178592476722}
+      - m_Target: {fileID: 114208630910016630}
         m_MethodName: moveForward
         m_Mode: 1
         m_Arguments:
@@ -1649,6 +1651,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.005
 --- !u!114 &114323557528878164
@@ -1743,19 +1746,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114015178592476722}
+      - m_Target: {fileID: 114208630910016630}
         m_MethodName: moveBackward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: turnOffCounter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1869,8 +1861,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114015178592476722}
-        m_MethodName: moveForward
+      - m_Target: {fileID: 114183360796563012}
+        m_MethodName: moveBackward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2211,6 +2203,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.005
 --- !u!114 &114684914651519706
@@ -2291,17 +2284,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: turnOffCounter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114808028888502058
@@ -2356,19 +2338,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114015178592476722}
+      - m_Target: {fileID: 114183360796563012}
         m_MethodName: moveBackward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114971035390281840}
-        m_MethodName: turnOffCounter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2463,6 +2434,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0.001
   moveDist: 0.005
 --- !u!114 &114932558196824416
