@@ -7,11 +7,11 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: spatialMat
-  m_Shader: {fileID: 4800000, guid: 30a212a88e1063a428c85e50b1e427f2, type: 3}
+  m_Shader: {fileID: 4800000, guid: b21aa08825c93084cb4072b24fc90532, type: 3}
   m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF _USECOLOR_ON
     _USEWIREFRAME_ON
   m_LightmapFlags: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 998
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2

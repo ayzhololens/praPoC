@@ -595,7 +595,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114507578453011958}
-        m_MethodName: revealExpansion
+        m_MethodName: hideExpansion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -784,7 +784,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114507578453011958}
-        m_MethodName: expandComment
+        m_MethodName: revealExpansion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -921,7 +921,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114507578453011958}
-        m_MethodName: hideExpansion
+        m_MethodName: expandComment
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -935,6 +935,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114672149604762716
@@ -966,6 +967,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114679937851208938
@@ -1217,6 +1219,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114935129424967672

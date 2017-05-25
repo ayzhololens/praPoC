@@ -172,27 +172,35 @@ namespace HoloToolkit.Unity
 
         public void expandComment()
         {
-            initPos = transform.localPosition;
-
-            for (int i = 0; i<linkedComManager.activeComments.Count; i++)
+            if (!expanded)
             {
-                if(linkedComManager.activeComments[i] != this.gameObject)
+                initPos = transform.localPosition;
+
+                for (int i = 0; i < linkedComManager.activeComments.Count; i++)
                 {
-                    linkedComManager.activeComments[i].SetActive(false);
+                    if (linkedComManager.activeComments[i] != this.gameObject)
+                    {
+                        linkedComManager.activeComments[i].SetActive(false);
 
+                    }
                 }
+
+                if (isVideo)
+                {
+                    playIcon.SetActive(true);
+                }
+
+                transform.localPosition = linkedComManager.expandPos.localPosition;
+                transform.localScale *= expandScale;
+
+
+                expanded = true;
+                expandIndicator.SetActive(false);
+                exit.SetActive(true);
             }
 
-            if (isVideo)
-            {
-                playIcon.SetActive(true);
-            }
 
-            expanded = true;
-            expandIndicator.SetActive(false);
-            exit.SetActive(true);
-            transform.localPosition = linkedComManager.expandPos.localPosition ;
-            transform.localScale *= expandScale;
+  
 
 
         }
