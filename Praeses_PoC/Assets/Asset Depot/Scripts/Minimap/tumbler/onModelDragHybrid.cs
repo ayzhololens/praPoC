@@ -29,6 +29,8 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
 
     public float sensitivity;
 
+    public GameObject moveModeMeshes;
+
     void Start()
     {
         initHandPos = new Vector3(0, 0, 0);
@@ -71,50 +73,53 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
 
     private void menuOn()
     {
-
-        if (GazeManager.Instance.HitObject == gameObject || navigating)
+        if (!moveModeMeshes.activeSelf)
         {
-            Debug.Log("looking");
-            if (sourceManager.Instance.sourcePressed)
+            if (GazeManager.Instance.HitObject == gameObject || navigating)
             {
-                Debug.Log("pressing...");
-                if (!navigating)
+                Debug.Log("looking");
+                if (sourceManager.Instance.sourcePressed)
                 {
-                    
-                    tempDist = Vector3.Distance(Camera.main.transform.position, GazeManager.Instance.HitPosition);
+                    Debug.Log("pressing...");
+                    if (!navigating)
+                    {
 
-                    initHandPos = HandsManager.Instance.ManipulationHandPosition;
-                    editState = true;
-                    adjustWithEdit();
+                        tempDist = Vector3.Distance(Camera.main.transform.position, GazeManager.Instance.HitPosition);
+
+                        initHandPos = HandsManager.Instance.ManipulationHandPosition;
+                        editState = true;
+                        adjustWithEdit();
+                        navigating = true;
+                        radialManagement.Instance.isActive = true;
+                    }
                     navigating = true;
-                    radialManagement.Instance.isActive = true;
+                    cursorHand.SetActive(true);
+
+                    handPosLocal.transform.position = HandsManager.Instance.ManipulationHandPosition - initHandPos;
+
+                    handPosLocal.transform.localPosition = new Vector3(Mathf.Clamp(handPosLocal.transform.localPosition.x, -.1f, .1f),
+                                                                        Mathf.Clamp(handPosLocal.transform.localPosition.y, -.1f, .1f),
+                                                                        handPosLocal.transform.localPosition.z) * sensitivity;
+                    xPos = handPosLocal.transform.localPosition.x;
+                    yPos = handPosLocal.transform.localPosition.y;
+
+                    cursorHand.transform.localPosition = new Vector3(xPos, yPos, tempDist / 100 - .025f);
+
                 }
-                navigating = true;
-                cursorHand.SetActive(true);
-            
-                handPosLocal.transform.position = HandsManager.Instance.ManipulationHandPosition - initHandPos;
-
-                handPosLocal.transform.localPosition = new Vector3(Mathf.Clamp(handPosLocal.transform.localPosition.x, -.1f, .1f),
-                                                                    Mathf.Clamp(handPosLocal.transform.localPosition.y, -.1f, .1f),
-                                                                    handPosLocal.transform.localPosition.z) * sensitivity;
-                xPos = handPosLocal.transform.localPosition.x;
-                yPos = handPosLocal.transform.localPosition.y;
-
-                cursorHand.transform.localPosition = new Vector3(xPos, yPos, tempDist / 100 - .025f);
-
-            }
-            else 
-            {
-                editState = false;
-                navigating = false;
-                adjustWithEdit();
-                cursorOri.SetActive(true);
-                cursorHand.SetActive(false);
-                initHandPos = new Vector3(0, 0, 0);
-                timerManager.Instance.CountInterrupt();
-                radialManagement.Instance.isActive = false;
+                else
+                {
+                    editState = false;
+                    navigating = false;
+                    adjustWithEdit();
+                    cursorOri.SetActive(true);
+                    cursorHand.SetActive(false);
+                    initHandPos = new Vector3(0, 0, 0);
+                    timerManager.Instance.CountInterrupt();
+                    radialManagement.Instance.isActive = false;
+                }
             }
         }
+
     }
 
     public void adjustWithEdit()

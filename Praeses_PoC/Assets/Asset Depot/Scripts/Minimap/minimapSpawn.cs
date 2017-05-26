@@ -65,6 +65,12 @@ namespace HoloToolkit.Unity
                 if (miniMapMeshes[i].tag == "boilerPrefab")
                 {
                     boilerPivot = miniMapMeshes[i].transform.position;
+                    miniMapMeshes[i].tag = "miniMapMesh";
+                    foreach (Transform child in miniMapMeshes[i].GetComponentsInChildren<Transform>())
+                    {
+                        child.gameObject.tag = "miniMapMesh";
+                    }
+                        
                 }
                 else
                 {

@@ -90,15 +90,20 @@ public class RPCfunctions : NetworkBehaviour {
     [ClientRpc]
     public void RpcPlay()
     {
-        if (pauseSymbol.GetComponent<videoPauseButton>().videoPlayer.Control.IsPlaying())
+        if (mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment.type == 2)
         {
-            print("pause");
-            pauseSymbol.GetComponent<videoPauseButton>().pauseVideo();
-        }else
-        {
-            print("play");
-            playSymbol.GetComponent<videoPlayButton>().OnMouseDownProxy();
+            if (pauseSymbol.GetComponent<videoPauseButton>().videoPlayer.Control.IsPlaying())
+            {
+                print("pause");
+                pauseSymbol.GetComponent<videoPauseButton>().pauseVideo();
+            }
+            else
+            {
+                print("play");
+                playSymbol.GetComponent<videoPlayButton>().OnMouseDownProxy();
+            }
         }
+
 
     }
 }

@@ -1136,7 +1136,7 @@ GameObject:
   - component: {fileID: 114579420009079492}
   m_Layer: 0
   m_Name: person
-  m_TagString: Untagged
+  m_TagString: miniMapMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4204,7 +4204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationFactor: 0
-  rotationMultiplier: 1
+  rotationMultiplier: 0.8
   tumbledObject: {fileID: 1044065943002574}
   typing: 1
   followCur: {fileID: 114433784240342322}
@@ -4402,7 +4402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationFactor: 0
-  rotationMultiplier: -1
+  rotationMultiplier: -0.8
   tumbledObject: {fileID: 1044065943002574}
   typing: 1
   followCur: {fileID: 114433784240342322}
@@ -4812,6 +4812,7 @@ MonoBehaviour:
   - {fileID: 114135610743439512}
   - {fileID: 114300180950704290}
   sensitivity: 1.2
+  moveModeMeshes: {fileID: 1388291549910722}
 --- !u!114 &114725779201963956
 MonoBehaviour:
   m_ObjectHideFlags: 1

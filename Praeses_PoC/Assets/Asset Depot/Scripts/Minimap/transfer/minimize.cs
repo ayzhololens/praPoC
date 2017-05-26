@@ -53,6 +53,7 @@ public class minimize : MonoBehaviour, IInputClickHandler {
             Destroy(mesh.GetComponent<Collider>());
             Destroy(mesh.GetComponent<MeshRenderer>());
         }
+        gameObject.GetComponent<Collider>().enabled = false;
     }
 
     private void Update()
