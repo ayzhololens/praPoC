@@ -6400,23 +6400,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1699194472853180, guid: 6b9c14fcc8025f543bf3a867845d521d,
     type: 2}
   m_PrefabInternal: {fileID: 882884685}
---- !u!114 &668710824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 668710823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7069f3edbfd05ca44bbecd7204d69524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  copiedFiles:
-  - videoNote.mp4
-  - violationPhoto.jpg
-  - JO_JJ.json
-  - JO_JJ_values.json
-  - JO_JJ_valuesPopUp.json
 --- !u!114 &668710834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8849,17 +8832,17 @@ Prefab:
     - target: {fileID: 114307663094771496, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: darkColor.r
-      value: 0.2794118
+      value: 0.6838235
       objectReference: {fileID: 0}
     - target: {fileID: 114307663094771496, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: darkColor.g
-      value: 0.2794118
+      value: 0.6838235
       objectReference: {fileID: 0}
     - target: {fileID: 114307663094771496, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: darkColor.b
-      value: 0.2794118
+      value: 0.6838235
       objectReference: {fileID: 0}
     - target: {fileID: 114307663094771496, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
@@ -9514,6 +9497,7 @@ Prefab:
     - {fileID: 33456105354614660, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
     - {fileID: 23139868105514620, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
     - {fileID: 82641189637157312, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114746821136172466, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &891103792
@@ -10497,7 +10481,7 @@ Prefab:
         type: 2}
       propertyPath: mainMenuContent
       value: 
-      objectReference: {fileID: 1320795961}
+      objectReference: {fileID: 71377424}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b0503661aa38374a9546bd43bd36f18, type: 2}
   m_IsPrefabParent: 0
@@ -14068,11 +14052,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a695fa918182f74a8a5c856aaf3dcd3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1320795961 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1071622073431788, guid: 6a695fa918182f74a8a5c856aaf3dcd3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1320795960}
 --- !u!114 &1321159826 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114762939697747612, guid: 6b9c14fcc8025f543bf3a867845d521d,

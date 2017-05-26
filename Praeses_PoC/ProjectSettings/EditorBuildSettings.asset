@@ -13,7 +13,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Stable Build/Integration/numpadFix.unity
   - enabled: 0
     path: Assets/Scenes/Stable Build/Integration/postBuildToOffsite.unity
-  - enabled: 0
-    path: Assets/Scenes/Stable Build/Integration/offsite/inDeviceOffsiteScene.unity
   - enabled: 1
     path: Assets/Scenes/Stable Build/Integration/postBuild.unity
+  - enabled: 1
+    path: Assets/Scenes/Stable Build/Integration/offsite/inDeviceOffsiteScene.unity
