@@ -8521,6 +8521,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114470239810710796, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: queuedThumbs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 114194279099476762, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: reloadedObjects.Array.size
@@ -8706,12 +8711,12 @@ Prefab:
     - target: {fileID: 114608681545669052, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: m_VideoPath
-      value: C:/Users/jvelez/AppData/LocalLow/DefaultCompany/Praeses_PoC/videoNote.mp4
+      value: AVProVideoSamples/BigBuckBunny_360p30.mp4
       objectReference: {fileID: 0}
     - target: {fileID: 114608681545669052, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: m_VideoLocation
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114955019297564206, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
@@ -9491,6 +9496,36 @@ Prefab:
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[17].KeyCode
       value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470239810710796, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: _mediaPlayer
+      value: 
+      objectReference: {fileID: 1140909578}
+    - target: {fileID: 114470239810710796, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: queuedThumbs.Array.data[0]
+      value: AlphaLeftRight.mp4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470239810710796, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: queuedThumbs.Array.data[1]
+      value: AlphaTopBottom.mp4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470239810710796, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: queuedThumbs.Array.data[2]
+      value: dragAnim.mp4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470239810710796, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: queuedThumbs.Array.data[3]
+      value: videoNote.mp4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114955019297564206, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[8].Response.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114663073116832346, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
@@ -11684,6 +11719,129 @@ Transform:
   m_PrefabParentObject: {fileID: 4137246140622392, guid: 917c59906c8034444ac9cf70470d67fd,
     type: 2}
   m_PrefabInternal: {fileID: 294684950}
+--- !u!1 &1140909577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1879114268061652, guid: 6b9c14fcc8025f543bf3a867845d521d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1140909580}
+  - component: {fileID: 1140909578}
+  - component: {fileID: 1140909579}
+  m_Layer: 0
+  m_Name: FrameExtractor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1140909578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114608681545669052, guid: 6b9c14fcc8025f543bf3a867845d521d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140909577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638c870cac4da414fba921606d504407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_VideoLocation: 2
+  m_VideoPath: tapAnim.mp4
+  m_AutoOpen: 1
+  m_AutoStart: 0
+  m_Loop: 1
+  m_Volume: 1
+  m_Muted: 0
+  m_PlaybackRate: 1
+  m_DebugGui: 0
+  m_Persistent: 0
+  m_StereoPacking: 0
+  m_AlphaPacking: 0
+  m_DisplayDebugStereoColorTint: 0
+  m_FilterMode: 1
+  m_WrapMode: 1
+  m_AnisoLevel: 0
+  m_events:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: RenderHeads.Media.AVProVideo.MediaPlayerEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _optionsWindows:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+    videoApi: 0
+    useHardwareDecoding: 1
+    useUnityAudio: 0
+    forceAudioOutputDeviceName: 
+  _optionsMacOSX:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+  _optionsIOS:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+  _optionsTVOS:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+  _optionsAndroid:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+    useFastOesPath: 0
+    fileOffset: 0
+  _optionsWindowsPhone:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+    useHardwareDecoding: 1
+  _optionsWindowsUWP:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+    useHardwareDecoding: 0
+  _optionsWebGL:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+--- !u!114 &1140909579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114725547331049604, guid: 6b9c14fcc8025f543bf3a867845d521d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140909577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2feedce2e2e63647b8f875ec0894a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 0}
+  _scale: {x: 1, y: 1}
+  _material: {fileID: 2100000, guid: 3d77f047367097a459c0a30edb2f457a, type: 2}
+  _texturePropertyName: 
+  _media: {fileID: 1140909578}
+  _defaultTexture: {fileID: 0}
+--- !u!4 &1140909580
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4601664794658292, guid: 6b9c14fcc8025f543bf3a867845d521d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140909577}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: 0.62139326, y: 99.324425, z: 0.05246675}
+  m_LocalScale: {x: 0.91172, y: 0.91172, z: 0.91172}
+  m_Children: []
+  m_Father: {fileID: 1509203014}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143782260
 GameObject:
   m_ObjectHideFlags: 0

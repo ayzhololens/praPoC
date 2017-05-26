@@ -72,6 +72,7 @@ namespace HoloToolkit.Unity
                 thumbMat = Instantiate(vidThumbMat);
                 //vidThumbMat = GetComponent<Renderer>().material;
                 mediaManager.Instance.vidRecorder.GetComponent<FrameExtract>().activeComment = this.gameObject;
+                mediaManager.Instance.vidRecorder.GetComponent<FrameExtract>().addThumbnail(filepath);
                 mediaManager.Instance.vidRecorder.GetComponent<FrameExtract>().makeThumbnail();
                 //vidThumbnail = mediaManager.Instance.vidRecorder.GetComponent<FrameExtract>()._texture;
                 //vidThumbMat.mainTexture = vidThumbnail;

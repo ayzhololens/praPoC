@@ -21,13 +21,37 @@ namespace RenderHeads.Media.AVProVideo.Demos
 		private float _timeStepSeconds;
 		private int _frameIndex = 0;
 		public  Texture2D _texture;
+        public List<Texture2D> thumbTexts;
         public GameObject activeComment;
         public string filePath;
 
+        public List<string> queuedThumbs;
+
+        private void Start()
+        {
+            //for(int i=0; i<5; i++)
+            //{
+            //    string temp = "AlphaLeftRight.mp4";
+            //    queuedThumbs.Add(temp);
+            //}
+           // makeThumbnail();
+            
+        }
+
+
+        public void addThumbnail(string filePath)
+        {
+            queuedThumbs.Add(filePath);
+            
+        }
+
 		public void makeThumbnail()
-		{
+        {
+            _mediaPlayer.m_VideoPath = queuedThumbs[0];
+            _mediaPlayer.LoadVideoPlayer();
             OnNewMediaReady();
             _mediaPlayer.Events.AddListener(OnMediaPlayerEvent);
+            print(_mediaPlayer.m_VideoPath);
 
 
 
@@ -83,6 +107,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
             // Extract the frame to Texture2D
             float timeSeconds = _frameIndex * _timeStepSeconds;
             _texture = _mediaPlayer.ExtractFrame(_texture, timeSeconds, _accurateSeek, _timeoutMs);
+            
             if (_texture != null)
             {
                 if (activeComment.GetComponent<commentContents>() != null)
@@ -100,7 +125,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
                     activeComment.GetComponent<offsiteMediaPlayer>().thumbMat.mainTexture = activeComment.GetComponent<offsiteMediaPlayer>().vidThumbnail;
                     activeComment.GetComponent<offsiteMediaPlayer>().thumbPlane.GetComponent<Renderer>().material = activeComment.GetComponent<offsiteMediaPlayer>().thumbMat;
                 }
-                Invoke("clear", 1);
+                Invoke("clear", .1f);
 
             }
             else
@@ -112,7 +137,19 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
         void clear()
         {
-            _mediaPlayer.Events.RemoveListener(OnMediaPlayerEvent);
+            if (_texture != null)
+            {
+                thumbTexts.Add(_texture);
+                _texture = null;
+                if (queuedThumbs.Count != 0)
+                {
+                    queuedThumbs.RemoveAt(0);
+                    Invoke("makeThumbnail", .1f);
+                }
+
+                _mediaPlayer.Events.RemoveListener(OnMediaPlayerEvent); 
+            }
+
         }
     }
 }
