@@ -90,6 +90,10 @@ namespace HoloToolkit.Unity
                 {
                     contentHolder.transform.parent.gameObject.SendMessage("checkTab", SendMessageOptions.DontRequireReceiver);
                 }
+                if (GetComponent<nodeMediaHolder>().fieldNode)
+                {
+                    formController.Instance.goToTab(2);
+                }
 
             }
 
