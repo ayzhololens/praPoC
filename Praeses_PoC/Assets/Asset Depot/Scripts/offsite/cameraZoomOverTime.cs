@@ -30,7 +30,7 @@ public class cameraZoomOverTime : MonoBehaviour {
         while (t <= 1.0)
         {
             t += Time.deltaTime / seconds;
-            cameraToMove.transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0.0f, 1.0f, t));
+            cameraToMove.transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0.0f, 1, t));
             parentToMove.transform.rotation = Quaternion.Lerp(pStartRot, pEndRot, Mathf.SmoothStep(0.0f, 1.0f, t));
             parentToMove.transform.position = Vector3.Lerp(pStartPos, pEndPos, Mathf.SmoothStep(0.0f, 1.0f, t));
             cameraToMove.transform.rotation = Quaternion.Lerp(startRot, endRot, Mathf.SmoothStep(0.0f, 1.0f, t));
@@ -64,7 +64,7 @@ public class cameraZoomOverTime : MonoBehaviour {
 
         //angling the cam for focus
         Vector3 point = new Vector3(target.position.x,
-            target.position.y + 2,
+            target.position.y+2,
             target.position.z);
         Vector3 rotatedPoint = RotatePointAroundPivot(point,
             target.position,
@@ -82,7 +82,7 @@ public class cameraZoomOverTime : MonoBehaviour {
                                                     rotY + 180,
                                                     rotateCam.transform.eulerAngles.z);
         transform.localPosition = new Vector3(transform.localPosition.x,
-                                              0.1f,
+                                              0,
                                               -1);
 
         Destroy(fakeObj);

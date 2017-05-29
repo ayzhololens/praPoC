@@ -36,12 +36,10 @@ public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> 
 
     //minimapPlanePLayback
     public Material nodesCamMat;
-    public GameObject minimapPlane; 
+    public GameObject minimapPlane;
 
-    //   public bool boxState;
-    //   public GameObject nextLiner;
-    //   float initNextLinerY;
-    //   public List<GameObject> collapsableChild;
+    //video only
+    public GameObject hideThis;
 
     public void populateNodes()
     {
@@ -156,6 +154,7 @@ public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> 
             newItem.GetComponent<offsiteMediaPlayer>().guidedTargetObj = guidedTargetObj;
             newItem.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
             newItem.GetComponent<offsiteMediaPlayer>().playButton = playButton;
+            newItem.GetComponent<offsiteMediaPlayer>().hideThis = hideThis;
             //fieldItemCollection.Add(fieldItem.Name, newItem);
         }
 

@@ -77,10 +77,10 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
         {
             if (GazeManager.Instance.HitObject == gameObject || navigating)
             {
-                Debug.Log("looking");
+                //Debug.Log("looking");
                 if (sourceManager.Instance.sourcePressed)
                 {
-                    Debug.Log("pressing...");
+                    //Debug.Log("pressing...");
                     if (!navigating)
                     {
 
@@ -133,6 +133,8 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
             buttonsGrp.transform.SetParent(Camera.main.transform);
             buttonsGrp.transform.localPosition = new Vector3(0, 0, tempDist);
             buttonsGrp.transform.rotation = Quaternion.LookRotation(forward, up);
+            print(tempDist);
+            buttonsGrp.transform.localScale = new Vector3(1.5f,1.5f,1.5f) * Mathf.Clamp(tempDist/1.19f, .2f, 1);
             buttonsGrp.transform.SetParent(oriParent);
         }
         else

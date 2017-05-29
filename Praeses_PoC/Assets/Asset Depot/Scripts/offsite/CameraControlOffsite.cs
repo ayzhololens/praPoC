@@ -37,10 +37,10 @@ public class CameraControlOffsite : MonoBehaviour
         float finalScale = Time.deltaTime * sensitivityScale;
 
         transform.Translate(new Vector3(0.0f, 0.0f, Input.GetAxis("Mouse ScrollWheel") * ZoomSensititity * finalScale));
-        transform.Translate(new Vector3(Input.GetAxis("Horizontal") * 2.5f * Time.deltaTime,
-                0,
-                                            Input.GetAxis("Vertical") * 2.5f * Time.deltaTime
-                                            ));
+        //transform.Translate(new Vector3(Input.GetAxis("Horizontal") * 2.5f * Time.deltaTime,
+        //        0,
+        //                                    Input.GetAxis("Vertical") * 2.5f * Time.deltaTime
+        //                                    ));
         
         //pan
         if (((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.F))

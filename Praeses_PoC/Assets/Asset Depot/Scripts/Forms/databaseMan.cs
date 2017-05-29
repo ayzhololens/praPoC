@@ -374,10 +374,10 @@ public class databaseMan : Singleton<databaseMan>
             itemClasses.Add(item.name, item);
         };
 
-        //foreach (ItemClass item in values.Location.Equipment[0].CurrentInspection)
-        //{
-        //    itemClasses.Add(item.name, item);
-        //};
+        foreach (ItemClass item in values.Location.Equipment[0].CurrentInspection)
+        {
+            itemClasses.Add(item.name, item);
+        };
 
         if (itemClasses.ContainsKey(keyword))
         {

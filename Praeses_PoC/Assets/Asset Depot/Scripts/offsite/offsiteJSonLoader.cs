@@ -66,20 +66,16 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
             {
                 certCode = val.value;
             }
+            if (val.name == "dtCertExpire")
+            {
+                expDate = val.value;
+            }
         }
-        foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.ExtraFields.fields)
+        foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.InspectionFields.fields)
         {
             if (field.Name == "intActivityTypeID")
             {
                 optionsText = field.Options[certCode];
-            }
-        }
-
-        foreach (JU_databaseMan.valueItem val in JU_databaseMan.Instance.values.equipmentData)
-        {
-            if (val.name == "dtCertExpire")
-            {
-                expDate = val.value;
             }
         }
 

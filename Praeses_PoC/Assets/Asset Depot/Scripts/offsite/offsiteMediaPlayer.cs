@@ -28,9 +28,29 @@ public class offsiteMediaPlayer : MonoBehaviour {
     public MediaPlayer videoPlayer;
     public GameObject playButton;
 
+    //for video only in vio
+    public GameObject hideThis;
+    Vector3 initPos;
+    Vector3 initScale;  
+
     private void Start()
     {
+        initPos = new Vector3(1442.008f, 110.0012f, -118.0077f);
+        initScale = new Vector3(189.6336f, 189.6336f, 105.3446f); 
+    }
 
+    void videoOnly()
+    {
+        hideThis.SetActive(false);
+        mediaPlane.transform.localPosition = new Vector3(843, -180 , -118.0077f);
+        mediaPlane.transform.localScale = new Vector3(295.3811f, 766.8397f, 164.089f);
+    }
+
+    void allVisible()
+    {
+        hideThis.SetActive(true);
+        mediaPlane.transform.localPosition = initPos;
+        mediaPlane.transform.localScale = initScale;
     }
 
     private void OnMouseDown()
@@ -40,7 +60,9 @@ public class offsiteMediaPlayer : MonoBehaviour {
             annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = false;
             stopVideo();
             mediaWindow.SetActive(false);
-        }else
+            allVisible();
+        }
+        else
         {
 
         }
@@ -84,6 +106,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
                         playButton.SetActive(true);
                     }
 
+                    videoOnly();
                     nullComment = gameObject.GetComponent<offsiteFieldItemValueHolder>().comment;
                     violationsParentSpawner.Instance.minimapPlane.GetComponent<Image>().material = violationsParentSpawner.Instance.vioCamMat;
 

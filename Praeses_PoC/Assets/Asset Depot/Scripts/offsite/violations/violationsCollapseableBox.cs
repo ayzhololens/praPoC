@@ -30,6 +30,11 @@ public class violationsCollapseableBox : MonoBehaviour {
 
     public GameObject addObject;
 
+    public GameObject fixd;
+    public GameObject nu;
+    public GameObject haz;
+    public GameObject sta;
+
     public void updateTitleContents()
     {
         dateAddedValue.text = JU_databaseMan.Instance.violationsManager.violations[vioInt].violationDate;
@@ -39,17 +44,31 @@ public class violationsCollapseableBox : MonoBehaviour {
                     + JU_databaseMan.Instance.violationsManager.violations[vioInt].specific.ToString();
         string strTitle = JU_databaseMan.Instance.categoryStringer(JU_databaseMan.Instance.violationsManager.violations[vioInt])[2];
         title.text = code + " - " + strTitle;
+        fixd.SetActive(false);
+        nu.SetActive(false);
+        haz.SetActive(false);
         if (JU_databaseMan.Instance.violationsManager.violations[vioInt].status == 1)//fixed
         {
             //then color is green
-            severityBox.color = new Color(.059f, .545f, .122f);
-            severity.text = violationsLib.Instance.violationsStatus[JU_databaseMan.Instance.violationsManager.violations[vioInt].status];
+            fixd.SetActive(true);
+        }
+        else if (JU_databaseMan.Instance.violationsManager.violations[vioInt].status == 0)//new
+        {
+            //then color is grey
+            nu.SetActive(true);
         }
         else
         {
-            //then color is orange
-            severityBox.color = new Color(.917f, .443f, .122f);
-            severity.text = violationsLib.Instance.violationsSeverity[JU_databaseMan.Instance.violationsManager.violations[vioInt].severity];
+            if(JU_databaseMan.Instance.violationsManager.violations[vioInt].severity == 1)
+            {
+                //then color is orange
+                haz.SetActive(true);
+            }
+            else
+            {
+                sta.SetActive(true);
+            }
+
         }
     }
 
@@ -125,8 +144,8 @@ public class violationsCollapseableBox : MonoBehaviour {
         collapseContent.SetActive(false);
         vioBox.GetComponent<RectTransform>().sizeDelta = new Vector2(vioBox.GetComponent<RectTransform>().rect.width,
                         vioBox.GetComponent<RectTransform>().rect.height - expandSize);
-        bigBox.GetComponent<RectTransform>().sizeDelta = new Vector2(vioBox.GetComponent<RectTransform>().rect.width,
-                        vioBox.GetComponent<RectTransform>().rect.height - expandSize);
+        //bigBox.GetComponent<RectTransform>().sizeDelta = new Vector2(vioBox.GetComponent<RectTransform>().rect.width,
+        //                vioBox.GetComponent<RectTransform>().rect.height - expandSize);
         foreach (GameObject childItem in childItems)
         {
             childItem.GetComponent<RectTransform>().localPosition = new Vector3(childItem.GetComponent<RectTransform>().localPosition.x,
@@ -135,8 +154,8 @@ public class violationsCollapseableBox : MonoBehaviour {
         };
         addObject.GetComponent<Collider>().enabled = false;
         addObject.GetComponent<Renderer>().enabled = false;
-        //bigBox.startCollapse -= expandSize;
-        //bigBox.readjustBox();
+        bigBox.startCollapse -= expandSize;
+        bigBox.readjustBox();
     }
 
     private void OnMouseDown()

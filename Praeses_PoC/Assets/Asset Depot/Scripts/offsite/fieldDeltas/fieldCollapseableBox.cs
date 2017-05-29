@@ -76,8 +76,8 @@ public class fieldCollapseableBox : Singleton<fieldCollapseableBox> {
             }
         }
 
-        scrollBox.GetComponent<RectTransform>().sizeDelta = new Vector2(scrollBox.GetComponent<RectTransform>().rect.width,
-                                            scrollBox.GetComponent<RectTransform>().rect.height +90);
+        //scrollBox.GetComponent<RectTransform>().sizeDelta = new Vector2(scrollBox.GetComponent<RectTransform>().rect.width,
+        //                                    scrollBox.GetComponent<RectTransform>().rect.height +90);
 
         bigBox.startCollapse += 25;
         bigBox.readjustBox();
@@ -89,7 +89,9 @@ public class fieldCollapseableBox : Singleton<fieldCollapseableBox> {
                 insertComparativeValues(compareItem);
             }
         }
-
+        //nextLiner.GetComponent<RectTransform>().localPosition = new Vector3(nextLiner.GetComponent<RectTransform>().localPosition.x,
+        //                                                    nextLiner.GetComponent<RectTransform>().localPosition.y - 25,
+        //                                                    0);
     }
 
     void addOneFieldDelta(GameObject parentObj, float yOffset, JU_databaseMan.compareItem compareItem)
@@ -110,7 +112,7 @@ public class fieldCollapseableBox : Singleton<fieldCollapseableBox> {
         bigBox.startCollapse += (expandSize);
         bigBox.readjustBox();
         nextLiner.GetComponent<RectTransform>().localPosition = new Vector3(nextLiner.GetComponent<RectTransform>().localPosition.x,
-                                                                    nextLiner.GetComponent<RectTransform>().localPosition.y - (expandSize*.688f),
+                                                                    nextLiner.GetComponent<RectTransform>().localPosition.y - 30,
                                                                     0);
     }
 

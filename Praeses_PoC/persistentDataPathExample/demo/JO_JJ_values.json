@@ -119,14 +119,6 @@
             ],
             "CurrentInspection":[
                {
-                  "name":"intActivityTypeID",
-                  "value":"5",
-                  "nodeIndex":0
-               },
-               {
-                  "name":"intObjBoilerPressureAllowed",
-                  "value":"161",
-                  "nodeIndex":0
                }
             ],
             "Violations":[

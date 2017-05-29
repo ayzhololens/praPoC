@@ -269,7 +269,7 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
             newFieldItem.Name = fieldItem.Name;
             newFieldItem.Required = fieldItem.Required;
             newFieldItem.Options = fieldItem.Options;
-            if (fieldItem.Name == "intActivityTypeID" || fieldItem.Name == "dtActivityDate" || fieldItem.Name == "blnIssueCertOK")
+            if (fieldItem.Name == "blnIssueCertOK")
             {
                 definitions.ExtraFields.fields.Add(newFieldItem);
             }
@@ -302,7 +302,7 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
             newValueItem.name = item.name;
             newValueItem.value = item.value;
             newValueItem.nodeIndex = item.nodeIndex;
-            if (item.name == "intActivityTypeID" || item.name == "dtActivityDate" || item.name == "blnIssueCertOK")
+            if (item.name == "blnIssueCertOK")
             {
                 values.extraData.Add(newValueItem);
             }

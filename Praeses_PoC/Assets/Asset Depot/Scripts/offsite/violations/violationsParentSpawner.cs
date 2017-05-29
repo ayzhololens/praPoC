@@ -21,6 +21,10 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
     public InputField field;
     public Button addNoteDone;
     public MediaPlayer videoPlayer;
+    public Button exButton;
+
+    //for video only
+    public GameObject hideThis;
 
     [System.Serializable]
     public class vioListItem
@@ -62,7 +66,7 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
     {
         VioBox.sizeDelta = new Vector2(VioBox.rect.width, expandSize * totalLines);
         childItem.GetComponent<RectTransform>().localPosition = new Vector3(childItem.GetComponent<RectTransform>().localPosition.x,
-                                                                        childItem.GetComponent<RectTransform>().localPosition.y - (expandSize),
+                                                                        childItem.GetComponent<RectTransform>().localPosition.y - (expandSize*1.1f),
                                                                         childItem.GetComponent<RectTransform>().localPosition.z);
         bigBox.startCollapse += expandSize;
         bigBox.readjustBox();
@@ -85,6 +89,7 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
             newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addNewCommentWindow = addNewCommentBox;
             newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().field = field;
             newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addNoteDone = addNoteDone;
+            newItem.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().exButton = exButton;
 
             newItem.GetComponent<violationsCollapseableBox>().childItems.Add(childItem);
             foreach (vioListItem vioPre in spawnedVioPrefabs)
@@ -129,6 +134,8 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
             if (comment.type == 0)
             {
                 GameObject newCom = newVio.vioPrefab.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addOneSimple(comment);
+                newCom.GetComponent<offsiteMediaPlayer>().hideThis = hideThis;
+                newCom.GetComponent<offsiteMediaPlayer>().mediaPlane = mediaPlane;
                 newVio.violationMedias.Add(newCom);
             }
             else if (comment.type == 1)
@@ -151,6 +158,7 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
                 newCom.GetComponent<offsiteMediaPlayer>().guidedTargetObj = guidedTargetObj;
                 newCom.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
                 newCom.GetComponent<offsiteMediaPlayer>().playButton = playButton;
+                newCom.GetComponent<offsiteMediaPlayer>().hideThis = hideThis;
                 newVio.violationMedias.Add(newCom);
             }
             else if (comment.type == 2)
@@ -173,6 +181,7 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
                 newCom.GetComponent<offsiteMediaPlayer>().guidedTargetObj = guidedTargetObj;
                 newCom.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
                 newCom.GetComponent<offsiteMediaPlayer>().playButton = playButton;
+                newCom.GetComponent<offsiteMediaPlayer>().hideThis = hideThis;
                 newVio.violationMedias.Add(newCom);
             }
         }

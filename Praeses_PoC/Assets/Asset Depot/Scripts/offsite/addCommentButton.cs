@@ -6,10 +6,12 @@ using HoloToolkit.Unity;
 using System.IO;
 using RenderHeads.Media.AVProVideo.Demos;
 using RenderHeads.Media.AVProVideo;
+using UnityEngine.EventSystems;
 
 public class addCommentButton : MonoBehaviour {
 
     public GameObject addNewCommentWindow;
+    public Button exButton;
     public InputField field;
     public GameObject contentParent;
     public GameObject commentSimplePrefab;
@@ -18,6 +20,7 @@ public class addCommentButton : MonoBehaviour {
     public Button addNoteDone;
     public MediaPlayer videoPlayer;
     public List<GameObject> commentHolder;
+    public bool isEngaged;
 
 	// Use this for initialization
 	void Start () {
@@ -26,22 +29,42 @@ public class addCommentButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (isEngaged)
+        {
+            if (Input.GetKeyDown("return"))
+            {
+                if(field.text != "")
+                {
+                    addOneViolationComment(this);
+                }else
+                {
+                    closeWindow(this);
+                }
+                isEngaged = false;
+            }
+
+        }
 	}
 
     private void OnMouseDown()
     {
         addNoteDone.onClick.RemoveAllListeners();
         addNoteDone.onClick.AddListener(delegate(){addOneViolationComment(this); });
+
+        exButton.onClick.RemoveAllListeners();
+        exButton.onClick.AddListener(delegate () { closeWindow(this); });
+
         addNewCommentWindow.SetActive(true);
         field.ActivateInputField();
+        isEngaged = true;
     }
 
-    public void closeWindow()
+        public void closeWindow(addCommentButton script)
     {
-        addNoteDone.onClick.RemoveAllListeners();
-        field.text = "";
-        addNewCommentWindow.SetActive(false);
+        script.addNoteDone.onClick.RemoveAllListeners();
+        script.exButton.onClick.RemoveAllListeners();
+        script.field.text = "";
+        script.addNewCommentWindow.SetActive(false);
     }
 
     public void addOneViolationComment(addCommentButton script)
@@ -59,7 +82,7 @@ public class addCommentButton : MonoBehaviour {
         newItem.GetComponent<offsiteFieldItemValueHolder>().date = metaManager.Instance.date();
 
         script.commentHolder.Add(newItem);
-        closeWindow();
+        closeWindow(this);
     }
 
     public virtual GameObject addOneSimple(JU_databaseMan.tempComment comment)

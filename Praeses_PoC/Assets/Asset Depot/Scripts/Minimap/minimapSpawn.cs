@@ -66,9 +66,16 @@ namespace HoloToolkit.Unity
                 {
                     boilerPivot = miniMapMeshes[i].transform.position;
                     miniMapMeshes[i].tag = "miniMapMesh";
+                    miniMapMeshes[i].layer = 0;
+                    miniMapMeshes[i].GetComponent<Collider>().enabled = true;
                     foreach (Transform child in miniMapMeshes[i].GetComponentsInChildren<Transform>())
                     {
+                        if(child.gameObject.name == "initialShadingGroup_boiler_model")
+                        {
+                            child.gameObject.GetComponent<Renderer>().material.renderQueue = 1000;
+                        }
                         child.gameObject.tag = "miniMapMesh";
+                        child.gameObject.layer = 0;
                     }
                         
                 }
