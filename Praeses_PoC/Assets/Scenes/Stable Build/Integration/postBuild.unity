@@ -8524,7 +8524,7 @@ Prefab:
     - target: {fileID: 114470239810710796, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: queuedThumbs.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114194279099476762, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
@@ -8711,12 +8711,12 @@ Prefab:
     - target: {fileID: 114608681545669052, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: m_VideoPath
-      value: AVProVideoSamples/BigBuckBunny_360p30.mp4
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114608681545669052, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: m_VideoLocation
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114955019297564206, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
@@ -11750,7 +11750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_VideoLocation: 2
-  m_VideoPath: tapAnim.mp4
+  m_VideoPath: 
   m_AutoOpen: 1
   m_AutoStart: 0
   m_Loop: 1

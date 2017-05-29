@@ -41,14 +41,18 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
         public void addThumbnail(string filePath)
         {
+            print("add filepath " + filePath);
             queuedThumbs.Add(filePath);
-            
+            _mediaPlayer.m_VideoPath = queuedThumbs[0];
+            _mediaPlayer.LoadVideoPlayer();
+            makeThumbnail();
+            //Invoke("makeThumbnail", .5f);
+
         }
 
 		public void makeThumbnail()
         {
-            _mediaPlayer.m_VideoPath = queuedThumbs[0];
-            _mediaPlayer.LoadVideoPlayer();
+
             OnNewMediaReady();
             _mediaPlayer.Events.AddListener(OnMediaPlayerEvent);
             print(_mediaPlayer.m_VideoPath);

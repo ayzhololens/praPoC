@@ -99,8 +99,8 @@ public class submittedViolationController : MonoBehaviour {
                 if (activeComment.GetComponent<commentContents>().isVideo)
                 {
                     vCounter += 1;
-                    GameObject videoComment = spawnedPreview.GetComponent<commentManager>().spawnVideoCommentFromJSON();
-                    videoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+                    GameObject videoComment = spawnedPreview.GetComponent<commentManager>().spawnVideoCommentFromJSON(activeComment.GetComponent<commentContents>().filepath);
+                    videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
                     videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
                     videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
                 }
@@ -186,8 +186,8 @@ public class submittedViolationController : MonoBehaviour {
             }
             if (activeComment.GetComponent<commentContents>().isVideo)
             {
-                GameObject videoComment = vioComManager.spawnVideoCommentFromJSON();
-                videoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+                GameObject videoComment = vioComManager.spawnVideoCommentFromJSON(activeComment.GetComponent<commentContents>().filepath);
+                videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
                 videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
                 videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
                 // resolveComs.Add(videoComment);
@@ -238,8 +238,8 @@ public class submittedViolationController : MonoBehaviour {
             if (activeComment.GetComponent<commentContents>().isVideo)
             {
                 vCounter += 1;
-                GameObject videoComment = resolutionField.GetComponent<commentManager>().spawnVideoCommentFromJSON();
-                videoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+                GameObject videoComment = resolutionField.GetComponent<commentManager>().spawnVideoCommentFromJSON(activeComment.GetComponent<commentContents>().filepath);
+                videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
                 videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
                 videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
                // resolveComs.Add(videoComment);

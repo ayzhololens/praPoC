@@ -66,18 +66,29 @@ namespace HoloToolkit.Unity
                 mediaPlayer = mediaManager.Instance.videoPlayer;
             }
             mediaPlayer.m_VideoPath = filepath;
+            print(gameObject.name + filepath);
             mediaPlayer.LoadVideoPlayer();
+            if(vidThumbMat == null)
+            {
+
+            }
             if (vidThumbnail == null)
             {
                 thumbMat = Instantiate(vidThumbMat);
                 //vidThumbMat = GetComponent<Renderer>().material;
                 mediaManager.Instance.vidRecorder.GetComponent<FrameExtract>().activeComment = this.gameObject;
                 mediaManager.Instance.vidRecorder.GetComponent<FrameExtract>().addThumbnail(filepath);
-                mediaManager.Instance.vidRecorder.GetComponent<FrameExtract>().makeThumbnail();
+
+                //mediaManager.Instance.vidRecorder.GetComponent<FrameExtract>().makeThumbnail();
                 //vidThumbnail = mediaManager.Instance.vidRecorder.GetComponent<FrameExtract>()._texture;
                 //vidThumbMat.mainTexture = vidThumbnail;
                 //GetComponent<Renderer>().material = vidThumbMat;
 
+            }
+
+            if (vidThumbnail != null && thumbMat.mainTexture != vidThumbnail)
+            {
+                thumbMat.mainTexture = vidThumbnail;
             }
 
         }

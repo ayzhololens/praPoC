@@ -215,7 +215,7 @@ public class commentManager : MonoBehaviour {
 
     }
 
-    public virtual GameObject spawnVideoCommentFromJSON()
+    public virtual GameObject spawnVideoCommentFromJSON(string filePath)
     {
 
         //shift all comments down
@@ -236,6 +236,7 @@ public class commentManager : MonoBehaviour {
         commentContents videoContent = spawnedComment.GetComponent<commentContents>();
         videoContent.isVideo = true;
         capturingVideo = false;
+        videoContent.filepath = filePath;
         videoContent.LoadVideo();
 
         return spawnedComment;
