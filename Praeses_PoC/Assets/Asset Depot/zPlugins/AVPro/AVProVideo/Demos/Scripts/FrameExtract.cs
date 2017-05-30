@@ -28,6 +28,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
         public List<string> queuedThumbs;
         public List<GameObject> queuedComments;
         int index;
+        public float invokeTime;
 
 
         private void Start()
@@ -167,7 +168,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
                 //    activeComment.GetComponent<offsiteMediaPlayer>().thumbMat.mainTexture = activeComment.GetComponent<offsiteMediaPlayer>().vidThumbnail;
                 //    activeComment.GetComponent<offsiteMediaPlayer>().thumbPlane.GetComponent<Renderer>().material = activeComment.GetComponent<offsiteMediaPlayer>().thumbMat;
                 //}
-                Invoke("clear", .5f);
+                Invoke("clear", invokeTime);
 
             }
             else
@@ -183,11 +184,11 @@ namespace RenderHeads.Media.AVProVideo.Demos
                 thumbTexts.Add(_texture);
                 //thumbTexts.Add(_texture);
                 _texture = null;
-                //if (queuedThumbs.Count >0)
-                //{
-                //    queuedThumbs.RemoveAt(0);
-                //    Invoke("makeThumbnail", .1f);
-                //}
+                if (queuedThumbs.Count > 0)
+                {
+                    queuedThumbs.RemoveAt(0);
+                    Invoke("makeThumbnail", invokeTime);
+                }
 
                 _mediaPlayer.Events.RemoveListener(OnMediaPlayerEvent); 
             }

@@ -12220,6 +12220,7 @@ MonoBehaviour:
   filePath: 
   queuedThumbs: []
   queuedComments: []
+  invokeTime: 0.5
 --- !u!114 &918
 MonoBehaviour:
   m_ObjectHideFlags: 0
