@@ -28,6 +28,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
         public List<string> queuedThumbs;
         public List<GameObject> queuedComments;
         int index;
+        public float invokeTime;
 
 
         private void Start()
@@ -44,6 +45,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
         public void addThumbnail(string filePath, GameObject comment)
         {
+            print(filePath);
             CancelInvoke();
             queuedComments.Add(comment);
             queuedThumbs.Add(filePath);
@@ -65,7 +67,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
             }
             else
             {
-                loadThumbs();
+               loadThumbs();
             }
 
 
@@ -78,7 +80,18 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
             for (int i = 0; i < queuedComments.Count; i++)
             {
-                queuedComments[i].GetComponent<commentContents>().vidThumbnail = thumbTexts[i];
+                if (queuedComments[i].GetComponent<commentContents>() != null)
+                {
+                    queuedComments[i].GetComponent<commentContents>().vidThumbnail = thumbTexts[i];
+
+
+                }
+                if (activeComment.GetComponent<offsiteMediaPlayer>() != null)
+                {
+                    queuedComments[i].GetComponent<offsiteMediaPlayer>().vidThumbnail = thumbTexts[i];
+
+                }
+
             }
 
             index = 0;
@@ -155,14 +168,13 @@ namespace RenderHeads.Media.AVProVideo.Demos
                 //    activeComment.GetComponent<offsiteMediaPlayer>().thumbMat.mainTexture = activeComment.GetComponent<offsiteMediaPlayer>().vidThumbnail;
                 //    activeComment.GetComponent<offsiteMediaPlayer>().thumbPlane.GetComponent<Renderer>().material = activeComment.GetComponent<offsiteMediaPlayer>().thumbMat;
                 //}
-                Invoke("clear", .1f);
+                Invoke("clear", invokeTime);
 
             }
             else
             {
                 print("no texture");
             }
-
         }
 
         void clear()
@@ -170,11 +182,12 @@ namespace RenderHeads.Media.AVProVideo.Demos
             if (_texture != null)
             {
                 thumbTexts.Add(_texture);
+                //thumbTexts.Add(_texture);
                 _texture = null;
-                if (queuedThumbs.Count >0)
+                if (queuedThumbs.Count > 0)
                 {
                     queuedThumbs.RemoveAt(0);
-                    Invoke("makeThumbnail", .1f);
+                    Invoke("makeThumbnail", invokeTime);
                 }
 
                 _mediaPlayer.Events.RemoveListener(OnMediaPlayerEvent); 

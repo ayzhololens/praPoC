@@ -118,23 +118,15 @@
                }
             ],
             "CurrentInspection":[
-               {
-                  "name":"intActivityTypeID",
-                  "value":"5",
-                  "nodeIndex":0
-               },
-               {
-                  "name":"intObjBoilerPressureAllowed",
-                  "value":"161",
-                  "nodeIndex":0
-               }
+              {
+              }
             ],
             "Violations":[
                {
                   "category": "1.1.23",
                   "classifications": 1,
                   "violationDate": "01/23/2016",
-                  "status": 1,
+                  "status": 0,
                   "resolveDate": "07/04/2017",
                   "requirements": "Install or repair or replace item in accordance with State Law & Regs, ASME BPV Code, National Board Inspection Code and Manufacturer Specifications.",
                   "conditions": "Low Water Cutoff is not installed or installed incorrectly or inoperable or damaged or leaking.",
