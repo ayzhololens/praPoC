@@ -39,7 +39,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
         initScale = new Vector3(189.6336f, 189.6336f, 105.3446f); 
     }
 
-    void videoOnly()
+    public void videoOnly()
     {
         hideThis.SetActive(false);
         mediaPlane.transform.localPosition = new Vector3(843, -180 , -118.0077f);
@@ -110,6 +110,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
                     }
                     else if (gameObject.GetComponent<offsiteFieldItemValueHolder>().comment.type == 2)
                     {
+                        playButton.SetActive(true);
                         mediaPlane.SetActive(true);
                         mediaPlane.GetComponent<Renderer>().material = videoMaterial;
                         loadVideo();

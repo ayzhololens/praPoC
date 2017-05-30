@@ -10482,7 +10482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 579.00854, y: 430}
+  m_AnchoredPosition: {x: 579.00854, y: 410}
   m_SizeDelta: {x: 393.40002, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &838
@@ -10619,7 +10619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -929.9921, y: 783.0154}
+  m_AnchoredPosition: {x: -929.9921, y: 783.0386}
   m_SizeDelta: {x: 1860, y: 4000}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &846
@@ -12140,7 +12140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_VideoLocation: 4
-  m_VideoPath: videoNote.mp4
+  m_VideoPath: 
   m_AutoOpen: 0
   m_AutoStart: 0
   m_Loop: 0
@@ -14630,7 +14630,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 878}
   m_HandleRect: {fileID: 736}
   m_Direction: 2
-  m_Value: 0.72999686
+  m_Value: 0.7299889
   m_Size: 0.27499977
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -17639,6 +17639,8 @@ MonoBehaviour:
       fields: []
     ExtraFields:
       fields: []
+    nonDisplayedFields:
+      fields: []
   values:
     equipmentData: []
     historicData: []
@@ -17670,6 +17672,8 @@ MonoBehaviour:
     EquipmentFields:
       threeNine: []
     EquipmentInspectionFields:
+      threeNine: []
+    nonDisplayedFields:
       threeNine: []
   values:
     Location:
@@ -18006,7 +18010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: 0}
   _scale: {x: 1, y: 1}
-  _material: {fileID: 2100000, guid: 73e470de24564124dbf5fba202ad5664, type: 2}
+  _material: {fileID: 2100000, guid: eb957262591d3dd429f5cfc26bca47d6, type: 2}
   _texturePropertyName: 
   _media: {fileID: 874013815}
   _defaultTexture: {fileID: 0}

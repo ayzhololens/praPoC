@@ -66,7 +66,7 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
     {
         VioBox.sizeDelta = new Vector2(VioBox.rect.width, expandSize * totalLines);
         childItem.GetComponent<RectTransform>().localPosition = new Vector3(childItem.GetComponent<RectTransform>().localPosition.x,
-                                                                        childItem.GetComponent<RectTransform>().localPosition.y - (expandSize*1.1f),
+                                                                        childItem.GetComponent<RectTransform>().localPosition.y - (expandSize*1),
                                                                         childItem.GetComponent<RectTransform>().localPosition.z);
         bigBox.startCollapse += expandSize;
         bigBox.readjustBox();

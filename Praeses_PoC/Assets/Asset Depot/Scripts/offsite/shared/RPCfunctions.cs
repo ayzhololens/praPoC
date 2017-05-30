@@ -82,6 +82,7 @@ public class RPCfunctions : NetworkBehaviour {
         mediaNode.GetComponent<offsiteMediaPlayer>().guidedTargetObj.smoothZoom();
         mediaPlayerWindowPopulator.Instance.populateMediaPlayerWindow(currentNode, nullComment);
         annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = true;
+        mediaNode.GetComponent<offsiteMediaPlayer>().videoOnly();
         mediaNode.GetComponent<offsiteMediaPlayer>().mediaWindow.SetActive(true);
 
 

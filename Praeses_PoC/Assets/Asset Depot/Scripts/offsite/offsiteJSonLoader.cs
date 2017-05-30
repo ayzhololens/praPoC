@@ -71,7 +71,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
                 expDate = val.value;
             }
         }
-        foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.InspectionFields.fields)
+        foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.nonDisplayedFields.fields)
         {
             if (field.Name == "intActivityTypeID")
             {
@@ -79,7 +79,7 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
             }
         }
 
-        CertType.text = optionsText + "- Exp: " + expDate;
+        CertType.text = optionsText + " - Exp: " + expDate;
     }
 
     public void populateEquipment()
