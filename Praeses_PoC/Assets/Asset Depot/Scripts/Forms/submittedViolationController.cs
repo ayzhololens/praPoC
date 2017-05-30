@@ -42,12 +42,12 @@ public class submittedViolationController : MonoBehaviour {
 
     public void submit()
     {
-        vioController.violationData.Add(resName);
-        vioController.violationIndices.Add(tempIndex);
 
+        vioController.violationData[7] = resName;
+        vioController.violationIndices[7] = tempIndex;
         violatoinSpawner.Instance.successContentHolder.SetActive(true);
         violatoinSpawner.Instance.successContentHolder.transform.position = this.transform.position;
-        databaseMan.Instance.syncViolation(vioController);
+        databaseMan.Instance.updateVio(vioController);
     }
 
     public void addPreview(int index)

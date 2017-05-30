@@ -1969,6 +1969,22 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1044852120135828, guid: ee6323a1e730580439104f877a3832f9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851232504032236, guid: ee6323a1e730580439104f877a3832f9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733400994702022, guid: ee6323a1e730580439104f877a3832f9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584808861553820, guid: ee6323a1e730580439104f877a3832f9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee6323a1e730580439104f877a3832f9, type: 2}
   m_IsPrefabParent: 0
