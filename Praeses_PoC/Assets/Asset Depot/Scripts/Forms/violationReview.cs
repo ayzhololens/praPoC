@@ -102,10 +102,16 @@ namespace HoloToolkit.Unity
                 + violationControl.violationIndices[1].ToString() +"."
                 + violationControl.violationIndices[2].ToString());
             submittedViolationHolder.SetActive(true);
+            violationControl.violationData.Add("New");
+            violationControl.violationIndices.Add(0);
             submittedViolationHolder.GetComponent<submittedViolationController>().addPreview(0);
-            submittedViolationHolder.GetComponent<submittedViolationController>().tempIndex = 0;
-            submittedViolationHolder.GetComponent<submittedViolationController>().resName = "New";
+
+
+            submittedViolationHolder.GetComponent<submittedViolationController>().tempIndex = JU_databaseMan.Instance.violationsManager.violations[0].status;
+            submittedViolationHolder.GetComponent<submittedViolationController>().resName = violationsLib.Instance.violationsStatus[JU_databaseMan.Instance.violationsManager.violations[0].status];
             addingViolationHolder.SetActive(false);
+
+
             violationControl.closeViolation();
 
             //violatoinSpawner.Instance.populatePreviewField();

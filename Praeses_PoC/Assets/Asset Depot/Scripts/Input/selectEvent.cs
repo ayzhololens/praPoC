@@ -71,7 +71,7 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
         if (this.enabled == false) return;
         if (Event != null)
         {
-            Debug.Log("select");
+
             audioManager.Instance.setAndPlayAudio(soundIndex);
 
             Event.Invoke();

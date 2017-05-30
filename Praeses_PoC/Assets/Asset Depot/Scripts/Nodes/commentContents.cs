@@ -73,7 +73,7 @@ namespace HoloToolkit.Unity
                 mediaPlayer = mediaManager.Instance.videoPlayer;
             }
             mediaPlayer.m_VideoPath = filepath;
-            print(gameObject.name + filepath);
+
             mediaPlayer.LoadVideoPlayer();
             if(vidThumbMat == null)
             {

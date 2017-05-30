@@ -249,24 +249,6 @@
                         "path":"violationPhoto.jpg",
                         "user":"Bill Inspector",
                         "date":"01/04/17 2:30 PM"
-                     },
-					                      {
-                        "type":3,
-                        "path":"videoNote.mp4",
-                        "user":"Bill Inspector",
-                        "date":"01/04/17 2:20 PM"
-                     },
-					                      {
-                        "type":3,
-                        "path":"BigBuckBunny_720p30.mp4",
-                        "user":"Bill Inspector",
-                        "date":"01/04/17 2:20 PM"
-                     },
-					                      {
-                        "type":3,
-                        "path":"20161122_113610_HoloLens1.mp4",
-                        "user":"Bill Inspector",
-                        "date":"01/04/17 2:20 PM"
                      }
                   ],
                   "indexNum":4,

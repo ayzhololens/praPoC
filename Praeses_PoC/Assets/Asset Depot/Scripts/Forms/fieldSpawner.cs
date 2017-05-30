@@ -100,9 +100,8 @@ namespace HoloToolkit.Unity
                 // distribute historic values in field parentheses
                 foreach (JU_databaseMan.valueItem valueItem in JU_databaseMan.Instance.values.historicData)
                 {
-                    print(valueItem.name);
                     ActiveFields[valueItem.name].GetComponent<formFieldController>().nodeIndex = valueItem.nodeIndex;
-                    print("arfter");
+
                     if (ActiveFields.ContainsKey(valueItem.name))
                     {
                         //correct naming
@@ -111,6 +110,12 @@ namespace HoloToolkit.Unity
                             if (field.Options.ContainsKey(valueItem.value))
                             {
                                 ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + valueItem.value + ")");
+
+                            }
+                            else
+                            {
+                                ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + valueItem.value + ")");
+
                             }
                         }
 
@@ -119,16 +124,26 @@ namespace HoloToolkit.Unity
                             if (field.Options.ContainsKey(valueItem.value))
                             {
                                 ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + field.Options[valueItem.value] + ")");
+
+                            }else
+                            {
+                                ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + valueItem.value + ")");
+
                             }
+
                         }
 
                         foreach (JU_databaseMan.fieldItem field in JU_databaseMan.Instance.definitions.ExtraFields.fields)
                         {
-                            print(field.Name);
 
                             if (field.Options.ContainsKey(valueItem.value))
                             {
                                 ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + field.Options[valueItem.value] + ")");
+                            }
+                            else
+                            {
+                                ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + valueItem.value + ")");
+
                             }
                         }
                     }

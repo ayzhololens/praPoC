@@ -55,7 +55,7 @@ namespace HoloToolkit.Unity.InputModule
                 }
 
                 src.Play();
-                print("sfx" + index);
+
             }
 
         }

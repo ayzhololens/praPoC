@@ -45,7 +45,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
         public void addThumbnail(string filePath, GameObject comment)
         {
-            print(filePath);
+
             CancelInvoke();
             queuedComments.Add(comment);
             queuedThumbs.Add(filePath);
