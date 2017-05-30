@@ -225,7 +225,7 @@ namespace HoloToolkit.Unity
                 GameObject spawnedField;
                 if (JU_databaseMan.Instance.definitions.InspectionFields.fields[i].FieldType == 1)
                 {
-
+                    
                     spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
 
                     spawnedField.GetComponent<formFieldController>().populateButtons(JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Options.Count);

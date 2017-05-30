@@ -126,6 +126,9 @@ namespace HoloToolkit.Unity
             radAnim.Control.Stop();
             videoStarted = false;
             tapToContinue.SetActive(false);
+            mediaManager.Instance.setStatusIndicator("Say help for more information");
+            mediaManager.Instance.invokeStatusDisable(3);
+
         }
 
 

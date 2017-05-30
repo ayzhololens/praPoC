@@ -27,6 +27,7 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         public EquipmentInspectionFields EquipmentData = new EquipmentInspectionFields();
         public EquipmentInspectionFields InspectionFields = new EquipmentInspectionFields();
         public EquipmentInspectionFields ExtraFields = new EquipmentInspectionFields();
+        public EquipmentInspectionFields nonDisplayedFields = new EquipmentInspectionFields();
     }
 
     [System.Serializable]
@@ -159,6 +160,7 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
     {
         readEquipmentFields();
         readInspectionFields();
+        readNonDisplayedFields();
     }
 
     public void loadValCmd()
@@ -280,17 +282,46 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         }
     }
 
+    void readNonDisplayedFields()
+    {
+        foreach (databaseMan.fieldItem fieldItem in databaseMan.Instance.definitions.nonDisplayedFields.threeNine)
+        {
+            fieldItem newFieldItem = new fieldItem();
+            newFieldItem.DisplayName = fieldItem.DisplayName;
+            newFieldItem.FieldType = fieldItem.FieldType;
+            newFieldItem.Name = fieldItem.Name;
+            newFieldItem.Required = fieldItem.Required;
+            newFieldItem.Options = fieldItem.Options;
+
+            definitions.nonDisplayedFields.fields.Add(newFieldItem);
+
+        }
+    }
+
     public void loadEquipmentData()
     {
         values.equipmentData.Clear();
         foreach (databaseMan.ItemClass item in databaseMan.Instance.values.Location.Equipment[0].EquipmentData)
         {
-            valueItem newValueItem = new valueItem();
-            newValueItem.name = item.name;
-            newValueItem.value = item.value;
-            newValueItem.nodeIndex = item.nodeIndex;
+            if(item.name == "intActivityTypeID" || item.name == "dtActivityDate")
+            {
+                valueItem newValueItem = new valueItem();
+                newValueItem.name = item.name;
+                newValueItem.value = item.value;
+                newValueItem.nodeIndex = item.nodeIndex;
 
-            values.equipmentData.Add(newValueItem);
+                values.equipmentData.Add(newValueItem);
+            }
+            else
+            {
+                valueItem newValueItem = new valueItem();
+                newValueItem.name = item.name;
+                newValueItem.value = item.value;
+                newValueItem.nodeIndex = item.nodeIndex;
+
+                values.equipmentData.Add(newValueItem);
+            }
+
         }
     }
 

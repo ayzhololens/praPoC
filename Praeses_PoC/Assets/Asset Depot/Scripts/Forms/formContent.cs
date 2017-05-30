@@ -121,7 +121,7 @@ namespace HoloToolkit.Unity
                 {
                     if (valueItem.name == "intActivityTypeID")
                     {
-                        foreach (JU_databaseMan.fieldItem fieldItem in database.definitions.EquipmentData.fields)
+                        foreach (JU_databaseMan.fieldItem fieldItem in database.definitions.nonDisplayedFields.fields)
                         {
                             if (fieldItem.Name == "intActivityTypeID")
                             {
