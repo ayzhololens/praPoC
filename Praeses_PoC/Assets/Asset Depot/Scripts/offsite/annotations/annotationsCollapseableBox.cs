@@ -123,7 +123,7 @@ public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> 
             videoPlayer.LoadVideoPlayer();
             newItem.GetComponent<offsiteMediaPlayer>().thumbMat = Instantiate(videoMaterial);
             videoPlayer.gameObject.GetComponent<FrameExtract>().activeComment = newItem;
-            videoPlayer.gameObject.GetComponent<FrameExtract>().makeThumbnail();
+            //videoPlayer.gameObject.GetComponent<FrameExtract>().makeThumbnail();
         }
         else
         {

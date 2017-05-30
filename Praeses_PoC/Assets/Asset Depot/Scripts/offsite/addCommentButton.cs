@@ -145,8 +145,8 @@ public class addCommentButton : MonoBehaviour {
         videoPlayer.m_VideoPath = comment.path;
         videoPlayer.LoadVideoPlayer();
         newItem.GetComponent<offsiteMediaPlayer>().thumbMat = Instantiate(newItem.GetComponent<offsiteMediaPlayer>().videoMaterialUI);
-        videoPlayer.gameObject.GetComponent<FrameExtract>().activeComment = newItem;
-        videoPlayer.gameObject.GetComponent<FrameExtract>().makeThumbnail();
+        //videoPlayer.gameObject.GetComponent<FrameExtract>().activeComment = newItem;
+        videoPlayer.gameObject.GetComponent<FrameExtract>().addThumbnail(comment.path,newItem);
 
         float xOffset = 5 + 540 * commentHolder.Count;
         newItem.transform.SetParent(contentParent.transform);

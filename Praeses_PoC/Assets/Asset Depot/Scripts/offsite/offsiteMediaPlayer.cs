@@ -69,6 +69,16 @@ public class offsiteMediaPlayer : MonoBehaviour {
 
     }
 
+   private void Update()
+    {
+        if (vidThumbnail != null && thumbMat.mainTexture != vidThumbnail)
+        {
+
+            thumbMat.mainTexture = vidThumbnail;
+            thumbPlane.GetComponent<Renderer>().material = thumbMat;
+        }
+    }
+
     private void OnMouseUp()
     {
         if (closer)

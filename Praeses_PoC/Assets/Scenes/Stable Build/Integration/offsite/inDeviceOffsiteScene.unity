@@ -3600,8 +3600,11 @@ MonoBehaviour:
   _accurateSeek: 0
   _timeoutMs: 250
   _texture: {fileID: 0}
+  thumbTexts: []
   activeComment: {fileID: 0}
   filePath: 
+  queuedThumbs: []
+  queuedComments: []
 --- !u!1 &335075178
 GameObject:
   m_ObjectHideFlags: 0
@@ -6137,6 +6140,7 @@ MonoBehaviour:
   playerPlane: {fileID: 0}
   videoPlayer: {fileID: 334367304}
   playButton: {fileID: 0}
+  hideThis: {fileID: 0}
 --- !u!1 &694758571
 GameObject:
   m_ObjectHideFlags: 0
@@ -9611,8 +9615,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 34274294}
   m_HandleRect: {fileID: 34274293}
   m_Direction: 2
-  m_Value: 0.9959535
-  m_Size: 0.27499986
+  m_Value: 0.99595183
+  m_Size: 0.27500007
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11203,6 +11207,7 @@ MonoBehaviour:
   photoMaterial: {fileID: 2100000, guid: 8b7587243355e70479ba4444c6046818, type: 2}
   nodesCamMat: {fileID: 2100000, guid: 74a594de6c424544a87fcb2e26bf3b7a, type: 2}
   minimapPlane: {fileID: 1859791641}
+  hideThis: {fileID: 0}
 --- !u!222 &1185764374
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12953,6 +12958,8 @@ MonoBehaviour:
   field: {fileID: 1306030233}
   addNoteDone: {fileID: 1852799206}
   videoPlayer: {fileID: 334367304}
+  exButton: {fileID: 0}
+  hideThis: {fileID: 0}
   spawnedVioPrefabs: []
   vioCam: {fileID: 946909135}
   offsiteMediaWindow: {fileID: 421403176}
@@ -13962,7 +13969,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010560871102, guid: d379ed0a5618c9f479f58bd83a2d0ad3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4000010560871102, guid: d379ed0a5618c9f479f58bd83a2d0ad3, type: 2}
       propertyPath: m_LocalPosition.z
@@ -14679,7 +14686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -929.9921, y: 11.727783}
+  m_AnchoredPosition: {x: -929.9921, y: 11.739746}
   m_SizeDelta: {x: 1860, y: 4000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1710704115
