@@ -25,7 +25,7 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
             gameObject.AddComponent<clickMotion>();
             if (moveSpeed == 0)
             {
-                moveSpeed = .001f;
+                moveSpeed = .002f;
                 moveDist = .01f;
             }
 

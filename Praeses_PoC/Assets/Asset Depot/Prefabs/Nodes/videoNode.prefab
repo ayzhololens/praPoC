@@ -7017,7 +7017,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
+  clickMotion: 1
   soundIndex: 0
   moveSpeed: 0
   moveDist: 0

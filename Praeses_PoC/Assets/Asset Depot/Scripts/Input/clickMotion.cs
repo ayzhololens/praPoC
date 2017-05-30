@@ -18,7 +18,7 @@ public class clickMotion : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (movingF)
         {
