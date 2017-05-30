@@ -131,13 +131,12 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                         }
                         else if (comment.type == 3 && spawnedNode.GetComponent<nodeController>().linkedField != null)
                         {
-                            GameObject comment3D = spawnedNode.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().spawnVideoCommentFromJSON();
+                            GameObject comment3D = spawnedNode.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().spawnVideoCommentFromJSON(comment.path);
 
                             comment3D.GetComponent<commentContents>().Date = comment.date;
                             comment3D.GetComponent<commentContents>().user = comment.user;
                             comment3D.GetComponent<commentContents>().commentMetaUser.text = comment.user;
                             comment3D.GetComponent<commentContents>().commentMetaDate.text = comment.date;
-                            comment3D.GetComponent<commentContents>().filepath = comment.path;
                             comment3D.GetComponent<commentContents>().LoadVideo();
                         }
                     }
@@ -183,7 +182,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 newItem.type = 3;
                 newItem.path = videoJU.path;
                 tempList.Add(newItem);
-                Debug.Log("section4");
+
             }
 
             spawnList = tempList.OrderBy(si => si.date).ToList();
@@ -215,13 +214,12 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 }
                 else if (comment.type == 3 && spawnedNode.GetComponent<nodeController>().linkedField != null)
                 {
-                    GameObject comment3D = spawnedNode.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().spawnVideoCommentFromJSON();
+                    GameObject comment3D = spawnedNode.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().spawnVideoCommentFromJSON(comment.path);
 
                     comment3D.GetComponent<commentContents>().Date = comment.date;
                     comment3D.GetComponent<commentContents>().user = comment.user;
                     comment3D.GetComponent<commentContents>().commentMetaUser.text = comment.user;
                     comment3D.GetComponent<commentContents>().commentMetaDate.text = comment.date;
-                    comment3D.GetComponent<commentContents>().filepath = comment.path;
                     comment3D.GetComponent<commentContents>().LoadVideo();
                 }
             }

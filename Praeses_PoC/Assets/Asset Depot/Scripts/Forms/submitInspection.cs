@@ -84,8 +84,8 @@ public class submitInspection : MonoBehaviour {
             if (activeComment.GetComponent<commentContents>().isVideo)
             {
                 vCounter += 1;
-                GameObject videoComment = spawnedVioPreview.GetComponent<commentManager>().spawnVideoCommentFromJSON();
-                videoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+                GameObject videoComment = spawnedVioPreview.GetComponent<commentManager>().spawnVideoCommentFromJSON(activeComment.GetComponent<commentContents>().filepath);
+                videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
                 videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
                 videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
 

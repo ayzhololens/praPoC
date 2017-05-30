@@ -763,7 +763,7 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114309658859452586}
         m_MethodName: contractComment
         m_Mode: 1
         m_Arguments:
