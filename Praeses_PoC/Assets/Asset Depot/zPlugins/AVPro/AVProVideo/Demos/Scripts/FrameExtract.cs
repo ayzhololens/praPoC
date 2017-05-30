@@ -26,6 +26,9 @@ namespace RenderHeads.Media.AVProVideo.Demos
         public string filePath;
 
         public List<string> queuedThumbs;
+        public List<GameObject> queuedComments;
+        int index;
+
 
         private void Start()
         {
@@ -34,31 +37,59 @@ namespace RenderHeads.Media.AVProVideo.Demos
             //    string temp = "AlphaLeftRight.mp4";
             //    queuedThumbs.Add(temp);
             //}
-           // makeThumbnail();
-            
+            // makeThumbnail();
+        }
+        void listCheck()
+        {
+            if (index == queuedThumbs.Count){
+                makeThumbnail();
+            }
         }
 
 
-        public void addThumbnail(string filePath)
+        public void addThumbnail(string filePath, GameObject comment)
         {
-            print("add filepath " + filePath);
+            CancelInvoke();
+            queuedComments.Add(comment);
             queuedThumbs.Add(filePath);
-            _mediaPlayer.m_VideoPath = queuedThumbs[0];
-            _mediaPlayer.LoadVideoPlayer();
-            makeThumbnail();
-            //Invoke("makeThumbnail", .5f);
+            index += 1;
+            Invoke("listCheck", 1);
 
         }
 
 		public void makeThumbnail()
         {
+            if (queuedThumbs.Count > 0)
+            {
 
-            OnNewMediaReady();
-            _mediaPlayer.Events.AddListener(OnMediaPlayerEvent);
-            print(_mediaPlayer.m_VideoPath);
+                _mediaPlayer.m_VideoPath = queuedThumbs[0];
+                _mediaPlayer.LoadVideoPlayer();
+                OnNewMediaReady();
+                _mediaPlayer.Events.AddListener(OnMediaPlayerEvent);
+
+            }
+            else
+            {
+                loadThumbs();
+            }
 
 
 
+        }
+
+        public void loadThumbs()
+        {
+
+
+            for (int i = 0; i < queuedComments.Count; i++)
+            {
+                queuedComments[i].GetComponent<commentContents>().vidThumbnail = thumbTexts[i];
+            }
+
+            index = 0;
+            thumbTexts.Clear();
+            queuedThumbs.Clear();
+            queuedComments.Clear();
         }
 
 		public void OnMediaPlayerEvent(MediaPlayer mp, MediaPlayerEvent.EventType et, ErrorCode errorCode)
@@ -114,21 +145,21 @@ namespace RenderHeads.Media.AVProVideo.Demos
             
             if (_texture != null)
             {
-                if (activeComment.GetComponent<commentContents>() != null)
-                {
+                //if (activeComment.GetComponent<commentContents>() != null)
+                //{
 
-                    activeComment.GetComponent<commentContents>().vidThumbnail = _texture;
-                    activeComment.GetComponent<commentContents>().thumbMat.mainTexture = activeComment.GetComponent<commentContents>().vidThumbnail;
-                    activeComment.GetComponent<Renderer>().material = activeComment.GetComponent<commentContents>().thumbMat;
-                }
+                //    activeComment.GetComponent<commentContents>().vidThumbnail = _texture;
+                //    activeComment.GetComponent<commentContents>().thumbMat.mainTexture = activeComment.GetComponent<commentContents>().vidThumbnail;
+                //    activeComment.GetComponent<Renderer>().material = activeComment.GetComponent<commentContents>().thumbMat;
+                //}
 
-                if (activeComment.GetComponent<offsiteMediaPlayer>() != null)
-                {
+                //if (activeComment.GetComponent<offsiteMediaPlayer>() != null)
+                //{
 
-                    activeComment.GetComponent<offsiteMediaPlayer>().vidThumbnail = _texture;
-                    activeComment.GetComponent<offsiteMediaPlayer>().thumbMat.mainTexture = activeComment.GetComponent<offsiteMediaPlayer>().vidThumbnail;
-                    activeComment.GetComponent<offsiteMediaPlayer>().thumbPlane.GetComponent<Renderer>().material = activeComment.GetComponent<offsiteMediaPlayer>().thumbMat;
-                }
+                //    activeComment.GetComponent<offsiteMediaPlayer>().vidThumbnail = _texture;
+                //    activeComment.GetComponent<offsiteMediaPlayer>().thumbMat.mainTexture = activeComment.GetComponent<offsiteMediaPlayer>().vidThumbnail;
+                //    activeComment.GetComponent<offsiteMediaPlayer>().thumbPlane.GetComponent<Renderer>().material = activeComment.GetComponent<offsiteMediaPlayer>().thumbMat;
+                //}
                 Invoke("clear", .1f);
 
             }
@@ -145,7 +176,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
             {
                 thumbTexts.Add(_texture);
                 _texture = null;
-                if (queuedThumbs.Count != 0)
+                if (queuedThumbs.Count >0)
                 {
                     queuedThumbs.RemoveAt(0);
                     Invoke("makeThumbnail", .1f);

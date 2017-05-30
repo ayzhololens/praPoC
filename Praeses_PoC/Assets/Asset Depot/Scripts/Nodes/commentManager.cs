@@ -153,7 +153,7 @@ public class commentManager : MonoBehaviour {
         sourceManager.Instance.sourcePressed = false;
         recordingEnabled = true;
 
-        fovHider.Instance.toggleFOVHider(true);
+        fovHider.Instance.toggleFOVHider(true, 0);
     }
 
     void startVideoCapture()
@@ -180,7 +180,7 @@ public class commentManager : MonoBehaviour {
         mediaManager.Instance.recordingIndicator.SetActive(false);
         recordingInProgress = false;
 
-        mediaManager.Instance.activateComment();
+        //mediaManager.Instance.activateComment();
 
     }
 
@@ -188,7 +188,7 @@ public class commentManager : MonoBehaviour {
     public virtual GameObject spawnVideoComment()
     {
 
-        fovHider.Instance.toggleFOVHider(false);
+        fovHider.Instance.toggleFOVHider(false, 1);
 
         //shift all comments down
         repositionComments();
@@ -257,7 +257,7 @@ public class commentManager : MonoBehaviour {
         photoCaptureEnabled = true;
 
 
-        fovHider.Instance.toggleFOVHider(true);
+        fovHider.Instance.toggleFOVHider(true, 0);
     }
 
     void capturePhoto()
@@ -274,7 +274,7 @@ public class commentManager : MonoBehaviour {
 
     public void spawnPComment()
     {
-        fovHider.Instance.toggleFOVHider(false);
+        fovHider.Instance.toggleFOVHider(false, 1);
 
         //shift all comments down
         repositionComments();
@@ -298,7 +298,7 @@ public class commentManager : MonoBehaviour {
 
     public virtual GameObject spawnPhotoComment()
     {
-        fovHider.Instance.toggleFOVHider(false);
+        fovHider.Instance.toggleFOVHider(false,1 );
 
         //shift all comments down
         repositionComments();

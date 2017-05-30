@@ -44,6 +44,9 @@ public class submittedViolationController : MonoBehaviour {
     {
         vioController.violationData.Add(resName);
         vioController.violationIndices.Add(tempIndex);
+
+        violatoinSpawner.Instance.successContentHolder.SetActive(true);
+        violatoinSpawner.Instance.successContentHolder.transform.position = this.transform.position;
         databaseMan.Instance.syncViolation(vioController);
     }
 
