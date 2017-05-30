@@ -103,7 +103,6 @@ public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> 
             Texture2D targetTexture = new Texture2D(2048, 1152);
 
             string pathAppend = Path.Combine(Application.persistentDataPath, newItem.GetComponent<offsiteFieldItemValueHolder>().path.text);
-            //string pathAppend = ( "C:\\Users\\ayzhololens\\AppData\\Local\\Packages\\PraesesPoC_pzq3xp76mxafg\\LocalState\\" + newItem.GetComponent<offsiteFieldItemValueHolder>().path.text);
 
             var bytesRead = System.IO.File.ReadAllBytes(pathAppend);
             targetTexture.LoadImage(bytesRead);
@@ -123,7 +122,7 @@ public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> 
             videoPlayer.LoadVideoPlayer();
             newItem.GetComponent<offsiteMediaPlayer>().thumbMat = Instantiate(videoMaterial);
             videoPlayer.gameObject.GetComponent<FrameExtract>().activeComment = newItem;
-            //videoPlayer.gameObject.GetComponent<FrameExtract>().makeThumbnail();
+            videoPlayer.gameObject.GetComponent<FrameExtract>().addThumbnail(nodeItem.videos[0].path, newItem);
         }
         else
         {
