@@ -61,7 +61,7 @@ namespace HoloToolkit.Unity
                 nodeMedia.activeFilepath = photoRecorder.filePath;
                 nodeMedia.fileName = photoRecorder.filename;
                 nodeMedia.loadPhoto(photoRecorder.filePath);
-                fovHider.Instance.toggleFOVHider(false);
+                fovHider.Instance.toggleFOVHider(false, 1);
 
             }
             if (nodeMedia.videoNode)
@@ -138,7 +138,7 @@ namespace HoloToolkit.Unity
             //clear source manager
             sourceManager.Instance.sourcePressed = false;
 
-            fovHider.Instance.toggleFOVHider(true);
+            fovHider.Instance.toggleFOVHider(true, 0);
 
         }
         
@@ -166,7 +166,7 @@ namespace HoloToolkit.Unity
             //clear source manager
             sourceManager.Instance.sourcePressed = false;
 
-            fovHider.Instance.toggleFOVHider(true);
+            fovHider.Instance.toggleFOVHider(true, 0);
         }
 
         void startVideoRecording()
@@ -191,7 +191,7 @@ namespace HoloToolkit.Unity
             recordingIndicator.SetActive(false);
             recordingInProgress = false;
             isCapturing = false;
-            fovHider.Instance.toggleFOVHider(false);
+            fovHider.Instance.toggleFOVHider(false, 1);
         }
 
         public void setStatusIndicator(string curStatus)

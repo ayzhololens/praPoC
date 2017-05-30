@@ -20,7 +20,8 @@ public class frontHolderInstance : Singleton<frontHolderInstance> {
     public virtual GameObject setFrontHolder(float dist)
     {
         GameObject frontHolder = holder;
-        frontHolder.transform.position = Camera.main.transform.forward * dist;
+        frontHolder.transform.localPosition = new Vector3(0, 0, dist);
+            //Camera.main.transform.forward * dist;
 
         return frontHolder;
     }

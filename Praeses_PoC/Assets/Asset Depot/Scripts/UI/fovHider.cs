@@ -5,6 +5,7 @@ using HoloToolkit.Unity;
 
 public class fovHider : Singleton<fovHider> {
     public GameObject Hider;
+    bool status;
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +17,15 @@ public class fovHider : Singleton<fovHider> {
 		
 	}
 
-    public void toggleFOVHider(bool on)
+    public void toggleFOVHider(bool on, float delay)
     {
-        Hider.SetActive(on);
+        status = on;
+        Invoke("fovHide", delay);
+    }
+
+    void fovHide()
+    {
+
+        Hider.SetActive(status);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HoloToolkit.Unity;
+using HoloToolkit.Unity.InputModule;
 
 public class slideOut : MonoBehaviour {
 
@@ -10,18 +11,26 @@ public class slideOut : MonoBehaviour {
     bool isMovingF;
     bool isMovingB;
     Vector3 startPos;
-    public float timer;
-   public  bool keptOut;
+    public bool isOut;
 
-    public subMenu subMenu;
+
+    public GameObject[] subButtons;
+    public GameObject hideButton;
+
+    public int timeOut;
+    int initTimeOut;
 
 	// Use this for initialization
 	void Start () {
+        initTimeOut = timeOut;
+        timeOut = 0;
         startPos = transform.localPosition;
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+
+
         if (isMovingF)
         {
             transform.localPosition = new Vector3(transform.localPosition.x + slideSpeed, startPos.y, startPos.z);
@@ -29,6 +38,9 @@ public class slideOut : MonoBehaviour {
             {
                 transform.localPosition = new Vector3((startPos.x + slideDist), startPos.y, startPos.z);
                 isMovingF = false;
+                isOut = true;
+                timeOut = initTimeOut;
+
             }
         }
 
@@ -41,9 +53,7 @@ public class slideOut : MonoBehaviour {
                 {
                     transform.localPosition = startPos;
                     isMovingF = false;
-
-
-
+                    isOut = false;
 
             }
             
@@ -51,46 +61,67 @@ public class slideOut : MonoBehaviour {
 
         }
 
+        if(isOut && !subButtons[0].activeSelf)
+        {
+            foreach(GameObject button in subButtons)
+            {
+                button.SetActive(true);
+            }
+            hideButton.SetActive(false);
+        }
+
+        if (!isOut && subButtons[0].activeSelf)
+        {
+            foreach (GameObject button in subButtons)
+            {
+                button.SetActive(false);
+            }
+            hideButton.SetActive(true);
+        }
+
+        if (isOut)
+        {
+            foreach (GameObject button in subButtons)
+            {
+                if (GazeManager.Instance.HitObject == button)
+                {
+                    timeOut = initTimeOut;
+                }
+            }
+
+
+        }
+
+        if (timeOut > 0)
+        {
+            timeOut -= 1;
+        }
+        else
+        {
+            if (isOut)
+            {
+                slideBackward();
+            }
+        }
+
+
     }
 
     public void slideForward()
     {
-        formController.Instance.gameObject.BroadcastMessage("slideBackward", SendMessageOptions.DontRequireReceiver);
-
         isMovingF = true;
         isMovingB = false;
-
-        if (subMenu != null)
-        {
-            subMenu.turnOnSubButtons();
-        }
+        
 
     }
 
     public void slideBackward()
     {
-        if (subMenu != null)
-        {
-            subMenu.turnOffSubButtons();
-        }
 
-        if (!keptOut)
-    {
         isMovingB = true;
         isMovingF = false;
-        
-    }
 
     }
 
-    public void slideBackTimer()
-    {
-        keptOut = false;
-        Invoke("slideBackward", timer);
-    }
 
-    public void keepOut()
-    {
-        keptOut = true;
-    }
 }

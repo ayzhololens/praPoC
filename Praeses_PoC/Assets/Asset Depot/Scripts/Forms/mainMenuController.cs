@@ -16,6 +16,8 @@ namespace HoloToolkit.Unity
         bool startedAlignment;
         int curTab;
         public MediaPlayer radAnim;
+        public GameObject tapToContinue;
+        bool videoStarted;
 
         // Use this for initialization
         void Start() {
@@ -27,6 +29,15 @@ namespace HoloToolkit.Unity
             if (startedAlignment)
             {
                 findZone();
+            }
+            if (videoStarted)
+            {
+                if (radAnim.Control.IsFinished())
+                {
+                    tapToContinue.SetActive(true);
+                    radAnim.Control.Play();
+
+                }
             }
 
         }
@@ -106,12 +117,15 @@ namespace HoloToolkit.Unity
         public void completeMainMenu()
         {
             goToTab(7);
+            videoStarted = true;
             radAnim.Control.Play();
         }
 
         public void stopRad()
         {
             radAnim.Control.Stop();
+            videoStarted = false;
+            tapToContinue.SetActive(false);
         }
 
 

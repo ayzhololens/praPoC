@@ -676,7 +676,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766372532663484}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.029217733, y: 0.07840521, z: 0.002827461}
+  m_LocalPosition: {x: 0.024490142, y: -0.10699605, z: -0.85920775}
   m_LocalScale: {x: 4.1792, y: 3.1717155, z: 3.1717155}
   m_Children:
   - {fileID: 224147979166280600}
@@ -1375,7 +1375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdde637b6ad4f0042a09725eea318136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleMult: 1.1
+  scaleMult: 1.25
   moveDist: 0
   scale: 1
   move: 0
@@ -1445,17 +1445,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114911710326456250}
-        m_MethodName: keepOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114208630910016630}
         m_MethodName: moveForward
         m_Mode: 1
@@ -1735,17 +1724,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114911710326456250}
-        m_MethodName: slideBackTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114208630910016630}
         m_MethodName: moveBackward
         m_Mode: 1
@@ -1850,19 +1828,8 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114911710326456250}
-        m_MethodName: keepOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114183360796563012}
-        m_MethodName: moveBackward
+        m_MethodName: moveForward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2262,17 +2229,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114911710326456250}
-        m_MethodName: slideBackTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114015178592476722}
         m_MethodName: moveBackward
         m_Mode: 1
@@ -2327,17 +2283,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114911710326456250}
-        m_MethodName: slideBackTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114183360796563012}
         m_MethodName: moveBackward
         m_Mode: 1
@@ -2365,17 +2310,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114911710326456250}
-        m_MethodName: keepOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114015178592476722}
         m_MethodName: moveForward
         m_Mode: 1
@@ -2402,9 +2336,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: -0.002
   slideDist: -0.02
-  timer: 1.5
-  keptOut: 0
-  subMenu: {fileID: 114971035390281840}
+  isOut: 0
+  subButtons:
+  - {fileID: 1042058698244706}
+  - {fileID: 1377484050368652}
+  - {fileID: 1498918955369908}
+  hideButton: {fileID: 1513574184313376}
+  timeOut: 50
 --- !u!114 &114912238614557844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2493,7 +2431,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513574184313376}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8e213ec5a9d4ee479e143aacdceb69c, type: 3}
   m_Name: 

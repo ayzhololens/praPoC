@@ -4746,6 +4746,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1660223019165554
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4720587027661822}
+  m_Layer: 0
+  m_Name: expandPos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1663689268241524
 GameObject:
   m_ObjectHideFlags: 1
@@ -5267,7 +5282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1734570254704830
 GameObject:
   m_ObjectHideFlags: 1
@@ -6167,7 +6182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1854979437085830
 GameObject:
   m_ObjectHideFlags: 1
@@ -8125,6 +8140,7 @@ Transform:
   - {fileID: 4507420745308068}
   - {fileID: 4984431779321992}
   - {fileID: 4638490618630812}
+  - {fileID: 4720587027661822}
   m_Father: {fileID: 4762451482866412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8194,8 +8210,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214729853197892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.042000026, y: 0.24000008, z: -3.7000115}
-  m_LocalScale: {x: 12.565234, y: 90.78027, z: 543.8889}
+  m_LocalPosition: {x: 0.042000026, y: 0.24000008, z: -1.7}
+  m_LocalScale: {x: 12.565234, y: 90.78027, z: 1627.306}
   m_Children: []
   m_Father: {fileID: 4028794496363544}
   m_RootOrder: 2
@@ -9206,6 +9222,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4449830230413182}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4720587027661822
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1660223019165554}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
+  m_LocalPosition: {x: -0.174, y: -0.0006667644, z: 0.0192}
+  m_LocalScale: {x: 0.07147629, y: 0.024545548, z: 0.00052051694}
+  m_Children: []
+  m_Father: {fileID: 4365454349626052}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4725452172174014
 Transform:
@@ -17171,9 +17200,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: -2
   slideDist: -30
-  timer: 0
-  keptOut: 0
-  subMenu: {fileID: 0}
+  isOut: 0
+  subButtons: []
+  hideButton: {fileID: 0}
+  timeOut: 0
 --- !u!114 &114058995432284838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17908,28 +17938,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114273892624109510}
-        m_MethodName: keepOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114982562350023440}
-        m_MethodName: keepOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114642783952092764}
         m_MethodName: moveForward
         m_Mode: 1
@@ -20092,11 +20100,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e44539c3bef4344b9fc9d17220d3721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slideSpeed: -0.0005
+  slideSpeed: -0.002
   slideDist: -0.02
-  timer: 1.5
-  keptOut: 0
-  subMenu: {fileID: 114982562350023440}
+  isOut: 0
+  subButtons:
+  - {fileID: 1929716511898588}
+  - {fileID: 1353360623591224}
+  - {fileID: 1400521921119700}
+  hideButton: {fileID: 1580296188625080}
+  timeOut: 50
 --- !u!114 &114275540346064622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20333,9 +20345,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: -2
   slideDist: -30
-  timer: 0
-  keptOut: 0
-  subMenu: {fileID: 0}
+  isOut: 0
+  subButtons: []
+  hideButton: {fileID: 0}
+  timeOut: 0
 --- !u!114 &114284379128383362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21248,28 +21261,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114273892624109510}
-        m_MethodName: keepOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114982562350023440}
-        m_MethodName: keepOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114333901332200720}
         m_MethodName: moveForward
         m_Mode: 1
@@ -21822,28 +21813,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114273892624109510}
-        m_MethodName: slideBackTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114982562350023440}
-        m_MethodName: turnOffCounter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114709428791922734}
         m_MethodName: moveBackward
         m_Mode: 1
@@ -24157,7 +24126,7 @@ MonoBehaviour:
   commentCount: 0
   commentParent: {fileID: 4365454349626052}
   CommmentStartPos: {fileID: 4984431779321992}
-  expandPos: {fileID: 0}
+  expandPos: {fileID: 4720587027661822}
   simpleCommentPrefab: {fileID: 1286874945437498, guid: 77208e696eee1014d8676bd85a450bff,
     type: 2}
   videoCommentPrefab: {fileID: 1384820107043936, guid: 9a097846d0044934fb43c51fe711c367,
@@ -25116,28 +25085,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114273892624109510}
-        m_MethodName: slideBackTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114982562350023440}
-        m_MethodName: turnOffCounter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114333901332200720}
         m_MethodName: moveBackward
         m_Mode: 1
@@ -25630,28 +25577,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114273892624109510}
-        m_MethodName: keepOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114982562350023440}
-        m_MethodName: keepOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114709428791922734}
         m_MethodName: moveForward
         m_Mode: 1
@@ -25778,7 +25703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdde637b6ad4f0042a09725eea318136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleMult: 1.1
+  scaleMult: 1.25
   moveDist: 0
   scale: 1
   move: 0
@@ -26624,28 +26549,6 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114273892624109510}
-        m_MethodName: slideBackTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114982562350023440}
-        m_MethodName: turnOffCounter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114642783952092764}
         m_MethodName: moveBackward
         m_Mode: 1
@@ -28974,7 +28877,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1580296188625080}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8e213ec5a9d4ee479e143aacdceb69c, type: 3}
   m_Name: 
