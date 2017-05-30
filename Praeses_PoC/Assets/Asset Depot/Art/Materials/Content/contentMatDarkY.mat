@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: contentMatDarkY
-  m_Shader: {fileID: 4800000, guid: 06790e211e4a6df409b1e04bc91c4810, type: 3}
-  m_ShaderKeywords: _EMISSION _USECOLOR_ON
+  m_Shader: {fileID: 4800000, guid: b21aa08825c93084cb4072b24fc90532, type: 3}
+  m_ShaderKeywords: _EMISSION _USECOLOR_ON _USEEMISSIONTEX_ON
   m_LightmapFlags: 1
-  m_CustomRenderQueue: 998
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -135,7 +135,7 @@ Material:
       second: 1
     - first:
         name: _UseEmissionTex
-      second: 0
+      second: 1
     - first:
         name: _UseMainTex
       second: 0
@@ -148,7 +148,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.5647059, g: 0.4431373, b: 0.15294118, a: 1}
+      second: {r: 0.30147058, g: 0.19335698, b: 0, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
