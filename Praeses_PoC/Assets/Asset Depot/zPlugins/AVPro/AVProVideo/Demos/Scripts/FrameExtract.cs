@@ -32,12 +32,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
         private void Start()
         {
-            //for(int i=0; i<5; i++)
-            //{
-            //    string temp = "AlphaLeftRight.mp4";
-            //    queuedThumbs.Add(temp);
-            //}
-            // makeThumbnail();
+
         }
         void listCheck()
         {
