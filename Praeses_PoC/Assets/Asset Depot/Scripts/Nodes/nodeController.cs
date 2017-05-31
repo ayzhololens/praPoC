@@ -79,7 +79,7 @@ namespace HoloToolkit.Unity
                 contentHolder.GetComponent<DirectionIndicator>().hasGazed = false;
                 contentHolder.transform.position = contentStartLoc.position;
                 GetComponent<AudioSource>().PlayClip(audioManager.Instance.openSound);
-                print("open " + gameObject.name);
+
 
                 if (GetComponent<nodeMediaHolder>().videoNode)
                 {

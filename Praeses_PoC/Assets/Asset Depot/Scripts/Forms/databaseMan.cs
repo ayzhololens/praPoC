@@ -465,13 +465,27 @@ public class databaseMan : Singleton<databaseMan>
         vioClass.category = (violation.violationIndices[0].ToString() + "." + violation.violationIndices[1].ToString() + "." + violation.violationIndices[2].ToString());
         vioClass.classifications = violation.violationIndices[3];
         vioClass.violationDate = metaManager.Instance.dateShort();
-        vioClass.status = 1;
+        vioClass.status = violation.violationIndices[7];
         vioClass.resolveDate = violation.violationData[4];
         vioClass.conditions = violation.violationData[5];
         vioClass.requirements = violation.violationData[6];
         vioClass.nodeIndex = violation.linkedNode.GetComponent<nodeMediaHolder>().NodeIndex;
 
         values.Location.Equipment[0].Violations.Add(vioClass);
+
+        JU_databaseMan.Instance.loadViolationsCmd();
+    }
+
+    public void updateVio(violationController violation)
+    {
+        foreach(ViolationsClass vioClass in values.Location.Equipment[0].Violations)
+        {
+            if (violation.linkedNode.GetComponent<nodeMediaHolder>().NodeIndex == vioClass.nodeIndex)
+            {
+                vioClass.status = violation.violationIndices[7];
+            }
+        }
+
 
         JU_databaseMan.Instance.loadViolationsCmd();
     }

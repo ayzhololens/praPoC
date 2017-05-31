@@ -102,9 +102,9 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             spawnedViolation.transform.localRotation = activeViolationController.boxStartPos.localRotation;
 
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
-            spawnedViolation.GetComponent<violationComponent>().Index = i;
+            spawnedViolation.GetComponent<violationComponent>().Index = i+1;
             spawnedViolation.GetComponent<violationComponent>().displayText.text =
-                i + ") " +
+                (i + 1) + ") " +
                 VioCat[i];
             spawnedViolation.GetComponent<violationComponent>().value = VioCat[i];
             hCount += 1;
@@ -192,11 +192,11 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             spawnedViolation.transform.localRotation = activeViolationController.boxStartPos.localRotation;
             spawnedViolation.transform.localPosition = spawnPos;
             spawnedViolation.GetComponent<violationComponent>().linkedViolation = activeViolationController;
-            spawnedViolation.GetComponent<violationComponent>().Index = i;
+            spawnedViolation.GetComponent<violationComponent>().Index = i+1;
 
             spawnedViolation.GetComponent<violationComponent>().displayText.text = 
                 activeViolationController.violationIndices[0] + "." +
-                i + " " +
+                 (i + 1) + " " +
                 VioSubCat[i];
             spawnedViolation.GetComponent<violationComponent>().value =  VioSubCat[i];
 
@@ -279,7 +279,7 @@ public class violatoinSpawner :  Singleton<violatoinSpawner>{
             spawnedViolation.GetComponent<violationComponent>().displayText.text =
             activeViolationController.violationIndices[0] + "." +
             activeViolationController.violationIndices[1] + "." +
-             i + " " + violatioName;
+              (i + 1) + " " + violatioName;
             vCount += 1;
         }
 
