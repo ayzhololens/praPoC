@@ -57,9 +57,10 @@ public class submittedViolationController : MonoBehaviour {
                 index = tempIndex;
             }
 
-        Vector3 offset = new Vector3(submittedVioPos.position.x, submittedVioPos.position.y - (previewCount * offsetDist), submittedVioPos.position.z);
-        spawnedPreview = Instantiate(submittedVioPrefab, offset, Quaternion.identity);
+        Vector3 offset = new Vector3(submittedVioPos.localPosition.x, submittedVioPos.localPosition.y - (previewCount * offsetDist), submittedVioPos.localPosition.z);
+        spawnedPreview = Instantiate(submittedVioPrefab, transform.position, Quaternion.identity);
         spawnedPreview.transform.SetParent(submittedVioPos.parent);
+        spawnedPreview.transform.localPosition = offset;
         spawnedPreview.transform.localScale = submittedVioPrefab.transform.localScale;
         spawnedPreview.transform.localRotation = submittedVioPrefab.transform.localRotation;
         vioPreviewComponent vioPreview = spawnedPreview.GetComponent<vioPreviewComponent>();
@@ -68,7 +69,7 @@ public class submittedViolationController : MonoBehaviour {
         vioPreview.date.text = metaManager.Instance.date();
 
 
-        goToResolveVioButton.position = new Vector3(goToResolveVioButton.position.x, goToResolveVioButton.position.y-offsetDist, goToResolveVioButton.position.z);
+        goToResolveVioButton.localPosition = new Vector3(goToResolveVioButton.localPosition.x, goToResolveVioButton.localPosition.y-offsetDist, goToResolveVioButton.localPosition.z);
         previewCount += 1;
 
         //setPreviewComments();

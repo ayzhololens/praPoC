@@ -7901,7 +7901,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Review & Submit
+  m_Text: Submit Inspection
 --- !u!114 &114058967739963838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9014,7 +9014,7 @@ MonoBehaviour:
     type: 2}
   changedValuePos: {fileID: 4688214710152144}
   issuePos: {fileID: 4135551071178154}
-  vioOffsetDist: 0.075
+  vioOffsetDist: 0.018
   changesOffsetDist: 0.075
   contents:
   - {fileID: 4587375166478514}

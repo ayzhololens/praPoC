@@ -40,9 +40,10 @@ public class submitInspection : MonoBehaviour {
 
     public void addVioPreview(int index, violationController vioCont)
     {
-        Vector3 offset = new Vector3(vioPos.position.x, vioPos.position.y - (vioPreviewCount * vioOffsetDist), vioPos.position.z);
-        spawnedVioPreview = Instantiate(submittedVioPrefab, offset, Quaternion.identity);
+        Vector3 offset = new Vector3(vioPos.localPosition.x, vioPos.localPosition.y - (vioPreviewCount * vioOffsetDist), vioPos.localPosition.z);
+        spawnedVioPreview = Instantiate(submittedVioPrefab, transform.position, Quaternion.identity);
         spawnedVioPreview.transform.SetParent(vioPos.parent);
+        spawnedVioPreview.transform.localPosition = offset;
         spawnedVioPreview.transform.localScale = submittedVioPrefab.transform.localScale;
         spawnedVioPreview.transform.localRotation = submittedVioPrefab.transform.localRotation;
         vioPreviewComponent vioPreview = spawnedVioPreview.GetComponent<vioPreviewComponent>();
@@ -56,7 +57,7 @@ public class submitInspection : MonoBehaviour {
 
         for(int i =1; i<contents.Length; i++)
         {
-            contents[i].position = new Vector3(contents[i].position.x, contents[i].position.y - vioOffsetDist, contents[i].position.z);
+            contents[i].localPosition = new Vector3(contents[i].localPosition.x, contents[i].localPosition.y - vioOffsetDist, contents[i].localPosition.z);
         }
         vioPreviewCount += 1;
         Invoke("setPreviewComments", 1);

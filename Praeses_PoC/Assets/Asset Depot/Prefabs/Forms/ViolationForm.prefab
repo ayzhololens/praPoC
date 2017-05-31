@@ -18389,6 +18389,7 @@ MonoBehaviour:
     type: 2}
   offsetDist: 0.09
   xOffset: 0
+  managerOverride: {fileID: 0}
 --- !u!114 &114164711745671252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19174,6 +19175,7 @@ MonoBehaviour:
     type: 2}
   offsetDist: 0.03
   xOffset: 1
+  managerOverride: {fileID: 0}
 --- !u!114 &114228127086662306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20661,6 +20663,7 @@ MonoBehaviour:
     type: 2}
   offsetDist: 0.09
   xOffset: 1
+  managerOverride: {fileID: 114162567493244710}
 --- !u!114 &114320573122558560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23926,7 +23929,7 @@ MonoBehaviour:
   submittedVioPos: {fileID: 4942970900013738}
   goToResolveVioButton: {fileID: 4219932082475460}
   resolutionField: {fileID: 1642866317607184}
-  offsetDist: 0.1
+  offsetDist: 0.076
 --- !u!114 &114545304437630604
 MonoBehaviour:
   m_ObjectHideFlags: 1

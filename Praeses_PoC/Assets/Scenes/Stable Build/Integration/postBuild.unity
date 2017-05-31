@@ -6339,7 +6339,7 @@ Prefab:
     - target: {fileID: 114470239810710796, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: invokeTime
-      value: 0.15
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 114194279099476762, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
@@ -10554,6 +10554,7 @@ MonoBehaviour:
   photoCommentPrefab: {fileID: 0}
   offsetDist: 0.075
   xOffset: 0
+  managerOverride: {fileID: 0}
 --- !u!82 &1518818529
 AudioSource:
   m_ObjectHideFlags: 0

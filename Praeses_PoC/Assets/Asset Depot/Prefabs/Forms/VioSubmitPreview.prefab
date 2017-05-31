@@ -1655,6 +1655,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114071606449828848
@@ -1806,6 +1807,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114194308809960760
@@ -1996,6 +1998,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114288419632666612
@@ -2435,6 +2438,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114647746759845034
@@ -2514,6 +2518,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114690219260278954
@@ -2781,6 +2786,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114858501405137126
@@ -2823,8 +2829,8 @@ MonoBehaviour:
   resolutionBox: {fileID: 1249956072985774}
   resolutionOptions:
   - NEW
-  - NOT FIXED
   - FIXED
+  - NOT FIXED
   - OTHER
   resolutionText: {fileID: 114212148998468904}
   user: {fileID: 114806476732991338}

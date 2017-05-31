@@ -1441,14 +1441,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1174313589331970}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0}
-  m_LocalPosition: {x: -0.145, y: 0.1165, z: -0.007322018}
-  m_LocalScale: {x: 1.9467428, y: 1.7438538, z: 1.7438538}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.027704407, y: 0.031339508, z: 0.0031999967}
+  m_LocalScale: {x: 0.46581706, y: 0.5498141, z: 0.5498141}
   m_Children:
   - {fileID: 4409774345361738}
   - {fileID: 4260882615588990}
-  m_Father: {fileID: 4570650686127748}
-  m_RootOrder: 10
+  m_Father: {fileID: 4756712823244556}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4394295951380630
 Transform:
@@ -1603,7 +1603,6 @@ Transform:
   - {fileID: 4508782078326410}
   - {fileID: 4049070772417514}
   - {fileID: 4756712823244556}
-  - {fileID: 4384668679471516}
   m_Father: {fileID: 4491593594833158}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1763,6 +1762,7 @@ Transform:
   m_Children:
   - {fileID: 224501301387685994}
   - {fileID: 4178101642323202}
+  - {fileID: 4384668679471516}
   m_Father: {fileID: 4570650686127748}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3478,7 +3478,7 @@ MonoBehaviour:
   newVioPos: {fileID: 4121432945160926}
   submittedVioPrefab: {fileID: 1471072675639894, guid: 9195e781b103da2489e9a06f9974adda,
     type: 2}
-  vioOffsetDist: 0.075
+  vioOffsetDist: 0.018
   contents:
   - {fileID: 4756712823244556}
   - {fileID: 4384668679471516}

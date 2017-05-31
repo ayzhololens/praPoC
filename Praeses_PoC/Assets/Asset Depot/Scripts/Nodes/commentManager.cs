@@ -26,6 +26,7 @@ public class commentManager : MonoBehaviour {
     bool recordingInProgress;
     bool photoCaptureEnabled;
 
+    public commentManager managerOverride;
 
 
     // Use this for initialization
@@ -54,6 +55,11 @@ public class commentManager : MonoBehaviour {
 
 
         activeComments.Add(spawnedComment);
+        if (managerOverride != null)
+        {
+            managerOverride.activeComments.Add(spawnedComment);
+        }
+
         commentSetup(spawnedComment.GetComponent<commentContents>());
         spawnedComment.transform.localScale = simpleCommentPrefab.transform.localScale;
 
@@ -196,6 +202,10 @@ public class commentManager : MonoBehaviour {
         //spawn simple comment
         spawnedComment = Instantiate(videoCommentPrefab, transform.position, Quaternion.identity);
         activeComments.Add(spawnedComment);
+        if (managerOverride != null)
+        {
+            managerOverride.activeComments.Add(spawnedComment);
+        }
 
 
 
@@ -306,6 +316,10 @@ public class commentManager : MonoBehaviour {
         //spawn simple comment
         spawnedComment = Instantiate(photoCommentPrefab, transform.position, Quaternion.identity);
         activeComments.Add(spawnedComment);
+        if (managerOverride != null)
+        {
+            managerOverride.activeComments.Add(spawnedComment);
+        }
 
   
 
