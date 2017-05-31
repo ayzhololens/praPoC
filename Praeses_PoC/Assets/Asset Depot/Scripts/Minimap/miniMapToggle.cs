@@ -42,6 +42,8 @@ namespace HoloToolkit.Unity
             }
             active = MiniMapHolder.transform.GetChild(0).gameObject.activeSelf;
 
+            MiniMapTagAlong.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
+
 
 
         }
