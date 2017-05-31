@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 114131706862083190}
   - component: {fileID: 114669477585458250}
   - component: {fileID: 114644414265700416}
+  - component: {fileID: 114492382885446562}
   m_Layer: 2
   m_Name: contentHolder
   m_TagString: Untagged
@@ -6514,7 +6515,6 @@ GameObject:
   - component: {fileID: 33867935791387448}
   - component: {fileID: 65802211532352778}
   - component: {fileID: 23402644419731940}
-  - component: {fileID: 114945358137854580}
   m_Layer: 0
   m_Name: BoundingBox (1)
   m_TagString: Untagged
@@ -22743,6 +22743,24 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114492382885446562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1044852120135828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b7fa9fb5a88c3646a812f7881f3e598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: {fileID: 4006883299444388}
+  sensitivity: 25
+  dampening: 1
+  nodeCont: {fileID: 0}
+  lerp: 0.1
+  BoundingBox: {fileID: 1904122484419670}
+  MoveButton: {fileID: 1668081152903756}
 --- !u!114 &114492959280539286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28518,23 +28536,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
---- !u!114 &114945358137854580
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904122484419670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b7fa9fb5a88c3646a812f7881f3e598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: {fileID: 4006883299444388}
-  sensitivity: 25
-  dampening: 1
-  lerp: 0.1
-  BoundingBox: {fileID: 1904122484419670}
-  MoveButton: {fileID: 1668081152903756}
 --- !u!114 &114947186149968034
 MonoBehaviour:
   m_ObjectHideFlags: 1
