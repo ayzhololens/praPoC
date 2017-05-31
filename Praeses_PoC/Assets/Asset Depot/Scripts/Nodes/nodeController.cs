@@ -24,6 +24,8 @@ namespace HoloToolkit.Unity
         public GameObject linkedField;
         public GameObject reviewButtons;
 
+        public moveContent mover;
+
 
 
         void Start()
@@ -73,6 +75,16 @@ namespace HoloToolkit.Unity
                 //closeAllNodes(gameObject);
 
                 //open node content
+                if(mover == null)
+                {
+                    if (contentHolder.GetComponent<moveContent>() != null)
+                    {
+                        mover = contentHolder.GetComponent<moveContent>();
+                        mover.nodeCont = this;
+                    }
+                }
+
+
                 contentOpen = true;
                 contentHolder.SetActive(true);
                 contentHolder.GetComponent<DirectionIndicator>().enabled = true;

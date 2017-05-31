@@ -15,6 +15,8 @@ public class moveContent : MonoBehaviour,IManipulationHandler
     public float sensitivity;
     public float dampening;
 
+    public nodeController nodeCont;
+
     public float lerp;
     bool canManipulate;
     public GameObject BoundingBox;
@@ -131,6 +133,10 @@ public class moveContent : MonoBehaviour,IManipulationHandler
         BoundingBox.GetComponent<BoxCollider>().enabled = false;
         curDelta = Vector3.zero;
         prevDelta = Vector3.zero;
+        if (nodeCont != null)
+        {
+            nodeCont.contentStartLoc = content;
+        }
 
     }
 
@@ -142,6 +148,10 @@ public class moveContent : MonoBehaviour,IManipulationHandler
         BoundingBox.GetComponent<BoxCollider>().enabled = false;
         curDelta = Vector3.zero;
         prevDelta = Vector3.zero;
+        if (nodeCont != null)
+        {
+            nodeCont.contentStartLoc = content;
+        }
 
 
     }
