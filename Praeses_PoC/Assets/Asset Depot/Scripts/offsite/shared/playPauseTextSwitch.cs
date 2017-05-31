@@ -16,6 +16,10 @@ public class playPauseTextSwitch : MonoBehaviour {
         {
             setToPause();
         }
+        else
+        {
+            setToPlay();
+        }
         if (videoPlayer.Control.IsFinished())
         {
             setToPlay();
