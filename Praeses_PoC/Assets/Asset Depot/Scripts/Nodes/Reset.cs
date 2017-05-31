@@ -28,6 +28,8 @@ namespace HoloToolkit.Unity
             fieldSpawner.Instance.reloadForm();
         }
 
+        
+
         // Update is called once per frame
         void Update()
         {
@@ -43,18 +45,36 @@ namespace HoloToolkit.Unity
         public void wipeObjects()
         {
 
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < clearedObjs.Count; i++)
             {
                 //clearedObjs.Add(reloadedObjects[i]);
                 DestroyImmediate(clearedObjs[i]);
+                
+            }
+            clearedObjs.Clear();
+            spawnObjs();
+        }
+
+
+        void spawnObjs()
+        {
+            for (int i = 0; i < reloadedObjects.Length; i++)
+            {
                 GameObject newObj = Instantiate(reloadedObjects[i], transform.position, transform.rotation);
                 newObj.transform.position = Camera.main.transform.forward;
-                clearedObjs.Clear();
+                newObj.name = newObj.name + " respawned";
                 clearedObjs.Add(newObj);
             }
+
+            ReloadIt();
+        }
+
+
+        void ReloadIt()
+        {
             fieldSpawner.Instance.reloadForm();
-            mainMenuController.Instance.goToTab(0);
-            fitBoxControl.Instance.toggleFitbox();
+            fitBoxControl.Instance.toggleFitbox(false);
+
         }
 
         public void clearNodes()

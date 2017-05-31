@@ -18,6 +18,8 @@ namespace HoloToolkit.Unity
         SimpleTagalong nodeTagalong;
         bool contentOpen;
         [Header("Follow Controls")]
+
+        [Tooltip("distance before it whatevers")]
         public float distanceThreshold;
         public float moveSpeed;
         public bool fromJSON { get; set; }

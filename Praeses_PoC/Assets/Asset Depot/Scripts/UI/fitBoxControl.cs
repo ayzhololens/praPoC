@@ -16,11 +16,14 @@ public class fitBoxControl : Singleton<fitBoxControl> {
 		
 	}
 
-    public void toggleFitbox()
+    public void toggleFitbox(bool openMenu)
     {
         if (fitBox.activeSelf)
         {
-            mainMenuController.Instance.openMainMenu();
+            if (openMenu)
+            {
+                mainMenuController.Instance.openMainMenu();
+            }
             mainMenuController.Instance.contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position; 
         }
         fitBox.SetActive(!fitBox.activeSelf);

@@ -314,7 +314,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935959263943948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6119996, y: 1.9008697, z: 0}
+  m_LocalPosition: {x: -0.6119996, y: 0.359, z: 0}
   m_LocalScale: {x: -0.13254066, y: 0.23022154, z: 5.8456426}
   m_Children:
   - {fileID: 4151345048772456}
@@ -936,6 +936,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114342784251378204
@@ -988,6 +989,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 1
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114382194984658206
@@ -1121,6 +1123,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114669384515379598
@@ -1222,6 +1225,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114848556647894544
@@ -1280,6 +1284,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
+  soundIndex: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!212 &212341671034585104
