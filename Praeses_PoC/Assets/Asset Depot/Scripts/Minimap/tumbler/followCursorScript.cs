@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class followCursorScript : MonoBehaviour {
 
+    //icons will snap to hand manipulated cursor as they enter the appropriate collider boxes
+
+    [Header("Icons List")]
     public GameObject rIcon;
     Vector3 rIconOriPos;
     public GameObject lIcon;
@@ -12,7 +15,11 @@ public class followCursorScript : MonoBehaviour {
     Vector3 uIconOriPos;
     public GameObject dIcon;
     Vector3 dIconOriPos;
+
+    [Header("Parent Object")]
     public Transform oriParent;
+
+    [Header("Current Icon Parameters")]
     public int iconIndex;
     public Color myColor;
     public Color slo;
@@ -20,6 +27,7 @@ public class followCursorScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //record the starting points of where the icons go when set to neutral
         rIconOriPos = rIcon.transform.localPosition;
         lIconOriPos = lIcon.transform.localPosition;
         uIconOriPos = uIcon.transform.localPosition;
@@ -28,7 +36,6 @@ public class followCursorScript : MonoBehaviour {
 
 	void Update () {
         parentToCursor();
-
     }
 
     void resetPos()

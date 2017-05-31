@@ -6,6 +6,7 @@ using HoloToolkit.Unity;
 
 public class onModelDragHybrid : Singleton<onModelDragHybrid>
 {
+    [Header("Cursor States and local space converters")]
     public GameObject cursorOri;
     public GameObject cursorHand;
     Vector3 initHandPos;
@@ -13,22 +14,25 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
     public GameObject buttonsGrp;
 
     Transform oriParent;
-    public bool editState;
+    bool editState;
     float xPos;
     float yPos;
 
     float tempDist;
 
+    [Tooltip("Object for world orient local space to camera")]
     public GameObject handPosLocal;
 
     public followCursorScript followCur;
 
-    public bool navigating;
+    bool navigating;
 
+    [Header("Colliders for tumbling operations")]
     public List<radialOperationsHybrid> operations;
 
-    public float sensitivity;
+    float sensitivity;
 
+    [Header("Move mode checker")]
     public GameObject moveModeMeshes;
 
     void Start()
@@ -38,7 +42,7 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
         oriParent = buttonsGrp.transform.parent;
         editState = false;
         adjustWithEdit();
-
+        sensitivity = 1.2f;
         tempDist = 0.0f;
         gameObject.GetComponent<Collider>().enabled = false;
     }
@@ -48,8 +52,8 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
     {
         if (sourceManager.Instance.sourcePressed && GazeManager.Instance.HitObject)
         {
+            //check that only miniMapMesh tagged objects will react to this script
             if (GazeManager.Instance.HitObject.tag == "miniMapMesh") {
-                //timerManager.Instance.tumbleCountDown();
                 colliderOn();
                 menuOn();
             }
@@ -71,16 +75,16 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
         gameObject.GetComponent<Collider>().enabled = true;
     }
 
+    //this function deals with hand manipulation and local positioning of the hand cursor
     private void menuOn()
     {
+        //check if move mode is active, if it is not then allow manipulation menu
         if (!moveModeMeshes.activeSelf)
         {
             if (GazeManager.Instance.HitObject == gameObject || navigating)
             {
-                //Debug.Log("looking");
                 if (sourceManager.Instance.sourcePressed)
                 {
-                    //Debug.Log("pressing...");
                     if (!navigating)
                     {
 
@@ -122,6 +126,7 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
 
     }
 
+    //this function repositions the hand draggable menu(buttons) at the position of where the gaze hits this object's collider
     public void adjustWithEdit()
     {
         if (editState)
@@ -144,6 +149,7 @@ public class onModelDragHybrid : Singleton<onModelDragHybrid>
             cursorOri.SetActive(true);
             foreach (radialOperationsHybrid oper in operations)
             {
+                //when not editing make sure any manipulation is non-existant by multiplying by 0
                 oper.rotationFactor = 0;
             }
 
