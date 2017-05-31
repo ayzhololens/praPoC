@@ -618,7 +618,6 @@ GameObject:
   - component: {fileID: 33632910284161884}
   - component: {fileID: 65516643575804808}
   - component: {fileID: 23982110959490132}
-  - component: {fileID: 114186112875478794}
   m_Layer: 0
   m_Name: BoundingBox
   m_TagString: Untagged
@@ -780,6 +779,7 @@ GameObject:
   - component: {fileID: 114988740420690646}
   - component: {fileID: 114986572455903858}
   - component: {fileID: 114230875876286528}
+  - component: {fileID: 114920811277758616}
   m_Layer: 2
   m_Name: ContentHolder
   m_TagString: Node
@@ -5602,6 +5602,7 @@ MonoBehaviour:
   content: {fileID: 4267338719897500}
   sensitivity: 6
   dampening: 0
+  nodeCont: {fileID: 0}
   lerp: 0
   BoundingBox: {fileID: 1283838974091838}
   MoveButton: {fileID: 0}
@@ -5788,23 +5789,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114186112875478794
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1283838974091838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b7fa9fb5a88c3646a812f7881f3e598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: {fileID: 4267338719897500}
-  sensitivity: 25
-  dampening: 1
-  lerp: 0.1
-  BoundingBox: {fileID: 1283838974091838}
-  MoveButton: {fileID: 1629726925644218}
 --- !u!114 &114189755071469004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8487,6 +8471,24 @@ MonoBehaviour:
   formItem: {fileID: 0}
   nodeInfo: {fileID: 0}
   commentNode: {fileID: 0}
+--- !u!114 &114920811277758616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347992105135240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b7fa9fb5a88c3646a812f7881f3e598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: {fileID: 4267338719897500}
+  sensitivity: 25
+  dampening: 1
+  nodeCont: {fileID: 114837416946677524}
+  lerp: 0.1
+  BoundingBox: {fileID: 1283838974091838}
+  MoveButton: {fileID: 1629726925644218}
 --- !u!114 &114923888727555042
 MonoBehaviour:
   m_ObjectHideFlags: 1

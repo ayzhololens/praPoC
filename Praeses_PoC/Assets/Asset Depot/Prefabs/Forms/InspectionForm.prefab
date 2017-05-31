@@ -2234,6 +2234,7 @@ GameObject:
   - component: {fileID: 114550203675425030}
   - component: {fileID: 114171991360048254}
   - component: {fileID: 114841567580360890}
+  - component: {fileID: 114010423850066042}
   m_Layer: 2
   m_Name: contentHolder
   m_TagString: Untagged
@@ -2475,7 +2476,6 @@ GameObject:
   - component: {fileID: 33083055791320060}
   - component: {fileID: 65268720428569716}
   - component: {fileID: 23986325867935490}
-  - component: {fileID: 114906529907137096}
   m_Layer: 0
   m_Name: BoundingBox (2)
   m_TagString: Untagged
@@ -7760,6 +7760,24 @@ MonoBehaviour:
   Violations: {fileID: 0}
   Annotations: {fileID: 0}
   DataFields: {fileID: 0}
+--- !u!114 &114010423850066042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734258115892488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b7fa9fb5a88c3646a812f7881f3e598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: {fileID: 4065540763152210}
+  sensitivity: 30
+  dampening: 1
+  nodeCont: {fileID: 0}
+  lerp: 0.1
+  BoundingBox: {fileID: 1810884210948880}
+  MoveButton: {fileID: 1576064729009226}
 --- !u!114 &114027153567976392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10456,9 +10474,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slideSpeed: -0.001
   slideDist: -0.02
-  timer: 1.5
-  keptOut: 0
-  subMenu: {fileID: 114122331147067730}
+  isOut: 0
+  subButtons: []
+  hideButton: {fileID: 0}
+  timeOut: 0
 --- !u!114 &114509150589263098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12365,23 +12384,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114906529907137096
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1810884210948880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b7fa9fb5a88c3646a812f7881f3e598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: {fileID: 4065540763152210}
-  sensitivity: 30
-  dampening: 1
-  lerp: 0.1
-  BoundingBox: {fileID: 1810884210948880}
-  MoveButton: {fileID: 1576064729009226}
 --- !u!114 &114908733187820996
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -930,7 +930,6 @@ GameObject:
   - component: {fileID: 33053065372740092}
   - component: {fileID: 65271756611101878}
   - component: {fileID: 23245602402141664}
-  - component: {fileID: 114840754951494470}
   m_Layer: 0
   m_Name: BoundingBox
   m_TagString: Untagged
@@ -1497,6 +1496,7 @@ GameObject:
   - component: {fileID: 114618209068714102}
   - component: {fileID: 114858368523381640}
   - component: {fileID: 114246855425860606}
+  - component: {fileID: 114051518312614264}
   m_Layer: 2
   m_Name: ContentHolder
   m_TagString: Node
@@ -5077,6 +5077,24 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114051518312614264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822431757891052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b7fa9fb5a88c3646a812f7881f3e598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: {fileID: 4394078253578712}
+  sensitivity: 25
+  dampening: 1
+  nodeCont: {fileID: 114423341530271140}
+  lerp: 0.1
+  BoundingBox: {fileID: 1482015511199446}
+  MoveButton: {fileID: 1455097865808342}
 --- !u!114 &114062366127954804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7230,23 +7248,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 9.49
---- !u!114 &114840754951494470
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1482015511199446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b7fa9fb5a88c3646a812f7881f3e598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: {fileID: 4394078253578712}
-  sensitivity: 25
-  dampening: 1
-  lerp: 0.1
-  BoundingBox: {fileID: 1482015511199446}
-  MoveButton: {fileID: 1455097865808342}
 --- !u!114 &114845170493056740
 MonoBehaviour:
   m_ObjectHideFlags: 1
