@@ -10,7 +10,7 @@ public class playPauseTextSwitch : MonoBehaviour {
     public TextMesh textObj;
     public MediaPlayer videoPlayer;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (videoPlayer.Control.IsPlaying())
         {
