@@ -138,12 +138,7 @@ namespace HoloToolkit.Unity
 
                             if (field.Options.ContainsKey(valueItem.value))
                             {
-                                ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + field.Options[valueItem.value] + ")");
-                            }
-                            else
-                            {
-                                ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + valueItem.value + ")");
-
+                               ActiveFields[valueItem.name].GetComponent<formFieldController>().previousValue.text = ("(" + field.Options[valueItem.value] + ")");
                             }
                         }
                     }

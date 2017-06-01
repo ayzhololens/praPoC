@@ -9016,7 +9016,7 @@ MonoBehaviour:
   changedValuePos: {fileID: 4688214710152144}
   issuePos: {fileID: 4135551071178154}
   vioOffsetDist: 0.018
-  changesOffsetDist: 0.075
+  changesOffsetDist: 0.018
   contents:
   - {fileID: 4587375166478514}
   - {fileID: 4853552722433636}

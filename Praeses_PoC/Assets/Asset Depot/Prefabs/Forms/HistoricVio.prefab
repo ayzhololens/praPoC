@@ -258,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1046739281880932
 GameObject:
   m_ObjectHideFlags: 1
@@ -16452,7 +16452,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LOCATION DETAILS
+  m_Text: OVERVIEW
 --- !u!114 &114007137317869432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20406,6 +20406,7 @@ MonoBehaviour:
   vioController: {fileID: 114257584439806268}
   submittedVioPrefab: {fileID: 1986218579514202, guid: 848b3641b5fd17643bdd0887e59ba73d,
     type: 2}
+  vioStatusField: {fileID: 0}
   submittedVioPos: {fileID: 4141102978320054}
   goToResolveVioButton: {fileID: 4319890492976682}
   resolutionField: {fileID: 1461893754189006}
@@ -24058,6 +24059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dist: 0
+  sScale: {x: 0, y: 0, z: 0}
   scaleMult: 0.7
   floor: 0
   ceiling: 0
@@ -28460,8 +28462,8 @@ MonoBehaviour:
   - {fileID: 1167439633748386}
   - {fileID: 1310651557817164}
   - {fileID: 1139868651609714}
-  commentPos: {fileID: 224254952125514058}
   commentOffset: 0.05
+  linkedPreviews: []
 --- !u!114 &114939096120357934
 MonoBehaviour:
   m_ObjectHideFlags: 1

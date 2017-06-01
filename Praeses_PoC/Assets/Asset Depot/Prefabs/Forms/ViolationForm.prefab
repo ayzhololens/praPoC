@@ -19517,7 +19517,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 1
-  soundIndex: 0
+  soundIndex: 2
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114238362652581452
@@ -20018,7 +20018,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 1
-  soundIndex: 0
+  soundIndex: 2
   moveSpeed: 0.001
   moveDist: 0.005
 --- !u!114 &114273288109040308
@@ -23860,7 +23860,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 1
-  soundIndex: 0
+  soundIndex: 2
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114539857185115322
@@ -23927,6 +23927,7 @@ MonoBehaviour:
   vioController: {fileID: 114901179703771572}
   submittedVioPrefab: {fileID: 1986218579514202, guid: 848b3641b5fd17643bdd0887e59ba73d,
     type: 2}
+  vioStatusField: {fileID: 0}
   submittedVioPos: {fileID: 4942970900013738}
   goToResolveVioButton: {fileID: 4219932082475460}
   resolutionField: {fileID: 1642866317607184}
@@ -24068,7 +24069,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 0
-  soundIndex: 0
+  soundIndex: 1
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114561609919643198
@@ -24546,7 +24547,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 1
-  soundIndex: 0
+  soundIndex: 2
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114600998552177272
@@ -26381,6 +26382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dist: 0
+  sScale: {x: 0, y: 0, z: 0}
   scaleMult: 0.7
   floor: 0
   ceiling: 0
@@ -26610,7 +26612,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next
+  m_Text: Submit Violation
 --- !u!114 &114777594520184064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26675,8 +26677,8 @@ MonoBehaviour:
   - {fileID: 1011290783873210}
   - {fileID: 1224304767506116}
   - {fileID: 1926876571630860}
-  commentPos: {fileID: 224297482903784100}
   commentOffset: 0.05
+  linkedPreviews: []
 --- !u!114 &114779011829825050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26833,7 +26835,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LOCATION DETAILS
+  m_Text: OVERVIEW
 --- !u!114 &114789081932573724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28415,7 +28417,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 1
   clickMotion: 1
-  soundIndex: 0
+  soundIndex: 2
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114933078520135980

@@ -121,13 +121,13 @@
             ],
             "Violations":[
                {
-                  "category": "1.1.23",
-                  "classifications": 1,
+                  "category": "1.2.23",
+                  "classifications": 0,
                   "violationDate": "01/23/2016",
                   "status": 0,
                   "resolveDate": "07/04/2017",
                   "requirements": "Install or repair or replace item in accordance with State Law & Regs, ASME BPV Code, National Board Inspection Code and Manufacturer Specifications.",
-                  "conditions": "Low Water Cutoff is not installed or installed incorrectly or inoperable or damaged or leaking.",
+                  "conditions": "Water Level Indicator Glass is dirty.",
                   "nodeIndex": 4
                }
             ],

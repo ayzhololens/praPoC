@@ -9,7 +9,7 @@ public class violationsLib : Singleton<violationsLib> {
     public Dictionary<int, string> violationsCategory = new Dictionary<int, string>();
     public Dictionary<int, string> violationsSubCategory1 = new Dictionary<int, string>();
     public Dictionary<int, string> violationsSubCategory4 = new Dictionary<int, string>();
-    public Dictionary<int, string> violationsSpecific11 = new Dictionary<int, string>();
+    public Dictionary<int, string> violationsSpecific12 = new Dictionary<int, string>();
     public Dictionary<int, string> violationsSpecific41 = new Dictionary<int, string>();
     public Dictionary<int, string> violationsSeverity = new Dictionary<int, string>();
     public Dictionary<int, string> violationsStatus =new Dictionary<int, string>();
@@ -76,7 +76,7 @@ public class violationsLib : Singleton<violationsLib> {
         }
 
         //subCategory1
-        violationsSubCategory1.Add(1, "Water Leaks");
+        violationsSubCategory1.Add(2, "Water Column/Level Indicator");
 
         foreach (int cat in violationsSubCategory1.Keys)
         {
@@ -85,7 +85,7 @@ public class violationsLib : Singleton<violationsLib> {
             categoryLib.categoryList[1].subCategoryList.Add(cat, tempSubCategory);
         }
 
-        //subCategory4
+        //subCategory4x
         violationsSubCategory4.Add(1, "Water Leaks");
         violationsSubCategory4.Add(2, "Baffles/refactory");
         violationsSubCategory4.Add(3, "Furnace");
@@ -102,14 +102,14 @@ public class violationsLib : Singleton<violationsLib> {
             categoryLib.categoryList[4].subCategoryList.Add(cat, tempSubCategory);
         }
 
-        //specific11
-        violationsSpecific11.Add(23, "Water Level indicator Glass is dirty.");
+        //specific12
+        violationsSpecific12.Add(23, "Water Level indicator Glass is dirty.");
 
-        foreach (int cat in violationsSpecific11.Keys)
+        foreach (int cat in violationsSpecific12.Keys)
         {
             Specific tempSpecific = new Specific();
-            tempSpecific.name = violationsSpecific11[cat];
-            categoryLib.categoryList[1].subCategoryList[1].specificList.Add(cat, tempSpecific);
+            tempSpecific.name = violationsSpecific12[cat];
+            categoryLib.categoryList[1].subCategoryList[2].specificList.Add(cat, tempSpecific);
         }
 
         //specific41

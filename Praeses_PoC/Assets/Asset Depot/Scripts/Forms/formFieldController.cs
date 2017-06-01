@@ -14,6 +14,7 @@ namespace HoloToolkit.Unity
         public Text DisplayName;
         public string trueName;
         public InputField Value;
+        public string buttonVal;
         public Text previousValue;
         public int nodeIndex;
         public GameObject fieldButton;
@@ -25,6 +26,7 @@ namespace HoloToolkit.Unity
         int currCommentType;
         public bool showUpdate;
         public bool ignoreDeltaCheck { get; set; }
+        public  GameObject deltaField { get; set; }
 
 
 
@@ -138,13 +140,40 @@ namespace HoloToolkit.Unity
         {
             if (!ignoreDeltaCheck)
             {
-                string tempVal = "(" + Value.text + ")";
-                if (tempVal != previousValue.text)
+                if (deltaField == null)
                 {
-                    formController.Instance.submitInspection.addChangedValue(DisplayName.text, previousValue.text, Value.text);
+                    string tempVal = "(" + Value.text + ")";
+
+                    if (tempVal != previousValue.text)
+                    {
+                        if (buttonVal == null)
+                        {
+                            formController.Instance.submitInspection.addChangedValue(DisplayName.text, previousValue.text, Value.text, this);
+
+                        }
+                        else
+                        {
+                            formController.Instance.submitInspection.addChangedValue(DisplayName.text, previousValue.text, buttonVal, this);
+                        }
+                    }
+                }
+                else
+                {
+                    if (buttonVal == null)
+                    {
+                        deltaField.GetComponent<fieldChangedValueComponent>().currValue.text = Value.text;
+                    }
+                    else
+                    {
+                        deltaField.GetComponent<fieldChangedValueComponent>().currValue.text = buttonVal;
+                    }
                 }
             }
 
+          
+
+
+            
 
         }
 
