@@ -29,7 +29,7 @@ public class viewViolationController : Singleton<viewViolationController>
 
 
 
-    public void addVioPreview(int index, violationController vioCont, bool fromJson)
+    public void addVioPreview(int index, violationController vioCont, bool fromJson, vioPreviewComponent linkedPrev)
     {
 
         Transform vioPos;
@@ -41,14 +41,33 @@ public class viewViolationController : Singleton<viewViolationController>
         {
             vioPos = newVioPos;
         }
-
-        Vector3 offset = new Vector3(vioPos.position.x, vioPos.position.y - (vioPreviewCount * vioOffsetDist), vioPos.position.z);
-        spawnedVioPreview = Instantiate(submittedVioPrefab, offset, Quaternion.identity);
+        Vector3 offset = new Vector3(vioPos.localPosition.x, vioPos.localPosition.y - (vioPreviewCount * vioOffsetDist), vioPos.localPosition.z);
+        spawnedVioPreview = Instantiate(submittedVioPrefab, transform.position, Quaternion.identity);
         spawnedVioPreview.transform.SetParent(vioPos.parent);
+        spawnedVioPreview.transform.localPosition = offset;
         spawnedVioPreview.transform.localScale = submittedVioPrefab.transform.localScale;
         spawnedVioPreview.transform.localRotation = submittedVioPrefab.transform.localRotation;
+        linkedPrev.linkedPreviews.Add(spawnedVioPreview);
+
+        if (!fromJson)
+        {
+            for (int i = 0; i < contents.Length; i++)
+            {
+
+                contents[i].localPosition = new Vector3(contents[i].localPosition.x, contents[i].localPosition.y - vioOffsetDist, contents[i].localPosition.z);
+            }
+        }
+        else
+        {
+            for (int i = 1; i < contents.Length; i++)
+            {
+                contents[i].localPosition = new Vector3(contents[i].localPosition.x, contents[i].localPosition.y - vioOffsetDist, contents[i].localPosition.z);
+            }
+        }
+
         vioPreviewComponent vioPreview = spawnedVioPreview.GetComponent<vioPreviewComponent>();
         activeController = vioCont;
+        vioPreview.vioController = vioCont;
         vioPreview.setResolution(index);
         vioPreview.user.text =
             vioCont.violationIndices[0] + "." +
@@ -57,24 +76,10 @@ public class viewViolationController : Singleton<viewViolationController>
         vioPreview.date.text = " ";
         
 
-        if (!fromJson)
-        {
-            for (int i = 0; i < contents.Length; i++)
-            {
 
-                contents[i].position = new Vector3(contents[i].position.x, contents[i].position.y - vioOffsetDist, contents[i].position.z);
-            }
-        }
-        else
-        {
-            for (int i = 1; i < contents.Length; i++)
-            {
-                contents[i].position = new Vector3(contents[i].position.x, contents[i].position.y - vioOffsetDist, contents[i].position.z);
-            }
-        }
 
         vioPreviewCount += 1;
-        Invoke("setPreviewComments", 1);
+        //Invoke("setPreviewComments", 1);
 
 
     }
@@ -85,6 +90,13 @@ public class viewViolationController : Singleton<viewViolationController>
         int sCounter = 0;
         int pCounter = 0;
         int vCounter = 0;
+
+        foreach (GameObject activeComment in spawnedVioPreview.GetComponent<commentManager>().activeComments)
+        {
+            Destroy(activeComment);
+        }
+        spawnedVioPreview.GetComponent<commentManager>().activeComments.Clear();
+
 
         foreach (GameObject activeComment in activeController.gameObject.GetComponent<commentManager>().activeComments)
         {
@@ -123,44 +135,9 @@ public class viewViolationController : Singleton<viewViolationController>
         }
 
         vioPreviewComponent preview = spawnedVioPreview.GetComponent<vioPreviewComponent>();
-        if (pCounter > 0)
-        {
-            preview.commentText[1].SetActive(true);
-            preview.commentText[1].transform.localPosition = preview.commentPos.localPosition;
-            preview.commentText[1].GetComponent<Text>().text = pCounter.ToString() + "x";
-            if (sCounter > 0)
-            {
-                preview.commentPos.localPosition = new Vector3(preview.commentPos.localPosition.x + preview.commentOffset, preview.commentPos.localPosition.y, preview.commentPos.localPosition.z);
-
-            }
-            if (vCounter > 0)
-            {
-                preview.commentPos.localPosition = new Vector3(preview.commentPos.localPosition.x + preview.commentOffset, preview.commentPos.localPosition.y, preview.commentPos.localPosition.z);
-
-            }
-        }
-        if (sCounter > 0)
-        {
-
-            preview.commentText[0].SetActive(true);
-            preview.commentText[0].transform.localPosition = preview.commentPos.localPosition;
-            preview.commentText[0].GetComponent<Text>().text = sCounter.ToString() + "x";
-            if (vCounter > 0)
-            {
-                preview.commentPos.localPosition = new Vector3(preview.commentPos.position.x + preview.commentOffset, preview.commentPos.localPosition.y, preview.commentPos.localPosition.z);
-
-            }
-        }
-        if (vCounter > 0)
-        {
-
-            preview.commentText[2].SetActive(true);
-            preview.commentText[2].transform.localPosition = preview.commentPos.localPosition;
-            preview.commentText[2].GetComponent<Text>().text = vCounter.ToString() + "x";
-        }
-
-
-
+        preview.commentText[1].GetComponent<Text>().text = pCounter.ToString() + "x";
+        preview.commentText[0].GetComponent<Text>().text = sCounter.ToString() + "x";
+        preview.commentText[2].GetComponent<Text>().text = vCounter.ToString() + "x";
     }
 
 

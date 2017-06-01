@@ -251,13 +251,14 @@ GameObject:
   - component: {fileID: 114669477585458250}
   - component: {fileID: 114644414265700416}
   - component: {fileID: 114492382885446562}
+  - component: {fileID: 114591556450322980}
   m_Layer: 2
   m_Name: contentHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1046739281880932
 GameObject:
   m_ObjectHideFlags: 1
@@ -16451,7 +16452,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LOCATION DETAILS
+  m_Text: OVERVIEW
 --- !u!114 &114007137317869432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20405,10 +20406,11 @@ MonoBehaviour:
   vioController: {fileID: 114257584439806268}
   submittedVioPrefab: {fileID: 1986218579514202, guid: 848b3641b5fd17643bdd0887e59ba73d,
     type: 2}
+  vioStatusField: {fileID: 0}
   submittedVioPos: {fileID: 4141102978320054}
   goToResolveVioButton: {fileID: 4319890492976682}
   resolutionField: {fileID: 1461893754189006}
-  offsetDist: 0.1
+  offsetDist: 0.076
 --- !u!114 &114288259934053364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24045,6 +24047,22 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Select the top-level violation category:'
+--- !u!114 &114591556450322980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1044852120135828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec27679f737bbea44a5a095b927fde01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dist: 0
+  sScale: {x: 0, y: 0, z: 0}
+  scaleMult: 0.7
+  floor: 0
+  ceiling: 0
 --- !u!114 &114592266340706628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24153,6 +24171,7 @@ MonoBehaviour:
     type: 2}
   offsetDist: 0.09
   xOffset: 1
+  managerOverride: {fileID: 114947186149968034}
 --- !u!114 &114601350258774418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25391,6 +25410,7 @@ MonoBehaviour:
     type: 2}
   offsetDist: 0.03
   xOffset: 1
+  managerOverride: {fileID: 0}
 --- !u!114 &114686926337551164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28442,8 +28462,8 @@ MonoBehaviour:
   - {fileID: 1167439633748386}
   - {fileID: 1310651557817164}
   - {fileID: 1139868651609714}
-  commentPos: {fileID: 224254952125514058}
   commentOffset: 0.05
+  linkedPreviews: []
 --- !u!114 &114939096120357934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28560,6 +28580,7 @@ MonoBehaviour:
     type: 2}
   offsetDist: 0.09
   xOffset: 0
+  managerOverride: {fileID: 0}
 --- !u!114 &114947922460141802
 MonoBehaviour:
   m_ObjectHideFlags: 1

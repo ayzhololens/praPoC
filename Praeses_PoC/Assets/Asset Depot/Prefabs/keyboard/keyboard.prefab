@@ -22020,7 +22020,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
-  soundIndex: 0
+  soundIndex: 2
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114486061998702914
@@ -23002,7 +23002,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 107e2be7bad1a6c4ebaa6dae5af751bd, type: 2}
+  m_Material: {fileID: 2100000, guid: 8697da41f88f2de42bb269665b725a83, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -24234,7 +24234,7 @@ MonoBehaviour:
       PublicKeyToken=null
   gazeExit: 0
   clickMotion: 0
-  soundIndex: 0
+  soundIndex: 2
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &114983902928538320

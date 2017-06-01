@@ -80,6 +80,7 @@ namespace HoloToolkit.Unity
 
         public void closeForm()
         {
+            contentHolder.transform.localScale = contentHolder.GetComponent<contentScaler>().sScale;
             if (fieldNodes.Count != 0)
             {
                 foreach (GameObject node in fieldNodes)
@@ -91,14 +92,17 @@ namespace HoloToolkit.Unity
             {
                 contentHolder.SetActive(false);
             }
+
+            
         }
 
         public void openForm()
         {
 
-            contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
+            contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(2f).transform.position;
             checkTab();
             contentHolder.SetActive(true);
+
         }
 
         public void updateFieldStatus(int amount)

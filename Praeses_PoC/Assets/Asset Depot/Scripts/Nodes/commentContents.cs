@@ -75,10 +75,6 @@ namespace HoloToolkit.Unity
             mediaPlayer.m_VideoPath = filepath;
 
             mediaPlayer.LoadVideoPlayer();
-            if(vidThumbMat == null)
-            {
-
-            }
             if (vidThumbnail == null)
             {
                 thumbMat = Instantiate(vidThumbMat);

@@ -26,6 +26,7 @@ public class commentManager : MonoBehaviour {
     bool recordingInProgress;
     bool photoCaptureEnabled;
 
+    public commentManager managerOverride;
 
 
     // Use this for initialization
@@ -54,6 +55,11 @@ public class commentManager : MonoBehaviour {
 
 
         activeComments.Add(spawnedComment);
+        if (managerOverride != null)
+        {
+            managerOverride.activeComments.Add(spawnedComment);
+        }
+
         commentSetup(spawnedComment.GetComponent<commentContents>());
         spawnedComment.transform.localScale = simpleCommentPrefab.transform.localScale;
 
@@ -196,6 +202,10 @@ public class commentManager : MonoBehaviour {
         //spawn simple comment
         spawnedComment = Instantiate(videoCommentPrefab, transform.position, Quaternion.identity);
         activeComments.Add(spawnedComment);
+        if (managerOverride != null)
+        {
+            managerOverride.activeComments.Add(spawnedComment);
+        }
 
 
 
@@ -214,6 +224,30 @@ public class commentManager : MonoBehaviour {
         return spawnedComment;
 
     }
+    
+    public virtual GameObject addVideoComment(GameObject comment)
+    {   
+        //shift all comments down
+        repositionComments();
+
+
+        spawnedComment = Instantiate(comment, transform.position, Quaternion.identity);
+        activeComments.Add(comment);
+
+
+
+        commentSetup(spawnedComment.GetComponent<commentContents>());
+        spawnedComment.transform.localScale = videoCommentPrefab.transform.localScale;
+
+
+
+        //define the comment type
+        commentContents videoContent = spawnedComment.GetComponent<commentContents>();
+        videoContent.LoadVideo();
+
+        return spawnedComment;
+    }
+
 
     public virtual GameObject spawnVideoCommentFromJSON(string filePath)
     {
@@ -306,6 +340,10 @@ public class commentManager : MonoBehaviour {
         //spawn simple comment
         spawnedComment = Instantiate(photoCommentPrefab, transform.position, Quaternion.identity);
         activeComments.Add(spawnedComment);
+        if (managerOverride != null)
+        {
+            managerOverride.activeComments.Add(spawnedComment);
+        }
 
   
 

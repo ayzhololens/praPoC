@@ -780,6 +780,7 @@ GameObject:
   - component: {fileID: 114986572455903858}
   - component: {fileID: 114230875876286528}
   - component: {fileID: 114920811277758616}
+  - component: {fileID: 114475826425491156}
   m_Layer: 2
   m_Name: ContentHolder
   m_TagString: Node
@@ -5905,7 +5906,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347992105135240}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
   m_Name: 
@@ -6079,6 +6080,7 @@ MonoBehaviour:
   photoCommentPrefab: {fileID: 0}
   offsetDist: 0.075
   xOffset: 0
+  managerOverride: {fileID: 0}
 --- !u!114 &114280431650788890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6669,6 +6671,22 @@ MonoBehaviour:
   soundIndex: 0
   moveSpeed: 0
   moveDist: 0
+--- !u!114 &114475826425491156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347992105135240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec27679f737bbea44a5a095b927fde01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dist: 0
+  sScale: {x: 0, y: 0, z: 0}
+  scaleMult: 1.8
+  floor: 0.41
+  ceiling: 4.27
 --- !u!114 &114476389617337360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7485,7 +7503,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347992105135240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2d5d5f6bd7521e478939cf2295e9e29, type: 3}
   m_Name: 

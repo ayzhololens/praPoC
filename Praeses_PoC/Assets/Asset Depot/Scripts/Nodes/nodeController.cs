@@ -92,6 +92,7 @@ namespace HoloToolkit.Unity
                 contentHolder.GetComponent<DirectionIndicator>().enabled = true;
                 contentHolder.GetComponent<DirectionIndicator>().hasGazed = false;
                 contentHolder.transform.position = contentStartLoc.position;
+                contentHolder.GetComponent<contentScaler>().setScale();
                 GetComponent<AudioSource>().PlayClip(audioManager.Instance.openSound);
 
 
@@ -133,6 +134,7 @@ namespace HoloToolkit.Unity
             //close node content
             contentHolder.SetActive(false);
             contentOpen = false;
+            //contentHolder.transform.localScale = contentHolder.GetComponent<contentScaler>().sScale;
         }
 
         public void repos()

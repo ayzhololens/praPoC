@@ -1862,6 +1862,8 @@ GameObject:
   - component: {fileID: 114360911289890854}
   - component: {fileID: 114770249802345610}
   - component: {fileID: 114397996953819244}
+  - component: {fileID: 114392105406244354}
+  - component: {fileID: 114528245534905770}
   m_Layer: 2
   m_Name: ContentHolder
   m_TagString: Node
@@ -6526,6 +6528,22 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 9.49
+--- !u!114 &114392105406244354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908089109972462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec27679f737bbea44a5a095b927fde01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dist: 0
+  sScale: {x: 0, y: 0, z: 0}
+  scaleMult: 1.8
+  floor: 0
+  ceiling: 0
 --- !u!114 &114397996953819244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6587,6 +6605,7 @@ MonoBehaviour:
   photoCommentPrefab: {fileID: 0}
   offsetDist: 0.075
   xOffset: 0
+  managerOverride: {fileID: 0}
 --- !u!114 &114417758774755210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7006,6 +7025,18 @@ MonoBehaviour:
   isPanel: 0
   panelHighlight: {r: 0, g: 0, b: 0, a: 0}
   objectOverride: {fileID: 1800876463104716}
+--- !u!114 &114528245534905770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908089109972462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114528585066860154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7868,7 +7899,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908089109972462}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2d5d5f6bd7521e478939cf2295e9e29, type: 3}
   m_Name: 

@@ -435,7 +435,7 @@ public class databaseMan : Singleton<databaseMan>
 
         if (nodeClasses.ContainsKey(nodeIndex))
         {
-            if (comment.type == 1)
+            if (comment.type == 0)
             {
                 comment newComment = new comment();
                 newComment.content = comment.content;
