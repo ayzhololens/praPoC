@@ -108,7 +108,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1411486108328204}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 191.9988, y: -154.00304, z: -1.003943}
+  m_LocalPosition: {x: 190, y: -154.00304, z: -1.003943}
   m_LocalScale: {x: 35.666954, y: 87.40934, z: 19.611774}
   m_Children: []
   m_Father: {fileID: 224787116228467210}
@@ -232,6 +232,12 @@ MonoBehaviour:
   user: 
   date: 
   nodeIndex: 0
+  comment:
+    content: 
+    path: 
+    user: 
+    date: 
+    type: 0
 --- !u!114 &114386668322122612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,20 +263,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mediaWindow: {fileID: 0}
   mediaPlane: {fileID: 0}
-  nodesMinimapCam: {fileID: 0}
+  guidedTargetObj: {fileID: 0}
   mainWindow: {fileID: 0}
   closer: 0
   photoMaterial: {fileID: 0}
+  photoMaterialUI: {fileID: 0}
   videoMaterial: {fileID: 0}
+  videoMaterialUI: {fileID: 0}
   vidThumbnail: {fileID: 0}
   thumbMat: {fileID: 0}
   thumbPlane: {fileID: 1411486108328204}
-  minimapGrp: {fileID: 0}
-  commentBoxObject: {fileID: 0}
-  descObject: {fileID: 0}
-  metaobject: {fileID: 0}
+  playerPlane: {fileID: 0}
   videoPlayer: {fileID: 0}
   playButton: {fileID: 0}
+  hideThis: {fileID: 0}
+  simpleText: {fileID: 0}
+  diffBG: {fileID: 0}
+  commentType: 0
 --- !u!114 &114797257074047690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -421,8 +430,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 26.004585, y: -11}
-  m_SizeDelta: {x: 700, y: 67.79}
+  m_AnchoredPosition: {x: 0, y: -11}
+  m_SizeDelta: {x: 850, y: 67.79}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224779253839696268
 RectTransform:

@@ -30,6 +30,7 @@ public class RPCfunctions : NetworkBehaviour {
 
         for (int i = 0; i < violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias.Count; i++)
         {
+            print("hi");
             if (violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[i].GetComponent<offsiteMediaPlayer>().commentType == 0)
             {
                 if (violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[commentCount].GetComponent<offsiteMediaPlayer>().commentType == 2 || violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[commentCount].GetComponent<offsiteMediaPlayer>().commentType == 1)
@@ -68,6 +69,7 @@ public class RPCfunctions : NetworkBehaviour {
         }
 
         focusGuidedTarget.GetComponent<cameraZoomOverTime>().targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
+        mediaNode.GetComponent<offsiteMediaPlayer>().guidedTargetObj.targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
 
         //for scripted play video
         playSymbol = violationsParentSpawner.Instance.playButton;
@@ -97,7 +99,7 @@ public class RPCfunctions : NetworkBehaviour {
         if (mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment.type == 0)
         {
             mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.SetActive(false);
-            nullComment = gameObject.GetComponent<offsiteFieldItemValueHolder>().comment;
+            nullComment = mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment;
             mediaNode.GetComponent<offsiteMediaPlayer>().simpleOnly();
         }
         else
