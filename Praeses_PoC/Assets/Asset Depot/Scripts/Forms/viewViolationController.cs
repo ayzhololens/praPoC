@@ -167,5 +167,6 @@ public class viewViolationController : Singleton<viewViolationController>
     public void toggleContent()
     {
         contentHolder.SetActive(!contentHolder.activeSelf);
+        contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
     }
 }
