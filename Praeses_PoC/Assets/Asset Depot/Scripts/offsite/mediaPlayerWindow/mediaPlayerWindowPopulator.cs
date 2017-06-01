@@ -17,19 +17,27 @@ public class mediaPlayerWindowPopulator : Singleton<mediaPlayerWindowPopulator>
     {
         if (node.type == 3)
         {
-            if (comment.type == 1)
+            if (comment.type == 0)
             {
-                filename.text = node.photos[0].path;
+                simpleText.GetComponent<Text>().text = comment.content;
             }
-            else if (comment.type == 2)
+            else
             {
-                filename.text = node.videos[0].path;
+                if (comment.type == 1)
+                {
+                    filename.text = node.photos[0].path;
+                }
+                else if (comment.type == 2)
+                {
+                    filename.text = node.videos[0].path;
+                }
+                inspector.text = comment.user;
+
+                date.text = comment.date;
+
+                description.text = comment.content;
             }
-            inspector.text = comment.user;
 
-            date.text = comment.date;
-
-            description.text = comment.content;
         }
         else
         {

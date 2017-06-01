@@ -250,7 +250,12 @@ MonoBehaviour:
   user: 
   date: 
   nodeIndex: 0
-  commentType: 0
+  comment:
+    content: 
+    path: 
+    user: 
+    date: 
+    type: 0
 --- !u!114 &114386668322122612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -289,6 +294,7 @@ MonoBehaviour:
   playerPlane: {fileID: 0}
   videoPlayer: {fileID: 0}
   playButton: {fileID: 0}
+  hideThis: {fileID: 0}
 --- !u!114 &114797257074047690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -485,7 +491,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 26.004585, y: -11}
-  m_SizeDelta: {x: 700, y: 67.79}
+  m_SizeDelta: {x: 750, y: 67.79}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224443375673373380
 RectTransform:
@@ -502,7 +508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -230.7972, y: 68.46095}
+  m_AnchoredPosition: {x: -202, y: 68.46095}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224779253839696268
@@ -530,8 +536,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258378008183616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0007794, y: 1.0007794, z: 1.0007794}
+  m_LocalPosition: {x: 0, y: 0, z: 1005}
+  m_LocalScale: {x: 0.005347888, y: 0.005347888, z: 0.005347888}
   m_Children:
   - {fileID: 224179905883334428}
   - {fileID: 224016245975333046}
@@ -543,6 +549,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1171, y: -18.114286}
+  m_AnchoredPosition: {x: 184122.86, y: 190272.27}
   m_SizeDelta: {x: 500, y: 250}
   m_Pivot: {x: 0, y: 1}

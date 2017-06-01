@@ -6,24 +6,23 @@ namespace HoloToolkit.Unity
 {
     public class radialOperationsHybrid : MonoBehaviour
     {
-        public float rotationFactor;
+        public float rotationFactor { get; set; }
+        [Header("Manipulation Parameter")]
         public float rotationMultiplier;
         public GameObject tumbledObject;
+        [Tooltip("Typing whether or not this is rotation(1) or scale(2)")]
         public int typing;
 
+        [Header("Hand Manipulation Hooks")]
+        [Tooltip("Object for world orient local space to camera")]
         public followCursorScript followCur;
+        [Tooltip("Index to mark which icons attach themselves to cursor when triggered")]
         public int cursorIndex;
 
         //1 = rotation
         //2 = scaler
 
-        // Use this for initialization
-        void Start()
-        {
-        }
-
-
-        // Update is called once per frame
+        // Update is fixed for smoother manipulation
         void FixedUpdate()
         {
             if (sourceManager.Instance.sourcePressed)
@@ -49,16 +48,13 @@ namespace HoloToolkit.Unity
         {
 
             if (other.gameObject.tag != "handCursorCollide"){ return; };
-                //Debug.Log("collide enter tag");
                 followCur.iconIndex = cursorIndex;
                 if (typing == 1)
                 {
-                    //Debug.Log(other.gameObject + "collide enter tag rotate");
                     rotationFactor = 2;
                 }
                 else if (typing == 2)
                 {
-                    //Debug.Log("collide enter tag scale");
                     rotationFactor = .01f * rotationMultiplier;
                 }
       
