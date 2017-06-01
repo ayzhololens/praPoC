@@ -47,6 +47,8 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
     public Material photoMaterialUI;
     public GameObject playButton;
     public cameraZoomOverTime guidedTargetObj;
+    public GameObject simpleText;
+    public GameObject diffBG;
 
     //minimapPlanePLayback
     public Material vioCamMat;
@@ -136,6 +138,27 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
                 GameObject newCom = newVio.vioPrefab.GetComponent<violationsCollapseableBox>().addObject.GetComponent<addCommentButton>().addOneSimple(comment);
                 newCom.GetComponent<offsiteMediaPlayer>().hideThis = hideThis;
                 newCom.GetComponent<offsiteMediaPlayer>().mediaPlane = mediaPlane;
+
+                newCom.GetComponent<offsiteFieldItemValueHolder>().meta.text = (comment.date
+                                                                                + " - "
+                                                                                + comment.user);
+                newCom.GetComponent<offsiteFieldItemValueHolder>().content.text = comment.content;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().user = comment.user;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().date = comment.date;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().nodeIndex = vio.nodeIndex;
+                newCom.GetComponent<offsiteFieldItemValueHolder>().comment = comment;
+
+                newCom.GetComponent<offsiteMediaPlayer>().photoMaterial = photoMaterial;
+                newCom.GetComponent<offsiteMediaPlayer>().mediaWindow = offsiteMediaWindow;
+                newCom.GetComponent<offsiteMediaPlayer>().mediaPlane = mediaPlane;
+                newCom.GetComponent<offsiteMediaPlayer>().guidedTargetObj = guidedTargetObj;
+                newCom.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
+                newCom.GetComponent<offsiteMediaPlayer>().playButton = playButton;
+                newCom.GetComponent<offsiteMediaPlayer>().hideThis = hideThis;
+                newCom.GetComponent<offsiteMediaPlayer>().simpleText = simpleText;
+                newCom.GetComponent<offsiteMediaPlayer>().diffBG = diffBG;
+                newCom.GetComponent<offsiteMediaPlayer>().commentType = 0;
+
                 newVio.violationMedias.Add(newCom);
             }
             else if (comment.type == 1)
@@ -159,6 +182,10 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
                 newCom.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
                 newCom.GetComponent<offsiteMediaPlayer>().playButton = playButton;
                 newCom.GetComponent<offsiteMediaPlayer>().hideThis = hideThis;
+                newCom.GetComponent<offsiteMediaPlayer>().simpleText = simpleText;
+                newCom.GetComponent<offsiteMediaPlayer>().diffBG = diffBG;
+                newCom.GetComponent<offsiteMediaPlayer>().commentType = 1;
+
                 newVio.violationMedias.Add(newCom);
             }
             else if (comment.type == 2)
@@ -182,6 +209,10 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
                 newCom.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
                 newCom.GetComponent<offsiteMediaPlayer>().playButton = playButton;
                 newCom.GetComponent<offsiteMediaPlayer>().hideThis = hideThis;
+                newCom.GetComponent<offsiteMediaPlayer>().simpleText = simpleText;
+                newCom.GetComponent<offsiteMediaPlayer>().diffBG = diffBG;
+                newCom.GetComponent<offsiteMediaPlayer>().commentType = 2;
+
                 newVio.violationMedias.Add(newCom);
             }
         }
