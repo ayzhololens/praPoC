@@ -1497,6 +1497,8 @@ GameObject:
   - component: {fileID: 114858368523381640}
   - component: {fileID: 114246855425860606}
   - component: {fileID: 114051518312614264}
+  - component: {fileID: 114111349768262060}
+  - component: {fileID: 114504822720294222}
   m_Layer: 2
   m_Name: ContentHolder
   m_TagString: Node
@@ -5257,6 +5259,22 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Edit
+--- !u!114 &114111349768262060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822431757891052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec27679f737bbea44a5a095b927fde01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dist: 0
+  sScale: {x: 0, y: 0, z: 0}
+  scaleMult: 1.8
+  floor: 0
+  ceiling: 0
 --- !u!114 &114124538517743664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6037,7 +6055,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1822431757891052}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2d5d5f6bd7521e478939cf2295e9e29, type: 3}
   m_Name: 
@@ -6517,6 +6535,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 10/04/2017 03:20PM
+--- !u!114 &114504822720294222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822431757891052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e59060cf4d9bf47a01d1fa3a899a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &114509545966374380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7271,6 +7301,7 @@ MonoBehaviour:
   photoCommentPrefab: {fileID: 0}
   offsetDist: 0.075
   xOffset: 0
+  managerOverride: {fileID: 0}
 --- !u!114 &114848484132885940
 MonoBehaviour:
   m_ObjectHideFlags: 1

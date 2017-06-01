@@ -100,6 +100,7 @@ namespace HoloToolkit.Unity
                 com = spawnedComment.GetComponent<commentContents>();
                 spawnedComment.GetComponent<commentContents>().fileName = photoRecorder.filename;
                 commentClass.type = 2;
+                commentClass.path = com.fileName;
 
             }
             else if (commentManager.capturingVideo)
@@ -110,6 +111,7 @@ namespace HoloToolkit.Unity
                 spawnedComment.GetComponent<commentContents>().fileName = vidRecorder.filename;
 
                 commentClass.type = 3;
+                commentClass.path = com.filepath;
             }
 
             if (com.linkedComponent.GetComponent<violationController>() != null)
@@ -123,7 +125,6 @@ namespace HoloToolkit.Unity
 
             commentClass.user = com.user;
             commentClass.date = com.Date;
-            commentClass.path = com.filepath;
 
             databaseMan.Instance.commentToClassValueSync(nodeInd, commentClass);
         }

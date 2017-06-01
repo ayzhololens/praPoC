@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 114669477585458250}
   - component: {fileID: 114644414265700416}
   - component: {fileID: 114492382885446562}
+  - component: {fileID: 114591556450322980}
   m_Layer: 2
   m_Name: contentHolder
   m_TagString: Untagged
@@ -24045,6 +24046,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Select the top-level violation category:'
+--- !u!114 &114591556450322980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1044852120135828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec27679f737bbea44a5a095b927fde01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dist: 0
+  scaleMult: 0.7
+  floor: 0
+  ceiling: 0
 --- !u!114 &114592266340706628
 MonoBehaviour:
   m_ObjectHideFlags: 1

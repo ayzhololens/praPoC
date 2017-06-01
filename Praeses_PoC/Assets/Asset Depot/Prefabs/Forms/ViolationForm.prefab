@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 114190194404039976}
   - component: {fileID: 114304978721511454}
   - component: {fileID: 114031903251040456}
+  - component: {fileID: 114757654748498164}
   m_Layer: 2
   m_Name: contentHolder
   m_TagString: Untagged
@@ -26368,6 +26369,21 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: Install or repair or replace item in accordance with State Law & Regs, ASME
     BPV Code, National Board Inspection Code and Manufacturer Specifications.
+--- !u!114 &114757654748498164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118935304195676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec27679f737bbea44a5a095b927fde01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dist: 0
+  scaleMult: 0.7
+  floor: 0
+  ceiling: 0
 --- !u!114 &114758762527830578
 MonoBehaviour:
   m_ObjectHideFlags: 1

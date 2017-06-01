@@ -2235,6 +2235,7 @@ GameObject:
   - component: {fileID: 114171991360048254}
   - component: {fileID: 114841567580360890}
   - component: {fileID: 114010423850066042}
+  - component: {fileID: 114760897164445938}
   m_Layer: 2
   m_Name: contentHolder
   m_TagString: Untagged
@@ -11640,6 +11641,22 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114760897164445938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734258115892488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec27679f737bbea44a5a095b927fde01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dist: 0
+  sScale: {x: 0, y: 0, z: 0}
+  scaleMult: 0.57
+  floor: 0
+  ceiling: 0
 --- !u!114 &114761164515973740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12535,6 +12552,7 @@ MonoBehaviour:
     type: 2}
   offsetDist: 0.08
   xOffset: 1
+  managerOverride: {fileID: 0}
 --- !u!114 &114931407802494256
 MonoBehaviour:
   m_ObjectHideFlags: 1
