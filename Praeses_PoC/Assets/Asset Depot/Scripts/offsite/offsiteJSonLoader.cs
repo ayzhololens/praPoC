@@ -47,8 +47,8 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
 
     public void populateAddress()
     {
-        inspector.text = metaManager.Instance.user;
-        date.text = metaManager.Instance.date();
+        inspector.text = "Bill Inspector";
+        date.text = metaManager.Instance.dateShort();
 
         Location.text = JU_databaseMan.Instance.definitions.LocationFields.LocationName;
         IDNum.text = JU_databaseMan.Instance.definitions.LocationFields.LocationID.ToString();

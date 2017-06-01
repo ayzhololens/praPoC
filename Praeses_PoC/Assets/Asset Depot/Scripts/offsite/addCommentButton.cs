@@ -81,7 +81,47 @@ public class addCommentButton : MonoBehaviour {
         newItem.GetComponent<offsiteFieldItemValueHolder>().user = metaManager.Instance.user;
         newItem.GetComponent<offsiteFieldItemValueHolder>().date = metaManager.Instance.date();
 
+        newItem.GetComponent<offsiteFieldItemValueHolder>().meta.text = metaManager.Instance.date() + " - " + metaManager.Instance.user;
+
+        newItem.GetComponent<offsiteFieldItemValueHolder>().comment.content = newItem.GetComponent<offsiteFieldItemValueHolder>().content.text;
+        newItem.GetComponent<offsiteFieldItemValueHolder>().comment.user = metaManager.Instance.user;
+        newItem.GetComponent<offsiteFieldItemValueHolder>().comment.date = metaManager.Instance.date();
+        newItem.GetComponent<offsiteFieldItemValueHolder>().comment.type = 0;
+
+        //media player stuff
+        newItem.GetComponent<offsiteMediaPlayer>().photoMaterial = violationsParentSpawner.Instance.photoMaterial;
+        newItem.GetComponent<offsiteMediaPlayer>().mediaWindow = violationsParentSpawner.Instance.offsiteMediaWindow;
+        newItem.GetComponent<offsiteMediaPlayer>().mediaPlane = violationsParentSpawner.Instance.mediaPlane;
+        newItem.GetComponent<offsiteMediaPlayer>().guidedTargetObj = violationsParentSpawner.Instance.guidedTargetObj;
+        newItem.GetComponent<offsiteMediaPlayer>().videoPlayer = violationsParentSpawner.Instance.videoPlayer;
+        newItem.GetComponent<offsiteMediaPlayer>().playButton = violationsParentSpawner.Instance.playButton;
+        newItem.GetComponent<offsiteMediaPlayer>().hideThis = violationsParentSpawner.Instance.hideThis;
+        newItem.GetComponent<offsiteMediaPlayer>().simpleText = violationsParentSpawner.Instance.simpleText;
+        newItem.GetComponent<offsiteMediaPlayer>().diffBG = violationsParentSpawner.Instance.diffBG;
+        newItem.GetComponent<offsiteMediaPlayer>().commentType = 0;
+
+        //update to database
+        int vioInt = this.gameObject.transform.parent.gameObject.GetComponent<violationsCollapseableBox>().vioInt;
+        int nodeInt = databaseMan.Instance.values.Location.Equipment[0].Violations[vioInt].nodeIndex;
+ 
+        newItem.GetComponent<offsiteFieldItemValueHolder>().nodeIndex = nodeInt;
+
+        databaseMan.tempComment newComment = new databaseMan.tempComment();
+        newComment.content = newItem.GetComponent<offsiteFieldItemValueHolder>().content.text;
+        newComment.user = metaManager.Instance.user;
+        newComment.date = metaManager.Instance.date();
+        newComment.type = 0;
+
+        foreach(databaseMan.NodeClass node in databaseMan.Instance.values.Location.Equipment[0].Nodes)
+        {
+            if (node.indexNum == nodeInt)
+            {
+                databaseMan.Instance.commentToClassValueSync(nodeInt, newComment);
+            }
+        }
+
         script.commentHolder.Add(newItem);
+        violationsParentSpawner.Instance.spawnedVioPrefabs[vioInt].violationMedias.Add(newItem);
         closeWindow(this);
     }
 
