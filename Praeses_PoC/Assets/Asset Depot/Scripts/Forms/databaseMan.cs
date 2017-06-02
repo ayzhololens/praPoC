@@ -295,14 +295,15 @@ public class databaseMan : Singleton<databaseMan>
                 else
                 {
                     media newMedia = new media();
-                    newMedia.path = comment.GetComponent<commentContents>().filepath;
                     if (comment.GetComponent<commentContents>().isPhoto)
                     {
                         newMedia.type = 2;
+                        newMedia.path = comment.GetComponent<commentContents>().fileName;
                     }
                     else
                     {
                         newMedia.type = 3;
+                        newMedia.path = comment.GetComponent<commentContents>().filepath;
                     }
                     newMedia.user = comment.GetComponent<commentContents>().user;
                     newMedia.date = comment.GetComponent<commentContents>().Date;
@@ -486,6 +487,54 @@ public class databaseMan : Singleton<databaseMan>
             }
         }
 
+
+        foreach (NodeClass node in values.Location.Equipment[0].Nodes)
+        {
+            if (node.indexNum == violation.linkedNode.GetComponent<nodeMediaHolder>().NodeIndex)
+            {
+                node.comments.Clear();
+                node.medias.Clear();
+
+                commentManager comManag = violation.GetComponent<commentManager>();
+
+
+                foreach (GameObject comment in comManag.activeComments)
+                {
+                    if (comment.GetComponent<commentContents>().isSimple)
+                    {
+                        comment newComment = new comment();
+                        newComment.content = comment.GetComponent<commentContents>().commentMain.text;
+                        newComment.user = comment.GetComponent<commentContents>().user;
+                        newComment.date = comment.GetComponent<commentContents>().Date;
+                        node.comments.Add(newComment);
+                    }
+                    else
+                    {
+                        media newMedia = new media();
+                        
+                        if (comment.GetComponent<commentContents>().isPhoto)
+                        {
+                            newMedia.type = 2;
+                            newMedia.path = comment.GetComponent<commentContents>().fileName;
+
+                        }
+                        else
+                        {
+                            newMedia.type = 3;
+                            newMedia.path = comment.GetComponent<commentContents>().filepath;
+                        }
+                        newMedia.user = comment.GetComponent<commentContents>().user;
+                        newMedia.date = comment.GetComponent<commentContents>().Date;
+                        node.medias.Add(newMedia);
+                    }
+
+                }
+
+            }
+        }
+        
+
+ 
 
         JU_databaseMan.Instance.loadViolationsCmd();
     }

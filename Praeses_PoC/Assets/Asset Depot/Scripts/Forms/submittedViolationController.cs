@@ -100,42 +100,42 @@ public class submittedViolationController : MonoBehaviour {
 
     public void updateComManager()
     {
-        foreach (GameObject activeComment in vioComManager.activeComments)
-        {
-            Destroy(activeComment);
-        }
-        vioComManager.activeComments.Clear();
+        //foreach (GameObject activeComment in vioComManager.activeComments)
+        //{
+        //    Destroy(activeComment);
+        //}
+        //vioComManager.activeComments.Clear();
 
-        foreach (GameObject activeComment in resolutionField.GetComponent<commentManager>().activeComments)
-        {
-            if (activeComment.GetComponent<commentContents>().isSimple)
-            {
-                GameObject simpleComment = vioComManager.spawnSimpleCommentFromJSON();
-                simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
-                simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-                simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+        //foreach (GameObject activeComment in resolutionField.GetComponent<commentManager>().activeComments)
+        //{
+        //    if (activeComment.GetComponent<commentContents>().isSimple)
+        //    {
+        //        GameObject simpleComment = vioComManager.spawnSimpleCommentFromJSON();
+        //        simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
+        //        simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+        //        simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
 
-                // resolveComs.Add(simpleComment);
-            }
-            if (activeComment.GetComponent<commentContents>().isVideo)
-            {
-                GameObject videoComment = vioComManager.spawnVideoCommentFromJSON(activeComment.GetComponent<commentContents>().filepath);
-                videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
-                videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-                videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-                // resolveComs.Add(videoComment);
-            }
-            if (activeComment.GetComponent<commentContents>().isPhoto)
-            {
-                GameObject photoComment = vioComManager.spawnPhotoCommentFromJSON();
-                photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;
-                photoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
-                photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-                photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+        //        // resolveComs.Add(simpleComment);
+        //    }
+        //    if (activeComment.GetComponent<commentContents>().isVideo)
+        //    {
+        //        GameObject videoComment = vioComManager.spawnVideoCommentFromJSON(activeComment.GetComponent<commentContents>().filepath);
+        //        videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
+        //        videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+        //        videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+        //        // resolveComs.Add(videoComment);
+        //    }
+        //    if (activeComment.GetComponent<commentContents>().isPhoto)
+        //    {
+        //        GameObject photoComment = vioComManager.spawnPhotoCommentFromJSON();
+        //        photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;
+        //        photoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+        //        photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+        //        photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
 
-                //resolveComs.Add(photoComment);
-            }
-        }
+        //        //resolveComs.Add(photoComment);
+        //    }
+        //}
     }
 
 
@@ -145,54 +145,54 @@ public class submittedViolationController : MonoBehaviour {
 
 
 
-            List<GameObject> resolveComs = new List<GameObject>();
-        int sCounter = 0;
-        int pCounter = 0;
-        int vCounter = 0;
-        foreach (GameObject activeComment in resolutionField.GetComponent<commentManager>().activeComments)
-        {
-            Destroy(activeComment);
-        }
-        resolutionField.GetComponent<commentManager>().activeComments.Clear();
+        //    List<GameObject> resolveComs = new List<GameObject>();
+        //int sCounter = 0;
+        //int pCounter = 0;
+        //int vCounter = 0;
+        //foreach (GameObject activeComment in resolutionField.GetComponent<commentManager>().activeComments)
+        //{
+        //    Destroy(activeComment);
+        //}
+        //resolutionField.GetComponent<commentManager>().activeComments.Clear();
 
 
 
-            foreach (GameObject activeComment in vioController.gameObject.GetComponent<commentManager>().activeComments)
-        {
-            if (activeComment.GetComponent<commentContents>().isSimple)
-            {
-                sCounter += 1;
-                GameObject simpleComment = resolutionField.GetComponent<commentManager>().spawnSimpleCommentFromJSON();
-                simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
-                simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-                simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+        //    foreach (GameObject activeComment in vioController.gameObject.GetComponent<commentManager>().activeComments)
+        //{
+        //    if (activeComment.GetComponent<commentContents>().isSimple)
+        //    {
+        //        sCounter += 1;
+        //        GameObject simpleComment = resolutionField.GetComponent<commentManager>().spawnSimpleCommentFromJSON();
+        //        simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
+        //        simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+        //        simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
 
-               // resolveComs.Add(simpleComment);
-            }
-            if (activeComment.GetComponent<commentContents>().isVideo)
-            {
-                vCounter += 1;
-                GameObject videoComment = resolutionField.GetComponent<commentManager>().addVideoComment(activeComment);
-                videoComment.GetComponent<commentContents>().thumbMat = activeComment.GetComponent<commentContents>().thumbMat;
-                videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
-                videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-                videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-               // resolveComs.Add(videoComment);
-            }
-            if (activeComment.GetComponent<commentContents>().isPhoto)
-            {
-                pCounter += 1;
-                GameObject photoComment = resolutionField.GetComponent<commentManager>().spawnPhotoCommentFromJSON();
-                photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;
-                photoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
-                photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-                photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+        //       // resolveComs.Add(simpleComment);
+        //    }
+        //    if (activeComment.GetComponent<commentContents>().isVideo)
+        //    {
+        //        vCounter += 1;
+        //        GameObject videoComment = resolutionField.GetComponent<commentManager>().addVideoComment(activeComment);
+        //        videoComment.GetComponent<commentContents>().thumbMat = activeComment.GetComponent<commentContents>().thumbMat;
+        //        videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
+        //        videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+        //        videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
+        //       // resolveComs.Add(videoComment);
+        //    }
+        //    if (activeComment.GetComponent<commentContents>().isPhoto)
+        //    {
+        //        pCounter += 1;
+        //        GameObject photoComment = resolutionField.GetComponent<commentManager>().spawnPhotoCommentFromJSON();
+        //        photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;
+        //        photoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
+        //        photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
+        //        photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
 
-                //resolveComs.Add(photoComment);
-            }
+        //        //resolveComs.Add(photoComment);
+        //    }
 
 
-        }
+        //}
 
 
     }

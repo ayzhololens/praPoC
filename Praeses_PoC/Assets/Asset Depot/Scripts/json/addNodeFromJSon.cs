@@ -210,6 +210,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                     comment3D.GetComponent<commentContents>().commentMetaUser.text = comment.user;
                     comment3D.GetComponent<commentContents>().commentMetaDate.text = comment.date;
                     comment3D.GetComponent<commentContents>().filepath = System.IO.Path.Combine(Application.persistentDataPath, comment.path);
+                    comment3D.GetComponent<commentContents>().fileName = comment.path;
                     comment3D.GetComponent<commentContents>().loadPhoto();
                 }
                 else if (comment.type == 3 && spawnedNode.GetComponent<nodeController>().linkedField != null)

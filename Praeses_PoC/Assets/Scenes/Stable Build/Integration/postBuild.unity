@@ -6374,12 +6374,24 @@ Prefab:
     - target: {fileID: 114886577506375506, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: filename
-      value: videoNote.mp4
+      value: BigBuckBunny_720p30.mp4
       objectReference: {fileID: 0}
     - target: {fileID: 114470239810710796, guid: 6b9c14fcc8025f543bf3a867845d521d,
         type: 2}
       propertyPath: filePath
       value: videoNote.mp4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302208904805544, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126260592041078, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951121746687010, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114663073116832346, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
