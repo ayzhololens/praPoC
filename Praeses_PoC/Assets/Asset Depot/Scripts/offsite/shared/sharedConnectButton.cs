@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class sharedConnectButton : MonoBehaviour {
 
@@ -21,9 +22,12 @@ public class sharedConnectButton : MonoBehaviour {
     public GameObject focusGuidedTarget;
     public GameObject focusTarget;
 
+    public string IPaddress { get; set; }
+
     private void Start()
     {
         NetworkManagerNull = GameObject.Find("networkManager").GetComponent<NetworkManager>();
+        IPaddress = "10.10.13.94";
     }
 
     private void OnMouseDown()
@@ -58,7 +62,14 @@ public class sharedConnectButton : MonoBehaviour {
     {
         NetworkManagerNull.GetComponent<NetworkManager>().networkAddress = "localhost";
         NetworkManagerNull.GetComponent<NetworkManager>().StartHost();
-        IPaddressText.GetComponent<TextMesh>().text = "IP is : 10.10.13.94";// + Network.player.ipAddress;
+
+#if UNITY_EDITOR
+        IPaddress = Network.player.ipAddress;
+#elif WINDOWS_UWP
+        IPaddress = NetworkManagerNull.networkAddress;
+#endif
+
+        IPaddressText.GetComponent<TextMesh>().text = "IP is : " + IPaddress;// + Network.player.ipAddress;
         hostButton.SetActive(false);
         stophostButton.SetActive(true);
         IPaddressText.SetActive(true);
@@ -87,4 +98,10 @@ public class sharedConnectButton : MonoBehaviour {
     {
         avatarObj.GetComponent<RPCfunctions>().RpcPlay();
     }
+
+    public void reloadLvl()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }
