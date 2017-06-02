@@ -25,16 +25,51 @@ public class RPCfunctions : NetworkBehaviour {
         int commentCount;
         int vioNodeNum;
         vioCount = violationsParentSpawner.Instance.spawnedVioPrefabs.Count -1;
+
         commentCount = violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias.Count -1;
+
+        for (int i = 0; i < violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias.Count; i++)
+        {
+            print("hi");
+            if (violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[i].GetComponent<offsiteMediaPlayer>().commentType == 0)
+            {
+                if (violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[commentCount].GetComponent<offsiteMediaPlayer>().commentType == 2 || violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[commentCount].GetComponent<offsiteMediaPlayer>().commentType == 1)
+                {
+                }
+                else
+                {
+                    commentCount = i;
+                }
+            }
+            if (violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[i].GetComponent<offsiteMediaPlayer>().commentType == 1)
+            {
+                if (violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[commentCount].GetComponent<offsiteMediaPlayer>().commentType == 2)
+                {
+                }
+                else
+                {
+                    commentCount = i;
+                }
+            }
+            if (violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[i].GetComponent<offsiteMediaPlayer>().commentType == 2)
+            {
+                commentCount = i;
+            }
+        }
+
         mediaNode = violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[commentCount];
         vioNodeNum = JU_databaseMan.Instance.violationsManager.violations[vioCount].nodeIndex;
-        foreach (JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
+
+        foreach(JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
         {
-            if (node.indexNum == vioNodeNum)
+            if(node.indexNum == vioNodeNum)
             {
                 currentNode = node;
             }
         }
+
+        focusGuidedTarget.GetComponent<cameraZoomOverTime>().targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
+        mediaNode.GetComponent<offsiteMediaPlayer>().guidedTargetObj.targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
 
         //for scripted play video
         playSymbol = violationsParentSpawner.Instance.playButton;
@@ -61,31 +96,38 @@ public class RPCfunctions : NetworkBehaviour {
         print("open");
         JU_databaseMan.tempComment nullComment = new JU_databaseMan.tempComment();
 
-        if (mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment.type == 1)
+        if (mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment.type == 0)
         {
-            mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.SetActive(true);
-            mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.GetComponent<Renderer>().material = mediaNode.GetComponent<offsiteMediaPlayer>().thumbMat;
-            mediaNode.GetComponent<offsiteMediaPlayer>().playButton.SetActive(false);
+            mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.SetActive(false);
+            nullComment = mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment;
+            mediaNode.GetComponent<offsiteMediaPlayer>().simpleOnly();
         }
-        else if (mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment.type == 2)
+        else
         {
-            mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.SetActive(true);
-            mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.GetComponent<Renderer>().material = mediaNode.GetComponent<offsiteMediaPlayer>().videoMaterial;
-            mediaNode.GetComponent<offsiteMediaPlayer>().loadVideo();
-            mediaNode.GetComponent<offsiteMediaPlayer>().playButton.SetActive(true);
+            if (mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment.type == 1)
+            {
+                mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.SetActive(true);
+                mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.GetComponent<Renderer>().material = mediaNode.GetComponent<offsiteMediaPlayer>().thumbMat;
+                mediaNode.GetComponent<offsiteMediaPlayer>().playButton.SetActive(false);
+            }
+            else if (mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment.type == 2)
+            {
+                mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.SetActive(true);
+                mediaNode.GetComponent<offsiteMediaPlayer>().mediaPlane.GetComponent<Renderer>().material = mediaNode.GetComponent<offsiteMediaPlayer>().videoMaterial;
+                mediaNode.GetComponent<offsiteMediaPlayer>().loadVideo();
+                mediaNode.GetComponent<offsiteMediaPlayer>().playButton.SetActive(true);
+            }
+
+            nullComment = mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment;
+            violationsParentSpawner.Instance.minimapPlane.GetComponent<Image>().material = violationsParentSpawner.Instance.vioCamMat;
+
+            mediaNode.GetComponent<offsiteMediaPlayer>().guidedTargetObj.smoothZoom();
+            annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = true;
+            mediaNode.GetComponent<offsiteMediaPlayer>().videoOnly();
         }
 
-        nullComment = mediaNode.GetComponent<offsiteFieldItemValueHolder>().comment;
-        violationsParentSpawner.Instance.minimapPlane.GetComponent<Image>().material = violationsParentSpawner.Instance.vioCamMat;
-
-        mediaNode.GetComponent<offsiteMediaPlayer>().guidedTargetObj.targetObject = offsiteJSonLoader.Instance.nodes3DList[currentNode.indexNum];
-        mediaNode.GetComponent<offsiteMediaPlayer>().guidedTargetObj.smoothZoom();
         mediaPlayerWindowPopulator.Instance.populateMediaPlayerWindow(currentNode, nullComment);
-        annotationsCollapseableBox.Instance.mediaPlaybackMinimapPlaneCol.enabled = true;
-        mediaNode.GetComponent<offsiteMediaPlayer>().videoOnly();
         mediaNode.GetComponent<offsiteMediaPlayer>().mediaWindow.SetActive(true);
-
-
     }
 
     [ClientRpc]
