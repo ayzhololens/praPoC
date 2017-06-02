@@ -38,6 +38,7 @@ namespace HoloToolkit.Unity
         public GameObject keypad;
         public GameObject numpad;
         public GameObject micOn;
+        public GameObject recordButton;
         bool isRecording;
 
         public bool useKeypad;
@@ -359,6 +360,7 @@ namespace HoloToolkit.Unity
             keypad.SetActive(false);
             print("keypad");
             micOn.SetActive(true);
+            recordButton.SetActive(false);
             print("micon");
             isRecording = true;
             print("isrecording");
@@ -375,6 +377,7 @@ namespace HoloToolkit.Unity
                 numpad.SetActive(true);
             }
             micOn.SetActive(false);
+            recordButton.SetActive(true);
             isRecording = false;
         }
     }
