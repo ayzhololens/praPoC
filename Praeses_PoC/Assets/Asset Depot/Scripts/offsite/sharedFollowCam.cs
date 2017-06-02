@@ -74,7 +74,7 @@ public class sharedFollowCam : NetworkBehaviour {
         {
             transform.localPosition = position;
             transform.localEulerAngles = rotation;
-            headRot.transform.localEulerAngles = headRotation;
+            headRot.transform.localEulerAngles = new Vector3(headRotation.x, 0, headRotation.z);
         }
 
 
