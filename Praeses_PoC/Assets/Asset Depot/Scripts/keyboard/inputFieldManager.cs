@@ -163,7 +163,7 @@ namespace HoloToolkit.Unity
                     newComment.user = comment.user;
                     newComment.date = comment.Date;
                     newComment.content = comment.commentMain.text;
-                    newComment.type = 1;            
+                    newComment.type = 0;            
                 }else
                 {
                     newComment.user = comment.user;
@@ -171,10 +171,10 @@ namespace HoloToolkit.Unity
                     newComment.path = comment.filepath;
                     if (comment.isPhoto)
                     {
-                        newComment.type = 2;
+                        newComment.type = 1;
                     }else if (comment.isVideo)
                     {
-                        newComment.type = 3;
+                        newComment.type = 2;
                     }
                 }
                 databaseMan.Instance.commentToClassValueSync(nodeIndex, newComment);

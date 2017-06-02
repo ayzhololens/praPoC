@@ -79,6 +79,7 @@ namespace HoloToolkit.Unity
             if (currentField.GetComponent<inputFieldManager>().commentNode != null)
             {
                 currentField.gameObject.GetComponent<inputFieldManager>().onEditChangeAddComment(currentField.gameObject.transform.parent.parent.gameObject.GetComponent<commentContents>());
+                print("simple comment left");
             }else
             {
                 currentField.gameObject.GetComponent<inputFieldManager>().onEditChangeUpdateJSon();
