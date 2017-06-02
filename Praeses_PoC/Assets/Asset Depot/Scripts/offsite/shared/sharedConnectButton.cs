@@ -21,6 +21,11 @@ public class sharedConnectButton : MonoBehaviour {
     public GameObject focusGuidedTarget;
     public GameObject focusTarget;
 
+    private void Start()
+    {
+        NetworkManagerNull = GameObject.Find("networkManager").GetComponent<NetworkManager>();
+    }
+
     private void OnMouseDown()
     {
         if (connnectPC)

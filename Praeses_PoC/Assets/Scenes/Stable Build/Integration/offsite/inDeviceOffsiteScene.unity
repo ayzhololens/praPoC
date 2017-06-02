@@ -6982,7 +6982,7 @@ GameObject:
   - component: {fileID: 795637529}
   - component: {fileID: 795637528}
   m_Layer: 0
-  m_Name: reloadLevel
+  m_Name: reloadScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18494,7 +18494,7 @@ TextMesh:
   m_GameObject: {fileID: 2136186829}
   m_Text: 'Reload
 
-    Level'
+    Scene'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
