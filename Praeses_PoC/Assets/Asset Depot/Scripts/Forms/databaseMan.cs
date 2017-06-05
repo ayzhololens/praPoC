@@ -457,7 +457,7 @@ public class databaseMan : Singleton<databaseMan>
         }
 
         JU_databaseMan.Instance.loadNodesCmd();
-        print("script on database manager ran");
+
     }
 
     public void syncViolation(violationController violation)

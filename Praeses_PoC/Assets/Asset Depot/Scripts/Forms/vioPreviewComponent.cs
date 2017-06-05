@@ -36,6 +36,7 @@ public class vioPreviewComponent : MonoBehaviour
         resolutionBox.GetComponent<Renderer>().material.color = resolutionColors[index];
         resolutionText.text = resolutionOptions[index];
         Invoke("setPreviewComments", .5f);
+        updateLinks(index);
     }
 
     public void updateLinks(int index)
