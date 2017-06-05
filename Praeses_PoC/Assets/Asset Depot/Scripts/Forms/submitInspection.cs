@@ -59,7 +59,7 @@ public class submitInspection : MonoBehaviour {
         vioPreviewComponent vioPreview = spawnedVioPreview.GetComponent<vioPreviewComponent>();
         activeController = vioCont;
         vioPreview.vioController = vioCont;
-        vioPreview.setResolution(index);
+        //vioPreview.setResolution(index);
         vioPreview.user.text = 
             vioCont.violationIndices[0] + "." +
             vioCont.violationIndices[1] + "." +

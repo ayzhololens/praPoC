@@ -82,7 +82,7 @@ namespace HoloToolkit.Unity
             nodeMedia.Date = metaManager.Instance.date();
             currentNode.GetComponent<nodeController>().setUpNode();
 
-            print(currentNode);
+
             databaseMan.Instance.addAnnotation(currentNode);
 
         }

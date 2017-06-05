@@ -178,13 +178,18 @@ public class commentManager : MonoBehaviour {
     void stopVideoRecording()
     {
         //stop recording, finish encoding then spawn video frame when done
-        mediaManager.Instance.vidRecorder.StopRecordingVideo(false);
-        Debug.Log("before status disable");
-        mediaManager.Instance.setStatusIndicator("Video capture complete!");
-        mediaManager.Instance.invokeStatusDisable(2.0f);
-        audioManager.Instance.setAndPlayAudio(1);
-        mediaManager.Instance.recordingIndicator.SetActive(false);
-        recordingInProgress = false;
+        if (mediaManager.Instance.vidRecorder.recording)
+        {
+            mediaManager.Instance.vidRecorder.StopRecordingVideo(false);
+            mediaManager.Instance.setStatusIndicator("Video capture complete!");
+            mediaManager.Instance.invokeStatusDisable(2.0f);
+            audioManager.Instance.setAndPlayAudio(1);
+            mediaManager.Instance.recordingIndicator.SetActive(false);
+            recordingInProgress = false;
+
+        }
+
+
 
         //mediaManager.Instance.activateComment();
 

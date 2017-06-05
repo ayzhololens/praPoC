@@ -51,10 +51,10 @@ public class viewViolationController : Singleton<viewViolationController>
 
         if (!fromJson)
         {
-            for (int i = 0; i < contents.Length; i++)
+            for (int i = 0; i < 1; i++)
             {
 
-                contents[i].localPosition = new Vector3(contents[i].localPosition.x, contents[i].localPosition.y - vioOffsetDist, contents[i].localPosition.z);
+                contents[i].localPosition = new Vector3(contents[i].localPosition.x, contents[i].localPosition.y - (4*vioOffsetDist), contents[i].localPosition.z);
             }
         }
         else
@@ -68,7 +68,7 @@ public class viewViolationController : Singleton<viewViolationController>
         vioPreviewComponent vioPreview = spawnedVioPreview.GetComponent<vioPreviewComponent>();
         activeController = vioCont;
         vioPreview.vioController = vioCont;
-        vioPreview.setResolution(index);
+        //vioPreview.setResolution(index);
         vioPreview.user.text =
             vioCont.violationIndices[0] + "." +
             vioCont.violationIndices[1] + "." +
