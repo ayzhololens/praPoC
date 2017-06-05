@@ -16,12 +16,12 @@ namespace HoloToolkit.Unity
 
         public GameObject RadialMenu;
         public Transform radialHolder;
+        public GameObject radialLine;
+        public GameObject Cursor;
 
 
         public GameObject focusedButton;
-        public GameObject lineCenter;
         public float radialCounter;
-        public GameObject Cursor;
         public bool canOpen { get; set; }
         public bool isActive { get; set; }
 
@@ -120,8 +120,8 @@ namespace HoloToolkit.Unity
             isActive = true;
 
             //turn on the hand line
-            lineCenter.SetActive(true);
-            lineCenter.GetComponent<LineTest>().line.SetActive(true);
+            radialLine.SetActive(true);
+            radialLine.GetComponent<LineTest>().line.SetActive(true);
 
 
         }
@@ -131,7 +131,7 @@ namespace HoloToolkit.Unity
         public void turnOffRadialMenu()
         {
 
-            float lineScale = lineCenter.GetComponent<LineTest>().scale;
+            float lineScale = radialLine.GetComponent<LineTest>().scale;
 
             if (focusedButton == null)
             {
@@ -156,9 +156,9 @@ namespace HoloToolkit.Unity
 
 
             //reset the line
-            lineCenter.GetComponent<LineTest>().line.transform.localScale = new Vector3(lineScale, lineScale, lineScale);
-            lineCenter.SetActive(false);
-            lineCenter.GetComponent<LineTest>().line.SetActive(false);
+            radialLine.GetComponent<LineTest>().line.transform.localScale = new Vector3(lineScale, lineScale, lineScale);
+            radialLine.SetActive(false);
+            radialLine.GetComponent<LineTest>().line.SetActive(false);
 
 
 

@@ -9,9 +9,10 @@ public class radialHands : MonoBehaviour {
     public GameObject invisCursor;
     public GameObject navCursor;
     Vector3 startPos;
-    public bool canManipulate;
-    public bool manipulating;
+    public bool canManipulate { get; set; }
+    public bool manipulating { get; set; }
     Vector3 offset;
+    [Tooltip("Recommended - .0025")]
     public float sensitivity;
     Vector3 handStartPos;
     public GameObject focusedObj;
@@ -27,7 +28,7 @@ public class radialHands : MonoBehaviour {
         if (canManipulate)
         {
 
-
+            //set initial position
             if (sourceManager.Instance.sourcePressed && !manipulating)
             {
                 navCursor.transform.position = startPos;
@@ -35,6 +36,7 @@ public class radialHands : MonoBehaviour {
                 manipulating = true;
             }
 
+            //update position
             if (manipulating && sourceManager.Instance.sourcePressed)
             {
                 invisCursor.transform.position = (handsManager.ManipulationHandPosition - handStartPos);
@@ -45,10 +47,9 @@ public class radialHands : MonoBehaviour {
             if (manipulating && !sourceManager.Instance.sourcePressed)
             {
                 manipulating = false;
-            //navCursor.transform.position = startPos;
-
             }
 
+            //store the object the hand cursor is hitting
             if (navCursor.GetComponent<cursorListening>().focusedObj != focusedObj)
             {
                 focusedObj = navCursor.GetComponent<cursorListening>().focusedObj;
@@ -57,11 +58,6 @@ public class radialHands : MonoBehaviour {
         
         
 	}
-
-    public void startManipulating()
-    {
-
-    }
 
 
 }
