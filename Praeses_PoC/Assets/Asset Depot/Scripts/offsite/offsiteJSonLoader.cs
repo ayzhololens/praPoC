@@ -167,17 +167,4 @@ public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
         commentHolder.Add(newItem);
     }
 
-    public void loadPhoto(GameObject newItem)
-    {
-        string filepath = newItem.GetComponent<offsiteFieldItemValueHolder>().path.text;
-        //Debug.Log(filepath);
-        Texture2D targetTexture = new Texture2D(2048, 1152);
-
-        var bytesRead = System.IO.File.ReadAllBytes(filepath);
-        targetTexture.LoadImage(bytesRead);
-        //newItem.GetComponent<offsiteFieldItemValueHolder>().thumbnail.GetComponent<Renderer>().material.mainTexture = targetTexture;
-        //newItem.GetComponent<offsiteFieldItemValueHolder>().thumbnail.GetComponent<Image>().material = newItem.GetComponent<offsiteFieldItemValueHolder>().thumbnail.GetComponent<Renderer>().material;
-        //newItem.GetComponent<offsiteMediaPlayer>().photoMaterial = newItem.GetComponent<offsiteFieldItemValueHolder>().thumbnail.GetComponent<Image>().material;
-    }
-
 }
