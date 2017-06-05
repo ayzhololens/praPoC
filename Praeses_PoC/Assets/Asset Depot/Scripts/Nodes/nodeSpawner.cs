@@ -23,7 +23,7 @@ namespace HoloToolkit.Unity
         Vector3 lookPos;
         Quaternion lookRot;
 
-        public formFieldController linkedField;
+        public formFieldController linkedField { get; set; }
 
         void Start()
         {
