@@ -6398,12 +6398,44 @@ Prefab:
       propertyPath: filePath
       value: C:\Users\jvelez\AppData\LocalLow\DefaultCompany\Praeses_PoC\violationPhoto.jpg
       objectReference: {fileID: 0}
+    - target: {fileID: 1182366759600836, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+      propertyPath: m_Name
+      value: radialLineCenter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427402681823298, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+      propertyPath: m_Name
+      value: SubmitButton
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114663073116832346, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
     - {fileID: 33456105354614660, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
     - {fileID: 23139868105514620, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
     - {fileID: 82641189637157312, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
     - {fileID: 114746821136172466, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114475990382951120, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114639120004860918, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114314946896313998, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114065519800581172, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114635050768390898, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114216476908929256, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114221842419139656, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114128025856075036, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114586130870673482, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114525574700138278, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114692925624091686, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114887779416585608, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114122680947327742, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114782903761848644, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114960516911898284, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114601155915572834, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114220774622731988, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114328800141864936, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114950761439566532, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114738072949702252, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114735703967630496, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114836715675305966, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114969238695104664, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
+    - {fileID: 114648920094857408, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &891897112

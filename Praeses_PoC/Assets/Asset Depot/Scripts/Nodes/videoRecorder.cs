@@ -30,6 +30,12 @@ namespace HoloToolkit.Unity
         void Start()
         {
             vidCounter = 0;
+#if !UNITY_EDITOR
+            m_VideoCapture.Dispose();
+            m_VideoCapture = null;
+#endif
+
+
 
         }
 
