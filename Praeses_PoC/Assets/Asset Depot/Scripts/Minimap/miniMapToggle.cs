@@ -12,7 +12,7 @@ namespace HoloToolkit.Unity
         public GameObject MiniMapTagAlong;
         public GameObject MiniMapHolder;
         public bool active;
-
+        public GameObject paperPlane;
 
         // Use this for initialization
         void Start()
@@ -40,6 +40,7 @@ namespace HoloToolkit.Unity
             {
                 MiniMapHolder.transform.GetChild(i).gameObject.SetActive(!MiniMapHolder.transform.GetChild(i).gameObject.activeSelf);
             }
+            paperPlane.SetActive(!paperPlane.activeSelf);
             active = MiniMapHolder.transform.GetChild(0).gameObject.activeSelf;
 
             MiniMapTagAlong.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
