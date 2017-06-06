@@ -156,20 +156,6 @@ namespace HoloToolkit.Unity
                 GameObject spawnedField;
                 if (JU_databaseMan.Instance.definitions.ExtraFields.fields[i].FieldType == 16)
                 {
-
-
-
-                    //spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
-                    //spawnedField.GetComponent<formFieldController>().populateButtons(3);
-                    //spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonText.text = "Yes";
-                    //spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonIndex = 1;
-                    //spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonText.text = "No";
-                    //spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonIndex = 0;
-                    //spawnedField.GetComponent<formFieldController>().curButtons[2].GetComponent<formButtonController>().buttonText.text = "Other";
-                    //spawnedField.GetComponent<formFieldController>().curButtons[2].GetComponent<formButtonController>().buttonIndex = 2;
-
-                    
-
                     spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
 
                     spawnedField.GetComponent<formFieldController>().populateButtons(JU_databaseMan.Instance.definitions.ExtraFields.fields[i].Options.Count);
@@ -224,6 +210,8 @@ namespace HoloToolkit.Unity
 
         }
 
+        //populate inspection fields, this looks through the definitions item in the JU_databaseMan
+        //we do this because sometimes there are form items that are defined but are left blank or has no value
         void populateIF()
         {
             fieldStartPos.localPosition = fieldInitPos;
