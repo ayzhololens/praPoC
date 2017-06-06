@@ -195,9 +195,11 @@ public class databaseMan : Singleton<databaseMan>
         string json = JsonConvert.SerializeObject(values, Formatting.Indented);
         System.IO.File.WriteAllText(saveDir, json);
 #endif
+
         //comment these out for deployment
         string json = JsonConvert.SerializeObject(values, Formatting.Indented);
         System.IO.File.WriteAllText(saveDir, json);
+
 
         print("jsonSaved");
     }
@@ -208,9 +210,11 @@ public class databaseMan : Singleton<databaseMan>
         defJsonText = File.ReadAllText(definitionsDir);
         definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
 #endif
+
         //comment these out for deployment
         defJsonText = File.ReadAllText(definitionsDir);
         definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
+
 
         print("jsonDefinitionsLoaded");
         JU_databaseMan.Instance.loadDefCmd();
@@ -223,6 +227,7 @@ public class databaseMan : Singleton<databaseMan>
         valJsonText = File.ReadAllText(valuesDir);
         values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
 #endif
+
         //comment these out for deployment
         valJsonText = File.ReadAllText(valuesDir);
         values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
