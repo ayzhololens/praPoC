@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2016 RenderHeads Ltd.  All rights reserverd.
+// Copyright 2015-2017 RenderHeads Ltd.  All rights reserverd.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -116,15 +116,24 @@ namespace RenderHeads.Media.AVProVideo
         private static extern bool AVPPlayerHasMetadata(int player);
 
         [DllImport("__Internal")]
-        private static extern int AVPPlayerUpdatePlayerIndex(int id);        
+        private static extern int AVPPlayerUpdatePlayerIndex(int id);       
 
-        private int _playerIndex = -1;
+		[DllImport("__Internal")]
+        private static extern int AVPPlayerGetNumBufferedTimeRanges(int id);    
+
+		[DllImport("__Internal")]
+        private static extern float AVPPlayerGetTimeRangeStart(int id, int timeRangeIndex);
+		[DllImport("__Internal")]
+		private static extern float AVPPlayerGetTimeRangeEnd(int id, int timeRangeIndex);
+
+		private int _playerIndex = -1;
         private int _playerID = -1;
         private Texture2D _texture = null;
         private int _width = 0;
         private int _height = 0;
 		private int _audioTrackCount = 0;
 		private int _audioTrackIndex = 0;
+		private System.IntPtr _cachedTextureNativePtr = System.IntPtr.Zero;
 
 		private int _lastFrameCount = 0;
 		private float _displayRateTimer = 0f;
@@ -136,10 +145,10 @@ namespace RenderHeads.Media.AVProVideo
 
         public override string GetVersion()
         {
-			return "1.4.9";
+			return "1.5.22";
 		}
 
-        public override bool OpenVideoFromFile(string path, long offset)
+        public override bool OpenVideoFromFile(string path, long offset, string httpHeaderJson)
         {
             bool result = false;
 
@@ -180,6 +189,7 @@ namespace RenderHeads.Media.AVProVideo
 				{
 					// Have to update with zero to release Metal textures!
 					//_texture.UpdateExternalTexture(0);
+					_cachedTextureNativePtr = System.IntPtr.Zero;
 					Texture2D.Destroy(_texture);
 					_texture = null;
 				}
@@ -524,31 +534,44 @@ namespace RenderHeads.Media.AVProVideo
 
             if(_playerIndex > -1)
             {
-                if (_texture == null)
-                {
-                    _texture = new Texture2D(128, 128, TextureFormat.ARGB32, false);
-                    _texture.wrapMode = TextureWrapMode.Clamp;
-					ApplyTextureProperties(_texture);
-                }
+				UpdateSubtitles();
 
-                if (AVPPlayerReady(_playerIndex))
+				if (AVPPlayerReady(_playerIndex))
                 {
-                    _width = AVPPlayerWidth(_playerIndex);
-                    _height = AVPPlayerHeight(_playerIndex);
+					if (AVPPlayerHasVideo(_playerIndex))
+					{
+						_width = AVPPlayerWidth(_playerIndex);
+						_height = AVPPlayerHeight(_playerIndex);
+
+						if (_texture == null)
+						{
+							_texture = new Texture2D(_width, _height, TextureFormat.ARGB32, false);
+							_texture.wrapMode = TextureWrapMode.Clamp;
+							_texture.Apply(false, false);
+							_cachedTextureNativePtr = _texture.GetNativeTexturePtr();
+							ApplyTextureProperties(_texture);
+						}
+
+						if (_texture.width != _width || _texture.height != _height)
+						{
+							_texture.Resize(_width, _height, TextureFormat.ARGB32, false);
+							_texture.Apply(false, false);
+							_cachedTextureNativePtr = _texture.GetNativeTexturePtr();
+						}
+
+						if (_cachedTextureNativePtr != System.IntPtr.Zero)
+						{
+							// TODO: only update the texture when the frame count changes
+							AVPPlayerFetchVideoTexture(_playerIndex, _cachedTextureNativePtr);
+						}
+
+						UpdateDisplayFrameRate();
+					}
+
 					if (AVPPlayerHasAudio(_playerIndex))
 					{
 						_audioTrackCount = Mathf.Max(1, AVPPlayerAudioTrackCount(_playerIndex));
 					}
-
-                    if (_texture.width != _width || _texture.height != _height)
-                    {
-                        _texture.Resize(_width, _height, TextureFormat.ARGB32, false);
-                        _texture.Apply();
-                    }
-
-                    AVPPlayerFetchVideoTexture(_playerIndex, _texture.GetNativeTexturePtr());
-
-					UpdateDisplayFrameRate();
 				}
 			} 
         }
@@ -646,8 +669,21 @@ namespace RenderHeads.Media.AVProVideo
 
 		public override float GetBufferingProgress()
 		{
-			// TODO
+			//TODO
 			return 0f;
+		}
+
+		public override int GetBufferedTimeRangeCount()
+		{
+			return AVPPlayerGetNumBufferedTimeRanges(_playerIndex);
+		}
+
+		public override bool GetBufferedTimeRange(int index, ref float startTimeMs, ref float endTimeMs)
+		{
+			startTimeMs = AVPPlayerGetTimeRangeStart(_playerIndex, index) * 1000.0f;
+			endTimeMs = AVPPlayerGetTimeRangeEnd(_playerIndex, index) * 1000.0f;
+
+			return true;
 		}
 	}
 }

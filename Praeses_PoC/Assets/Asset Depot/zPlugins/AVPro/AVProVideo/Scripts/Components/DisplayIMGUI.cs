@@ -1,16 +1,26 @@
 #if UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
 	#define UNITY_PLATFORM_SUPPORTS_LINEAR
+#elif UNITY_IOS || UNITY_ANDROID
+	#if UNITY_5_5_OR_NEWER || (UNITY_5 && !UNITY_5_0 && !UNITY_5_1 && !UNITY_5_2 && !UNITY_5_3 && !UNITY_5_4)
+		#define UNITY_PLATFORM_SUPPORTS_LINEAR
+	#endif
+#endif
+#if UNITY_5_4_OR_NEWER || (UNITY_5 && !UNITY_5_0)
+	#define UNITY_HELPATTRIB
 #endif
 
 using UnityEngine;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2016 RenderHeads Ltd.  All rights reserverd.
+// Copyright 2015-2017 RenderHeads Ltd.  All rights reserverd.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
 {
 	[AddComponentMenu("AVPro Video/Display IMGUI", 200)]
+#if UNITY_HELPATTRIB
+	[HelpURL("http://renderheads.com/product/avpro-video/")]
+#endif
 	[ExecuteInEditMode]
 	public class DisplayIMGUI : MonoBehaviour
 	{
@@ -21,8 +31,11 @@ namespace RenderHeads.Media.AVProVideo
 		public Color		_color		= Color.white;
 		public bool			_alphaBlend	= false;
 
+		[SerializeField]
+		private bool		_useDepth = false;
+
+		public int			_depth = 0;
 		public bool			_fullScreen	= true;
-		public int 			_depth		= 0;
 		[Range(0f, 1f)]
 		public float		_x			= 0.0f;
 		[Range(0f, 1f)]
@@ -50,12 +63,19 @@ namespace RenderHeads.Media.AVProVideo
 
 		void Start()
 		{
-			// Disabling this lets you skip the GUI layout phase.
-			this.useGUILayout = false;
+			// Disabling this lets you skip the GUI layout phase which helps performance, but this also breaks the GUI.depth usage.
+			if (!_useDepth)
+			{
+				this.useGUILayout = false;
+			}
 
 			if (_shaderAlphaPacking == null)
 			{
 				_shaderAlphaPacking = Shader.Find("AVProVideo/IMGUI/Texture Transparent");
+				if (_shaderAlphaPacking == null)
+				{
+					Debug.LogWarning("[AVProVideo] Missing shader AVProVideo/IMGUI/Transparent Packed");
+				}
 			}
 		}
 
@@ -90,13 +110,20 @@ namespace RenderHeads.Media.AVProVideo
 #if UNITY_PLATFORM_SUPPORTS_LINEAR
 			if (result == null && _mediaPlayer.Info != null)
 			{
+				// If the player does support generating sRGB textures then we need to use a shader to convert them for display via IMGUI
 				if (QualitySettings.activeColorSpace == ColorSpace.Linear && _mediaPlayer.Info.PlayerSupportsLinearColorSpace())
 				{
 					result = _shaderAlphaPacking;
 				}
 			}
 #endif
-
+			if (result == null && _mediaPlayer.TextureProducer != null)
+			{
+				if (_mediaPlayer.TextureProducer.GetTextureCount() == 2)
+				{
+					result = _shaderAlphaPacking;
+				}
+			}
 			return result;
 		}
 
@@ -204,11 +231,18 @@ namespace RenderHeads.Media.AVProVideo
 					texture = _mediaPlayer.TextureProducer.GetTexture();
 					requiresVerticalFlip = _mediaPlayer.TextureProducer.RequiresVerticalFlip();
 				}
+
+				if (_mediaPlayer.TextureProducer.GetTextureCount() == 2 && _material != null)
+				{
+					Texture chroma = _mediaPlayer.TextureProducer.GetTexture(1);
+					_material.SetTexture("_ChromaTex", chroma);
+					_material.EnableKeyword("USE_YPCBCR");
+				}
 			}
 
 			if (texture != null)
 			{
-				if (!_alphaBlend || _color.a > 0)
+				if (!_alphaBlend || _color.a > 0f)
 				{
 					GUI.depth = _depth;
 					GUI.color = _color;

@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 0ed1fb9218ad96f49acfdb428d5b5aab, type: 3}
   m_ShaderKeywords:
   - ALPHAPACK_LEFT_RIGHT
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:

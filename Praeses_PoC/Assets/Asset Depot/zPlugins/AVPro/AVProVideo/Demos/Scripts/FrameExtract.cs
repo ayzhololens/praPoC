@@ -11,16 +11,16 @@ using HoloToolkit.Unity;
 
 namespace RenderHeads.Media.AVProVideo.Demos
 {
-	public class FrameExtract : MonoBehaviour
-	{
-		private const int NumFrames = 1;
-		public MediaPlayer _mediaPlayer;
-		public bool _accurateSeek = false;
-		public int _timeoutMs = 250;
-        
-		private float _timeStepSeconds;
-		private int _frameIndex = 0;
-		public  Texture2D _texture;
+    public class FrameExtract : MonoBehaviour
+    {
+        private const int NumFrames = 1;
+        public MediaPlayer _mediaPlayer;
+        public bool _accurateSeek = false;
+        public int _timeoutMs = 250;
+
+        private float _timeStepSeconds;
+        private int _frameIndex = 0;
+        public Texture2D _texture;
         public List<Texture2D> thumbTexts;
         public GameObject activeComment;
         public string filePath;
@@ -37,7 +37,8 @@ namespace RenderHeads.Media.AVProVideo.Demos
         }
         void listCheck()
         {
-            if (index == queuedThumbs.Count){
+            if (index == queuedThumbs.Count)
+            {
                 makeThumbnail();
             }
         }
@@ -54,7 +55,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
         }
 
-		public void makeThumbnail()
+        public void makeThumbnail()
         {
             if (queuedThumbs.Count > 0)
             {
@@ -67,7 +68,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
             }
             else
             {
-               loadThumbs();
+                loadThumbs();
             }
 
 
@@ -100,57 +101,57 @@ namespace RenderHeads.Media.AVProVideo.Demos
             queuedComments.Clear();
         }
 
-		public void OnMediaPlayerEvent(MediaPlayer mp, MediaPlayerEvent.EventType et, ErrorCode errorCode)
-		{
-			switch (et)
-			{
-				case MediaPlayerEvent.EventType.MetaDataReady:
-					// Android platform doesn't display its first frame until poked
-					mp.Play();
-					mp.Pause();
-					break;
-				case MediaPlayerEvent.EventType.FirstFrameReady:
-					OnNewMediaReady();
-					break;
-			}
-		}
+        public void OnMediaPlayerEvent(MediaPlayer mp, MediaPlayerEvent.EventType et, ErrorCode errorCode)
+        {
+            switch (et)
+            {
+                case MediaPlayerEvent.EventType.MetaDataReady:
+                    // Android platform doesn't display its first frame until poked
+                    mp.Play();
+                    mp.Pause();
+                    break;
+                case MediaPlayerEvent.EventType.FirstFrameReady:
+                    OnNewMediaReady();
+                    break;
+            }
+        }
 
-		private void OnNewMediaReady()
-		{
-			IMediaInfo info = _mediaPlayer.Info;
+        private void OnNewMediaReady()
+        {
+            IMediaInfo info = _mediaPlayer.Info;
 
-			// Create a texture the same resolution as our video
-			if (_texture != null)
-			{
-				//Texture2D.Destroy(_texture);
-				_texture = null;
-			}
-			_texture = new Texture2D(info.GetVideoWidth(), info.GetVideoHeight(), TextureFormat.ARGB32, false);
+            // Create a texture the same resolution as our video
+            if (_texture != null)
+            {
+                //Texture2D.Destroy(_texture);
+                _texture = null;
+            }
+            _texture = new Texture2D(info.GetVideoWidth(), info.GetVideoHeight(), TextureFormat.ARGB32, false);
 
-			_timeStepSeconds = (_mediaPlayer.Info.GetDurationMs() / 1000f) / (float)NumFrames;
-            
+            _timeStepSeconds = (_mediaPlayer.Info.GetDurationMs() / 1000f) / (float)NumFrames;
+
             ExtractNextFrame();
         }
 
-		void OnDestroy()
-		{
-			if (_texture != null)
-			{
-				Texture2D.Destroy(_texture);
-				_texture = null;
-			}
-		}
+        void OnDestroy()
+        {
+            if (_texture != null)
+            {
+                Texture2D.Destroy(_texture);
+                _texture = null;
+            }
+        }
 
-		void Update()
-		{
-		}
+        void Update()
+        {
+        }
 
         private void ExtractNextFrame()
         {
             // Extract the frame to Texture2D
             float timeSeconds = _frameIndex * _timeStepSeconds;
             _texture = _mediaPlayer.ExtractFrame(_texture, timeSeconds, _accurateSeek, _timeoutMs);
-            
+
             if (_texture != null)
             {
                 //if (activeComment.GetComponent<commentContents>() != null)
@@ -190,7 +191,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
                     Invoke("makeThumbnail", invokeTime);
                 }
 
-                _mediaPlayer.Events.RemoveListener(OnMediaPlayerEvent); 
+                _mediaPlayer.Events.RemoveListener(OnMediaPlayerEvent);
             }
 
         }

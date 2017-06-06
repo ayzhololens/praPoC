@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+//-----------------------------------------------------------------------------
+// Copyright 2015-2017 RenderHeads Ltd.  All rights reserverd.
+//-----------------------------------------------------------------------------
+
 namespace RenderHeads.Media.AVProVideo.Demos
 {
 	public class Mapping3D : MonoBehaviour
