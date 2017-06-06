@@ -17,20 +17,10 @@ namespace HoloToolkit.Unity.InputModule
         public AudioClip closeSound;
         public AudioSource src;
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
         public void setAndPlayAudio(int index)
         {
+            //set index to 10 to not play any audio on select
             if(index != 10)
             {
                 if (index == 0)

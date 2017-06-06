@@ -10,20 +10,14 @@ namespace HoloToolkit.Unity
     {
 
         public GameObject boiler;
-        GameObject boilerClone;
-        public GameObject desk;
         public Color darkColor;
         bool tapToPlaceBoiler;
-        public GameObject SpatialMapping;
-        public bool isObj;
-        GameObject activeObj;
-        
         Vector3 initBoilerPos;
 
         // Use this for initialization
         void Start()
         {
-            initBoilerPos = boiler.transform.GetChild(0).localPosition;
+
         }
 
         // Update is called once per frame
@@ -35,93 +29,51 @@ namespace HoloToolkit.Unity
             }
         }
 
-        public void SpawnBoiler()
-        {
-            isObj = false;
-            Vector3 pos = GazeManager.Instance.HitPosition;
-            boilerClone = Instantiate(boiler, pos, Quaternion.identity) as GameObject;
-            activeObj = boilerClone;
-            for (int i = 0; i < activeObj.transform.childCount; i++)
-            {
-                    activeObj.transform.GetChild(i).GetComponent<MeshCollider>().enabled = false;
-            }
-            tapToPlaceBoiler = true;
-        }
-
-        public void SpawnDesk()
-        {
-            isObj = true;
-            Vector3 pos = GazeManager.Instance.HitPosition;
-
-            GameObject deskClone = Instantiate(desk, pos, Quaternion.identity) as GameObject;
-            activeObj = deskClone;
-            for (int i = 0; i < activeObj.transform.childCount; i++)
-            {
-                activeObj.transform.GetChild(i).GetComponent<MeshCollider>().enabled = false;
-            }
-            tapToPlaceBoiler = true;
-        }
 
         public void PlaceBoiler()
         {
 
-
-            if (activeObj == null)
-            {
-                activeObj = boiler;
-            }
-
             if (tapToPlaceBoiler == false)
             {
-                activeObj.transform.GetChild(0).localPosition = initBoilerPos;
-                activeObj.transform.GetChild(0).localRotation = new Quaternion(0, 0, 0, 0);
-                for (int i = 0; i < activeObj.transform.childCount; i++)
+
+                //disable the mesh colliders and turn it darker so its easier to see
+                //doing an int loop because the popup boiler is made up multiple parts
+                for (int i = 0; i < boiler.transform.childCount; i++)
                 {
-                    activeObj.transform.GetChild(i).GetComponent<MeshCollider>().enabled = false;
+                    boiler.transform.GetChild(i).GetComponent<MeshCollider>().enabled = false;
+                    boiler.transform.GetChild(i).GetComponent<Renderer>().material.color = darkColor;
+                }
+
+                //clear out the source manager
+                sourceManager.Instance.sourcePressed = false;
+                tapToPlaceBoiler = true;
+            }
+            
+            if(tapToPlaceBoiler)
+            {
+                //get gazemanager pos and set the boiler position to be there
+                Vector3 pos = GazeManager.Instance.HitPosition;
+                boiler.transform.position = pos;
+                if (sourceManager.Instance.sourcePressed)
+                {
+                    LockBoiler();
                 }
 
 
             }
 
-            activeObj.transform.GetChild(0).GetComponent<Renderer>().material.color = darkColor;
-            if (!tapToPlaceBoiler)
-            {
-                sourceManager.Instance.sourcePressed = false;
-                tapToPlaceBoiler = true;
-            }
-
-
-            if (isObj)
-            {
-                activeObj.transform.position = frontHolderInstance.Instance.setFrontHolder(1.0f).transform.position;
-            }
-
-            if (!isObj)
-            {
-                Vector3 pos = GazeManager.Instance.HitPosition;
-                activeObj.transform.position = pos;
-            }
-
-            if(sourceManager.Instance.sourcePressed && tapToPlaceBoiler)
-            {
-
-                LockBoiler();
-            }
 
         }
 
         public void LockBoiler()
         {
-            activeObj.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.white;
+            //turn off bool to stop placing 
+            //reenable it
             tapToPlaceBoiler = false;
-            for (int i = 0; i < activeObj.transform.childCount; i++)
+            for (int i = 0; i < boiler.transform.childCount; i++)
             {
-                activeObj.transform.GetChild(i).GetComponent<MeshCollider>().enabled = true;
-            }
-
-            if (isObj)
-            {
-                activeObj.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = false;
+                boiler.transform.GetChild(i).GetComponent<MeshCollider>().enabled = true;
+                boiler.transform.GetChild(i).GetComponent<Renderer>().material.color = Color.white;
             }
 
         }

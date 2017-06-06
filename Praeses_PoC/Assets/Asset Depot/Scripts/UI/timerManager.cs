@@ -5,14 +5,16 @@ using HoloToolkit.Unity;
 
 public class timerManager : Singleton<timerManager> {
 
+    [Tooltip("Circular loader located under the cursor hierarchy")]
     public GameObject cursorTimer;
-    public bool isCounting;
+    public bool isCounting { get; set; }
+    [Tooltip("Countdown in seconds, recommended 1.3seconds")]
     public float counter;
     float startCounter;
-    public bool menuOpen;
+    public bool menuOpen { get; set; }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         startCounter = counter;
 
     }

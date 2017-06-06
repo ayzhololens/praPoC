@@ -11,6 +11,7 @@ namespace HoloToolkit.Unity
     {
 
 
+        [Tooltip("Prefabs that should be instantiated on start and when the scene is reloaded")]
         public GameObject[] reloadedObjects;
         public List<GameObject> clearedNodes;
         public List<GameObject> clearedObjs;
@@ -18,6 +19,7 @@ namespace HoloToolkit.Unity
         // Use this for initialization
         void Start()
         {
+            //instantiate the prefabs then add them to a list that will be cleared in between sessions
             for (int i = 0; i < reloadedObjects.Length; i++)
             {
                 GameObject newObj = Instantiate(reloadedObjects[i], transform.position, transform.rotation);
@@ -25,119 +27,58 @@ namespace HoloToolkit.Unity
                 clearedObjs.Add(newObj);
             }
 
+            //reload the master form
             fieldSpawner.Instance.reloadForm();
         }
 
         
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        public void reloadLvl()
-        {
-            SceneManager.LoadScene(0);
-        }
-
-       
-        public void wipeObjects()
-        {
-
-            for (int i = 0; i < clearedObjs.Count; i++)
-            {
-                //clearedObjs.Add(reloadedObjects[i]);
-                DestroyImmediate(clearedObjs[i]);
-                
-            }
-            clearedObjs.Clear();
-            spawnObjs();
-        }
 
 
-        void spawnObjs()
-        {
-            for (int i = 0; i < reloadedObjects.Length; i++)
-            {
-                GameObject newObj = Instantiate(reloadedObjects[i], transform.position, transform.rotation);
-                newObj.transform.position = Camera.main.transform.forward;
-                newObj.name = newObj.name + " respawned";
-                clearedObjs.Add(newObj);
-            }
-
-            ReloadIt();
-        }
-
-
-        void ReloadIt()
-        {
-            fieldSpawner.Instance.reloadForm();
-            fitBoxControl.Instance.toggleFitbox(false);
-
-        }
-
+        //deletes node comments and stores the nodes to be deleted
         public void clearNodes()
         {
             foreach(GameObject node in mediaManager.Instance.activeNodes)
             {
                 nodeMediaHolder nodeMedia = node.GetComponent<nodeMediaHolder>();
-                    if (nodeMedia.fieldNode)
-                    {
-                            foreach (GameObject comment in node.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().activeComments)
-                            {
-                                commentContents com = comment.GetComponent<commentContents>();
-                                if (com.filepath != null && !node.GetComponent<nodeController>().fromJSON)
-                                {
-                                    if (com.isVideo && File.Exists(Path.Combine(Application.persistentDataPath, com.filepath)))
-                                    {
-                                        File.Delete(Path.Combine(Application.persistentDataPath, com.filepath));
-                                    }
-                                    else if (com.isPhoto && File.Exists(com.filepath))
-                                    {
-                                        File.Delete(com.filepath);
-                                    }
-                                }
-                            }
-                    }
-                    if (nodeMedia.violationNode)
-                    {
-                        foreach (GameObject comment in node.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().activeComments)
+
+                //grab all the comments associated with the field and violation nodes then delete them 
+                if (nodeMedia.fieldNode || nodeMedia.violationNode)
+                {
+                    foreach (GameObject comment in node.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().activeComments)
                     {
                         commentContents com = comment.GetComponent<commentContents>();
                         if (com.filepath != null && !node.GetComponent<nodeController>().fromJSON)
+                        {
+                            if (com.isVideo && File.Exists(Path.Combine(Application.persistentDataPath, com.filepath)))
                             {
-                               
-                                if (com.isVideo && File.Exists(Path.Combine(Application.persistentDataPath, com.filepath)))
-                                {
-                                    File.Delete(Path.Combine(Application.persistentDataPath, com.filepath));
-                                }
-                                else if (com.isPhoto && File.Exists(com.filepath))
-                                {
-                                    File.Delete(com.filepath);
-                                }
+                                File.Delete(Path.Combine(Application.persistentDataPath, com.filepath));
+                            }
+                            else if (com.isPhoto && File.Exists(com.filepath))
+                            {
+                                File.Delete(com.filepath);
                             }
                         }
-                        //node.GetComponent<nodeController>().linkedField.GetComponent<violationController>().linkedPreview.GetComponent<viewViolationContent>().viewViolationHolder.GetComponent<viewViolationController>().vioFields.Remove(node.GetComponent<nodeController>().linkedField.GetComponent<violationController>().linkedPreview);
-                        //DestroyImmediate(node.GetComponent<nodeController>().linkedField.GetComponent<violationController>().linkedPreview);
+                    }
+                }
+
+                //delete the associated violation form
+                if (nodeMedia.violationNode)
+                {
                         DestroyImmediate(node.GetComponent<nodeController>().linkedField);
+                }
 
-                    }
-
-                    if (nodeMedia.activeFilepath.Length>1)
+                //delete the media on an annotation node
+                if (nodeMedia.activeFilepath!=null)
+                {
+                    if (File.Exists(Path.Combine(Application.persistentDataPath, nodeMedia.activeFilepath)) && !node.GetComponent<nodeController>().fromJSON)
                     {
-
-
-                        if (File.Exists(Path.Combine(Application.persistentDataPath, nodeMedia.activeFilepath)) && !node.GetComponent<nodeController>().fromJSON)
-                        {
                         File.Delete(Path.Combine(Application.persistentDataPath, nodeMedia.activeFilepath));
-
-                        }
                     }
-
-
-
-                    clearedNodes.Add(node);
+                }
+                
+                //add each node to a list to get deleted
+                clearedNodes.Add(node);
                 
             }
             if (clearedNodes.Count > 0)
@@ -152,17 +93,63 @@ namespace HoloToolkit.Unity
 
         void wipeList()
         {
+            //delete each node and clear the node list
             foreach(GameObject node in clearedNodes)
             {
                 mediaManager.Instance.activeNodes.Remove(node);
                 Destroy(node.GetComponent<nodeController>().miniNode);
-                //databaseMan.Instance.removeNode(node);
                 Destroy(node);
             }
 
             clearedNodes.Clear();
             wipeObjects();
+
+            //reload database values to clear any user changes
             databaseMan.Instance.loadValCmd();
+        }
+        
+
+        public void wipeObjects()
+        {
+            //destroy all the reloadable objects
+            for (int i = 0; i < clearedObjs.Count; i++)
+            {
+                DestroyImmediate(clearedObjs[i]);
+
+            }
+            clearedObjs.Clear();
+            respawnObjs();
+        }
+
+
+        void respawnObjs()
+        {
+            //reinstantiate them
+            for (int i = 0; i < reloadedObjects.Length; i++)
+            {
+                GameObject newObj = Instantiate(reloadedObjects[i], transform.position, transform.rotation);
+                newObj.transform.position = Camera.main.transform.forward;
+                newObj.name = newObj.name + " respawned";
+                clearedObjs.Add(newObj);
+            }
+
+            ReloadObjs();
+        }
+
+
+        void ReloadObjs()
+        {
+            //reload and reset the fitbox and the app is good to go :)
+            fieldSpawner.Instance.reloadForm();
+            fitBoxControl.Instance.toggleFitbox(false);
+
+        }
+
+
+        //reload the entire unity scene
+        public void reloadLvl()
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

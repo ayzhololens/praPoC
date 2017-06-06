@@ -7,19 +7,10 @@ using HoloToolkit.Unity.InputModule;
 public class submitState : Singleton<submitState>
 
 {
-    public GameObject successContent;
+    public GameObject inspectionSucess;
 
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+    //enable feedback to convey the inspection has completed
     public void startUpload()
     {
         formController.Instance.closeForm();
@@ -31,8 +22,8 @@ public class submitState : Singleton<submitState>
     void success()
     {
         audioManager.Instance.setAndPlayAudio(1);
-        successContent.SetActive(true);
-        successContent.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
+        inspectionSucess.SetActive(true);
+        inspectionSucess.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
         mediaManager.Instance.disableStatusIndicator();
     }
 }

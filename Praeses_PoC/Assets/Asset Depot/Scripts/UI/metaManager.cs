@@ -10,6 +10,7 @@ namespace HoloToolkit.Unity
     public class metaManager : Singleton<metaManager>
     {
 
+        [Tooltip("User that will appear across the app")]
         public string user;
 
         // Use this for initialization
@@ -23,12 +24,15 @@ namespace HoloToolkit.Unity
         {
         }
 
+
+        //full date and time
         public string date()
         {
             string tempdate = System.DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
             return tempdate;
         }
 
+        //date without time
         public string dateShort()
         {
             string tempdate = System.DateTime.Now.ToString("MM/dd/yyyy");

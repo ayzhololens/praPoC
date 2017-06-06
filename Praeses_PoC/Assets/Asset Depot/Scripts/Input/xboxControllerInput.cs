@@ -6,7 +6,7 @@ using UnityEngine;
 
 using HoloLensXboxController;
 
-public class boilerContoller : MonoBehaviour {
+public class xboxControllerInput : MonoBehaviour {
 
 
     public float moveSensitivity;

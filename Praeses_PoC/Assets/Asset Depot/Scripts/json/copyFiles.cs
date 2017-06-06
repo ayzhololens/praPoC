@@ -5,18 +5,16 @@ using System.IO;
 
 public class copyFiles : MonoBehaviour {
 
+    [Tooltip("Names of files in streaming assets to copy to device.  Include extensions (.jpg, .json, etc)")]
     public string[] copiedFiles;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         copy();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 
+    
     public void copy()
     {
         for (int i =0; i<copiedFiles.Length; i++)

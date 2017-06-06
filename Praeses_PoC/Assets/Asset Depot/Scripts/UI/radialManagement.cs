@@ -15,13 +15,13 @@ namespace HoloToolkit.Unity
 
 
         public GameObject RadialMenu;
+        [Tooltip("Where the radial menu spawns")]
         public Transform radialHolder;
         public GameObject radialLine;
         public GameObject Cursor;
 
 
-        public GameObject focusedButton;
-        public float radialCounter;
+        public GameObject focusedButton { get; set; }
         public bool canOpen { get; set; }
         public bool isActive { get; set; }
 

@@ -17,11 +17,12 @@ public class frontHolderInstance : Singleton<frontHolderInstance> {
 		
 	}
 
+
+    //set a transform a set distance in front of the camera
     public virtual GameObject setFrontHolder(float dist)
     {
         GameObject frontHolder = holder;
         frontHolder.transform.localPosition = new Vector3(0, 0, dist);
-            //Camera.main.transform.forward * dist;
 
         return frontHolder;
     }

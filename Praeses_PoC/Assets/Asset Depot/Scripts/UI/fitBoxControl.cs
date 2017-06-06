@@ -16,6 +16,8 @@ public class fitBoxControl : Singleton<fitBoxControl> {
 		
 	}
 
+
+    //toggles the fit box and opens the menu is the argument is true
     public void toggleFitbox(bool openMenu)
     {
         if (fitBox.activeSelf)

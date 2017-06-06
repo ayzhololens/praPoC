@@ -17,13 +17,14 @@ public class fovHider : Singleton<fovHider> {
 		
 	}
 
+    //turn on/off the fovHide with a delay if necessary
     public void toggleFOVHider(bool on, float delay)
     {
         status = on;
-        Invoke("fovHide", delay);
+        Invoke("toggle", delay);
     }
 
-    void fovHide()
+    void toggle()
     {
 
         Hider.SetActive(status);

@@ -6,13 +6,14 @@ using HoloToolkit.Unity;
 public class radialHands : MonoBehaviour {
 
     public HandsManager handsManager;
+    [Tooltip("Orient Ref that translate world to local rotation")]
     public GameObject invisCursor;
     public GameObject navCursor;
     Vector3 startPos;
     public bool canManipulate { get; set; }
     public bool manipulating { get; set; }
     Vector3 offset;
-    [Tooltip("Recommended - .0025")]
+    [Tooltip("Recommended: .0025")]
     public float sensitivity;
     Vector3 handStartPos;
     public GameObject focusedObj;
