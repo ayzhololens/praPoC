@@ -14400,7 +14400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ayzenberg Group
+  m_Text: Microsoft Bldg 24
 --- !u!114 &114067114422933956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16386,7 +16386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 49 E. Walnut St.
+  m_Text: 7854 Lancer St.
 --- !u!114 &114309085786359338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16940,7 +16940,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shed
+  m_Text: HoloDeck
 --- !u!114 &114366048114102722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17007,7 +17007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 49 E. Walnut St.
+  m_Text: 7854 Lancer St.
 --- !u!114 &114371483525891440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17040,7 +17040,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ayzenberg Group
+  m_Text: Whisms and Isms
 --- !u!114 &114373398297701340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17273,7 +17273,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pasadena CA
+  m_Text: Los Angeles CA
 --- !u!114 &114400320421187084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17359,7 +17359,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pasadena CA
+  m_Text: Los Angeles CA
 --- !u!114 &114403125188024214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18025,7 +18025,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 90039
+  m_Text: 98058
 --- !u!114 &114450448216652120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18134,7 +18134,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ayzenberg Group
+  m_Text: Whisms and Isms
 --- !u!114 &114455818307988162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19041,7 +19041,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 49 E. Walnut St.
+  m_Text: 251 Wester Dr.
 --- !u!114 &114563545211744362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19074,7 +19074,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pasadena CA
+  m_Text: Redmond WA
 --- !u!114 &114567679862176450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20547,7 +20547,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 49 E. Walnut St.
+  m_Text: 251 Wester Dr.
 --- !u!114 &114736737362523358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20673,7 +20673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shed
+  m_Text: HoloDeck
 --- !u!114 &114752009355371602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21302,7 +21302,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pasadena CA
+  m_Text: Redmond WA
 --- !u!114 &114789213499602348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21936,7 +21936,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ayzenberg Group
+  m_Text: Microsoft Bldg 24
 --- !u!114 &114851910552077110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22518,7 +22518,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 90039
+  m_Text: 98058
 --- !u!114 &114916834436356916
 MonoBehaviour:
   m_ObjectHideFlags: 1

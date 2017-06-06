@@ -1,23 +1,37 @@
 ﻿#if UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
 	#define UNITY_PLATFORM_SUPPORTS_LINEAR
+#elif UNITY_IOS || UNITY_ANDROID
+	#if UNITY_5_5_OR_NEWER || (UNITY_5 && !UNITY_5_0 && !UNITY_5_1 && !UNITY_5_2 && !UNITY_5_3 && !UNITY_5_4)
+		#define UNITY_PLATFORM_SUPPORTS_LINEAR
+	#endif
 #endif
 
 using UnityEngine;
+using System.Collections.Generic;
+
+#if NETFX_CORE
+using Windows.Storage.Streams;
+#endif
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2016 RenderHeads Ltd.  All rights reserved.
+// Copyright 2015-2017 RenderHeads Ltd.  All rights reserved.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
 {
-	public abstract class BaseMediaPlayer : IMediaPlayer, IMediaControl, IMediaInfo, IMediaProducer, System.IDisposable
+	public abstract class BaseMediaPlayer : IMediaPlayer, IMediaControl, IMediaInfo, IMediaProducer, IMediaSubtitles, System.IDisposable
 	{
 		public abstract string		GetVersion();
 
-		public abstract bool		OpenVideoFromFile(string path, long offset);
-        public abstract void		CloseVideo();
+		public abstract bool		OpenVideoFromFile(string path, long offset, string httpHeaderJson);
 
-        public abstract void		SetLooping(bool bLooping);
+#if NETFX_CORE 
+		public virtual bool			OpenVideoFromFile(IRandomAccessStream ras, string path, long offset, string httpHeaderJson){return false;}
+#endif
+
+		public abstract void		CloseVideo();
+
+		public abstract void		SetLooping(bool bLooping);
 		public abstract bool		IsLooping();
 
 		public abstract bool		HasMetaData();
@@ -47,15 +61,19 @@ namespace RenderHeads.Media.AVProVideo
 		public abstract bool		IsFinished();
 		public abstract bool		IsBuffering();
 
-		public abstract Texture		GetTexture( int index = 0 );
+		public virtual int			GetTextureCount() { return 1; }
+		public abstract Texture		GetTexture(int index = 0);
 		public abstract int			GetTextureFrameCount();
 		public virtual long			GetTextureTimeStamp() { return long.MinValue; }
 		public abstract bool		RequiresVerticalFlip();
+		public virtual float[]		GetTextureTransform() { return new float[] { 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f }; }
 
 		public abstract void		MuteAudio(bool bMuted);
 		public abstract bool		IsMuted();
 		public abstract void		SetVolume(float volume);
+		public virtual void			SetBalance(float balance) { }
 		public abstract float		GetVolume();
+		public virtual float		GetBalance() { return 0f; }
 
 		public abstract int			GetAudioTrackCount();
 		public abstract int			GetCurrentAudioTrack();
@@ -126,6 +144,87 @@ namespace RenderHeads.Media.AVProVideo
 		public virtual void GrabAudio(float[] buffer, int floatCount, int channelCount)
 		{
 
+		}
+
+		public virtual bool IsPlaybackStalled()
+		{
+			return false;
+		}
+
+		protected List<Subtitle> _subtitles;
+		protected Subtitle _currentSubtitle;
+
+		public bool LoadSubtitlesSRT(string data)
+		{
+			if (string.IsNullOrEmpty(data))
+			{
+				// Disable subtitles
+				_subtitles = null;
+				_currentSubtitle = null;
+			}
+			else
+			{
+				_subtitles = Helper.LoadSubtitlesSRT(data);
+			}
+			return (_subtitles != null);
+		}
+
+		public virtual void UpdateSubtitles()
+		{
+			if (_subtitles != null)
+			{
+				float time = GetCurrentTimeMs();
+
+				// TODO: implement a more effecient subtitle index searcher
+				int searchIndex = 0;
+				if (_currentSubtitle != null)
+				{
+					if (!_currentSubtitle.IsTime(time))
+					{
+						if (time > _currentSubtitle.timeEndMs)
+						{
+							searchIndex = _currentSubtitle.index + 1;
+						}
+						_currentSubtitle = null;
+					}
+				}
+
+				if (_currentSubtitle == null)
+				{
+					for (int i = searchIndex; i < _subtitles.Count; i++)
+					{
+						if (_subtitles[i].IsTime(time))
+						{
+							_currentSubtitle = _subtitles[i];
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		public virtual int GetSubtitleIndex()
+		{
+			int result = -1;
+			if (_currentSubtitle != null)
+			{
+				result = _currentSubtitle.index;
+			}
+			return result;
+		}
+
+		public virtual string GetSubtitleText()
+		{
+			string result = string.Empty;
+			if (_currentSubtitle != null)
+			{
+				result = _currentSubtitle.text;
+			}
+			return result;
+		}
+
+		public virtual void OnEnable()
+		{
 		}
 	}
 }

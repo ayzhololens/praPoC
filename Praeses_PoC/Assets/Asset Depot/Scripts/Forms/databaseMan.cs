@@ -15,22 +15,31 @@ using HoloToolkit.Unity;
 
 public class databaseMan : Singleton<databaseMan>
 {
-    public string saveDir;
-    public string definitionsDir;
-    public string valuesDir;
-    public string defJsonText;
-    public string valJsonText;
+    public string saveDir { get; set; }
+    public string definitionsDir { get; set; }
+    public string valuesDir { get; set; }
+    public string defJsonText { get; set; }
+    public string valJsonText { get; set; }
+
+    //this defines whether we are using the pop-up model or not. This is defined through the boilerTransform.json
+    //boilerTransform.json is written by the boilerTransformRecorder.cs script on the SpatialMapping object when tapping finalize during te admin phase
+    public float popUp { get; set; }
+
+    [Tooltip("This decides whether to load from a historic Json or the Json that was saved from the recent session")]
     public bool offsite;
-    public float popUp;
 
     public MainForm definitions;
     public ValuesClass values;
 
+    //unity does not display this on the inspector, but this is used to pair keywords with form prefabs
     public Dictionary<string, GameObject> formPairs = new Dictionary<string, GameObject>();
 
     private void Start()
     {
+        //popup defaults to 0, this will change if during the admin phase it is set to popup
         popUp = 0;
+
+        //establish all the necessary directories
         definitionsDir = Path.Combine(Application.persistentDataPath, "JO_JJ.json");
         if (offsite && System.IO.File.Exists(Path.Combine(Application.persistentDataPath, "savedJson.json")))
         {
@@ -43,6 +52,8 @@ public class databaseMan : Singleton<databaseMan>
         saveDir = Path.Combine(Application.persistentDataPath, "savedJson.json");
     }
 
+    //definitions of classes pertaining Json file structure
+    #region
     [System.Serializable]
     public class MainForm
     {
@@ -176,6 +187,7 @@ public class databaseMan : Singleton<databaseMan>
         public string user;
         public string date;
     }
+    #endregion
 
     public void saveCmd()
     {
@@ -184,8 +196,10 @@ public class databaseMan : Singleton<databaseMan>
         System.IO.File.WriteAllText(saveDir, json);
 #endif
 
+        //comment these out for deployment
         //string json = JsonConvert.SerializeObject(values, Formatting.Indented);
         //System.IO.File.WriteAllText(saveDir, json);
+
 
         print("jsonSaved");
     }
@@ -197,8 +211,10 @@ public class databaseMan : Singleton<databaseMan>
         definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
 #endif
 
+        //comment these out for deployment
         //defJsonText = File.ReadAllText(definitionsDir);
         //definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
+
 
         print("jsonDefinitionsLoaded");
         JU_databaseMan.Instance.loadDefCmd();
@@ -212,6 +228,7 @@ public class databaseMan : Singleton<databaseMan>
         values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
 #endif
 
+        //comment these out for deployment
         //valJsonText = File.ReadAllText(valuesDir);
         //values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
 
@@ -219,8 +236,11 @@ public class databaseMan : Singleton<databaseMan>
         JU_databaseMan.Instance.loadValCmd();
     }
 
+    //this function is run when a new annotation(simple, photo, video), field node, or violation node is created
+    //it will add and feed the necessary information back into the class so we can save it back out as a json file
     public void addAnnotation(GameObject nodeObj)
     {
+        //create a new node class feeding transform information from the 3D game object
         NodeClass newNode = new NodeClass();
         Vector3 pos = nodeObj.transform.localPosition;
         Quaternion rot = nodeObj.transform.localRotation;
@@ -253,11 +273,15 @@ public class databaseMan : Singleton<databaseMan>
         {
             newNode.type = 1;
         }
+
+        //no matter what type, get the meta info
         newNode.user = nodeObj.GetComponent<nodeMediaHolder>().User;
         newNode.date = nodeObj.GetComponent<nodeMediaHolder>().Date;
 
+        //for the types video or photo
         if (newNode.type == 4 || newNode.type == 1)
         {
+            //iterate through its list of comments
             foreach (GameObject comment in nodeObj.GetComponent<nodeMediaHolder>().activeComments)
             {
                 comment newComment = new comment();
@@ -267,6 +291,7 @@ public class databaseMan : Singleton<databaseMan>
                 newNode.comments.Add(newComment);
             }
             media newMedia = new media();
+            //set the differentiation between photo or video
             if (newNode.type == 1)
             {
                 newMedia.type = 2;
@@ -275,15 +300,19 @@ public class databaseMan : Singleton<databaseMan>
             {
                 newMedia.type = 3;
             }
+
+            //add metas
             newMedia.path = nodeObj.GetComponent<nodeMediaHolder>().fileName;
             newMedia.user = nodeObj.GetComponent<nodeMediaHolder>().User;
             newMedia.date = nodeObj.GetComponent<nodeMediaHolder>().Date;
             newNode.medias.Add(newMedia);
         }
+        //beyond this it should be simple type field or violation
         else
         {
             foreach (GameObject comment in nodeObj.GetComponent<nodeMediaHolder>().activeComments)
             {
+                //simple comment is acceptable in a simple node as well as field or violation nodes
                 if (comment.GetComponent<commentContents>().isSimple)
                 {
                     comment newComment = new comment();
@@ -292,6 +321,7 @@ public class databaseMan : Singleton<databaseMan>
                     newComment.date = comment.GetComponent<commentContents>().Date;
                     newNode.comments.Add(newComment);
                 }
+                //these media items below refer to photo comment or video comment on a field or violation node
                 else
                 {
                     media newMedia = new media();
@@ -313,13 +343,14 @@ public class databaseMan : Singleton<databaseMan>
             }
         }
 
-
+        //simple text specific operation
         if (newNode.type == 0)
         {
             newNode.title = "Simple Text";
             newNode.description = nodeObj.GetComponent<nodeMediaHolder>().Description.text;
             newNode.audioPath = nodeObj.GetComponent<nodeMediaHolder>().audioPath;
         }
+        //field node specific operation
         else if (newNode.type == 2)
         {
             print("ahh");
@@ -327,14 +358,12 @@ public class databaseMan : Singleton<databaseMan>
             newNode.description = nodeObj.GetComponent<nodeController>().linkedField.GetComponent<formFieldController>().Value.text;
             newNode.audioPath = "";
         }
+        //violations node specific operation
         else if (newNode.type == 3)
         {
-            Debug.Log("hello");
         }
-
         else
         {
-
             newNode.title = nodeObj.GetComponent<nodeMediaHolder>().Title.text;
             newNode.description = nodeObj.GetComponent<nodeMediaHolder>().Description.text;
             newNode.audioPath = nodeObj.GetComponent<nodeMediaHolder>().audioPath;
@@ -342,9 +371,14 @@ public class databaseMan : Singleton<databaseMan>
 
         newNode.indexNum = nodeObj.GetComponent<nodeMediaHolder>().NodeIndex;
 
+        //after configuring the contents of the node, we add it to the nodes list in the database
         values.Location.Equipment[0].Nodes.Add(newNode);
+        //update this under the JU_database for easy retrieval
         JU_databaseMan.Instance.loadNodesCmd();
     }
+
+    //removing a node from a class, they are put into a temp list, delete the node, clearing the original nodes list
+    //then re-adding them back onto the original list without the deleted node
     public void removeNode(GameObject nodeObj)
     {
         List<NodeClass> tempNodeList = new List<NodeClass>();
@@ -367,6 +401,8 @@ public class databaseMan : Singleton<databaseMan>
         JU_databaseMan.Instance.loadNodesCmd();
     }
 
+    //using the keyword value, iterate through existing items in the dictionary, when a match is found, change its value
+    //this is called when the done button is pressed on the keyboard
     public void formToClassValueSync(string keyword, string value)
     {
         print("values applied " + keyword + " " + value);
@@ -398,6 +434,7 @@ public class databaseMan : Singleton<databaseMan>
         JU_databaseMan.Instance.loadEquipmentData();
     }
 
+    //this is called when a node is edited through a keyboard
     public void nodeToClassValueSync(int nodeIndex, string value, int valueType)
     {
         print("values applied to node index: " + nodeIndex.ToString() + " " + value);
@@ -425,6 +462,7 @@ public class databaseMan : Singleton<databaseMan>
         JU_databaseMan.Instance.loadEquipmentData();
     }
 
+    //this is called when a new comment is created on a node
     public void commentToClassValueSync(int nodeIndex, tempComment comment)
     {
         Dictionary<int, NodeClass> nodeClasses = new Dictionary<int, NodeClass>();
@@ -436,6 +474,7 @@ public class databaseMan : Singleton<databaseMan>
 
         if (nodeClasses.ContainsKey(nodeIndex))
         {
+            //differentiate between simple text comment
             if (comment.type == 0)
             {
                 comment newComment = new comment();
@@ -444,6 +483,7 @@ public class databaseMan : Singleton<databaseMan>
                 newComment.date = comment.date;
                 nodeClasses[nodeIndex].comments.Add(newComment);
             }
+            //or media comments(photo or video) defined by the type
             else
             {
                 media newMedia = new media();
@@ -457,9 +497,10 @@ public class databaseMan : Singleton<databaseMan>
         }
 
         JU_databaseMan.Instance.loadNodesCmd();
-        print("script on database manager ran");
+
     }
 
+    //this is called when a  new violation is created or when a violation is read from json
     public void syncViolation(violationController violation)
     {
         ViolationsClass vioClass = new ViolationsClass();
@@ -477,6 +518,7 @@ public class databaseMan : Singleton<databaseMan>
         JU_databaseMan.Instance.loadViolationsCmd();
     }
 
+    //this is called when a violation is being edited, as well as if new comments are added to it
     public void updateVio(violationController violation)
     {
         foreach(ViolationsClass vioClass in values.Location.Equipment[0].Violations)

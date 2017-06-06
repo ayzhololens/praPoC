@@ -1,10 +1,16 @@
 ﻿#define DLL_METHODS
 
 #if UNITY_ANDROID
-#if UNITY_5
+#if UNITY_5 || UNITY_5_4_OR_NEWER
 	#if !UNITY_5_0 && !UNITY_5_1
 		#define AVPROVIDEO_ISSUEPLUGINEVENT_UNITY52
 	#endif
+	#if !UNITY_5_0 && !UNITY_5_1 && !UNITY_5_2 && !UNITY_5_3 && !UNITY_5_4_0 && !UNITY_5_4_1
+		#define AVPROVIDEO_FIXREGRESSION_TEXTUREQUALITY_UNITY542
+	#endif
+#endif
+#if !UNITY_5_0 && !UNITY_5_1 && !UNITY_5_2 && !UNITY_5_3 && !UNITY_5_4_0 && !UNITY_5_4_1
+	#define AVPROVIDEO_FIXREGRESSION_TEXTUREQUALITY_UNITY542
 #endif
 
 using UnityEngine;
@@ -12,7 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2016 RenderHeads Ltd.  All rights reserverd.
+// Copyright 2015-2017 RenderHeads Ltd.  All rights reserverd.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo
@@ -20,8 +26,8 @@ namespace RenderHeads.Media.AVProVideo
 	// TODO: seal this class
 	public class AndroidMediaPlayer : BaseMediaPlayer
 	{
-        private static AndroidJavaObject	s_ActivityContext	= null;
-        private static bool					s_bInitialised		= false;
+        protected static AndroidJavaObject	s_ActivityContext	= null;
+        protected static bool				s_bInitialised		= false;
 
 		private static string				s_Version = "Plug-in not yet initialised";
 
@@ -40,7 +46,9 @@ namespace RenderHeads.Media.AVProVideo
 
 		protected int 						m_iPlayerIndex		= -1;
 
-
+#if AVPROVIDEO_FIXREGRESSION_TEXTUREQUALITY_UNITY542
+		private int _textureQuality = QualitySettings.masterTextureLimit;
+#endif
 		public static void InitialisePlatform()
 		{
 			// Get the activity context
@@ -96,7 +104,7 @@ namespace RenderHeads.Media.AVProVideo
 #endif
 		}
 
-		public AndroidMediaPlayer(bool useFastOesPath)
+		public AndroidMediaPlayer(bool useFastOesPath, bool showPosterFrame)
 		{
 			// Create a java-size video class up front
 			m_Video = new AndroidJavaObject("com.RenderHeads.AVProVideo.AVProMobileVideo");
@@ -109,19 +117,19 @@ namespace RenderHeads.Media.AVProVideo
                 m_iPlayerIndex = m_Video.Call<int>("GetPlayerIndex");
 
 				//Debug.Log( "AVPro: useFastOesPath: " + useFastOesPath );
-				SetOptions(useFastOesPath);
+				SetOptions(useFastOesPath, showPosterFrame);
 
 				// Initialise renderer, on the render thread
 				AndroidMediaPlayer.IssuePluginEvent( Native.AVPPluginEvent.PlayerSetup, m_iPlayerIndex );
             }
         }
 
-		public void SetOptions(bool useFastOesPath)
+		public void SetOptions(bool useFastOesPath, bool showPosterFrame)
 		{
 			m_UseFastOesPath = useFastOesPath;
 			if (m_Video != null)
 			{
-				m_Video.Call("SetPlayerOptions", m_UseFastOesPath);
+				m_Video.Call("SetPlayerOptions", m_UseFastOesPath, showPosterFrame);
 			}
 		}
 
@@ -130,18 +138,18 @@ namespace RenderHeads.Media.AVProVideo
 			return s_Version;
 		}
 
-		public override bool OpenVideoFromFile(string path, long offset)
+		public override bool OpenVideoFromFile(string path, long offset, string httpHeaderJson)
 		{
 			bool bReturn = false;
 
 
 			if( m_Video != null )
 			{
-#if UNITY_5
+#if UNITY_5 || UNITY_5_4_OR_NEWER
 				Debug.Assert(m_Width == 0 && m_Height == 0 && m_DurationMs == 0.0f);
 #endif
 
-				bReturn = m_Video.Call<bool>("OpenVideoFromFile", path, offset);
+				bReturn = m_Video.Call<bool>("OpenVideoFromFile", path, offset, httpHeaderJson);
 			}
 
 			return bReturn;
@@ -467,6 +475,24 @@ namespace RenderHeads.Media.AVProVideo
 			return result;
 		}
 
+		public override void SetBalance(float balance)
+		{
+			if( m_Video != null )
+			{
+				m_Video.Call("SetAudioPan", balance);
+			}
+		}
+
+		public override float GetBalance()
+		{
+			float result = 0.0f;
+			if( m_Video != null )
+			{
+				result = m_Video.Call<float>("GetAudioPan");
+			}
+			return result;
+		}
+
 		public override int GetAudioTrackCount()
 		{
 			int result = 0;
@@ -576,9 +602,16 @@ namespace RenderHeads.Media.AVProVideo
 		{
 			if (m_Video != null)
 			{
-				//GL.InvalidateState();
+				if (m_UseFastOesPath)
+				{
+					// This is needed for at least Unity 5.5.0, otherwise it just renders black in OES mode
+					GL.InvalidateState();
+				}
 				AndroidMediaPlayer.IssuePluginEvent( Native.AVPPluginEvent.PlayerUpdate, m_iPlayerIndex );
-				//GL.InvalidateState();
+				if (m_UseFastOesPath)
+				{
+					GL.InvalidateState();
+				}
 
 				// Check if we can create the texture
                 // Scan for a change in resolution
@@ -645,26 +678,22 @@ namespace RenderHeads.Media.AVProVideo
 					}
 				}
 
-#if UNITY_5_4_OR_NEWER
-				// In Unity 5.4.2 and above the vidoe texture turns black when changing the TextureQuality in the Quality Settings
+#if AVPROVIDEO_FIXREGRESSION_TEXTUREQUALITY_UNITY542
+				// In Unity 5.4.2 and above the video texture turns black when changing the TextureQuality in the Quality Settings
 				// The code below gets around this issue.  A bug report has been sent to Unity.  So far we have tested and replicated the
-				// "bug" in Windows only, but a user has reported it in Android too
-				if (m_Texture != null && textureHandle > 0 && m_Texture.GetNativeTexturePtr() == System.IntPtr.Zero)
+				// "bug" in Windows only, but a user has reported it in Android too.  
+				// Texture.GetNativeTexturePtr() must sync with the rendering thread, so this is a large performance hit!
+				if (_textureQuality != QualitySettings.masterTextureLimit)
 				{
-					//Debug.Log("RECREATING");
-					m_Texture.UpdateExternalTexture(new System.IntPtr(textureHandle));
-				}
-#endif
+					if (m_Texture != null && textureHandle > 0 && m_Texture.GetNativeTexturePtr() == System.IntPtr.Zero)
+					{
+						//Debug.Log("RECREATING");
+						m_Texture.UpdateExternalTexture(new System.IntPtr(textureHandle));
+					}
 
-				if( m_DurationMs == 0.0f )
-				{
-#if DLL_METHODS
-					m_DurationMs = (float)( Native._GetDuration( m_iPlayerIndex ) );
-#else
-					m_DurationMs = (float)(m_Video.Call<long>("GetDurationMs"));
-#endif
-//					if( m_DurationMs > 0.0f ) { Helper.LogInfo("Duration: " + m_DurationMs); }
+					_textureQuality = QualitySettings.masterTextureLimit;
 				}
+#endif
 			}
 		}
 
@@ -678,6 +707,27 @@ namespace RenderHeads.Media.AVProVideo
 			}
 		}
 
+		public override void OnEnable()
+		{
+			base.OnEnable();
+
+#if DLL_METHODS
+			int textureHandle = Native._GetTextureHandle(m_iPlayerIndex);
+#else
+            int textureHandle = m_Video.Call<int>("GetTextureHandle");
+#endif
+
+			if (m_Texture != null && textureHandle > 0 && m_Texture.GetNativeTexturePtr() == System.IntPtr.Zero)
+			{
+				//Debug.Log("RECREATING");
+				m_Texture.UpdateExternalTexture(new System.IntPtr(textureHandle));
+			}
+
+#if AVPROVIDEO_FIXREGRESSION_TEXTUREQUALITY_UNITY542
+			_textureQuality = QualitySettings.masterTextureLimit;
+#endif
+		}
+
 		public override void Update()
 		{
 			if (m_Video != null)
@@ -685,8 +735,25 @@ namespace RenderHeads.Media.AVProVideo
 //				_lastError = (ErrorCode)( m_Video.Call<int>("GetLastErrorCode") );
 				_lastError = (ErrorCode)( Native._GetLastErrorCode( m_iPlayerIndex) );
 			}
+
+			UpdateSubtitles();
+
+			if(Mathf.Approximately(m_DurationMs, 0f))
+			{
+#if DLL_METHODS
+				m_DurationMs = (float)( Native._GetDuration( m_iPlayerIndex ) );
+#else
+				m_DurationMs = (float)(m_Video.Call<long>("GetDurationMs"));
+#endif
+//				if( m_DurationMs > 0.0f ) { Helper.LogInfo("Duration: " + m_DurationMs); }
+			}
 		}
-		
+
+		public override bool PlayerSupportsLinearColorSpace()
+		{
+			return false;
+		}
+
 		public override void Dispose()
 		{
 			//Debug.LogError("DISPOSE");
@@ -708,9 +775,7 @@ namespace RenderHeads.Media.AVProVideo
 				m_Texture = null;
 			}
 		}
-	
-	
-	
+
 		private struct Native
 		{
 			[DllImport ("AVProLocal")]

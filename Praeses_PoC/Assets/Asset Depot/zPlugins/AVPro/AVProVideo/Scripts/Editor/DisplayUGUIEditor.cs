@@ -1,4 +1,4 @@
-#if UNITY_4_6 || UNITY_4_7 || UNITY_4_8 || UNITY_5
+#if UNITY_4_6 || UNITY_4_7 || UNITY_4_8 || UNITY_5 || UNITY_5_4_OR_NEWER
 	#define UNITY_FEATURE_UGUI
 #endif
 
@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEditor.UI;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2016 RenderHeads Ltd.  All rights reserverd.
+// Copyright 2015-2017 RenderHeads Ltd.  All rights reserverd.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo.Editor

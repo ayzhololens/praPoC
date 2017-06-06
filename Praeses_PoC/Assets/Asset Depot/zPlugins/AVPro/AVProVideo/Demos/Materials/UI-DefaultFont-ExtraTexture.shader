@@ -11,6 +11,9 @@ Shader "UI/Default Font - Extra Texture" {
 		_StencilReadMask ("Stencil Read Mask", Float) = 255
 
 		_ColorMask ("Color Mask", Float) = 15
+
+		[Toggle(USE_YPCBCR)] _UseYpCbCr("Use YpCbCr", Float) = 0
+		_ChromaTex("Chroma", 2D) = "gray" {}
 	}
 
 	SubShader {
@@ -47,6 +50,9 @@ Shader "UI/Default Font - Extra Texture" {
 			#pragma fragment frag
 
 			#include "UnityCG.cginc"
+			#include "../../Resources/Shaders/AVProVideo.cginc"
+
+			#pragma multi_compile __ USE_YPCBCR
 
 			struct appdata_t {
 				float4 vertex : POSITION;
@@ -63,6 +69,9 @@ Shader "UI/Default Font - Extra Texture" {
 
 			sampler2D _MainTex;
 			sampler2D _OverlayTex;
+#if USE_YPCBCR
+			sampler2D _ChromaTex;
+#endif
 			uniform float4 _MainTex_ST;
 			uniform float4 _OverlayTex_ST;
 			uniform fixed4 _Color;
@@ -84,9 +93,19 @@ Shader "UI/Default Font - Extra Texture" {
 			fixed4 frag (v2f i) : SV_Target
 			{
 				fixed4 col = i.color;
+#if USE_YPCBCR
+	#if SHADER_API_METAL || SHADER_API_GLES || SHADER_API_GLES3
+				float3 ypcbcr = float3(tex2D(_OverlayTex, i.texcoord2).r, tex2D(_ChromaTex, i.texcoord2).rg);
+	#else
+				float3 ypcbcr = float3(tex2D(_OverlayTex, i.texcoord2).r, tex2D(_ChromaTex, i.texcoord2).ra);
+	#endif
+				fixed4 overlay = fixed4(Convert420YpCbCr8ToRGB(ypcbcr), 1.0);
+#else
+				fixed4 overlay = fixed4(tex2D(_OverlayTex, i.texcoord2).rgb, 1.0);
+#endif
 				col.a *= tex2D(_MainTex, i.texcoord).a;
 				clip (col.a - 0.01);
-				col.rgb *= tex2D(_OverlayTex, i.texcoord2).rgb;
+				col *= overlay;
 				return col;
 			}
 			ENDCG 

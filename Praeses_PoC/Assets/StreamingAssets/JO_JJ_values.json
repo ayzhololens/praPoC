@@ -1,15 +1,15 @@
 {
    "Location":{
       "LocationID":164159,
-      "LocationName":"Microsoft Corp. Bldg 34 Cafe",
+      "LocationName":"Ayzenberg Group",
       "Address":{
-         "address1":"3720 159th Ave NE",
+         "address1":"49 E Walnut St.",
          "address2":null,
-         "City":"Redmond",
-         "County":"King",
+         "City":"Pasadena",
+         "County":"Los Angeles",
          "Country":"USA",
-         "State":"WA",
-         "Zip":"98052-6306"
+         "State":"CA",
+         "Zip":"91103"
       },
       "Equipment":[
          {

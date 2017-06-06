@@ -295,6 +295,9 @@ MonoBehaviour:
   videoPlayer: {fileID: 0}
   playButton: {fileID: 0}
   hideThis: {fileID: 0}
+  simpleText: {fileID: 0}
+  diffBG: {fileID: 0}
+  commentType: 0
 --- !u!114 &114797257074047690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -491,7 +494,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 26.004585, y: -11}
-  m_SizeDelta: {x: 750, y: 67.79}
+  m_SizeDelta: {x: 900, y: 67.79}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224443375673373380
 RectTransform:

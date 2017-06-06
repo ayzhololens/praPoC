@@ -13,12 +13,11 @@ public class contentScaler : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         sScale = transform.localScale;
-        print(sScale);
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-        print(sScale);
         //dist = Vector3.Distance(transform.position, Camera.main.transform.position);
         //transform.localScale = (startScale * (dist *scaleMult));
 

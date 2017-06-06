@@ -1,5 +1,5 @@
-﻿#if UNITY_4_6 || UNITY_4_7 || UNITY_4_8 || UNITY_5
-#define UNITY_FEATURE_UGUI
+﻿#if UNITY_4_6 || UNITY_4_7 || UNITY_4_8 || UNITY_5 || UNITY_5_4_OR_NEWER
+	#define UNITY_FEATURE_UGUI
 #endif
 
 using UnityEngine;
@@ -9,7 +9,7 @@ using System.Collections;
 using RenderHeads.Media.AVProVideo;
 
 //-----------------------------------------------------------------------------
-// Copyright 2015-2016 RenderHeads Ltd.  All rights reserverd.
+// Copyright 2015-2017 RenderHeads Ltd.  All rights reserverd.
 //-----------------------------------------------------------------------------
 
 namespace RenderHeads.Media.AVProVideo.Demos
@@ -17,6 +17,8 @@ namespace RenderHeads.Media.AVProVideo.Demos
 	public class VCR : MonoBehaviour 
 	{
 		public MediaPlayer	_mediaPlayer;
+		public MediaPlayer	_mediaPlayerB;
+		public DisplayUGUI	_mediaDisplay;
 
 		public Slider		_videoSeekSlider;
 		private float		_setVideoSeekSliderValue;
@@ -28,23 +30,65 @@ namespace RenderHeads.Media.AVProVideo.Demos
 		public Toggle		_AutoStartToggle;
 		public Toggle		_MuteToggle;
 
+		public MediaPlayer.FileLocation _location = MediaPlayer.FileLocation.RelativeToStreamingAssetsFolder;
 		public string _folder = "AVProVideoDemos/";
 		public string[] _videoFiles = { "BigBuckBunny_720p30.mp4", "SampleSphere.mp4" };
 
 		private int _VideoIndex = 0;
 
+		private MediaPlayer _loadingPlayer;
+
+		public MediaPlayer PlayingPlayer
+		{
+			get
+			{
+				if (LoadingPlayer == _mediaPlayer)
+				{
+					return _mediaPlayerB;
+				}
+				return _mediaPlayer;
+			}
+		}
+
+		public MediaPlayer LoadingPlayer
+		{
+			get
+			{
+				return _loadingPlayer;
+			}
+		}
+
+		private void SwapPlayers()
+		{
+			// Pause the previously playing video
+			PlayingPlayer.Control.Pause();
+
+			// Swap the videos
+			if (LoadingPlayer == _mediaPlayer)
+			{
+				_loadingPlayer = _mediaPlayerB;
+			}
+			else
+			{
+				_loadingPlayer = _mediaPlayer;
+			}
+
+			// Change the displaying video
+			_mediaDisplay.CurrentMediaPlayer = PlayingPlayer;
+		}
+
 		public void OnOpenVideoFile()
  		{
-			_mediaPlayer.m_VideoPath = System.IO.Path.Combine(_folder, _videoFiles[_VideoIndex]);
+			LoadingPlayer.m_VideoPath = System.IO.Path.Combine(_folder, _videoFiles[_VideoIndex]);
 			_VideoIndex = (_VideoIndex + 1) % (_videoFiles.Length);
-			if (string.IsNullOrEmpty(_mediaPlayer.m_VideoPath))
+			if (string.IsNullOrEmpty(LoadingPlayer.m_VideoPath))
 			{
-				_mediaPlayer.CloseVideo();
+				LoadingPlayer.CloseVideo();
 				_VideoIndex = 0;
 			}
 			else
 			{
-				_mediaPlayer.OpenVideoFromFile(MediaPlayer.FileLocation.RelativeToStreamingAssetsFolder, _mediaPlayer.m_VideoPath, _AutoStartToggle.isOn);
+				LoadingPlayer.OpenVideoFromFile(_location, LoadingPlayer.m_VideoPath, _AutoStartToggle.isOn);
 //				SetButtonEnabled( "PlayButton", !_mediaPlayer.m_AutoStart );
 //				SetButtonEnabled( "PauseButton", _mediaPlayer.m_AutoStart );
 			}
@@ -52,36 +96,46 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
 		public void OnAutoStartChange()
 		{
-			if( _mediaPlayer && 
-				_AutoStartToggle && _AutoStartToggle.enabled && 
-				_mediaPlayer.m_AutoStart != _AutoStartToggle.isOn )
+			if(PlayingPlayer && 
+				_AutoStartToggle && _AutoStartToggle.enabled &&
+				PlayingPlayer.m_AutoStart != _AutoStartToggle.isOn )
 			{
-				_mediaPlayer.m_AutoStart = _AutoStartToggle.isOn;
+				PlayingPlayer.m_AutoStart = _AutoStartToggle.isOn;
+			}
+			if (LoadingPlayer &&
+				_AutoStartToggle && _AutoStartToggle.enabled &&
+				LoadingPlayer.m_AutoStart != _AutoStartToggle.isOn)
+			{
+				LoadingPlayer.m_AutoStart = _AutoStartToggle.isOn;
 			}
 		}
-		
+
 		public void OnMuteChange()
 		{
-			if (_mediaPlayer)
+			if (PlayingPlayer)
 			{
-				_mediaPlayer.Control.MuteAudio(_MuteToggle.isOn);
+				PlayingPlayer.Control.MuteAudio(_MuteToggle.isOn);
+			}
+			if (LoadingPlayer)
+			{
+				LoadingPlayer.Control.MuteAudio(_MuteToggle.isOn);
 			}
 		}
 
 		public void OnPlayButton()
 		{
-			if( _mediaPlayer )
+			if(PlayingPlayer)
 			{
-				_mediaPlayer.Control.Play();
+				PlayingPlayer.Control.Play();
 //				SetButtonEnabled( "PlayButton", false );
 //				SetButtonEnabled( "PauseButton", true );
 			}
 		}
 		public void OnPauseButton()
 		{
-			if( _mediaPlayer )
+			if(PlayingPlayer)
 			{
-				_mediaPlayer.Control.Pause();
+				PlayingPlayer.Control.Pause();
 //				SetButtonEnabled( "PauseButton", false );
 //				SetButtonEnabled( "PlayButton", true );
 			}
@@ -89,19 +143,19 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
 		public void OnVideoSeekSlider()
 		{
-			if (_mediaPlayer && _videoSeekSlider && _videoSeekSlider.value != _setVideoSeekSliderValue)
+			if (PlayingPlayer && _videoSeekSlider && _videoSeekSlider.value != _setVideoSeekSliderValue)
 			{
-				_mediaPlayer.Control.Seek(_videoSeekSlider.value * _mediaPlayer.Info.GetDurationMs());
+				PlayingPlayer.Control.Seek(_videoSeekSlider.value * PlayingPlayer.Info.GetDurationMs());
 			}
 		}
 		public void OnVideoSliderDown()
 		{
-			if( _mediaPlayer )
+			if(PlayingPlayer)
 			{
-				_wasPlayingOnScrub = _mediaPlayer.Control.IsPlaying();
+				_wasPlayingOnScrub = PlayingPlayer.Control.IsPlaying();
 				if( _wasPlayingOnScrub )
 				{
-					_mediaPlayer.Control.Pause();
+					PlayingPlayer.Control.Pause();
 //					SetButtonEnabled( "PauseButton", false );
 //					SetButtonEnabled( "PlayButton", true );
 				}
@@ -110,9 +164,9 @@ namespace RenderHeads.Media.AVProVideo.Demos
 		}
 		public void OnVideoSliderUp()
 		{
-			if( _mediaPlayer && _wasPlayingOnScrub )
+			if(PlayingPlayer && _wasPlayingOnScrub )
 			{
-				_mediaPlayer.Control.Play();
+				PlayingPlayer.Control.Play();
 				_wasPlayingOnScrub = false;
 
 //				SetButtonEnabled( "PlayButton", false );
@@ -122,59 +176,73 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
 		public void OnAudioVolumeSlider()
 		{
-			if (_mediaPlayer && _audioVolumeSlider && _audioVolumeSlider.value != _setAudioVolumeSliderValue)
+			if (PlayingPlayer && _audioVolumeSlider && _audioVolumeSlider.value != _setAudioVolumeSliderValue)
 			{
-				_mediaPlayer.Control.SetVolume(_audioVolumeSlider.value);
+				PlayingPlayer.Control.SetVolume(_audioVolumeSlider.value);
+			}
+			if (LoadingPlayer && _audioVolumeSlider && _audioVolumeSlider.value != _setAudioVolumeSliderValue)
+			{
+				LoadingPlayer.Control.SetVolume(_audioVolumeSlider.value);
 			}
 		}
-//		public void OnMuteAudioButton()
-//		{
-//			if( _mediaPlayer )
-//			{
-//				_mediaPlayer.Control.MuteAudio( true );
-//				SetButtonEnabled( "MuteButton", false );
-//				SetButtonEnabled( "UnmuteButton", true );
-//			}
-//		}
-//		public void OnUnmuteAudioButton()
-//		{
-//			if( _mediaPlayer )
-//			{
-//				_mediaPlayer.Control.MuteAudio( false );
-//				SetButtonEnabled( "UnmuteButton", false );
-//				SetButtonEnabled( "MuteButton", true );
-//			}
-//		}
+		//		public void OnMuteAudioButton()
+		//		{
+		//			if( _mediaPlayer )
+		//			{
+		//				_mediaPlayer.Control.MuteAudio( true );
+		//				SetButtonEnabled( "MuteButton", false );
+		//				SetButtonEnabled( "UnmuteButton", true );
+		//			}
+		//		}
+		//		public void OnUnmuteAudioButton()
+		//		{
+		//			if( _mediaPlayer )
+		//			{
+		//				_mediaPlayer.Control.MuteAudio( false );
+		//				SetButtonEnabled( "UnmuteButton", false );
+		//				SetButtonEnabled( "MuteButton", true );
+		//			}
+		//		}
 
 		public void OnRewindButton()
 		{
-			if( _mediaPlayer )
+			if(PlayingPlayer)
 			{
-				_mediaPlayer.Control.Rewind();
+				PlayingPlayer.Control.Rewind();
 			}
+		}
+
+		private void Awake()
+		{
+			_loadingPlayer = _mediaPlayerB;
 		}
 
 		void Start()
 		{
-			if( _mediaPlayer )
+			if(PlayingPlayer)
 			{
-				_mediaPlayer.Events.AddListener(OnVideoEvent);
+				PlayingPlayer.Events.AddListener(OnVideoEvent);
 
-				if( _audioVolumeSlider )
+				if (LoadingPlayer)
+				{
+					LoadingPlayer.Events.AddListener(OnVideoEvent);
+				}
+
+				if ( _audioVolumeSlider )
 				{
 					// Volume
-					if (_mediaPlayer.Control != null)
+					if (PlayingPlayer.Control != null)
 					{
-						float volume = _mediaPlayer.Control.GetVolume();
+						float volume = PlayingPlayer.Control.GetVolume();
 						_setAudioVolumeSliderValue = volume;
 						_audioVolumeSlider.value = volume;
 					}
 				}
 
 				// Auto start toggle
-				_AutoStartToggle.isOn = _mediaPlayer.m_AutoStart;
+				_AutoStartToggle.isOn = PlayingPlayer.m_AutoStart;
 
-				if( _mediaPlayer.m_AutoOpen )
+				if(PlayingPlayer.m_AutoOpen )
 				{
 //					RemoveOpenVideoButton();
 
@@ -196,10 +264,14 @@ namespace RenderHeads.Media.AVProVideo.Demos
 
 		void Update()
 		{
-			if (_mediaPlayer && _mediaPlayer.Info != null && _mediaPlayer.Info.GetDurationMs() > 0f)
+			if (PlayingPlayer && PlayingPlayer.Info != null && PlayingPlayer.Info.GetDurationMs() > 0f)
 			{
-				float time = _mediaPlayer.Control.GetCurrentTimeMs();
-				float d = time / _mediaPlayer.Info.GetDurationMs();
+				float time = PlayingPlayer.Control.GetCurrentTimeMs();
+				float duration = PlayingPlayer.Info.GetDurationMs();
+				float d = Mathf.Clamp(time / duration, 0.0f, 1.0f);
+
+				// Debug.Log(string.Format("time: {0}, duration: {1}, d: {2}", time, duration, d));
+
 				_setVideoSeekSliderValue = d;
 				_videoSeekSlider.value = d;
 			}
@@ -215,6 +287,7 @@ namespace RenderHeads.Media.AVProVideo.Demos
 				case MediaPlayerEvent.EventType.Started:
 				break;
 				case MediaPlayerEvent.EventType.FirstFrameReady:
+					SwapPlayers();
 				break;
 				case MediaPlayerEvent.EventType.FinishedPlaying:
 				break;

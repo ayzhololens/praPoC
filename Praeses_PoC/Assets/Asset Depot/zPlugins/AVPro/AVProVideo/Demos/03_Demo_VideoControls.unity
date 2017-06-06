@@ -246,7 +246,7 @@ GameObject:
   - 4: {fileID: 109038282}
   - 114: {fileID: 109038280}
   m_Layer: 0
-  m_Name: AVPro Media Player
+  m_Name: MediaPlayerA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Volume: 1
   m_Muted: 0
   m_PlaybackRate: 1
-  m_DebugGui: 1
+  m_DebugGui: 0
   m_Persistent: 0
   m_StereoPacking: 0
   m_AlphaPacking: 0
@@ -288,7 +288,9 @@ MonoBehaviour:
     overridePath: 0
     pathLocation: 2
     path: 
-    forceDirectShowApi: 0
+    videoApi: 0
+    useHardwareDecoding: 1
+    useUnityAudio: 0
     forceAudioOutputDeviceName: 
   _optionsMacOSX:
     overridePath: 0
@@ -306,14 +308,18 @@ MonoBehaviour:
     overridePath: 0
     pathLocation: 2
     path: 
+    useFastOesPath: 0
+    fileOffset: 0
   _optionsWindowsPhone:
     overridePath: 0
     pathLocation: 2
     path: 
+    useHardwareDecoding: 1
   _optionsWindowsUWP:
     overridePath: 0
     pathLocation: 2
     path: 
+    useHardwareDecoding: 1
   _optionsWebGL:
     overridePath: 0
     pathLocation: 2
@@ -445,6 +451,106 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 129356343}
+--- !u!1 &136179554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 136179556}
+  - 114: {fileID: 136179555}
+  m_Layer: 0
+  m_Name: MediaPlayerB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &136179555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 136179554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638c870cac4da414fba921606d504407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_VideoLocation: 2
+  m_VideoPath: 
+  m_AutoOpen: 0
+  m_AutoStart: 1
+  m_Loop: 1
+  m_Volume: 1
+  m_Muted: 0
+  m_PlaybackRate: 1
+  m_DebugGui: 0
+  m_Persistent: 0
+  m_StereoPacking: 0
+  m_AlphaPacking: 0
+  m_DisplayDebugStereoColorTint: 0
+  m_FilterMode: 1
+  m_WrapMode: 1
+  m_AnisoLevel: 0
+  m_events:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: RenderHeads.Media.AVProVideo.MediaPlayerEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _optionsWindows:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+    videoApi: 0
+    useHardwareDecoding: 1
+    useUnityAudio: 0
+    forceAudioOutputDeviceName: 
+  _optionsMacOSX:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+  _optionsIOS:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+  _optionsTVOS:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+  _optionsAndroid:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+    useFastOesPath: 0
+    fileOffset: 0
+  _optionsWindowsPhone:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+    useHardwareDecoding: 1
+  _optionsWindowsUWP:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+    useHardwareDecoding: 1
+  _optionsWebGL:
+    overridePath: 0
+    pathLocation: 2
+    path: 
+--- !u!4 &136179556
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 136179554}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &149653269
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,10 +579,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mediaPlayer: {fileID: 109038280}
+  _mediaPlayerB: {fileID: 136179555}
+  _mediaDisplay: {fileID: 1459959098}
   _videoSeekSlider: {fileID: 1110412940}
   _audioVolumeSlider: {fileID: 592025963}
   _AutoStartToggle: {fileID: 1961666199}
   _MuteToggle: {fileID: 2119498492}
+  _location: 2
   _folder: AVProVideoSamples/
   _videoFiles:
   - BigBuckBunny_720p30.mp4
@@ -1636,7 +1745,8 @@ MonoBehaviour:
   _title: Video Controls
   _description: This demo shows how to control video playback and volume. You can
     play, pause, rewind videos. You can  also use the slider to scrub through the
-    video.
+    video.  The demo uses two MediaPlayer components and ping-pongs between them to
+    allow for seamless switching between videos.
   _media: {fileID: 109038280}
 --- !u!4 &1180610509
 Transform:
@@ -1861,8 +1971,9 @@ MonoBehaviour:
     width: 1
     height: 1
   _setNativeSize: 0
-  _keepAspectRatio: 1
+  _scaleMode: 2
   _noDefaultDisplay: 1
+  _displayInEditor: 1
   _defaultTexture: {fileID: 0}
 --- !u!222 &1459959099
 CanvasRenderer:

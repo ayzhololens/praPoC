@@ -53,7 +53,7 @@ namespace HoloToolkit.Unity
             }
             curTab = tabIndex;
             tabs[tabIndex].SetActive(true);
-            print(curTab);
+
         }
 
         public void preloadData()
@@ -88,12 +88,16 @@ namespace HoloToolkit.Unity
 
         void findZone()
         {
-            if(GazeManager.Instance.HitObject.name == "AlignmentZone")
+            if (GazeManager.Instance.HitObject != null)
             {
-                mediaManager.Instance.setStatusIndicator("Tag Located! Calibrating...");
-                alignerIndicator.GetComponent<Renderer>().material.color = new Color(1, 1, 1, .8f);
-                startedAlignment = false;
-                Invoke("finishAlignment", 3);
+                if (GazeManager.Instance.HitObject.name == "AlignmentZone")
+                {
+                    mediaManager.Instance.setStatusIndicator("Tag Located! Calibrating...");
+                    alignerIndicator.GetComponent<Renderer>().material.color = new Color(1, 1, 1, .8f);
+                    startedAlignment = false;
+                    Invoke("finishAlignment", 3);
+                }
+
             }
         }
 

@@ -3,9 +3,11 @@
 	Properties
 	{
 		_MainTex("Texture", any) = "" {}
+		_ChromaTex("Chroma", any) = "" {}
 		_VertScale("Vertical Scale", Range(-1, 1)) = 1.0
 		[KeywordEnum(None, Top_Bottom, Left_Right)] AlphaPack("Alpha Pack", Float) = 0
 		[Toggle(APPLY_GAMMA)] _ApplyGamma("Apply Gamma", Float) = 0
+		[Toggle(USE_YPCBCR)] _UseYpCbCr("Use YpCbCr", Float) = 0
 	}
 
 	SubShader
@@ -24,7 +26,12 @@
 			#pragma vertex vert
 			#pragma fragment frag
 			#pragma multi_compile ALPHAPACK_NONE ALPHAPACK_TOP_BOTTOM ALPHAPACK_LEFT_RIGHT
-			#pragma multi_compile __ APPLY_GAMMA
+
+			// TODO: Change XX_OFF to __ for Unity 5.0 and above
+			// this was just added for Unity 4.x compatibility as __ causes
+			// Android and iOS builds to fail the shader
+			#pragma multi_compile APPLY_GAMMA_OFF APPLY_GAMMA
+			#pragma multi_compile USE_YPCBCR_OFF USE_YPCBCR
 
 			#include "UnityCG.cginc"
 			#include "AVProVideo.cginc"
@@ -44,6 +51,9 @@
 			};
 
 			uniform sampler2D _MainTex;
+#if USE_YPCBCR
+			uniform sampler2D _ChromaTex;
+#endif
 			uniform float4 _MainTex_ST;
 			uniform float4 _MainTex_TexelSize;
 			uniform float _VertScale;
@@ -60,23 +70,32 @@
 
 			fixed4 frag(v2f i) : SV_Target
 			{
+#if USE_YPCBCR
+	#if SHADER_API_METAL || SHADER_API_GLES || SHADER_API_GLES3
+				float3 ypcbcr = float3(tex2D(_MainTex, i.texcoord.xy).r, tex2D(_ChromaTex, i.texcoord.xy).rg);
+	#else
+				float3 ypcbcr = float3(tex2D(_MainTex, i.texcoord.xy).r, tex2D(_ChromaTex, i.texcoord.xy).ra);
+	#endif
+				fixed4 col = fixed4(Convert420YpCbCr8ToRGB(ypcbcr), 1.0);
+#else
 				// Sample RGB
 				fixed4 col = tex2D(_MainTex, i.texcoord.xy);
-#if APPLY_GAMMA
-				col.rgb = pow(col.rgb, 1.0 / 2.2);
 #endif
-
-
+#if APPLY_GAMMA
+				col.rgb = LinearToGamma(col.rgb);
+#endif
 #if ALPHAPACK_TOP_BOTTOM | ALPHAPACK_LEFT_RIGHT
 				// Sample the alpha
+	#if USE_YPCBCR
+				col.a = tex2D(_MainTex, i.texcoord.zw).r;	
+	#else
 				fixed4 alpha = tex2D(_MainTex, i.texcoord.zw);
-				
-#if APPLY_GAMMA
-				alpha.rgb = pow(alpha.rgb, 1.0 / 2.2);
-#endif
+		#if APPLY_GAMMA
+				alpha.rgb = LinearToGamma(alpha.rgb);
+		#endif
 				col.a = (alpha.r + alpha.g + alpha.b) / 3.0;
+	#endif
 #endif
-
 				return col * i.color;
 			}
 			ENDCG

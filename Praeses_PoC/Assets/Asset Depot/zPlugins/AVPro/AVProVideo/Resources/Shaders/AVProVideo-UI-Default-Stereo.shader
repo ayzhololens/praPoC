@@ -3,6 +3,7 @@ Shader "AVProVideo/UI/Stereo"
 	Properties
 	{
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+		[PerRendererData] _ChromaTex ("Sprite Texture", 2D) = "white" {}
 		_Color ("Tint", Color) = (1,1,1,1)
 		
 		_StencilComp ("Stencil Comparison", Float) = 8
@@ -16,6 +17,7 @@ Shader "AVProVideo/UI/Stereo"
 		[KeywordEnum(None, Top_Bottom, Left_Right)] Stereo("Stereo Mode", Float) = 0
 		[Toggle(STEREO_DEBUG)] _StereoDebug("Stereo Debug Tinting", Float) = 0
 		[Toggle(APPLY_GAMMA)] _ApplyGamma("Apply Gamma", Float) = 0
+		[Toggle(USE_YPCBCR)] _UseYpCbCr("Use YpCbCr", Float) = 0
 	}
 
 	SubShader
@@ -52,8 +54,13 @@ Shader "AVProVideo/UI/Stereo"
 			#pragma vertex vert
 			#pragma fragment frag
 			#pragma multi_compile MONOSCOPIC STEREO_TOP_BOTTOM STEREO_LEFT_RIGHT
-			#pragma multi_compile __ STEREO_DEBUG
-			#pragma multi_compile __ APPLY_GAMMA
+
+			// TODO: Change XX_OFF to __ for Unity 5.0 and above
+			// this was just added for Unity 4.x compatibility as __ causes
+			// Android and iOS builds to fail the shader
+			#pragma multi_compile APPLY_GAMMA_OFF APPLY_GAMMA
+			#pragma multi_compile STEREO_DEBUG_OFF STEREO_DEBUG			
+			#pragma multi_compile USE_YPCBCR_OFF USE_YPCBCR
 
 			#include "UnityCG.cginc"
 			#include "AVProVideo.cginc"
@@ -74,12 +81,16 @@ Shader "AVProVideo/UI/Stereo"
 			
 			uniform fixed4 _Color;
 			uniform sampler2D _MainTex;
+#if USE_YPCBCR
+			uniform sampler2D _ChromaTex;
+#endif
 			uniform float4 _MainTex_TexelSize;
 			uniform float3 _cameraPosition;
 
 			v2f vert(appdata_t IN)
 			{
 				v2f OUT;
+
 				OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
 
 #ifdef UNITY_HALF_TEXEL_OFFSET
@@ -104,8 +115,16 @@ Shader "AVProVideo/UI/Stereo"
 
 			fixed4 frag(v2f IN) : SV_Target
 			{
+#if USE_YPCBCR
+	#if SHADER_API_METAL || SHADER_API_GLES || SHADER_API_GLES3
+				float3 ypcbcr = float3(tex2D(_MainTex, IN.texcoord).r, tex2D(_ChromaTex, IN.texcoord).rg);
+	#else
+				float3 ypcbcr = float3(tex2D(_MainTex, IN.texcoord).r, tex2D(_ChromaTex, IN.texcoord).ra);
+	#endif
+				half4 color = half4(Convert420YpCbCr8ToRGB(ypcbcr), 1.0);
+#else
 				half4 color = tex2D(_MainTex, IN.texcoord.xy);
-
+#endif
 #if APPLY_GAMMA
 				color.rgb = GammaToLinear(color.rgb);
 #endif

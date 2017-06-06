@@ -4,16 +4,12 @@ using UnityEngine;
 
 namespace HoloToolkit.Unity
 {
+    //this script checks for miniMapMesh tag and hides and reveal objects accordingly
     public class boundingHide : MonoBehaviour
     {
 
         int startingLayer;
         public radialOperationsHybrid[] rotators;
-
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    print(other);
-        //} 
 
         private void OnTriggerStay(Collider other)
         {
@@ -36,7 +32,6 @@ namespace HoloToolkit.Unity
 
         private void OnTriggerExit(Collider other)
         {
-            //Debug.Log(other.gameObject);
             for (int i = 0; i < rotators.Length; i++)
             {
                 if (rotators[i].rotationFactor != 0)

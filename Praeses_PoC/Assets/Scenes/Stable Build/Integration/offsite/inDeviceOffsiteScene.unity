@@ -570,7 +570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &65695720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6982,7 +6982,7 @@ GameObject:
   - component: {fileID: 795637529}
   - component: {fileID: 795637528}
   m_Layer: 0
-  m_Name: reloadLevel
+  m_Name: reloadScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7047,7 +7047,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2096731460}
+      - m_Target: {fileID: 2096731461}
         m_MethodName: reloadLvl
         m_Mode: 1
         m_Arguments:
@@ -14896,7 +14896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -929.9921, y: 11.7438965}
+  m_AnchoredPosition: {x: -929.9921, y: 11.744141}
   m_SizeDelta: {x: 1860, y: 4000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1710704115
@@ -17884,7 +17884,6 @@ GameObject:
   - component: {fileID: 2096731463}
   - component: {fileID: 2096731462}
   - component: {fileID: 2096731461}
-  - component: {fileID: 2096731460}
   m_Layer: 0
   m_Name: connectScript
   m_TagString: Untagged
@@ -17892,20 +17891,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2096731460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2096731459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13d413620bad6d64686c0448e6559230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reloadedObjects: []
-  clearedNodes: []
-  clearedObjs: []
 --- !u!114 &2096731461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18494,7 +18479,7 @@ TextMesh:
   m_GameObject: {fileID: 2136186829}
   m_Text: 'Reload
 
-    Level'
+    Scene'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

@@ -31,6 +31,12 @@ namespace HoloToolkit.Unity
         // Use this for initialization
         void Start()
         {
+#if !UNITY_EDITOR            
+            photoCaptureObject.Dispose();
+            photoCaptureObject = null;
+#endif
+
+
 
         }
 

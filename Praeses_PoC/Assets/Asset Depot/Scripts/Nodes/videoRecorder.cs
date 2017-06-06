@@ -19,6 +19,7 @@ namespace HoloToolkit.Unity
 
 
         VideoCapture m_VideoCapture = null;
+        public bool recording { get; set; }
         public string filename;
         public string filepath;
         public int vidCounter;
@@ -29,6 +30,12 @@ namespace HoloToolkit.Unity
         void Start()
         {
             vidCounter = 0;
+#if !UNITY_EDITOR
+            m_VideoCapture.Dispose();
+            m_VideoCapture = null;
+#endif
+
+
 
         }
 
@@ -43,6 +50,7 @@ namespace HoloToolkit.Unity
 #if !UNITY_EDITOR
             VideoCapture.CreateAsync(false, OnVideoCaptureCreated);
 #endif
+            recording = true;
         }
 
 
@@ -128,6 +136,7 @@ namespace HoloToolkit.Unity
 
         void OnStoppedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
         {
+            recording = false;
             m_VideoCapture.Dispose();
             m_VideoCapture = null;
         }
