@@ -2085,6 +2085,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1584053904401758, guid: e28c6b88ca910ac42ba84dfc6e02f1cf,
     type: 2}
   m_PrefabInternal: {fileID: 388639683}
+--- !u!1 &388639687 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1257833496238490, guid: e28c6b88ca910ac42ba84dfc6e02f1cf,
+    type: 2}
+  m_PrefabInternal: {fileID: 388639683}
 --- !u!1 &394877765
 GameObject:
   m_ObjectHideFlags: 0
@@ -4582,6 +4587,11 @@ Prefab:
       propertyPath: occlusionMat
       value: 
       objectReference: {fileID: 2100000, guid: df172103f5fba4a4d8636aeca60cb0d7, type: 2}
+    - target: {fileID: 114722865667208052, guid: 2ed75ffdf9031c94e8bce4b3d17b9928,
+        type: 2}
+      propertyPath: paperPlane
+      value: 
+      objectReference: {fileID: 388639687}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
   m_IsPrefabParent: 0
