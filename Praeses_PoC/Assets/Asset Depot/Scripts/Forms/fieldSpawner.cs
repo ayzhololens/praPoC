@@ -147,6 +147,7 @@ namespace HoloToolkit.Unity
 
         }
 
+        //populating extra data, items that are exceptions in the way they are handled on the form....
         void populateExD() {
 
             int fieldCount = JU_databaseMan.Instance.definitions.ExtraFields.fields.Count;
@@ -278,9 +279,6 @@ namespace HoloToolkit.Unity
                 spawnedField.GetComponent<formFieldController>().trueName = JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Name;
                 ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
 
-
-
-                //print(spawnedField.GetComponent<formFieldController>().showUpdate);
                 IFCollection.Add(spawnedField);
             }
 
@@ -290,6 +288,7 @@ namespace HoloToolkit.Unity
             MasterForm.GetComponent<formController>().goToTab(2);
         }
 
+        //for populating equipment data
         void populateED()
         {
             fieldStartPos.localPosition = fieldInitPos;
@@ -312,6 +311,7 @@ namespace HoloToolkit.Unity
             }
         }
 
+        //for populating location data
         void populateLD()
         {
             fieldStartPos.localPosition = fieldInitPos;

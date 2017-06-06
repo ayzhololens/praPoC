@@ -3,8 +3,8 @@ using Newtonsoft.Json;
 using System.Collections;
 #endif
 
-using Newtonsoft.Json;
-using System.Collections;
+//using Newtonsoft.Json;
+//using System.Collections;
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -196,8 +196,8 @@ public class databaseMan : Singleton<databaseMan>
         System.IO.File.WriteAllText(saveDir, json);
 #endif
         //comment these out for deployment
-        string json = JsonConvert.SerializeObject(values, Formatting.Indented);
-        System.IO.File.WriteAllText(saveDir, json);
+        //string json = JsonConvert.SerializeObject(values, Formatting.Indented);
+        //System.IO.File.WriteAllText(saveDir, json);
 
         print("jsonSaved");
     }
@@ -209,8 +209,8 @@ public class databaseMan : Singleton<databaseMan>
         definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
 #endif
         //comment these out for deployment
-        defJsonText = File.ReadAllText(definitionsDir);
-        definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
+        //defJsonText = File.ReadAllText(definitionsDir);
+        //definitions = JsonConvert.DeserializeObject<MainForm>(defJsonText);
 
         print("jsonDefinitionsLoaded");
         JU_databaseMan.Instance.loadDefCmd();
@@ -224,8 +224,8 @@ public class databaseMan : Singleton<databaseMan>
         values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
 #endif
         //comment these out for deployment
-        valJsonText = File.ReadAllText(valuesDir);
-        values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
+        //valJsonText = File.ReadAllText(valuesDir);
+        //values = JsonConvert.DeserializeObject<ValuesClass>(valJsonText);
 
         print("jsonValuesLoaded");
         JU_databaseMan.Instance.loadValCmd();
