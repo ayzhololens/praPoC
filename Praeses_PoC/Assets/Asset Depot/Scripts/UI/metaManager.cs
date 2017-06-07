@@ -13,18 +13,6 @@ namespace HoloToolkit.Unity
         [Tooltip("User that will appear across the app")]
         public string user;
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
-
-
         //full date and time
         public string date()
         {

@@ -8,112 +8,101 @@ using HoloLensXboxController;
 
 public class xboxControllerInput : MonoBehaviour {
 
-
+    [Header("Sensitivity Settings")]
     public float moveSensitivity;
     public float rotateSensitivity;
     public float ratchetSensitivity;
-    public GameObject[] popUpBoiler;
-    public GameObject normalBoiler;
-    public GameObject mainMenuContent;
+
+
+    [Header(" ")]
+    [Tooltip("Admin Menu Content Holder")]
+    public GameObject adminMenuContent;
     private ControllerInput controllerInput;
 
-    // Use this for initialization
+    [Tooltip("Disable if not using a controller to avoid null reference error")]
+    public bool useController;
+    
     void Start ()
     {
-        controllerInput = new ControllerInput(0, 0.19f);
+        if (useController)
+        {
+            //set your controller input
+            controllerInput = new ControllerInput(0, 0.19f);
+        }
 
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        controllerInput.Update();
-        if (controllerInput.GetAxisRightTrigger() != 0 )
+        //only check for controller input if the admin menu is open
+        if (useController && adminMenuContent.activeSelf)
         {
-            transform.Rotate(Vector3.up, (100*rotateSensitivity) * Time.deltaTime);
-        }
-        
-        if (controllerInput.GetAxisLeftTrigger() != 0)
-        {
+            controllerInput.Update();
 
-            transform.Rotate(Vector3.down, (100 * rotateSensitivity) * Time.deltaTime);
-        }
+            //rotation
+            if (controllerInput.GetAxisRightTrigger() != 0)
+            {
+                transform.Rotate(Vector3.up, (100 * rotateSensitivity) * Time.deltaTime);
+            }
 
-        if (controllerInput.GetAxisLeftThumbstickY() > 0)
-        {
-            transform.position = transform.position + (transform.forward* (moveSensitivity * controllerInput.GetAxisLeftThumbstickY()));
-        }
-        if (controllerInput.GetAxisLeftThumbstickY() < 0)
-        {
-            transform.position = transform.position + (transform.forward * (moveSensitivity * controllerInput.GetAxisLeftThumbstickY()));
-        }
-        if (controllerInput.GetAxisLeftThumbstickX() > 0)
-        {
-            transform.position = transform.position + (transform.right * (moveSensitivity * controllerInput.GetAxisLeftThumbstickX()));
-        }
-        if (controllerInput.GetAxisLeftThumbstickX() < 0)
-        {
-            transform.position = transform.position + (transform.right * (moveSensitivity * controllerInput.GetAxisLeftThumbstickX()));
-        }
+            if (controllerInput.GetAxisLeftTrigger() != 0)
+            {
 
-        if (controllerInput.GetButtonDown(ControllerButton.LeftThumbstick))
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y + ratchetSensitivity, transform.position.z);
-        }
+                transform.Rotate(Vector3.down, (100 * rotateSensitivity) * Time.deltaTime);
+            }
 
 
-        if (controllerInput.GetButtonDown(ControllerButton.RightThumbstick))
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y - ratchetSensitivity, transform.position.z);
+            //position
+            if (controllerInput.GetAxisLeftThumbstickY() > 0)
+            {
+                transform.position = transform.position + (transform.forward * (moveSensitivity * controllerInput.GetAxisLeftThumbstickY()));
+            }
+            if (controllerInput.GetAxisLeftThumbstickY() < 0)
+            {
+                transform.position = transform.position + (transform.forward * (moveSensitivity * controllerInput.GetAxisLeftThumbstickY()));
+            }
+            if (controllerInput.GetAxisLeftThumbstickX() > 0)
+            {
+                transform.position = transform.position + (transform.right * (moveSensitivity * controllerInput.GetAxisLeftThumbstickX()));
+            }
+            if (controllerInput.GetAxisLeftThumbstickX() < 0)
+            {
+                transform.position = transform.position + (transform.right * (moveSensitivity * controllerInput.GetAxisLeftThumbstickX()));
+            }
+
+
+            //position vertical
+            if (controllerInput.GetButtonDown(ControllerButton.LeftThumbstick))
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y + ratchetSensitivity, transform.position.z);
+            }
+
+
+            if (controllerInput.GetButtonDown(ControllerButton.RightThumbstick))
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y - ratchetSensitivity, transform.position.z);
+            }
+
+
+
+            //admin menu control
+            if (controllerInput.GetButtonDown(ControllerButton.A))
+            {
+                toggleMenu();
+
+            }
         }
 
-        if (controllerInput.GetButtonDown(ControllerButton.A))
-        {
-            toggleMenu();
-                
-        }
 
     }
 
     public void toggleMenu()
     {
-        mainMenuContent.SetActive(!mainMenuContent.activeSelf);
+        adminMenuContent.SetActive(!adminMenuContent.activeSelf);
     }
 
-    public void switchBoiler()
-    {
-        if (popUpBoiler[0].activeSelf)
-        {
-
-            databaseMan.Instance.popUp = 0;
-            normalBoiler.SetActive(true);
-            for (int i = 0; i < popUpBoiler.Length; i++)
-            {
-
-                popUpBoiler[i].SetActive(false);
-
-                if (System.IO.File.Exists(Path.Combine(Application.persistentDataPath, "JO_JJ_values.json")))
-                {
-                    databaseMan.Instance.valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_values.json");
-                }
 
 
-            }
-        }
-        else if (normalBoiler.activeSelf)
-        {
-            normalBoiler.SetActive(false);
-            for (int i = 0; i < popUpBoiler.Length; i++)
-            {
 
-                databaseMan.Instance.popUp = 1;
-                popUpBoiler[i].SetActive(true);
-
-                if (System.IO.File.Exists(Path.Combine(Application.persistentDataPath, "JO_JJ_valuesPopUp.json")))
-                {
-                   databaseMan.Instance.valuesDir = Path.Combine(Application.persistentDataPath, "JO_JJ_valuesPopUp.json");
-                }
-            }
-        }
-    }
 }

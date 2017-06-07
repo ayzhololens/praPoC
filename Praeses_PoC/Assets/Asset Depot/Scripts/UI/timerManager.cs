@@ -26,6 +26,7 @@ public class timerManager : Singleton<timerManager> {
 
     public void radialCountDown()
     {
+        //reset the timer and start the loading animation on the cursor object
         if (!isCounting)
         {
             startCounter = counter;
@@ -38,6 +39,8 @@ public class timerManager : Singleton<timerManager> {
         {
             counter -= Time.deltaTime;
 
+
+            //trigger the radial menu opening
             if (counter < 0)
             {
                 radialManagement.Instance.SendMessage("turnOnRadialMenu", SendMessageOptions.DontRequireReceiver);
@@ -50,6 +53,7 @@ public class timerManager : Singleton<timerManager> {
 
     }
 
+    //reset the counter and stop the anim
     public void CountInterrupt()
     {
 
@@ -61,6 +65,7 @@ public class timerManager : Singleton<timerManager> {
 
     public void tumbleCountDown()
     {
+        //reset the timer and start the loading animation on the cursor object
         if (!isCounting)
         {
             startCounter = counter;
@@ -73,6 +78,7 @@ public class timerManager : Singleton<timerManager> {
         {
             counter -= Time.deltaTime;
 
+            //trigger the tumbler opening
             if (counter < 0)
             {
                 onModelDragHybrid.Instance.colliderOn();

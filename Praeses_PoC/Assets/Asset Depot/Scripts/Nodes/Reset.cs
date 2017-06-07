@@ -83,7 +83,7 @@ namespace HoloToolkit.Unity
             }
             if (clearedNodes.Count > 0)
             {
-                wipeList();
+                wipeNodes();
 
             }
 
@@ -91,7 +91,7 @@ namespace HoloToolkit.Unity
 
         }
 
-        void wipeList()
+        void wipeNodes()
         {
             //delete each node and clear the node list
             foreach(GameObject node in clearedNodes)

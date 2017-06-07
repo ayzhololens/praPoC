@@ -21,7 +21,7 @@ public class boilerTransformRecorder : MonoBehaviour {
 
     void grabBoilerTransform()
     {
-        Transform boiler = boilerSpawner.Instance.boiler.transform;
+        Transform boiler = boilerSpawner.Instance.boilerParent.transform;
         boilerClass.transform.Clear();
         boilerClass.transform.Add(boiler.localPosition.x);
         boilerClass.transform.Add(boiler.localPosition.y);
