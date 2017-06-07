@@ -4,24 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using HoloToolkit.Unity.InputModule;
 
-//#if WINDOWS_UWP
-//using WindowsInput;
-//#endif
-
 namespace HoloToolkit.Unity
 {
     public class keyboardScript : Singleton<keyboardScript>
     {
-
+        [Tooltip("gameobject to hide or unhide when keyboard turns on")]
         public GameObject keyboardActivator;
-        public bool onOff;
-        public InputField currentField;
+
+        public bool onOff { get; set; }
+        public InputField currentField { get; set; }
+
+        [Tooltip("Keyboard Input field")]
         public InputField keyboardField;
+
+        [Tooltip("this gets filled in depending on deltas")]
         public TextMesh previousValue;
+
+        [Header("CapslockItems")]
         public GameObject numbers;
         public GameObject symbols;
         bool symbolsOn;
-
         public GameObject lower;
         public GameObject upper;
         bool shift;
@@ -32,9 +34,12 @@ namespace HoloToolkit.Unity
         public GameObject LcapsLockBG;
         public GameObject RcapsLockBG;
 
+        [Header("Text Scrolling Items")]
         public Text actualText;
+        [Tooltip("limit how long the characters can go on the field before it starts scrolling to the right")]
         public int textLength;
 
+        [Header("QWERTY Numpad Switcher")]
         public GameObject keypad;
         public GameObject numpad;
         public GameObject micOn;
@@ -61,6 +66,7 @@ namespace HoloToolkit.Unity
 
         }
 
+        //This is called on update so the double click registers for capslock
         void doubleClick()
         {
             if (shift)
@@ -74,6 +80,7 @@ namespace HoloToolkit.Unity
 
         }
 
+        //this is called whenever a comment is created/added or when a form is edited
         public void editChangeSync()
         {
             if (currentField.GetComponent<inputFieldManager>().commentNode != null)
@@ -86,11 +93,11 @@ namespace HoloToolkit.Unity
             }
         }
 
+        //this is so the field and carat can scroll to the right if the number of characters hits the limit
         void textSync()
         {
             if (keyboardField.text.Length > textLength)
             {
-                //print(keyboardField.text.Length + " is bigger than " + textLength);
                 actualText.text = keyboardField.text;
                 actualText.text = keyboardField.text.Remove(0, keyboardField.text.Length - textLength);
             }else
@@ -99,6 +106,8 @@ namespace HoloToolkit.Unity
             }
         }
 
+        //on off state
+        #region
         public void turnOn()
         {
             getText();
@@ -125,10 +134,6 @@ namespace HoloToolkit.Unity
             }
             keyboardActivator.SetActive(true);
 
-
-            //canvasOriPos = canvasObj.GetComponent<RectTransform>().position;
-            //canvasOffset = canvasOriPos + new Vector3(0, .2f, 0);
-
             keyboardField.ActivateInputField();
             onOff = true;
             cameraParent();
@@ -144,22 +149,6 @@ namespace HoloToolkit.Unity
             shift = false;
             //====================================================================
         }
-        
-
-        public void adjustCaret()
-        {
-            keyboardField.caretPosition = currentField.text.Length;
-        }
-
-        void cameraParent()
-        {
-            Quaternion oldRot = transform.rotation;
-            transform.SetParent(Camera.main.transform);
-            transform.localPosition = new Vector3(0, 0, 1);
-            transform.rotation = new Quaternion(oldRot.x, 0, oldRot.z, oldRot.w);
-            transform.SetParent(null);
-        }
-
 
         public void turnOff()
         {
@@ -170,12 +159,6 @@ namespace HoloToolkit.Unity
             keyboardField.text = "";
             useNumpad = false;
             useKeypad = false;
-            //canvasObj.transform.position = Vector3.MoveTowards(canvasOriPos,canvasOffset, animMult);
-        }
-
-        void cleartext()
-        {
-            keyboardField.text = "";
         }
 
         public void keyboardToggle()
@@ -183,21 +166,42 @@ namespace HoloToolkit.Unity
             if (onOff)
             {
                 turnOff();
-                
+
             }
             else
             {
                 turnOn();
-               
+
             }
         }
 
+        #endregion
+
+        //this is for positioning the keyboard when turned on
+        void cameraParent()
+        {
+            Quaternion oldRot = transform.rotation;
+            transform.SetParent(Camera.main.transform);
+            transform.localPosition = new Vector3(0, 0, 1);
+            transform.rotation = new Quaternion(oldRot.x, 0, oldRot.z, oldRot.w);
+            transform.SetParent(null);
+        }
+
+        //typing and clearing fields
+        #region
+        void cleartext()
+        {
+            keyboardField.text = "";
+        }
+
+        //will type a character based on the processed gameobject.name hit by gaze
         public void typeObject()
         {
             keyboardField.text = keyboardField.text.Insert(keyboardField.caretPosition, processUnderScore(GazeManager.Instance.HitObject.name));
             keyboardField.caretPosition++;
         }
 
+        //types the values of the previous value 
         public void typeSuggestion()
         {
             cleartext();
@@ -205,25 +209,7 @@ namespace HoloToolkit.Unity
             keyboardField.caretPosition = keyboardField.caretPosition + processParentheses(previousValue.text).Length;
         }
 
-        public void typeCapitalCheck()
-        {
-            typeObject();
-            if (!capsLock)
-            {
-                shiftToggle();
-            }
-        }
-
-        public void capsToggle()
-        {
-            if (!capsLock)
-            {
-                capsLock = true;
-            }else
-            {
-                capsLock = false;
-            }
-        }
+        //processes the naming convention key_# to configure what character is going to be typed
         public virtual string processUnderScore(string inputString)
         {
             string outputString;
@@ -235,6 +221,7 @@ namespace HoloToolkit.Unity
             return outputString;
         }
 
+        //processes historical value without the parentheses
         public virtual string processParentheses(string inputString)
         {
             string outputString;
@@ -281,6 +268,10 @@ namespace HoloToolkit.Unity
             textSync();
         }
 
+        #endregion
+
+        //carat states
+        #region
         public void caretBack()
         {
             keyboardField.caretPosition--;
@@ -291,8 +282,14 @@ namespace HoloToolkit.Unity
             keyboardField.caretPosition++;
         }
 
+        public void adjustCaret()
+        {
+            keyboardField.caretPosition = currentField.text.Length;
+        }
+        #endregion
 
-
+        //shift and capslock
+        #region
         public void symbolsToggle()
         {
             if (symbolsOn)
@@ -351,17 +348,36 @@ namespace HoloToolkit.Unity
             }
         }
 
+        public void typeCapitalCheck()
+        {
+            typeObject();
+            if (!capsLock)
+            {
+                shiftToggle();
+            }
+        }
+
+        public void capsToggle()
+        {
+            if (!capsLock)
+            {
+                capsLock = true;
+            }
+            else
+            {
+                capsLock = false;
+            }
+        }
+        #endregion
+
+        //dictation
+        #region
         public void startRecording()
         {
-            print("hi");
             numpad.SetActive(false);
-            print("numpad");
             keypad.SetActive(false);
-            print("keypad");
             micOn.SetActive(true);
-            print("micon");
             isRecording = true;
-            print("isrecording");
         }
 
         public void finishRecording()
@@ -377,6 +393,7 @@ namespace HoloToolkit.Unity
             micOn.SetActive(false);
             isRecording = false;
         }
+        #endregion
     }
 
 }

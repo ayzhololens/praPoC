@@ -10,14 +10,16 @@ public class populateOffsite : MonoBehaviour {
     public List<GameObject> cameras;
     public GameObject spatialMap;
 
-    //overview
+    [Header("Overview")]
     public Text vioNum;
     public Text anoNum;
     public Text fieNum;
+    //this differentates offsite versus indeviceoffsie
     public bool inDevice;
 
     // Use this for initialization
     void Start () {
+        //we are putting delays because it can't load at the same time it's trying to unpack the JSON files
         Invoke("loadCommand", .2f);
         Invoke("populateForm", .5f);
         Invoke("populateVio", .5f);
@@ -29,6 +31,7 @@ public class populateOffsite : MonoBehaviour {
             loadSpatialMesh();
         }
 
+        //this is if we want to expand further on individual camera view at runtime focusing on specific objects
         //foreach (GameObject cam in cameras)
         //{
         //    cam.GetComponent<CameraControlOffsite>().focus(0);

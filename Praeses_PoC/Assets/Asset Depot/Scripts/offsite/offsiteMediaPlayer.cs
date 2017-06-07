@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using HoloToolkit.Unity;
 
 using RenderHeads.Media.AVProVideo;
-
+//this script opens media from annotations as well as media that is left as a comment within a violation
+//if it is within a violation comment list, it will open it as a full screen content
 public class offsiteMediaPlayer : MonoBehaviour {
 
     public GameObject mediaWindow;
@@ -42,12 +43,14 @@ public class offsiteMediaPlayer : MonoBehaviour {
 
     private void Start()
     {
+        //initial positions are recorded at start
         initPos = new Vector3(1442.008f, 110.0012f, -118.0077f);
         initScale = new Vector3(189.6336f, 189.6336f, 105.3446f);
         initSTPos = new Vector3(1720, 125,0);
         initSTScale = new Vector3(.677f, .677f, .677f);
     }
 
+    //this is called if we only want video full screen
     public void videoOnly()
     {
         hideThis.SetActive(false);
@@ -56,6 +59,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
         mediaPlane.transform.localScale = new Vector3(295.3811f, 766.8397f, 164.089f);
     }
 
+    //this is called if we want simple text full screen
     public void simpleOnly()
     {
         hideThis.SetActive(false);
@@ -64,6 +68,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
         simpleText.GetComponent<RectTransform>().transform.localScale = Vector3.one;
     }
 
+    //this is to reset things back to the default non full screen mode
     void allVisible()
     {
         hideThis.SetActive(true);
@@ -203,6 +208,7 @@ public class offsiteMediaPlayer : MonoBehaviour {
 
     }
 
+    //below is al actions on medial player by render heads for playback of video
     public void loadVideo()
     {
         videoPlayer.m_VideoPath = gameObject.GetComponent<offsiteFieldItemValueHolder>().path.text;

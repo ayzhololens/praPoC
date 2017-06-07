@@ -7,6 +7,9 @@ using HoloToolkit.Unity;
 using RenderHeads.Media.AVProVideo.Demos;
 using System.IO;
 
+//this script deals with populating the annotations section with only (simple text, photo, or video nodes) from
+//the JU_databaseMan. The comments within them are dealt with when the media player is opened. This script populates
+//them in a column of 3 using the modulo calculation to limit this and moves on to a new row after every 3 items
 public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> {
 
     int nodeRow;
@@ -46,7 +49,6 @@ public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> 
         List<JU_databaseMan.nodeItem> nodesList = new List<JU_databaseMan.nodeItem>();
         foreach (JU_databaseMan.nodeItem nodeItem in JU_databaseMan.Instance.nodesManager.nodes)
         {
-            //print("hi: "+ nodeItem.title);
             if (nodeItem.type == 2 || nodeItem.type == 3) { }
             else
             {
@@ -66,6 +68,7 @@ public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> 
             currentItem = en + 1;
             currentRow = nodeRow + 1;
 
+            //modulo here for counts of 3 before adding new row
             nodeRow = Mathf.FloorToInt((en + 1) / 3);
             nodeColumn = ((en % 3) + 1);
 
@@ -154,7 +157,6 @@ public class annotationsCollapseableBox : Singleton<annotationsCollapseableBox> 
             newItem.GetComponent<offsiteMediaPlayer>().videoPlayer = videoPlayer;
             newItem.GetComponent<offsiteMediaPlayer>().playButton = playButton;
             newItem.GetComponent<offsiteMediaPlayer>().hideThis = hideThis;
-            //fieldItemCollection.Add(fieldItem.Name, newItem);
         }
 
     }

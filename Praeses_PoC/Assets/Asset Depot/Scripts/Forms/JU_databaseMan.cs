@@ -15,11 +15,8 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
 
     public Dictionary<string, GameObject> formPairs = new Dictionary<string, GameObject>();
 
-    private void Update()
-    {
-
-    }
-
+    //class definitions
+    #region
     [System.Serializable]
     public class MainForm
     {
@@ -155,7 +152,11 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         public string requirements;
         public int nodeIndex;
     }
+    #endregion
 
+    ///<summary>
+    ///reads definitions from databaseMan
+    ///</summary>
     public void loadDefCmd()
     {
         readEquipmentFields();
@@ -163,6 +164,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         readNonDisplayedFields();
     }
 
+    ///<summary>
+    ///apply values from databaseMan
+    ///</summary>
     public void loadValCmd()
     {
         readLocationFields();
@@ -173,12 +177,18 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         loadViolationsCmd();
     }
 
+    ///<summary>
+    ///load the value contents of a node from databaseMan into this class
+    ///</summary>
     public void loadNodesCmd()
     {
         nodesManager.nodes.Clear();
+        //creating a new temp list so we can reorder by date later
         List<nodeItem> tempNodeList = new List<nodeItem>();
 
         databaseMan.ObjectsClass objectItem = databaseMan.Instance.values.Location.Equipment[0];
+
+        //iterate through nodes in the databaseMan 
         foreach (databaseMan.NodeClass node in objectItem.Nodes)
         {
             nodeItem newNodeItem = new nodeItem();
@@ -189,6 +199,7 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
             newNodeItem.user = node.user;
             newNodeItem.date = node.date;
             newNodeItem.description = node.description;
+            //iterate through the comments within the node(for simple text type)
             foreach (databaseMan.comment commentItem in node.comments)
             {
                 comment newComment = new comment();
@@ -197,16 +208,20 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
                 newComment.date = commentItem.date;
                 newNodeItem.comments.Add(newComment);
             }
+            //iterate through the medias within the node(for photo and video)
             foreach (databaseMan.media mediaItem in node.medias)
             {
                 media newMedia = new media();
                 newMedia.path = mediaItem.path;
                 newMedia.user = mediaItem.user;
                 newMedia.date = mediaItem.date;
+
+                //for type photo
                 if (mediaItem.type == 2)
                 {
                     newNodeItem.photos.Add(newMedia);
                 }
+                //for type video
                 else if (mediaItem.type == 3)
                 {
                     newNodeItem.videos.Add(newMedia);
@@ -218,6 +233,8 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
 
             tempNodeList.Add(newNodeItem);
         }
+
+        //reorder by date before adding back into the list
         foreach (nodeItem nodeItem in tempNodeList.OrderBy(si => si.date).ToList().Reverse<nodeItem>())
         {
             nodesManager.nodes.Add(nodeItem);
@@ -225,6 +242,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
 
     }
 
+    ///<summary>
+    ///load the violations from databaseMan into this class
+    ///</summary>
     public void loadViolationsCmd()
     {
         violationsManager.violations.Clear();
@@ -234,6 +254,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         }
     }
 
+    ///<summary>
+    ///load the locations data from databaseMan into this class
+    ///</summary>
     void readLocationFields()
     {
         definitions.LocationFields.address1 = databaseMan.Instance.values.Location.Address.address1;
@@ -247,6 +270,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         definitions.LocationFields.Zip = databaseMan.Instance.values.Location.Address.Zip;
     }
 
+    ///<summary>
+    ///load the equipment field definitions from databaseMan into this class
+    ///</summary>
     void readEquipmentFields()
     {
         foreach (databaseMan.fieldItem fieldItem in databaseMan.Instance.definitions.EquipmentFields.threeNine)
@@ -261,6 +287,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         }
     }
 
+    ///<summary>
+    ///load the inspection field definitions from databaseMan into this class
+    ///</summary>
     void readInspectionFields()
     {
         foreach (databaseMan.fieldItem fieldItem in databaseMan.Instance.definitions.EquipmentInspectionFields.threeNine)
@@ -282,6 +311,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         }
     }
 
+    ///<summary>
+    ///load the non displayable field definitions from databaseMan into this class
+    ///</summary>
     void readNonDisplayedFields()
     {
         foreach (databaseMan.fieldItem fieldItem in databaseMan.Instance.definitions.nonDisplayedFields.threeNine)
@@ -298,6 +330,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         }
     }
 
+    ///<summary>
+    ///load the equipment field values from databaseMan into this class
+    ///</summary>
     public void loadEquipmentData()
     {
         values.equipmentData.Clear();
@@ -325,6 +360,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         }
     }
 
+    ///<summary>
+    ///load the historic values from databaseMan into this class, for later display in parentheses
+    ///</summary>
     void loadHistoric()
     {
         foreach (databaseMan.ItemClass item in databaseMan.Instance.values.Location.Equipment[0].PreviousInspection[0].InspectionData)
@@ -342,6 +380,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         }
     }
 
+    ///<summary>
+    ///load the current values from databaseMan into this class, for delta comparisons
+    ///</summary>
     public void loadCurrentData()
     {
         values.currentData.Clear();
@@ -356,12 +397,18 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         }
     }
 
+    ///<summary>
+    ///string splitting violation categories
+    ///</summary>
     public virtual string categoryParser(string numbers, int category)
     {
         string[] result = numbers.Split('.');
         return result[category];
     }
 
+    ///<summary>
+    ///converts violation item from databaseMan to JU_databaseMan
+    ///</summary>
     public virtual ViolationsItem violationParser(databaseMan.ViolationsClass incomingItem)
     {
         ViolationsItem newViolation = new ViolationsItem();
@@ -379,6 +426,9 @@ public class JU_databaseMan : Singleton<JU_databaseMan>
         return newViolation;
     }
 
+    ///<summary>
+    ///converts violation category int code into its string dictionary pairs in violationsLib.cs, with exceptions for incomplete library
+    ///</summary>
     public virtual List<string> categoryStringer(ViolationsItem violation)
     {
 

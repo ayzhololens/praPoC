@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using HoloToolkit.Unity;
 
+//this script populates the field deltas section in the offsite experience
+//it iterates through the historic values and current values and compares them by keyword dictionary pairs
 public class fieldCollapseableBox : Singleton<fieldCollapseableBox> {
 
     public GameObject fieldDeltaPrefab;
@@ -55,7 +57,6 @@ public class fieldCollapseableBox : Singleton<fieldCollapseableBox> {
                 {
                     if (historyItem.value != currentItem.value)
                     {
-                        //print(currentItem.name + " deltas: " + historyItem.value + " and " + currentItem.value);
                         //definitions
                         JU_databaseMan.compareItem newFieldItem = new JU_databaseMan.compareItem();
                         newFieldItem.name = currentItem.name;
@@ -76,9 +77,6 @@ public class fieldCollapseableBox : Singleton<fieldCollapseableBox> {
             }
         }
 
-        //scrollBox.GetComponent<RectTransform>().sizeDelta = new Vector2(scrollBox.GetComponent<RectTransform>().rect.width,
-        //                                    scrollBox.GetComponent<RectTransform>().rect.height +90);
-
         bigBox.startCollapse += 25;
         bigBox.readjustBox();
         //values
@@ -89,9 +87,6 @@ public class fieldCollapseableBox : Singleton<fieldCollapseableBox> {
                 insertComparativeValues(compareItem);
             }
         }
-        //nextLiner.GetComponent<RectTransform>().localPosition = new Vector3(nextLiner.GetComponent<RectTransform>().localPosition.x,
-        //                                                    nextLiner.GetComponent<RectTransform>().localPosition.y - 25,
-        //                                                    0);
     }
 
     void addOneFieldDelta(GameObject parentObj, float yOffset, JU_databaseMan.compareItem compareItem)
