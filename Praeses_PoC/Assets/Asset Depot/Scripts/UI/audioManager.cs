@@ -10,10 +10,15 @@ namespace HoloToolkit.Unity.InputModule
     {
 
         public AudioClip highlightSound;
+        [Tooltip("Index: 0")]
         public AudioClip selectSound;
+        [Tooltip("Index: 1")]
         public AudioClip successSound;
+        [Tooltip("Index: 2")]
         public AudioClip verifyContinueSound;
+        [Tooltip("Index: 3")]
         public AudioClip openSound;
+        [Tooltip("Index: 4")]
         public AudioClip closeSound;
         public AudioSource src;
 

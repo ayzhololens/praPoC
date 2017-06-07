@@ -14997,7 +14997,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shed
+  m_Text: HoloDeck
 --- !u!114 &114145591678039152
 MonoBehaviour:
   m_ObjectHideFlags: 1
