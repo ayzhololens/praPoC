@@ -5,7 +5,7 @@ using HoloToolkit.Unity;
 
 public class violationsLib : Singleton<violationsLib> {
 
-    //h
+    //list acceptable violation categories for proof of concept. Will need to be expanded per specific states
     public Dictionary<int, string> violationsCategory = new Dictionary<int, string>();
     public Dictionary<int, string> violationsSubCategory1 = new Dictionary<int, string>();
     public Dictionary<int, string> violationsSubCategory4 = new Dictionary<int, string>();
@@ -85,7 +85,7 @@ public class violationsLib : Singleton<violationsLib> {
             categoryLib.categoryList[1].subCategoryList.Add(cat, tempSubCategory);
         }
 
-        //subCategory4x
+        //subCategory4
         violationsSubCategory4.Add(1, "Water Leaks");
         violationsSubCategory4.Add(2, "Baffles/refactory");
         violationsSubCategory4.Add(3, "Furnace");
@@ -128,8 +128,4 @@ public class violationsLib : Singleton<violationsLib> {
         }
     }
 
-    private void Update()
-    {
-
-    }
 }

@@ -6,6 +6,8 @@ using HoloToolkit.Unity;
 
 using RenderHeads.Media.AVProVideo;
 
+//this script is mainly for filling out the equipment data section and location
+//it contains media playing section as well to populate comments within an annotation
 public class offsiteJSonLoader : Singleton<offsiteJSonLoader> {
 
     public GameObject fieldItemPrefab;

@@ -20,8 +20,8 @@ public class minimize : MonoBehaviour, IInputClickHandler {
 
     public void miniThis()
     {
+        //copy the real life size avatar to a mini
         miniCopy = Instantiate(gameObject);
-        //print("miniThis:" + miniCopy);
         Destroy(miniCopy.GetComponent<minimize>());
         if (miniCopy.GetComponent<followCam>())
         {
@@ -33,15 +33,18 @@ public class minimize : MonoBehaviour, IInputClickHandler {
             {
                 if (childObj.gameObject.GetComponent<MeshRenderer>() != null)
                 { 
+                //allow mini avatar to be able to activate minimap tumbler
                 childObj.gameObject.tag = "miniMapMesh";
                 }
                 if (childObj.gameObject.name == "headPivot")
                 {
+                    //make the paper plane arrow point at this avatar
                     miniRot = childObj.gameObject;
                     lookAtAvatar.Instance.avatarObj = miniCopy.transform;
                 }
                 if (childObj.gameObject.name == "body_geo")
                 {
+                    //make paper plane visibility the opposite of avatar
                     childObj.gameObject.GetComponent<followViz>().opposite = paperPlane;
                 }
             }
@@ -50,6 +53,7 @@ public class minimize : MonoBehaviour, IInputClickHandler {
         done = true;
         foreach(GameObject mesh in meshesHide)
         {
+            //destroy previously hidden meshes on llife size model because we dont need to see it
             Destroy(mesh.GetComponent<Collider>());
             Destroy(mesh.GetComponent<MeshRenderer>());
         }
@@ -58,23 +62,9 @@ public class minimize : MonoBehaviour, IInputClickHandler {
 
     private void Update()
     {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //depending on the bool turned on, it may include or not include the rotation
         if (miniCopy != null && posUpdate)
         {
-
             miniCopy.transform.localPosition = transform.localPosition;
             miniCopy.transform.localRotation = transform.rotation;
         }
@@ -85,6 +75,7 @@ public class minimize : MonoBehaviour, IInputClickHandler {
         }
     }
 
+    //for manual testing to run manually
     public void OnInputClicked(InputClickedEventData eventData)
     {
         if (!done)

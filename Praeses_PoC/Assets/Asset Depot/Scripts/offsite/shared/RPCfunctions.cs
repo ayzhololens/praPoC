@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+//this script allow networked commands to be executed by the hololens host on the pc user joining the session
+//it is attached to the player prefab caled sharedAvatar
 public class RPCfunctions : NetworkBehaviour {
 
     public GameObject focusGuidedTarget;
@@ -30,7 +32,6 @@ public class RPCfunctions : NetworkBehaviour {
 
         for (int i = 0; i < violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias.Count; i++)
         {
-            print("hi");
             if (violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[i].GetComponent<offsiteMediaPlayer>().commentType == 0)
             {
                 if (violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[commentCount].GetComponent<offsiteMediaPlayer>().commentType == 2 || violationsParentSpawner.Instance.spawnedVioPrefabs[vioCount].violationMedias[commentCount].GetComponent<offsiteMediaPlayer>().commentType == 1)

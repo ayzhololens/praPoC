@@ -7,7 +7,7 @@ namespace HoloToolkit.Unity
     public class minimapSpawn : Singleton<minimapSpawn>
     {
 
-        public GameObject miniMapHolder;
+        public GameObject miniMapHolder { get; set; }
         public List<GameObject> miniMapMeshes;
         public GameObject MiniMapHolderParent;
         public Material occlusionMat;
@@ -17,7 +17,7 @@ namespace HoloToolkit.Unity
         GameObject boiler;
         int switchCounter;
 
-        public Vector3 boilerPivot;
+        public Vector3 boilerPivot { get; set; }
         public GameObject avatar;
         public bool useAvatar;
 
@@ -31,12 +31,7 @@ namespace HoloToolkit.Unity
 
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        //this zeros out the node holder if we need to place anything in the minimap at a later time
         void repositionNodeHolder()
         {
             Transform initParent = mediaManager.Instance.gameObject.transform.parent;
@@ -51,15 +46,13 @@ namespace HoloToolkit.Unity
 
         public void spawnMiniMap()
         {
-            //Debug.Log(miniMapHolder.transform.position);
+            //puts the minimap holder at the transform position of the boiler as its pivot
             boiler = GameObject.Find("boiler");
             boiler.transform.SetParent(transform);
             repositionNodeHolder();
 
             for (int i = 0; i < transform.childCount; i++)
             {
-
-
                 miniMapMeshes.Add((GameObject)Instantiate(transform.GetChild(i).gameObject, transform.GetChild(i).position, transform.GetChild(i).localRotation));
                 miniMapMeshes[i].transform.SetParent(miniMapHolder.transform);
                 if (miniMapMeshes[i].tag == "boilerPrefab")
@@ -86,11 +79,11 @@ namespace HoloToolkit.Unity
                     miniMapMeshes[i].GetComponent<MeshRenderer>().enabled = false;
                     miniMapMeshes[i].layer = 2;
                 }
+
+                //override the materials 
                 if (miniMapMeshes[i].GetComponent<Renderer>() != null)
                 {
                     miniMapMeshes[i].GetComponent<Renderer>().material = miniMapMat;
-
-                    //miniMapMeshes[i].GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
                 }
 
                 if (miniMapMeshes[i].GetComponent<MeshRenderer>() != null)
@@ -101,16 +94,15 @@ namespace HoloToolkit.Unity
                 if (miniMapMeshes[i].GetComponent<WorldAnchor>() != null)
                 {
                     Destroy(miniMapMeshes[i].GetComponent<WorldAnchor>());
-                    //miniMapMeshes[i].GetComponent<MeshRenderer>().enabled = false;
                 }
 
                 if (miniMapMeshes[i].GetComponent<MeshFilter>() != null && miniMapMeshes[i].GetComponent<MeshFilter>().sharedMesh != null)
                 {
                     miniMapMeshes[i].GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
-
                 }
             }
 
+            //set the minimap holder back to its original position after we reset it
             MiniMapHolderParent.transform.localScale = MiniMapHolderParent.transform.localScale / scaleOffset;
             MiniMapHolderParent.transform.position = boilerPivot;
             miniMapHolder.transform.SetParent(MiniMapHolderParent.transform);

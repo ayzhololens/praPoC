@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using HoloToolkit.Unity;
 
+//this script deals with individual violation prefabs and its isolated content
 public class violationsCollapseableBox : MonoBehaviour {
 
+    //parameter and values for this violation item
     public int vioInt;
     public Text dateAddedValue;
     public Text dueValue;
@@ -18,6 +20,7 @@ public class violationsCollapseableBox : MonoBehaviour {
     public Text conditions;
     public Text requirements;
 
+    //2D layout items
     public GameObject collapseIcon;
     public GameObject expandIcon;
     public GameObject collapseContent;
@@ -30,6 +33,7 @@ public class violationsCollapseableBox : MonoBehaviour {
 
     public GameObject addObject;
 
+    //prefabs for the different status states sprite
     public GameObject fixd;
     public GameObject nu;
     public GameObject haz;
@@ -144,8 +148,6 @@ public class violationsCollapseableBox : MonoBehaviour {
         collapseContent.SetActive(false);
         vioBox.GetComponent<RectTransform>().sizeDelta = new Vector2(vioBox.GetComponent<RectTransform>().rect.width,
                         vioBox.GetComponent<RectTransform>().rect.height - expandSize);
-        //bigBox.GetComponent<RectTransform>().sizeDelta = new Vector2(vioBox.GetComponent<RectTransform>().rect.width,
-        //                vioBox.GetComponent<RectTransform>().rect.height - expandSize);
         foreach (GameObject childItem in childItems)
         {
             childItem.GetComponent<RectTransform>().localPosition = new Vector3(childItem.GetComponent<RectTransform>().localPosition.x,

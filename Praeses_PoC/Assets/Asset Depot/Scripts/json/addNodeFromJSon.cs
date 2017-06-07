@@ -10,9 +10,14 @@ using System.Linq;
 public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
     public GameObject[] nodeprefabs;
+
+    [Header("For Offsite Use")]
     public Text changedText;
     public GameObject offSiteHolder;
 
+    ///<summary>
+    ///spawn a single node onsite by feeding the argument nodeClass 
+    ///</summary>
     public void spawnNode(JU_databaseMan.nodeItem nodeClass)
     {
         Vector3 pos = new Vector3(nodeClass.transform[0], nodeClass.transform[1], nodeClass.transform[2]);
@@ -32,6 +37,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
         spawnedNode.GetComponent<nodeController>().fromJSON = true;
 
+        //Apply this to node type field 
         #region
 
         if (nodeClass.type == 2)//type = 2 field
@@ -147,7 +153,8 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
 
         }
         #endregion
-        //h
+        //apply this to node type violation
+        #region
         else if (nodeClass.type == 3)// type = 3 violation
         {
 
@@ -226,6 +233,8 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
             }
 
         }
+        #endregion
+        //apply this for annotation types
         else
         {
 
@@ -241,49 +250,48 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
                 comment3D.GetComponent<commentContents>().commentMetaDate.text = commentJU.date;
                 comment3D.GetComponent<commentContents>().commentMain.text = commentJU.content;
             }
+
+            if (nodeClass.type == 0)//simple type=0
+            {
+                nodeSpawner.Instance.spawnMiniNode(spawnedNode, 0);
+            }
+            else if (nodeClass.type == 1)//photo type=1
+            {
+
+                nodeSpawner.Instance.spawnMiniNode(spawnedNode, 1);
+                spawnedNode.GetComponent<nodeMediaHolder>().activeFilepath = nodeClass.photos[0].path;
+                spawnedNode.GetComponent<nodeMediaHolder>().loadPhoto(System.IO.Path.Combine(Application.persistentDataPath, nodeClass.photos[0].path));
+            }
+            else if (nodeClass.type == 4)//video type=4
+            {
+
+                nodeSpawner.Instance.spawnMiniNode(spawnedNode, 2);
+                spawnedNode.GetComponent<nodeMediaHolder>().activeFilepath = nodeClass.videos[0].path;
+                spawnedNode.GetComponent<nodeMediaHolder>().LoadVideo();
+            }
         }
 
-        if (nodeClass.type == 0)//simple type=0
-        {
-            nodeSpawner.Instance.spawnMiniNode(spawnedNode, 0);
-            //spawnedNode.GetComponent<nodeController>().closeNode();
-        }
-        else if (nodeClass.type == 1)//photo type=1
-        {
-
-            nodeSpawner.Instance.spawnMiniNode(spawnedNode, 1);
-            spawnedNode.GetComponent<nodeMediaHolder>().activeFilepath = nodeClass.photos[0].path;
-            //spawnedNode.GetComponent<nodeMediaHolder>().activeFileName = shortNameProcessor(nodeClass.photos[0].path);
-            spawnedNode.GetComponent<nodeMediaHolder>().loadPhoto(System.IO.Path.Combine(Application.persistentDataPath, nodeClass.photos[0].path));
-            //print(System.IO.Path.Combine(Application.persistentDataPath, nodeClass.photos[0].path));
-            //spawnedNode.GetComponent<nodeController>().closeNode();
-        }
-        else if (nodeClass.type == 4)//video type=4
-        {
-
-            nodeSpawner.Instance.spawnMiniNode(spawnedNode, 2);
-            spawnedNode.GetComponent<nodeMediaHolder>().activeFilepath = nodeClass.videos[0].path;
-            //spawnedNode.GetComponent<nodeMediaHolder>().activeFileName = nodeClass.videos[0].path;
-            spawnedNode.GetComponent<nodeMediaHolder>().LoadVideo();
-
-        }
-
-
+        //this applies to all 
         spawnedNode.GetComponent<nodeController>().setUpNode();
         spawnedNode.GetComponent<nodeController>().closeNode();
         spawnedNode.GetComponent<BoxCollider>().enabled = true;
 
     }
 
+    ///<summary>
+    ///spawn nodes over loop
+    ///</summary>
     public void spawnNodeList()
     {
         foreach (JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
         { 
         spawnNode(node);
         }
-        //spawnNode(JU_databaseMan.Instance.nodesManager.nodes[0]);
     }
 
+    ///<summary>
+    ///string split for short names of file directories
+    ///</summary>
     public virtual string shortNameProcessor(string inString)
         {
         string[] result;
@@ -291,11 +299,18 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         return result[result.Length-1];
         }
 
+    ///<summary>
+    ///for offsite experience to show host information
+    ///</summary>
     public void changeTextTest()
     {
         changedText.text = ("Host : " + JU_databaseMan.Instance.nodesManager.nodes[0].user);
     }
 
+    ///<summary>
+    ///spawn a single node offsite by feeding the argument nodeClass, this is a more simplified version
+    ///because on the offsite version the nodes are not clickable to open
+    ///</summary>
     public void spawnNodeOffsite(JU_databaseMan.nodeItem nodeClass)
     {
         Vector3 pos = new Vector3(nodeClass.transform[0], nodeClass.transform[1], nodeClass.transform[2]);
@@ -315,18 +330,16 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
             GameObject connectObj = GameObject.Find("guidedTargetDemo");
             connectObj.GetComponent<cameraZoomOverTime>().targetObject = spawnedNode;
         }
-        //spawnedNode.GetComponent<nodeMediaHolder>().type = nodeClass.type;
-        //spawnedNode.GetComponent<nodeMediaHolder>().User = nodeClass.user;
-        //spawnedNode.GetComponent<nodeMediaHolder>().Date = nodeClass.date;
-        //spawnedNode.GetComponent<nodeMediaHolder>().NodeIndex = nodeClass.indexNum;
     }
 
+    ///<summary>
+    ///spawn nodes over loop offsite
+    ///</summary>
     public void spawnNodeOffsiteList()
     {
         foreach (JU_databaseMan.nodeItem node in JU_databaseMan.Instance.nodesManager.nodes)
         {
             spawnNodeOffsite(node);
         }
-        //spawnNode(JU_databaseMan.Instance.nodesManager.nodes[0]);
     }
 }

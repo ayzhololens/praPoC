@@ -6,13 +6,16 @@ using UnityEngine.UI;
 using System.Linq;
 using RenderHeads.Media.AVProVideo;
 
+//this script populates the violations items in the 2D offsite version reading from JU_databaseMan instance
+//this also populates the comments contained within these violations prefabs
 public class violationsParentSpawner : Singleton<violationsParentSpawner> {
 
     public int expandSize;
     public RectTransform VioBox;
     public GameObject violationPrefab;
     public GameObject parentObj;
-    //will need this
+
+    //for managing other 2D layouts 
     public collapsableManager bigBox { get; set; }
     public GameObject childItem;
 
@@ -105,20 +108,7 @@ public class violationsParentSpawner : Singleton<violationsParentSpawner> {
             newItem.GetComponent<violationsCollapseableBox>().updateCollapseableContents();
 
             vioCam.lockCam();
-            //for (int i = 0; i < JU_databaseMan.Instance.nodesManager.nodes.Count; i++)
-            //{
-            //    if (JU_databaseMan.Instance.nodesManager.nodes[i].indexNum == vio.nodeIndex)
-            //    {
-            //        if (offsiteJSonLoader.Instance.nodes3DList.ContainsKey(i + 1))
-            //        {
-            //            vioCam.focus(i + 1);
-            //        }
-            //        else
-            //        {
-            //            print(offsiteJSonLoader.Instance.nodes3DList.Count);
-            //        }
-            //    }
-            //}
+
             vioListItem newVio = new vioListItem();
             newVio.vioPrefab = newItem;
             populateVioComments(vio, newVio);
