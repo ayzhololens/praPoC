@@ -7082,6 +7082,11 @@ Prefab:
       propertyPath: adminMenuContent
       value: 
       objectReference: {fileID: 71377424}
+    - target: {fileID: 114655243719053160, guid: 2b0503661aa38374a9546bd43bd36f18,
+        type: 2}
+      propertyPath: useController
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b0503661aa38374a9546bd43bd36f18, type: 2}
   m_IsPrefabParent: 0
