@@ -53,7 +53,7 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
                 Event.Invoke();
 
                 //Debug.Log("select");
-                audioManager.Instance.setAndPlayAudio(soundIndex);
+                //audioManager.Instance.setAndPlayAudio(soundIndex);
             }
 
             if (GetComponent<gazeLeaveEvent>() != null && gazeExit)
