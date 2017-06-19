@@ -4,7 +4,7 @@ using UnityEngine;
 using HoloToolkit.Unity.InputModule;
 using HoloToolkit.Unity;
 
-public class triggers : MonoBehaviour {
+public class eyeTriggers : MonoBehaviour {
 
     public GameObject maleAvatar;
     bool smile;
@@ -45,7 +45,7 @@ public class triggers : MonoBehaviour {
     private void FixedUpdate()
     {
         maleAvatar.GetComponent<LoomDeformerLoomie_male>().targetPosition = Camera.main.transform.position;
-        mouthHandManip();
+        menuOn();
     }
 
     #region
@@ -81,7 +81,7 @@ public class triggers : MonoBehaviour {
     }
     #endregion
 
-    private void mouthHandManip()
+    private void menuOn()
     {
         if (GazeManager.Instance.HitObject == gameObject || navigating)
         {
@@ -110,9 +110,9 @@ public class triggers : MonoBehaviour {
                 yPos = handPosLocal.transform.localPosition.y;
 
                 cursorHand.transform.localPosition = new Vector3(xPos, yPos, tempDist / 100 - .025f);
-                mouthExpression(initLocalPos);
+                browExprssion(initLocalPos);
                 othersActiveState(false);
-                //buttons.SetActive(true);
+                buttons.SetActive(true);
             }
             else
             {
@@ -129,18 +129,21 @@ public class triggers : MonoBehaviour {
 
     }
 
-    void mouthExpression(Vector3 offset)
+    void browExprssion(Vector3 offset)
     {
-        maleAvatar.GetComponent<LoomDeformerLoomie_male>().JawClench = Mathf.Clamp(handPosLocal.transform.localPosition.y * 10, 0, 1) ;
-        maleAvatar.GetComponent<LoomDeformerLoomie_male>().JawDrop = Mathf.Clamp(handPosLocal.transform.localPosition.y * -10, 0, 1);
+        float leanXLeft = Mathf.Clamp(handPosLocal.transform.localPosition.x * 10, 0, 1);
+        float leanXRight = Mathf.Clamp(handPosLocal.transform.localPosition.x * -10, 0, 1);
 
-        maleAvatar.GetComponent<LoomDeformerLoomie_male>().JawLeft = Mathf.Clamp(handPosLocal.transform.localPosition.x * 10, 0, 1);
-        maleAvatar.GetComponent<LoomDeformerLoomie_male>().JawRight = Mathf.Clamp(handPosLocal.transform.localPosition.x * -10, 0, 1);
+        maleAvatar.GetComponent<LoomDeformerLoomie_male>().LeftBrowLowered = Mathf.Clamp(handPosLocal.transform.localPosition.y * -10, 0, 1) * (1 - leanXRight);
+        maleAvatar.GetComponent<LoomDeformerLoomie_male>().RightBrowLowered = Mathf.Clamp(handPosLocal.transform.localPosition.y * -10, 0, 1) * (1- leanXLeft);
+
+        maleAvatar.GetComponent<LoomDeformerLoomie_male>().BrowLookLeft = Mathf.Clamp(handPosLocal.transform.localPosition.y * 10, 0, 1) * (1 - leanXRight);
+        maleAvatar.GetComponent<LoomDeformerLoomie_male>().BrowLookRight = Mathf.Clamp(handPosLocal.transform.localPosition.y * 10, 0, 1) * (1 - leanXLeft);
     }
 
     void othersActiveState(bool condition)
     {
-        foreach (GameObject obj in others)
+        foreach(GameObject obj in others)
         {
             obj.GetComponent<Collider>().enabled = condition;
         }
