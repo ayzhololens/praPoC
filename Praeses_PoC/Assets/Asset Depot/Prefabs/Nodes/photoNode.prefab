@@ -6031,7 +6031,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tap to add desription
+  m_Text: Tap to add description
 --- !u!114 &114247677458926860
 MonoBehaviour:
   m_ObjectHideFlags: 1
