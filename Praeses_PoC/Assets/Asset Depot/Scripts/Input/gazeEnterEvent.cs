@@ -27,11 +27,10 @@ namespace HoloToolkit.Unity.InputModule
                     aud.spatialBlend = 1;
                     aud.minDistance = 2;
                     aud.maxDistance = 5;
+                    aud.clip = audioManager.Instance.highlightSound;
 
                 }
             }
-
-            
         }
 
         void GazeEnter()
@@ -39,7 +38,6 @@ namespace HoloToolkit.Unity.InputModule
             if (this.enabled == false) return;
             if (Event != null)
             {
-                aud.clip = audioManager.Instance.highlightSound;
                 aud.Play();
                 Event.Invoke();
 

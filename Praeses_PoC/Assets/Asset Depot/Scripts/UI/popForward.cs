@@ -5,23 +5,23 @@ using UnityEngine;
 public class popForward : MonoBehaviour {
 
     Vector3 startScale;
-    Vector3 largeScale;
     Vector3 startPos;
     Vector3 movePos;
+
+    [Tooltip("Amount to scale by")]
     public float scaleMult;
+    [Tooltip("Amount to move")]
     public float moveDist;
+    [Tooltip("Enable Scaling")]
     public bool scale;
+    [Tooltip("Enable Moving")]
     public bool move;
 
-	// Use this for initialization
 	void Start () {
         startScale = transform.localScale;
-        largeScale = new Vector3(transform.localScale.x + scaleMult, transform.localScale.y + scaleMult, transform.localScale.z + scaleMult);
         startPos = transform.localPosition;
         
 	}
-	
-	// Update is called once per frame
 	void Update () {
 		
 	}
@@ -43,7 +43,6 @@ public class popForward : MonoBehaviour {
 
     public void moveBackward()
     {
-        //Debug.Log("gazeOff");
 
         if (scale)
         {

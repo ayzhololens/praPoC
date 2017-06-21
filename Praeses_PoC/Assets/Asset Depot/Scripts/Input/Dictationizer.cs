@@ -16,10 +16,8 @@ namespace HoloToolkit.Unity.InputModule
     {
         private DictationRecognizer dictationRecognizer;
 
-
-        public Text DictationDisplay;
+        
         public StringBuilder textSoFar;
-        public annotationManager annotMananger;
         public KeywordManager keyWordManager;
         bool inProgress;
 
@@ -28,21 +26,8 @@ namespace HoloToolkit.Unity.InputModule
         void Start()
         {
             inProgress = false;
-            //keyWordManager = GameObject.Find("InputManager").GetComponent<KeywordManager>();
-            //annotMananger = GameObject.Find("AnnotationManager").GetComponent<annotationManager>();
-
-
-
-
-
-
-
 
         }
-
-
-
-
 
         // Update is called once per frame
         void Update()
@@ -50,29 +35,36 @@ namespace HoloToolkit.Unity.InputModule
 
         }
 
+
+        //Dispose of keyword manager resources and set up dictation events
+        //start dictation
         public void setUpDictation()
         {
 
             dictationRecognizer = new DictationRecognizer();
             if (!inProgress)
             {
-
-                //DictationDisplay.text = "Initializing...";
-                textSoFar = new StringBuilder();
+                
                 keyWordManager.keywordRecognizer.Stop();
                 keyWordManager.keywordRecognizer.Dispose();
                 PhraseRecognitionSystem.Shutdown();
+
+
                 dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
                 dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
                 dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
                 dictationRecognizer.DictationError += DictationRecognizer_DictationError;
                 dictationRecognizer.Start();
+
+
+                textSoFar = new StringBuilder();
                 keyboardScript.Instance.keyboardField.text = "Speech to text started.  Begin dictating";
                 inProgress = true;
             }
             
         }
 
+        //Dictation result generated after a short pause
         private void DictationRecognizer_DictationResult(string text, ConfidenceLevel confidence)
         {
             if (keyboardScript.Instance.useKeypad)
@@ -89,6 +81,7 @@ namespace HoloToolkit.Unity.InputModule
 
         }
 
+        //Immediate guess as to what was just dictated
         private void DictationRecognizer_DictationHypothesis(string text)
         {
 
@@ -103,6 +96,8 @@ namespace HoloToolkit.Unity.InputModule
             keyboardScript.Instance.keyboardField.caretPosition = keyboardScript.Instance.keyboardField.caretPosition + textSoFar.ToString().Length;
         }
 
+
+        //We use stopDiction() instead of this but this is the out of the box way to stop dictation
         public void DictationRecognizer_DictationComplete(DictationCompletionCause cause)
         {
             dictationRecognizer.DictationResult -= DictationRecognizer_DictationResult;
@@ -114,11 +109,13 @@ namespace HoloToolkit.Unity.InputModule
 
         private void DictationRecognizer_DictationError(string error, int hresult)
         {
-            //DictationDisplay.text = "ERROORRRRR";
+            Debug.LogError("Dictation Failed");
+
         }
 
 
-
+        //shut down dictation recognizer and free up the resources
+        //start the keyword manager again
         public void stopDiction()
         {
             if (inProgress)
@@ -129,9 +126,10 @@ namespace HoloToolkit.Unity.InputModule
                 dictationRecognizer.DictationHypothesis -= DictationRecognizer_DictationHypothesis;
                 dictationRecognizer.DictationError -= DictationRecognizer_DictationError;
                 dictationRecognizer.Dispose();
+
                 keyWordManager.Start();
                 PhraseRecognitionSystem.Restart();
-                //DictationDisplay.text = "done";
+
                 inProgress = false;
             }
 

@@ -7,8 +7,9 @@ using HoloToolkit.Unity.InputModule;
 
 public class sourceManager : Singleton<sourceManager>, ISourceStateHandler, IInputHandler
 {
-
+    [Tooltip("True is the finger is in downward airtap pinch")]
     public bool sourcePressed;
+    [Tooltip("True is the finger is in view frustum and ready position")]
     public bool sourceDetected;
 
 
@@ -24,6 +25,7 @@ public class sourceManager : Singleton<sourceManager>, ISourceStateHandler, IInp
 
     }
 
+    //finger ready and in view frustum
     public void OnSourceDetected(SourceStateEventData eventData)
     {
 
@@ -34,7 +36,7 @@ public class sourceManager : Singleton<sourceManager>, ISourceStateHandler, IInp
 
     }
 
-
+    //Finger removed from view frustum or not ready
     public void OnSourceLost(SourceStateEventData eventData)
     {
         if (sourceDetected)
@@ -44,7 +46,7 @@ public class sourceManager : Singleton<sourceManager>, ISourceStateHandler, IInp
         }
     }
 
-
+    //finger released after an airtap
     public void OnInputUp(InputEventData eventData)
     {
 
@@ -55,6 +57,7 @@ public class sourceManager : Singleton<sourceManager>, ISourceStateHandler, IInp
 
     }
 
+    //finger held in downward position of an airtap
     public void OnInputDown(InputEventData eventData)
     {
         if (!sourcePressed)

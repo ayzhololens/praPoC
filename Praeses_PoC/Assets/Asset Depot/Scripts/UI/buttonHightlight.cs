@@ -5,16 +5,29 @@ using UnityEngine.UI;
 
 public class buttonHightlight : MonoBehaviour {
 
+    [Tooltip("Starting or Default material")]
     public Material mainMat;
+
+    //Mat that objects will be set to
     Material curMat;
+
+
+    [Tooltip("Highlight Material")]
     public Material highlightMat;
+    [Tooltip("Alternate default material")]
     public Material altMat;
+
+    //for when you want to highlight a UI panel thats driven by color rather than materials
+
+    [Tooltip("for when you want to highlight a UI panel thats driven by color rather than materials")]
     public bool isPanel;
     Color panelMain;
     public Color panelHighlight;
-    public GameObject objectOverride;
 
-    // Use this for initialization
+    [Tooltip("Highlight something other than this gameobject")]
+    public GameObject objectOverride;
+    
+
     void Start () {
 
         curMat = mainMat;
@@ -24,56 +37,22 @@ public class buttonHightlight : MonoBehaviour {
             if(objectOverride != null)
             {
                 objectOverride.GetComponent<Renderer>().material = curMat;
-
-                
             }
             else
             {
                 GetComponent<Renderer>().material = curMat;
-                
-
             }
         }
+
+
         if (isPanel)
         {
             panelMain = GetComponent<Image>().color;
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    public void updateMat()
-    {
-        curMat = altMat;
-        if (objectOverride != null)
-        {
-            objectOverride.GetComponent<Renderer>().material = curMat;
-        }
-        else
-        {
-            GetComponent<Renderer>().material = curMat;
 
-        }
-    }
-
-    public void revertMat()
-    {
-
-        curMat = mainMat;
-        if (objectOverride != null)
-        {
-            objectOverride.GetComponent<Renderer>().material = curMat;
-        }
-        else
-        {
-            GetComponent<Renderer>().material = curMat;
-
-        }
-    }
-
+    //set the object mat to highlight
     public void highlight()
     {
         if (!isPanel)
@@ -92,16 +71,17 @@ public class buttonHightlight : MonoBehaviour {
         {
             GetComponent<Image>().color = panelHighlight;
         }
-        
+
     }
 
+    //unhighlight the object
     public void unHighlight()
     {
         if (objectOverride != null)
         {
             objectOverride.GetComponent<Renderer>().material = curMat;
         }
-        else if(!isPanel)
+        else if (!isPanel)
         {
             GetComponent<Renderer>().material = curMat;
         }
@@ -111,4 +91,37 @@ public class buttonHightlight : MonoBehaviour {
         }
 
     }
+
+    //change the default material to an alternate on. Useful for giving color feedback when something has been selected
+    public void updateMat()
+    {
+        curMat = altMat;
+
+        if (objectOverride != null)
+        {
+            objectOverride.GetComponent<Renderer>().material = curMat;
+        }
+        else
+        {
+            GetComponent<Renderer>().material = curMat;
+        }
+    }
+
+    //change the default material back to original
+    public void revertMat()
+    {
+
+        curMat = mainMat;
+        if (objectOverride != null)
+        {
+            objectOverride.GetComponent<Renderer>().material = curMat;
+        }
+        else
+        {
+            GetComponent<Renderer>().material = curMat;
+
+        }
+    }
+
+
 }

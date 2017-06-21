@@ -7,7 +7,10 @@ public class clickMotion : MonoBehaviour
     Vector3 startPos;
     bool movingF;
     bool movingB;
+
+    [Tooltip("Speed")]
     public float moveSpeed;
+    [Tooltip("How far it moves before moving back")]
     public float moveDist;
 
 
@@ -20,6 +23,7 @@ public class clickMotion : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //click moving inwards, when it hit it's distance, the bool will switch off and trigger the moving outwards motion
         if (movingF)
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + moveSpeed);
@@ -30,6 +34,9 @@ public class clickMotion : MonoBehaviour
             }
         }
 
+
+        //click moving outwards, when it hits the initial position, the bool will switch off and send a message to trigger the 
+        //finishClick() function on the selectEvent
         if (movingB)
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - moveSpeed);
@@ -45,6 +52,7 @@ public class clickMotion : MonoBehaviour
 
     }
 
+    //start moving in Update
     public void click()
     {
         movingF = true;

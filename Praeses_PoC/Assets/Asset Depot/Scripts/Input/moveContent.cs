@@ -7,27 +7,30 @@ using HoloToolkit.Unity.InputModule;
 
 public class moveContent : MonoBehaviour,IManipulationHandler
 {
-
+    [Tooltip("Content to be moved.  Usually a ContentHolder")]
     public Transform content;
-    Vector3 handStartPos;
     bool manipulating;
-    Vector3 contentStartPos;
+
+    [Tooltip("Overall sensitivity control")]
     public float sensitivity;
+
+    [Tooltip("Dampens the distance your hand moved before its applied to the transform")]
     public float dampening;
 
-    public nodeController nodeCont;
+    //links the content to the node so it'll open where you left it
+    public nodeController nodeCont { get; set; }
 
+    [Tooltip("Lerp Time")]
     public float lerp;
-    bool canManipulate;
-    public GameObject BoundingBox;
+
+    [Tooltip("Button that must be gazed in order to start moving")]
     public GameObject MoveButton;
+
     Vector3 prevDelta;
-    Vector3 startDelta;
     Vector3 curDelta;
 
     // Use this for initialization
     void Start () {
-        canManipulate = true;
 
 		
 	}
@@ -36,124 +39,83 @@ public class moveContent : MonoBehaviour,IManipulationHandler
 	void Update () {
 
 
-        if (canManipulate)
+        //check to see if we should turn it on
+        if (sourceManager.Instance.sourcePressed && GazeManager.Instance.HitObject == MoveButton)
         {
-            if (sourceManager.Instance.sourcePressed)
+            if (!manipulating)
             {
+                manipulating = true;
+                radialManagement.Instance.canOpen = false;
 
-                if (GazeManager.Instance.HitObject == MoveButton)
-                {
-                    if (!manipulating)
-                    {
-                        contentStartPos = content.position;
-                        handStartPos = HandsManager.Instance.ManipulationHandPosition;
-                        transform.InverseTransformDirection(handStartPos);
-                        manipulating = true;
+                //turn on visual bounding box 
+                transform.GetChild(0).gameObject.SetActive(true);
 
-
-                        radialManagement.Instance.canOpen = false;
-                        BoundingBox.transform.GetChild(0).gameObject.SetActive(true);
-                        BoundingBox.GetComponent<BoxCollider>().enabled = true;
-                    }
-                }
-                if (manipulating)
-                { 
-
-                    //handStartPos = contentStartPos + (sensitivity * (handsManager.ManipulationHandPosition));
-                    //content.localPosition = new Vector3(contentStartPos.x - (sensitivity * (HandsManager.Instance.ManipulationHandPosition.x - handStartPos.x)), contentStartPos.y + (sensitivity * (HandsManager.Instance.ManipulationHandPosition.y - handStartPos.y)), contentStartPos.z - (sensitivity * (HandsManager.Instance.ManipulationHandPosition.z - handStartPos.z)));
-                    //content.localPosition = contentStartPos + (sensitivity * (handsManager.ManipulationHandPosition - handStartPos));
-                }
-
+                //turn on collider.
+                //unless the collider is on, the manipulation listeners below wont be looking for manipulation inpu
+                GetComponent<BoxCollider>().enabled = true;
             }
-            else if (manipulating && !sourceManager.Instance.sourcePressed)
-            {
-                //manipulating = false;
-                //radialManagement.Instance.canOpen = true;
-                //BoundingBox.transform.GetChild(0).gameObject.SetActive(false);
-                //BoundingBox.GetComponent<BoxCollider>().enabled = false;
-            }
-
         }
+        
 
 
     }
 
-    public void toggleManipulating()
-    {
-        //canManipulate = !canManipulate;
-        //radialManagement.Instance.canOpen = !canManipulate;
-        //BoundingBox.transform.GetChild(0).gameObject.SetActive(canManipulate);
-        //BoundingBox.GetComponent<BoxCollider>().enabled = canManipulate;
-    }
 
+    //when manipulation is started on the collider.
     public void OnManipulationStarted (ManipulationEventData delta)
 
     {
 
         curDelta = Vector3.zero;
         prevDelta = Vector3.zero;
-        //print(delta.CumulativeDelta);
-        startDelta = delta.CumulativeDelta;
-        //content.position += (delta.CumulativeDelta * sensitivity);
 
         content.position = Vector3.Lerp(content.position, (content.position + (curDelta / dampening) * sensitivity), lerp);
-        //content.position = Vector3.Lerp(content.position, (content.position), lerp);
-        //content.position = (content.position + (delta.CumulativeDelta / dampening) * sensitivity);
     }
 
+    //The Manipulation listener has the delta argument. delta.CumlativeDelta is how much youve manipulated in one frame.
+    //We compare that to how much we moved last frame then lerp to the new position
     public void OnManipulationUpdated(ManipulationEventData delta)
     {
-        if (delta.CumulativeDelta.normalized.magnitude > (prevDelta.normalized.magnitude*2))
-        {
-            //content.position = Vector3.Lerp(content.position, (content.position + (delta.CumulativeDelta / dampening) * sensitivity), lerp);
 
-           // print("d");
-        }
-        else
-        {
-            //print("y");
-        }
-
-        //print(delta.CumulativeDelta);
-        //content.position += (delta.CumulativeDelta * sensitivity);
         content.position = Vector3.Lerp(content.position, (content.position + (curDelta / dampening) * sensitivity), lerp);
         curDelta = delta.CumulativeDelta - prevDelta;
         prevDelta = delta.CumulativeDelta;
-        print(curDelta);
-        //content.position = (content.position + (delta.CumulativeDelta / dampening) * sensitivity);
 
     }
 
+
+    //When finger is released
     public void OnManipulationCompleted(ManipulationEventData delta)
     {
-        //print(delta.CumulativeDelta);
-        manipulating = false;
-        radialManagement.Instance.canOpen = true;
-        BoundingBox.transform.GetChild(0).gameObject.SetActive(false);
-        BoundingBox.GetComponent<BoxCollider>().enabled = false;
-        curDelta = Vector3.zero;
-        prevDelta = Vector3.zero;
-        if (nodeCont != null)
-        {
-            nodeCont.contentStartLoc = content;
-        }
-
+        completeMoving();
     }
 
+
+    //When finger tracking is lost
     public void OnManipulationCanceled(ManipulationEventData delta)
     {
-        manipulating = false;
-        radialManagement.Instance.canOpen = true;
-        BoundingBox.transform.GetChild(0).gameObject.SetActive(false);
-        BoundingBox.GetComponent<BoxCollider>().enabled = false;
+        completeMoving();
+    }
+
+    //reset delta values
+    //turn off collider and visual bounding box
+    //store where the content should open 
+    void completeMoving()
+    {
         curDelta = Vector3.zero;
         prevDelta = Vector3.zero;
+
+        manipulating = false;
+        radialManagement.Instance.canOpen = true;
+
+        transform.GetChild(0).gameObject.SetActive(false);
+        GetComponent<BoxCollider>().enabled = false;
+
+
         if (nodeCont != null)
         {
             nodeCont.contentStartLoc = content;
         }
-
-
     }
 
 

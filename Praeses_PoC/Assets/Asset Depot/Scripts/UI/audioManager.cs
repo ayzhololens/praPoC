@@ -9,12 +9,19 @@ namespace HoloToolkit.Unity.InputModule
     public class audioManager : Singleton<audioManager>
     {
 
-        public AudioClip highlightSound;
+
+        [Tooltip("Index: 0")]
         public AudioClip selectSound;
+        [Tooltip("Index: 1")]
         public AudioClip successSound;
+        [Tooltip("Index: 2")]
         public AudioClip verifyContinueSound;
+        [Tooltip("Index: 3")]
         public AudioClip openSound;
+        [Tooltip("Index: 4")]
         public AudioClip closeSound;
+        [Tooltip("Index: 5")]
+        public AudioClip highlightSound;
         public AudioSource src;
 
 
@@ -42,6 +49,10 @@ namespace HoloToolkit.Unity.InputModule
                 if (index == 4)
                 {
                     src.clip = closeSound;
+                }
+                if (index == 5)
+                {
+                    src.clip = highlightSound;
                 }
 
                 src.Play();

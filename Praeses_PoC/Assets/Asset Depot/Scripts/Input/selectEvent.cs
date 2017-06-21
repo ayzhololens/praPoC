@@ -9,10 +9,22 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
 
     bool canClick;
     bool focused;
+
+
+    [Header("Gaze")]
+    [Tooltip("Check to trigger the gazeLeave Event when selected")]
     public bool gazeExit;
-    public bool clickMotion;
+    [Header("Sound")]
+    [Tooltip("SFX to play from audioManager.  10=null, 0=select, 1=Success, 2=Verify, 3=Open, 4=Close")]
     public int soundIndex;
+
+    [Header("Click Components")]
+    [Tooltip("Check add a click motion onSelect")]
+    public bool clickMotion;
+
+    [Tooltip("Override how fast the click motion will be.  0=Default value")]
     public float moveSpeed;
+    [Tooltip("Override how far the click motion will be.  0=Default value")]
     public float moveDist;
 
 
@@ -20,6 +32,8 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     {
 
         canClick = true;
+
+        //add the clickMotion script is clickMotion is true
         if (clickMotion)
         {
             gameObject.AddComponent<clickMotion>();
@@ -40,10 +54,13 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     {
 
 
+        //trigger the attached clickMotion
         if (clickMotion)
         {
             GetComponent<clickMotion>().click();
         }
+
+        //execute the attached functions
         else
         {
             if (this.enabled == false) return;
@@ -52,10 +69,11 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
 
                 Event.Invoke();
 
-                //Debug.Log("select");
+                //trigger the audioManager
                 audioManager.Instance.setAndPlayAudio(soundIndex);
             }
 
+            //trigger gazeLeave if gazeExit is true
             if (GetComponent<gazeLeaveEvent>() != null && gazeExit)
             {
                 GetComponent<gazeLeaveEvent>().OnFocusExit();
@@ -65,7 +83,7 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
 
     }
 
-
+    //triggered at the end of a clickMotion.  Essentially OnSelect() 
     public void finishClick()
     {
         if (this.enabled == false) return;
@@ -85,6 +103,8 @@ public class selectEvent : MonoBehaviour,  IInputClickHandler, IFocusable
     }
 
 
+    //If focused and the Hololens detects an airtap, call the select function
+    //Reenable clicking after a short while
     public void OnInputClicked(InputClickedEventData eventData)
     {
         if (GazeManager.Instance.HitObject == this.gameObject)
