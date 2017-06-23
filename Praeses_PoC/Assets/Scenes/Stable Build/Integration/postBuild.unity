@@ -884,8 +884,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &196598418
@@ -1483,8 +1483,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &287513264
@@ -1756,8 +1756,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 1
-  clickMotion: 0
   soundIndex: 4
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!65 &326553997
@@ -2000,6 +2000,10 @@ Prefab:
       propertyPath: cameraTra
       value: 
       objectReference: {fileID: 1139740787}
+    - target: {fileID: 1584053904401758, guid: e28c6b88ca910ac42ba84dfc6e02f1cf, type: 2}
+      propertyPath: m_Name
+      value: MiniMapTagAlong
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e28c6b88ca910ac42ba84dfc6e02f1cf, type: 2}
   m_IsPrefabParent: 0
@@ -2377,8 +2381,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &426941278
@@ -2932,8 +2936,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &496687456
@@ -3782,8 +3786,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &665137614
@@ -4064,8 +4068,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &720343259
@@ -4606,6 +4610,11 @@ Prefab:
       propertyPath: paperPlane
       value: 
       objectReference: {fileID: 388639687}
+    - target: {fileID: 114372533453860654, guid: 2ed75ffdf9031c94e8bce4b3d17b9928,
+        type: 2}
+      propertyPath: boiler
+      value: 
+      objectReference: {fileID: 1014481869}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
   m_IsPrefabParent: 0
@@ -6469,6 +6478,11 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114307663094771496, guid: 6b9c14fcc8025f543bf3a867845d521d,
+        type: 2}
+      propertyPath: boilerParent
+      value: 
+      objectReference: {fileID: 1014481869}
     m_RemovedComponents:
     - {fileID: 114663073116832346, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
     - {fileID: 33456105354614660, guid: 6b9c14fcc8025f543bf3a867845d521d, type: 2}
@@ -8436,8 +8450,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 1
-  clickMotion: 0
   soundIndex: 4
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!65 &1194328029
@@ -9070,8 +9084,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &1234846254
@@ -9911,8 +9925,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &1359254175
@@ -10816,8 +10830,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &1518818533
@@ -11314,8 +11328,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &1595639134
@@ -12057,8 +12071,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 1
-  clickMotion: 0
   soundIndex: 4
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!65 &1674775109
@@ -13760,8 +13774,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   gazeExit: 0
-  clickMotion: 0
   soundIndex: 0
+  clickMotion: 0
   moveSpeed: 0
   moveDist: 0
 --- !u!114 &2102434792

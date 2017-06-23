@@ -6,22 +6,33 @@ namespace HoloToolkit.Unity
 {
     public class minimapSpawn : Singleton<minimapSpawn>
     {
-
-        public GameObject miniMapHolder;
+        //List containing all the mini spatial meshes
         public List<GameObject> miniMapMeshes;
+        //We'll instantiate a null game object into this, and use it as the parent for all the spatial meshes
+        public GameObject miniMapHolder { get; set; }
+        [Tooltip("Object to parent the spawned miniMap holder under.  Located within the Minimap Container")]
         public GameObject MiniMapHolderParent;
-        public Material occlusionMat;
-        public Material miniMapMat;
-        public float scaleOffset;
-        GameObject desk;
-        GameObject boiler;
-        int switchCounter;
 
-        public Vector3 boilerPivot;
+        [Tooltip("How much to scale the minimap.  Recommended .075")]
+        public float scaleOffset;
+
+
+        [Tooltip("Boiler's uppermost parent goes here.  Will use this to instantiate a miniature boiler")]
+        public GameObject boiler;
+        public Vector3 boilerPivot { get; set; }
+
+        [Tooltip("Displayed Avatar.  Located within Minimap container")]
         public GameObject avatar;
+        [Tooltip("Whether or not to use the avatar")]
         public bool useAvatar;
 
-        // Use this for initialization
+        [Tooltip("This is for changing the real sized spatial mesh to an invisible occlusion material")]
+        public Material occlusionMat;
+        [Tooltip("Material which the miniature meshes will get set to")]
+        public Material miniMapMat;
+
+
+        //Spawn and set up the parent of the minimap meshes
         void Start()
         {
             miniMapHolder = new GameObject();
@@ -31,46 +42,47 @@ namespace HoloToolkit.Unity
 
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        //Set the node holder so all node position values are relative to the boiler.  This is useful for storing the pos values in JSON
         void repositionNodeHolder()
         {
-            Transform initParent = mediaManager.Instance.gameObject.transform.parent;
-            mediaManager.Instance.gameObject.transform.SetParent(boiler.transform);
-            mediaManager.Instance.gameObject.transform.localPosition = Vector3.zero;
-            mediaManager.Instance.gameObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
-            mediaManager.Instance.gameObject.transform.localScale = Vector3.one;
-            mediaManager.Instance.gameObject.transform.SetParent(initParent);
+            Transform nodeContainer = mediaManager.Instance.gameObject.transform;
+            Transform initParent = nodeContainer.parent;
+            nodeContainer.SetParent(boiler.transform);
+            nodeContainer.localPosition = Vector3.zero;
+            nodeContainer.localRotation = new Quaternion(0, 0, 0, 0);
+            nodeContainer.localScale = Vector3.one;
+            nodeContainer.SetParent(initParent);
         }
 
 
-
+        //This spawns and sets up the minimap
         public void spawnMiniMap()
         {
-            //Debug.Log(miniMapHolder.transform.position);
-            boiler = GameObject.Find("boiler");
+            //Parent the boiler to Spatial Mapping.  It now lives in the same heirarchy as the real sized spatial meshes
             boiler.transform.SetParent(transform);
+
             repositionNodeHolder();
 
+            //Go through each child
             for (int i = 0; i < transform.childCount; i++)
             {
 
-
+                //spawn copies of each real sized mesh
                 miniMapMeshes.Add((GameObject)Instantiate(transform.GetChild(i).gameObject, transform.GetChild(i).position, transform.GetChild(i).localRotation));
                 miniMapMeshes[i].transform.SetParent(miniMapHolder.transform);
+
+                //If we find the boiler we need to change its tag and layer so it can be tumbled on
                 if (miniMapMeshes[i].tag == "boilerPrefab")
                 {
                     boilerPivot = miniMapMeshes[i].transform.position;
                     miniMapMeshes[i].tag = "miniMapMesh";
                     miniMapMeshes[i].layer = 0;
                     miniMapMeshes[i].GetComponent<Collider>().enabled = true;
+
+                    //Some boiler components have children that we need to properly tag
                     foreach (Transform child in miniMapMeshes[i].GetComponentsInChildren<Transform>())
                     {
-                        if(child.gameObject.name == "initialShadingGroup_boiler_model")
+                        if(child.gameObject.name == "regularBoiler")
                         {
                             child.gameObject.GetComponent<Renderer>().material.renderQueue = 1000;
                         }
@@ -79,6 +91,8 @@ namespace HoloToolkit.Unity
                     }
                         
                 }
+
+                //
                 else
                 {
                     transform.GetChild(i).gameObject.tag = "SpatialMapping";
@@ -89,8 +103,7 @@ namespace HoloToolkit.Unity
                 if (miniMapMeshes[i].GetComponent<Renderer>() != null)
                 {
                     miniMapMeshes[i].GetComponent<Renderer>().material = miniMapMat;
-
-                    //miniMapMeshes[i].GetComponent<MeshFilter>().sharedMesh.RecalculateNormals();
+                    
                 }
 
                 if (miniMapMeshes[i].GetComponent<MeshRenderer>() != null)
@@ -101,7 +114,6 @@ namespace HoloToolkit.Unity
                 if (miniMapMeshes[i].GetComponent<WorldAnchor>() != null)
                 {
                     Destroy(miniMapMeshes[i].GetComponent<WorldAnchor>());
-                    //miniMapMeshes[i].GetComponent<MeshRenderer>().enabled = false;
                 }
 
                 if (miniMapMeshes[i].GetComponent<MeshFilter>() != null && miniMapMeshes[i].GetComponent<MeshFilter>().sharedMesh != null)
@@ -129,15 +141,17 @@ namespace HoloToolkit.Unity
                 avatar.GetComponent<minimize>().miniThis();
 
 
-                for (int u = 0; u < boiler.transform.childCount; u++)
+
+
+            }
+
+            for (int u = 0; u < boiler.transform.childCount; u++)
+            {
+                if (boiler.transform.GetChild(u).gameObject.activeSelf && boiler.transform.GetChild(u).gameObject.GetComponent<MeshRenderer>() != null)
                 {
-                    if (boiler.transform.GetChild(u).gameObject.activeSelf && boiler.transform.GetChild(u).gameObject.GetComponent<MeshRenderer>() != null)
-                    {
-                        boiler.transform.GetChild(u).gameObject.GetComponent<Renderer>().material = occlusionMat;
+                    boiler.transform.GetChild(u).gameObject.GetComponent<Renderer>().material = occlusionMat;
 
-                    }
                 }
-
             }
         }
         

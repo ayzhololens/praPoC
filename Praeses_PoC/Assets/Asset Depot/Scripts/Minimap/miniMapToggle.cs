@@ -8,10 +8,16 @@ namespace HoloToolkit.Unity
 {
     public class miniMapToggle : Singleton<miniMapToggle>
     {
-
+        [Tooltip("From Minimap Container.  We use this for positioning")]
         public GameObject MiniMapTagAlong;
-        public GameObject MiniMapHolder;
-        public bool active;
+
+        //The direct parent of all the minimap meshes.  Defined from spawnMiniMap
+        public GameObject MiniMapHolder { get; set; }
+
+        //Minimap state
+        public bool active { get; set; }
+
+        [Tooltip ("Indicator of where the avatar is when not visible on the map.  We use it here to hide it when the map is toggled off")]
         public GameObject paperPlane;
 
         // Use this for initialization
@@ -26,13 +32,15 @@ namespace HoloToolkit.Unity
 
         }
 
+
+        //This will place the minimap by the boiler.  Useful so users can easily find it their first time
         public void placeMapByBoiler()
         {
             MiniMapTagAlong.transform.position = GameObject.Find("minimapPlacement").transform.position;
         }
 
 
-
+        //grabs all the children of minimap holder and switch their active state
         public void toggleMiniMap()
         {
 
@@ -42,6 +50,7 @@ namespace HoloToolkit.Unity
             }
             paperPlane.SetActive(!paperPlane.activeSelf);
             active = MiniMapHolder.transform.GetChild(0).gameObject.activeSelf;
+
 
             MiniMapTagAlong.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
 

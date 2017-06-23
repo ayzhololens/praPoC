@@ -9,14 +9,20 @@ namespace HoloToolkit.Unity
 
     public class nodeSpawner : Singleton<nodeSpawner>
     {
-
+        [Tooltip("0= Simple, 1= Photo, 2= Video, 3= Violation, 4= Field")]
         public GameObject[] nodePrefab;
+        [Tooltip("0= Simple, 1= Photo, 2= Video, 3= Violation, 4= Field")]
         public GameObject[] miniNodePrefab;
 
+        //current node being spawned
         GameObject spawnedNode;
         int spawnedIndex;
+
+        //placement statues
         bool placingInProgress;
         bool reposInProgress;
+
+        //int of how long to wait before 
         int offsetCounter;
 
         //gaze position and rotation
@@ -33,6 +39,7 @@ namespace HoloToolkit.Unity
         // Update is called once per frame
         void Update()
         {
+            //check 
             if (placingInProgress)
             {
                 nodePlacement();
@@ -62,6 +69,7 @@ namespace HoloToolkit.Unity
             placingInProgress = true;
         }
 
+        //get gaze position and rotation
         Vector3 getNodeLoc(Vector3 camPos)
         {
             camPos = GazeManager.Instance.HitPosition;
@@ -95,6 +103,7 @@ namespace HoloToolkit.Unity
             minimapSpawn miniMapComponent = minimapSpawn.Instance;
             Vector3 boilerPos = miniMapComponent.boilerPivot;
             Transform miniMap = miniMapComponent.miniMapHolder.transform;
+            print(miniMap.parent);
             Transform rotatorGroup = miniMap.parent;
             Transform scalerGroup = rotatorGroup.parent.parent;
             Quaternion initRot = rotatorGroup.rotation;
@@ -123,14 +132,6 @@ namespace HoloToolkit.Unity
 
         public void lockNodePlacement()
         {
-
-            //print("locpos, x: " + spawnedNode.transform.localPosition.x + ", y: " + spawnedNode.transform.localPosition.y + ", z: " + spawnedNode.transform.localPosition.z);
-            //print("locrot, x: " + spawnedNode.transform.localRotation.x + ", y: " + spawnedNode.transform.localRotation.y + ", z: " + spawnedNode.transform.localRotation.z + ", w: " + spawnedNode.transform.localRotation.w);
-            //print("locscale, x: " + spawnedNode.transform.localScale.x + ", y: " + spawnedNode.transform.localScale.y + ", z: " + spawnedNode.transform.localScale.z);
-            //print("wpos, x: " + spawnedNode.transform.position.x + ", y: " + spawnedNode.transform.position.y + ", z: " + spawnedNode.transform.position.z);
-            //print("wrot, x: " + spawnedNode.transform.rotation.x + ", y: " + spawnedNode.transform.rotation.y + ", z: " + spawnedNode.transform.rotation.z + ", w: " + spawnedNode.transform.rotation.w);
-
-
             placingInProgress = false;
             mediaManager.Instance.currentNode = spawnedNode;
             mediaManager.Instance.disableStatusIndicator();
@@ -140,10 +141,6 @@ namespace HoloToolkit.Unity
             spawnMiniNode(spawnedNode, spawnedIndex);
 
             spawnedNode.GetComponent<nodeMediaHolder>().NodeIndex = JU_databaseMan.Instance.nodesManager.nodes.Count+1;
-            
-            //spawnedNode.GetComponent<nodeMediaHolder>().NodeIndex = mediaManager.Instance.nodeIndex;
-            //mediaManager.Instance.nodeIndex += 1;
-
 
             if (spawnedIndex == 0)
             {
@@ -188,6 +185,15 @@ namespace HoloToolkit.Unity
 
             }
 
+            #region  Print the node position and rotation
+            /*
+            print("locpos, x: " + spawnedNode.transform.localPosition.x + ", y: " + spawnedNode.transform.localPosition.y + ", z: " + spawnedNode.transform.localPosition.z);
+            print("locrot, x: " + spawnedNode.transform.localRotation.x + ", y: " + spawnedNode.transform.localRotation.y + ", z: " + spawnedNode.transform.localRotation.z + ", w: " + spawnedNode.transform.localRotation.w);
+            print("locscale, x: " + spawnedNode.transform.localScale.x + ", y: " + spawnedNode.transform.localScale.y + ", z: " + spawnedNode.transform.localScale.z);
+            print("wpos, x: " + spawnedNode.transform.position.x + ", y: " + spawnedNode.transform.position.y + ", z: " + spawnedNode.transform.position.z);
+            print("wrot, x: " + spawnedNode.transform.rotation.x + ", y: " + spawnedNode.transform.rotation.y + ", z: " + spawnedNode.transform.rotation.z + ", w: " + spawnedNode.transform.rotation.w);
+            */
+            #endregion
 
         }
 
@@ -196,9 +202,7 @@ namespace HoloToolkit.Unity
         {
 
             linkedField = curField;
-
-            print("1");
-
+            
         }
 
         public void repositionNode(GameObject node)
