@@ -97,7 +97,7 @@ namespace HoloToolkit.Unity
                 {
                     transform.GetChild(i).gameObject.tag = "SpatialMapping";
                     miniMapMeshes[i].tag = "miniMapMesh";
-                    miniMapMeshes[i].GetComponent<MeshRenderer>().enabled = false;
+                    //miniMapMeshes[i].GetComponent<MeshRenderer>().enabled = false;
                     miniMapMeshes[i].layer = 2;
                 }
                 if (miniMapMeshes[i].GetComponent<Renderer>() != null)
