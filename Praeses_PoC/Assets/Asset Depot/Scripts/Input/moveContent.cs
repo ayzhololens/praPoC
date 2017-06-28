@@ -7,22 +7,24 @@ using HoloToolkit.Unity.InputModule;
 
 public class moveContent : MonoBehaviour,IManipulationHandler
 {
-
+    [Tooltip("Content to be moved.  Usually a ContentHolder")]
     public Transform content;
-    Vector3 handStartPos;
     bool manipulating;
-    Vector3 contentStartPos;
-    public float sensitivity;
-    public float dampening;
-
-    public nodeController nodeCont;
-
-    public float lerp;
     bool canManipulate;
+
+    [Tooltip("Overall sensitivity")]
+    public float sensitivity;
+    [Tooltip("Dampens value of the distance your hand moved before its applied to the transform")]
+    public float dampening;
+    [Tooltip("Lerp Time")]
+    public float lerp;
+
+    public nodeController nodeCont { get; set; }
     public GameObject BoundingBox;
     public GameObject MoveButton;
+
+
     Vector3 prevDelta;
-    Vector3 startDelta;
     Vector3 curDelta;
 
     // Use this for initialization
@@ -32,7 +34,8 @@ public class moveContent : MonoBehaviour,IManipulationHandler
 		
 	}
 	
-	// Update is called once per frame
+    //Check to see if we should start moving content
+    //Turn on visual box and a large box collider to drag on
 	void Update () {
 
 
@@ -45,102 +48,71 @@ public class moveContent : MonoBehaviour,IManipulationHandler
                 {
                     if (!manipulating)
                     {
-                        contentStartPos = content.position;
-                        handStartPos = HandsManager.Instance.ManipulationHandPosition;
-                        transform.InverseTransformDirection(handStartPos);
                         manipulating = true;
-
-
                         radialManagement.Instance.canOpen = false;
                         BoundingBox.transform.GetChild(0).gameObject.SetActive(true);
                         BoundingBox.GetComponent<BoxCollider>().enabled = true;
                     }
                 }
-                if (manipulating)
-                { 
-
-                    //handStartPos = contentStartPos + (sensitivity * (handsManager.ManipulationHandPosition));
-                    //content.localPosition = new Vector3(contentStartPos.x - (sensitivity * (HandsManager.Instance.ManipulationHandPosition.x - handStartPos.x)), contentStartPos.y + (sensitivity * (HandsManager.Instance.ManipulationHandPosition.y - handStartPos.y)), contentStartPos.z - (sensitivity * (HandsManager.Instance.ManipulationHandPosition.z - handStartPos.z)));
-                    //content.localPosition = contentStartPos + (sensitivity * (handsManager.ManipulationHandPosition - handStartPos));
-                }
 
             }
-            else if (manipulating && !sourceManager.Instance.sourcePressed)
-            {
-                //manipulating = false;
-                //radialManagement.Instance.canOpen = true;
-                //BoundingBox.transform.GetChild(0).gameObject.SetActive(false);
-                //BoundingBox.GetComponent<BoxCollider>().enabled = false;
-            }
-
         }
 
 
     }
 
-    public void toggleManipulating()
-    {
-        //canManipulate = !canManipulate;
-        //radialManagement.Instance.canOpen = !canManipulate;
-        //BoundingBox.transform.GetChild(0).gameObject.SetActive(canManipulate);
-        //BoundingBox.GetComponent<BoxCollider>().enabled = canManipulate;
-    }
 
+    //when manipulating starts
     public void OnManipulationStarted (ManipulationEventData delta)
 
     {
+        if (manipulating)
+        {
+            curDelta = Vector3.zero;
+            prevDelta = Vector3.zero;
+            content.position = Vector3.Lerp(content.position, (content.position + (curDelta / dampening) * sensitivity), lerp);
 
-        curDelta = Vector3.zero;
-        prevDelta = Vector3.zero;
-        //print(delta.CumulativeDelta);
-        startDelta = delta.CumulativeDelta;
-        //content.position += (delta.CumulativeDelta * sensitivity);
-
-        content.position = Vector3.Lerp(content.position, (content.position + (curDelta / dampening) * sensitivity), lerp);
-        //content.position = Vector3.Lerp(content.position, (content.position), lerp);
-        //content.position = (content.position + (delta.CumulativeDelta / dampening) * sensitivity);
+        }
     }
 
+    //Compare how much your hand moved this frame with how much your hand moved last frame.  Lerp bewteen these values
     public void OnManipulationUpdated(ManipulationEventData delta)
     {
-        if (delta.CumulativeDelta.normalized.magnitude > (prevDelta.normalized.magnitude*2))
+        if (manipulating)
         {
-            //content.position = Vector3.Lerp(content.position, (content.position + (delta.CumulativeDelta / dampening) * sensitivity), lerp);
+            content.position = Vector3.Lerp(content.position, (content.position + (curDelta / dampening) * sensitivity), lerp);
+            curDelta = delta.CumulativeDelta - prevDelta;
+            prevDelta = delta.CumulativeDelta;
 
-           // print("d");
         }
-        else
-        {
-            //print("y");
-        }
-
-        //print(delta.CumulativeDelta);
-        //content.position += (delta.CumulativeDelta * sensitivity);
-        content.position = Vector3.Lerp(content.position, (content.position + (curDelta / dampening) * sensitivity), lerp);
-        curDelta = delta.CumulativeDelta - prevDelta;
-        prevDelta = delta.CumulativeDelta;
-        print(curDelta);
-        //content.position = (content.position + (delta.CumulativeDelta / dampening) * sensitivity);
 
     }
 
+
+    //On finger release
     public void OnManipulationCompleted(ManipulationEventData delta)
     {
-        //print(delta.CumulativeDelta);
-        manipulating = false;
-        radialManagement.Instance.canOpen = true;
-        BoundingBox.transform.GetChild(0).gameObject.SetActive(false);
-        BoundingBox.GetComponent<BoxCollider>().enabled = false;
-        curDelta = Vector3.zero;
-        prevDelta = Vector3.zero;
-        if (nodeCont != null)
-        {
-            nodeCont.contentStartLoc = content;
-        }
+        completeMoving();
 
     }
 
+    //On hand tracking lost
     public void OnManipulationCanceled(ManipulationEventData delta)
+    {
+
+
+        completeMoving();
+
+
+    }
+
+
+    /// <summary>
+    /// reset delta values 
+    /// turn off visual bounding box and large collide
+    /// store where the content should open
+    /// </summary>
+    void completeMoving()
     {
         manipulating = false;
         radialManagement.Instance.canOpen = true;
@@ -148,12 +120,11 @@ public class moveContent : MonoBehaviour,IManipulationHandler
         BoundingBox.GetComponent<BoxCollider>().enabled = false;
         curDelta = Vector3.zero;
         prevDelta = Vector3.zero;
+
         if (nodeCont != null)
         {
             nodeCont.contentStartLoc = content;
         }
-
-
     }
 
 

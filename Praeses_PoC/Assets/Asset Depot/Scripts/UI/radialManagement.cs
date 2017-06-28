@@ -14,13 +14,16 @@ namespace HoloToolkit.Unity
         radialHands radHands;
 
 
+        [Tooltip("Container for the radial menu")]
         public GameObject RadialMenu;
         [Tooltip("Where the radial menu spawns")]
         public Transform radialHolder;
+        [Tooltip("Line connecting center of radial menu to the hand cursor")]
         public GameObject radialLine;
+        [Tooltip("Main cursor that we need to hide when the radial menu is active")]
         public GameObject Cursor;
 
-
+        //the hand cursor's current target
         public GameObject focusedButton { get; set; }
         public bool canOpen { get; set; }
         public bool isActive { get; set; }

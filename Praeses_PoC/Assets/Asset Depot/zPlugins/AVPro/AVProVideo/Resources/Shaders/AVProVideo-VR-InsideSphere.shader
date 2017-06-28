@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "AVProVideo/VR/InsideSphere Unlit (stereo+fog)"
 {
     Properties
@@ -98,7 +100,7 @@ Shader "AVProVideo/VR/InsideSphere Unlit (stereo+fog)"
             {
                 v2f o;
                 
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 
 #if !HIGH_QUALITY
 				o.uv.xy = TRANSFORM_TEX(v.uv, _MainTex);

@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "AVProVideo/UI/Transparent Packed"
 {
 	Properties
@@ -108,7 +110,7 @@ Shader "AVProVideo/UI/Transparent Packed"
 				v2f OUT;
 				OUT.worldPosition = IN.vertex;
 
-				OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
+				OUT.vertex = UnityObjectToClipPos(IN.vertex);
 
 #ifdef UNITY_HALF_TEXEL_OFFSET
 				OUT.vertex.xy += (_ScreenParams.zw-1.0)*float2(-1,1);

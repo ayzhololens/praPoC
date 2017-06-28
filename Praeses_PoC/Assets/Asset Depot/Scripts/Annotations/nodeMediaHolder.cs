@@ -10,37 +10,36 @@ namespace HoloToolkit.Unity
     public class nodeMediaHolder : MonoBehaviour
     {
 
-
-        public List<string> filepath;
-        public string activeFilepath;
-        public string fileName;
-        MediaPlayer videoPlayer;
-        public List<GameObject> activeComments;
-        public GameObject playIcon;
-        public GameObject pauseIcon;
-        bool startedVideo;
-        Texture2D photoTexture;
-        public GameObject photoVideoPane;
+        [Header("Node Identifier")]
         public bool videoNode;
         public bool photoNode;
         public bool simpleNode;
         public bool fieldNode;
         public bool violationNode;
+
+        [Header("JSON Linked Components")]
+        public List<GameObject> activeComments;
         public InputField Title;
         public InputField Description;
+        public string activeFilepath { get; set; }
+        public string fileName { get; set; }
         public string Date { get; set; }
         public string User { get; set; }
         public string audioPath { get; set; }
-        public int type;
-        public int NodeIndex;
+        public int type { get; set; }
+        public int NodeIndex { get; set; }
 
-        // Use this for initialization
-        void Start()
-        {
+        [Header("Photo and Video Components")]
+        public GameObject playIcon;
+        public GameObject pauseIcon;
+        MediaPlayer videoPlayer;
+        bool startedVideo;
+        Texture2D photoTexture;
+        public GameObject photoVideoPane;
 
 
 
-        }
+        
 
 
         // Update is called once per frame
@@ -53,29 +52,7 @@ namespace HoloToolkit.Unity
 
 
         }
-
-        //public void loadVideoMedia()
-        //{
-
-
-        //    activeFileName = vidRecorder.filename;
-        //    filepath.Add(vidRecorder.filepath);
-        //    activeFilepath = vidRecorder.filepath;
-        //    VideoPlayer.m_VideoPath = activeFileName;
-        //    VideoPlayer.LoadVideoPlayer();
-        //}
-
-        //public void loadPhotoMedia()
-        //{
-
-        //    if (photoRecorder.targetTexture != null && photoVideoPane != null)
-        //    {
-        //        filepath.Add(photoRecorder.filePath);
-        //        photoTexture = photoRecorder.targetTexture;
-        //        photoVideoPane.GetComponent<Renderer>().material.mainTexture = photoTexture;
-        //    }
-        //}
-
+        
         public void loadPhoto(string filepath)
         {
 

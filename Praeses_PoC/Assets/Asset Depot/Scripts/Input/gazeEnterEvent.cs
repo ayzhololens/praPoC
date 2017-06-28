@@ -16,10 +16,12 @@ namespace HoloToolkit.Unity.InputModule
         {
             if (Event != null)
             {
+                //add audio source
                 if (GetComponent<AudioSource>() == null)
                 {
                     gameObject.AddComponent<AudioSource>();
                 }
+                //set default values
                 if (aud == null)
                 {
                     aud = GetComponent<AudioSource>();

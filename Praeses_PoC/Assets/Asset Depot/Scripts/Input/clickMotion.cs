@@ -20,6 +20,8 @@ public class clickMotion : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        //click moving inwards, when it hit it's distance the bool will switch off and trigger moving outwards
         if (movingF)
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + moveSpeed);
@@ -30,6 +32,7 @@ public class clickMotion : MonoBehaviour
             }
         }
 
+        //when it reaches the original position send a message to the onselect event
         if (movingB)
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - moveSpeed);
