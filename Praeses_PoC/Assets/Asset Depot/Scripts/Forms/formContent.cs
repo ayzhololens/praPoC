@@ -47,6 +47,10 @@ namespace HoloToolkit.Unity
 
         }
 
+
+        /// <summary>
+        /// Grabs the data fron JSON for any non empty text variable
+        /// </summary>
         public void loadDetails()
         {
 
@@ -93,7 +97,6 @@ namespace HoloToolkit.Unity
             if (Object != null)
             {
                 Object.text = "Fire Tube Boiler";
-                //Object.text = database.definitions.LocationFields.LocationName;
 
             }
             #endregion

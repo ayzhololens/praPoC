@@ -22,45 +22,7 @@ public class formNodeController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
-        //camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        //if (contentOpen)
-        //{
-        //    if (camDistance > distanceThreshold)
-        //    {
-        //        contentDistance = Vector3.Distance(masterForm.GetComponent<formController>().contentHolder.transform.position, Camera.main.transform.position);
-        //        if (contentDistance > 2 && masterForm.GetComponent<formController>().contentHolder.GetComponent<SimpleTagalong>().enabled != true)
-        //        {
-        //            masterForm.GetComponent<formController>().contentHolder.transform.position = Vector3.MoveTowards(masterForm.GetComponent<formController>().contentHolder.transform.position, Camera.main.transform.position, speed / 1.5f);
-        //        }
-
-        //        if (contentDistance < 2 && masterForm.GetComponent<formController>().contentHolder.GetComponent<SimpleTagalong>().enabled != true)
-        //        {
-        //            masterForm.GetComponent<formController>().contentHolder.GetComponent<SimpleTagalong>().enabled = true;
-        //        }
-
-
-
-        //    }
-
-        //    if (camDistance < distanceThreshold)
-        //    {
-        //        if (masterForm.GetComponent<formController>().contentHolder.GetComponent<SimpleTagalong>().enabled == true)
-        //        {
-        //            masterForm.GetComponent<formController>().contentHolder.GetComponent<SimpleTagalong>().enabled = false;
-        //            masterForm.GetComponent<formController>().contentHolder.GetComponent<Interpolator>().enabled = false;
-        //        }
-
-        //        masterForm.GetComponent<formController>().contentHolder.transform.position = Vector3.MoveTowards(contentHolder.transform.position, contentLoc.position, speed);
-
-
-        //    }
-
-        //}
-
-
-
-
+        
 
 
     }

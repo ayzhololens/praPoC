@@ -10,37 +10,49 @@ namespace HoloToolkit.Unity
     public class formFieldController : MonoBehaviour
     {
 
-        public GameObject linkedNode;
+        //linked node that is created when leaving a comment
+        public GameObject linkedNode { get; set; }
+
+        [Header ("Value Components")]
+        [Tooltip ("Text for displayed name")]
         public Text DisplayName;
-        public string trueName;
+        [Tooltip ("Input field that holds the values")]
         public InputField Value;
-        public string buttonVal;
+        [Tooltip ("Text for previous value")]
         public Text previousValue;
-        public int nodeIndex;
+        [Tooltip("Controls whether or not to update the amount of fields completed")]
+        public bool showUpdate;
+
+        //hidden value components
+        public string trueName { get; set; }
+        public string buttonVal { get; set; }
+        public int nodeIndex { get; set; }
+
+        [Header("Field Button Control")]
+        [Tooltip ("Prefab for the field button")]
         public GameObject fieldButton;
+        [Tooltip ("Position for the buttons to spawn")]
         public Transform buttonPos;
+        [Tooltip ("X Distance between buttons")]
         public float buttonXOffset;
-        public float buttonYOffset;
+        [Tooltip ("Parent for the field buttons")]
         public Transform buttonParent;
+        [Tooltip("Spawned Buttons")]
         public List<GameObject> curButtons;
         int currCommentType;
-        public bool showUpdate;
+
+        //Check to see if values are changed
         public bool ignoreDeltaCheck { get; set; }
+
+        //Changed value field that is spawned either via formButtonController or InputFieldManager calling the checkDelta() function
         public  GameObject deltaField { get; set; }
 
 
 
-        // Use this for initialization
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        /// <summary>
+        /// Check to see if theres an assoicated node, if not spawn one.
+        /// </summary>
+        /// <param name="commentType"></param>
         public void spawnNode(int commentType)
         {
             currCommentType = commentType;
@@ -58,31 +70,15 @@ namespace HoloToolkit.Unity
 
 
         }
-
-        //public void repositionThumb()
-        //{
-        //    thumbPos.position = new Vector3(thumbPos.position.x, thumbPos.position.y - thumbOffset, thumbPos.position.z);
-        //}
+        
 
 
-
-
+        /// <summary>
+        /// After node is spawned, take the appropriate comment action
+        /// </summary>
         public void enableAttachmentCapture()
         {
 
-            //GetComponent<subMenu>().turnOnSubButtons();
-            ////attachmentParent.gameObject.SetActive(false);
-            //for(int i = 0; i<transform.parent.childCount; i++)
-            //{
-            //    if (transform.parent.GetChild(i).gameObject != this.gameObject && transform.parent.GetChild(i).gameObject.GetComponent<subMenu>() != null)
-            //    {
-
-            //        transform.parent.GetChild(i).gameObject.GetComponent<subMenu>().turnOffCounter();
-            //        //transform.parent.GetChild(i).gameObject.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(false);
-            //    }
-            //}
-
-            print(currCommentType);
             if (linkedNode.GetComponent<selectEvent>().enabled == false)
             {
                 linkedNode.GetComponent<selectEvent>().enabled = true;
@@ -104,15 +100,15 @@ namespace HoloToolkit.Unity
             currCommentType = 0;
         }
 
+        /// <summary>
+        /// Spawns and positions field buttons
+        /// </summary>
+        /// <param name="buttonAmount"></param>
         public void populateButtons(int buttonAmount)
         {
             Vector3 buttonLoc = buttonPos.position;
             for (int i = 0; i<buttonAmount; i++)
             {
-                if (i == 2)
-                {
-                    //buttonLoc = new Vector3(buttonPos.position.x, buttonPos.position.y + buttonYOffset, buttonLoc.z); ;
-                }
 
                 curButtons.Add( Instantiate(fieldButton, buttonLoc, Quaternion.identity));
                 curButtons[i].GetComponent<formButtonController>().field = this;
@@ -125,17 +121,24 @@ namespace HoloToolkit.Unity
             }
         }
 
+
+        /// <summary>
+        /// Updates the amount of fields completed.  This is called on the value inputfield OnValueChanged() Event
+        /// </summary>
         public void setStatus()
         {
             
             if (showUpdate)
             {
-
                 formController.Instance.updateFieldStatus(1);
                 showUpdate = false;
             }
         }
 
+
+        /// <summary>
+        /// Compares previous value to current value and spawned a changed value field in the review inspection section.  Called either in inputFieldManager or formButtonController
+        /// </summary>
         public void checkDelta()
         {
             if (!ignoreDeltaCheck)
@@ -176,189 +179,6 @@ namespace HoloToolkit.Unity
             
 
         }
-
-        //public void revealAttachments()
-        //{
-        //    if (!GetComponent<subMenu>().subButtonsOn && linkedNode!=null)
-        //    {
-        //        for (int i = 0; i < transform.parent.childCount; i++)
-        //        {
-        //            if (transform.parent.GetChild(i).gameObject != this.gameObject && transform.parent.GetChild(i).gameObject.GetComponent<subMenu>() != null)
-        //            {
-
-        //                transform.parent.GetChild(i).gameObject.GetComponent<subMenu>().turnOffCounter();
-        //                transform.parent.GetChild(i).gameObject.GetComponent<formFieldController>().attachmentParent.gameObject.SetActive(false);
-        //            }
-        //        }
-        //    }
-
-
-        //    attachmentParent.gameObject.SetActive(true);
-        //}
-
-
-    //    public void enableVideoCapture()
-    //    {
-    //        annotationManager.Instance.enableVideoRecording();
-    //        annotationManager.Instance.currentAnnotation = linkedNode;
-
-    //        annotationManager.Instance.activeField = this.gameObject;
-    //        GetComponent<subMenu>().turnOffCounter();
-    //        attachmentParent.gameObject.SetActive(true);
-    //        capturingVideo = true;
-    //    }
-
-    //    public void enablePhotoCapture()
-    //    {
-    //        annotationManager.Instance.enablePhotoCapture();
-    //        annotationManager.Instance.currentAnnotation = linkedNode;
-    //        annotationManager.Instance.activeField = this.gameObject;
-    //        GetComponent<subMenu>().turnOffCounter();
-    //        attachmentParent.gameObject.SetActive(true);
-    //        capturingPhoto = true;
-
-    //    }
-
-    //    public void loadVideoMedia()
-    //    {
-    //        if (vidRecorder == null)
-    //        {
-    //            vidRecorder = GameObject.Find("VideoManager").GetComponent<videoRecorder>();
-    //            VideoPlayer = GameObject.Find("VideoPlayer").GetComponent<MediaPlayer>();
-    //        }
-    //        //
-    //        attachmentParent.gameObject.SetActive(false);
-    //        //
-    //        activeVideoPath = vidRecorder.filepath;
-    //        VideoPlayer.m_VideoPath = activeVideoPath;
-    //        linkedNode.GetComponent<nodeMediaHolder>().filepath.Add(activeVideoPath);
-    //        videoFilePaths.Add(activeVideoPath);
-    //        spawnVideoPane();
-
-    //    }
-
-
-    //    public void spawnVideoPane()
-    //    {
-    //        attachmentParent.gameObject.SetActive(true);
-    //        GameObject spawnedVideo = Instantiate(videoThumbPrefab, transform.position, Quaternion.identity);
-    //        activeVideos.Add(spawnedVideo);
-    //        spawnedVideo.transform.SetParent(attachmentParent);
-    //        spawnedVideo.transform.localPosition = thumbPos.localPosition;
-    //        repositionThumb();
-
-    //        spawnedVideo.GetComponent<commentContents>().isVideo = true;
-    //        linkedNode.GetComponent<nodeMediaHolder>().activeComments.Add(spawnedVideo);
-    //        spawnedVideo.GetComponent<commentContents>().Date = System.DateTime.Now.ToString();
-    //        spawnedVideo.GetComponent<commentContents>().user = metaManager.Instance.user;
-    //        spawnedVideo.GetComponent<commentContents>().commentMeta.text = (metaManager.Instance.user + " " + System.DateTime.Now);
-    //        spawnedVideo.GetComponent<commentContents>().filepath = activeVideoPath;
-    //        spawnedVideo.GetComponent<commentContents>().linkedComponent = this.gameObject;
-    //        capturingVideo = false;
-    //    }
-
-    //    public virtual GameObject spawnVideoPaneFromJSon()
-    //    {
-    //        if (VideoPlayer == null)
-    //        {
-    //            VideoPlayer = GameObject.Find("VideoPlayer").GetComponent<MediaPlayer>();
-    //        }
-
-    //        GameObject spawnedVideo = Instantiate(videoThumbPrefab, transform.position, Quaternion.identity);
-    //        activeVideos.Add(spawnedVideo);
-    //        spawnedVideo.transform.SetParent(attachmentParent);
-    //        spawnedVideo.transform.localPosition = thumbPos.localPosition;
-    //        repositionThumb();
-
-    //        spawnedVideo.GetComponent<commentContents>().isVideo = true;
-    //        linkedNode.GetComponent<nodeMediaHolder>().activeComments.Add(spawnedVideo);
-    //        spawnedVideo.GetComponent<commentContents>().linkedComponent = this.gameObject;
-    //        return spawnedVideo;
-    //    }
-
-
-    //    public void spawnSimpleComment()
-    //    {
-    //        GetComponent<subMenu>().turnOffCounter();
-    //        attachmentParent.gameObject.SetActive(true);
-    //        GameObject spawnedComment = Instantiate(simpleNotePrefab, transform.position, Quaternion.identity);
-    //        activeSimpleNotes.Add(spawnedComment);
-    //        spawnedComment.transform.SetParent(attachmentParent);
-    //        spawnedComment.transform.position = thumbPos.position;
-    //        repositionThumb();
-    //        spawnedComment.GetComponent<commentContents>().isSimple = true;
-    //        spawnedComment.GetComponent<inputFieldManager>().activateField();
-    //        linkedNode.GetComponent<nodeMediaHolder>().activeComments.Add(spawnedComment);
-    //        spawnedComment.GetComponent<commentContents>().Date = System.DateTime.Now.ToString();
-    //        spawnedComment.GetComponent<commentContents>().user = metaManager.Instance.user;
-    //        spawnedComment.GetComponent<commentContents>().commentMeta.text = (metaManager.Instance.user + " " + System.DateTime.Now);
-    //        spawnedComment.GetComponent<commentContents>().linkedComponent = this.gameObject;
-    //    }
-
-    //    public virtual GameObject spawnSimpleCommentFromJSon()
-    //    {
-    //        GameObject spawnedComment = Instantiate(simpleNotePrefab, transform.position, Quaternion.identity);
-    //        activeSimpleNotes.Add(spawnedComment);
-    //        spawnedComment.transform.SetParent(attachmentParent);
-    //        spawnedComment.transform.localPosition = thumbPos.localPosition;
-    //        repositionThumb();
-    //        spawnedComment.GetComponent<commentContents>().isSimple = true;
-    //        linkedNode.GetComponent<nodeMediaHolder>().activeComments.Add(spawnedComment);
-    //        spawnedComment.GetComponent<commentContents>().linkedComponent = this.gameObject;
-    //        return spawnedComment;
-    //    }
-
-    //    public void loadPhotoMedia()
-    //    {
-    //        if (photoRecorder == null)
-    //        {
-    //            photoRecorder = GameObject.Find("PhotoManager").GetComponent<photoRecorder>();
-    //        }
-    //        //
-    //        attachmentParent.gameObject.SetActive(false);
-    //        //
-    //        activePhotoPath = photoRecorder.filePath;
-    //        photoFilePaths.Add(activePhotoPath);
-    //        linkedNode.GetComponent<nodeMediaHolder>().filepath.Add(activePhotoPath);
-    //        spawnPhotoPane();
-    //    }
-
-    //    public void spawnPhotoPane()
-    //    {
-    //        attachmentParent.gameObject.SetActive(true);
-    //        GameObject spawnedPhoto = Instantiate(photoThumbPrefab, transform.position, Quaternion.identity);
-    //        activePhotos.Add(spawnedPhoto);
-    //        spawnedPhoto.transform.SetParent(attachmentParent);
-    //        spawnedPhoto.transform.localPosition = thumbPos.localPosition;
-    //        repositionThumb();
-    //        spawnedPhoto.GetComponent<commentContents>().isPhoto = true;
-    //        spawnedPhoto.GetComponent<commentContents>().filepath = activePhotoPath;
-    //        spawnedPhoto.GetComponent<commentContents>().linkedComponent = this.gameObject;
-    //        linkedNode.GetComponent<nodeMediaHolder>().activeComments.Add(spawnedPhoto);
-    //        spawnedPhoto.GetComponent<commentContents>().Date = System.DateTime.Now.ToString();
-    //        spawnedPhoto.GetComponent<commentContents>().user = metaManager.Instance.user;
-    //        spawnedPhoto.GetComponent<commentContents>().commentMeta.text = (metaManager.Instance.user + " " + System.DateTime.Now);
-    //        photoTexture = photoRecorder.targetTexture;
-    //        spawnedPhoto.GetComponent<Renderer>().material.mainTexture = photoTexture;
-    //        capturingPhoto = false;
-
-    //    }
-
-    //    public virtual GameObject spawnPhotoPaneFromJSon()
-    //    {
-    //        GameObject spawnedPhoto = Instantiate(photoThumbPrefab, transform.position, Quaternion.identity);
-    //        activePhotos.Add(spawnedPhoto);
-    //        spawnedPhoto.transform.SetParent(attachmentParent);
-    //        spawnedPhoto.transform.localPosition = thumbPos.localPosition;
-    //        repositionThumb();
-    //        spawnedPhoto.GetComponent<commentContents>().isPhoto = true;
-    //        spawnedPhoto.GetComponent<commentContents>().linkedComponent = this.gameObject;
-    //        linkedNode.GetComponent<nodeMediaHolder>().activeComments.Add(spawnedPhoto);
-
-
-    //        return spawnedPhoto;
-
-    //    }
 
     }
 }

@@ -8,7 +8,6 @@ public class helpMenuController : Singleton<helpMenuController> {
 
     public GameObject contentHolder;
     public MediaPlayer[] gestureAnims;
-    public MediaPlayer gestureAnim;
 
     // Use this for initialization
     void Start () {
@@ -21,6 +20,7 @@ public class helpMenuController : Singleton<helpMenuController> {
 		
 	}
 
+    //opens menu and plays videos
     public void openHelp()
     {
         contentHolder.SetActive(true);
@@ -33,6 +33,8 @@ public class helpMenuController : Singleton<helpMenuController> {
         }
     }
 
+
+    //stop videos and close menu
     public void closeHelp()
     {
         for (int i = 0; i < gestureAnims.Length; i++)

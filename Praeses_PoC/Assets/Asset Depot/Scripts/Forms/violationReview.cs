@@ -8,21 +8,14 @@ namespace HoloToolkit.Unity
 {
     public class violationReview : MonoBehaviour {
 
+        [Tooltip ("List of the violation data thats pulled from violationControl")]
         public Text[] violationData;
         public Text[] violationSubmittedData;
         public violationController violationControl;
         public GameObject submittedViolationHolder;
         public GameObject addingViolationHolder;
 
-    // Use this for initialization
-        void Start() {
 
-        }
-
-        // Update is called once per frame
-        void Update() {
-
-        }
 
         public void loadReview()
         {
@@ -113,48 +106,17 @@ namespace HoloToolkit.Unity
 
 
             violationControl.closeViolation();
-
-            //violatoinSpawner.Instance.populatePreviewField();
+            
             if (!fromJson)
             {
-                violatoinSpawner.Instance.successContentHolder.SetActive(true);
-                violatoinSpawner.Instance.successContentHolder.transform.position = this.transform.position;
+                vioControl.Instance.successContentHolder.SetActive(true);
+                vioControl.Instance.successContentHolder.transform.position = this.transform.position;
                 databaseMan.Instance.syncViolation(violationControl);
 
             }
         }
 
-        public void enableEditing()
-        {
-            violationControl.violationHeader.text = "Edit Violation";
-            //DestroyImmediate(copiedViolationContent);
-            violationControl.showTabs(true);
-            submittedViolationHolder.SetActive(false);
-            //ReviewHolder.SetActive(true);
-        }
 
-        public void resolveViolation()
-        {
-            //violatoinSpawner.Instance.violationPreview.GetComponent<viewViolationController>().reorderFields(violationControl.linkedPreview);
-            //violatoinSpawner.Instance.violationPreview.GetComponent<viewViolationController>().vioResolvedFields.Add(violationControl.linkedPreview);
-            //violationControl.linkedPreview.transform.localPosition = violatoinSpawner.Instance.violationPreview.GetComponent<viewViolationController>().resolvedPos.localPosition;
-
-            //resolutions[0].SetActive(false);
-            //resolutions[1].SetActive(false);
-
-        }
-
-        public void vioNotResolved()
-        {
-            //resolutions[2].SetActive(false);
-            //resolutions[1].SetActive(false);
-        }
-        public void vioNotResolvedOther()
-        {
-            //resolutions[2].SetActive(false);
-            //resolutions[0].SetActive(false);
-        }
-        
 
 
     }

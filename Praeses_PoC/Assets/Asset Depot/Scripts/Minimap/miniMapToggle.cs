@@ -8,10 +8,12 @@ namespace HoloToolkit.Unity
 {
     public class miniMapToggle : Singleton<miniMapToggle>
     {
-
+        [Tooltip("Tagalong content holder")]
         public GameObject MiniMapTagAlong;
-        public GameObject MiniMapHolder;
-        public bool active;
+        public GameObject MiniMapHolder { get; set; }
+
+        public bool active{ get; set; }
+        [Tooltip ("Indicator of offsceen avatar.  Located under pointAtAvatr")]
         public GameObject paperPlane;
 
         // Use this for initialization

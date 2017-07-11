@@ -7,9 +7,11 @@ using UnityEngine;
 namespace HoloToolkit.Unity
 {
     public class formButtonController : MonoBehaviour {
+
         public int buttonIndex { get; set; }
+        [Tooltip ("Display Name")]
         public Text buttonText;
-        public formFieldController field;
+        public formFieldController field { get; set; }
 
         // Use this for initialization
         void Start() {
@@ -21,6 +23,10 @@ namespace HoloToolkit.Unity
 
         }
 
+
+        /// <summary>
+        /// Is set when a button is selected
+        /// </summary>
         public void setFormButtonValue()
         {
             foreach(GameObject formButton in field.curButtons)
@@ -35,12 +41,17 @@ namespace HoloToolkit.Unity
 
                 }
             }
+            //Visual feedback.  Disable highlight because its already selected
             field.gameObject.GetComponent<buttonHightlight>().updateMat();
+            GetComponent<gazeLeaveEvent>().enabled = false;
+
+            //send values to the field
             field.Value.text = buttonIndex.ToString();
             field.buttonVal = buttonText.text;
             field.checkDelta();
+
+            //sync with JSON
             databaseMan.Instance.formToClassValueSync(field.trueName, field.Value.text);
-            GetComponent<gazeLeaveEvent>().enabled = false;
         }
     }
 }

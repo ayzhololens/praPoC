@@ -20,6 +20,10 @@ public class manageInspectionMainContent : MonoBehaviour {
 
     }
 
+
+    /// <summary>
+    /// moves fields down and toggles visibility
+    /// </summary>
     public void repositionFields()
     {
 

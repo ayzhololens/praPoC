@@ -9,18 +9,28 @@ namespace HoloToolkit.Unity
 {
 
     public class formController : Singleton<formController> {
-
-
+        
+        [Tooltip("Content Parents")]
         public GameObject[] fieldTabs;
+        [Tooltip ("Associated Tab Buttons")]
         public GameObject[] fieldTabButtons;
+        [Tooltip ("Start Location of the fields, used in DataManager>Field Spawner")]
         public Transform fieldStartPos;
+        [Tooltip("Tagalong holder")]
         public GameObject contentHolder;
+        [Tooltip("Review button that we need to reposition at the end of all our spawned fields")]
         public GameObject Sumbit;
+
+        [Tooltip ("Script that controls the review inspection components")]
         public submitInspection submitInspection;
+        [Tooltip("Indicator of how many fields have been completed")]
         public Text fieldStatus;
         public int totalFields { get; set; }
         public int curFields { get; set; }
+        [Tooltip ("List of associated field nodes") ]
         public List<GameObject> fieldNodes;
+
+        [Tooltip ("For loading non editable data.  Same idea as whats happening in mainMenu controller")]
         public formContent[] preloadedData;
 
 
@@ -35,7 +45,9 @@ namespace HoloToolkit.Unity
         }
 
 
-
+        /// <summary>
+        /// Find current tab
+        /// </summary>
         public void checkTab()
         {
             for (int i = 0; i < fieldTabs.Length; i++)
@@ -47,6 +59,10 @@ namespace HoloToolkit.Unity
             }
         }
 
+        /// <summary>
+        /// Visual feedback on current tab and enable it
+        /// </summary>
+        /// <param name="tab"></param>
         public void goToTab(int tab)
         {
 
@@ -72,12 +88,17 @@ namespace HoloToolkit.Unity
         }
 
 
-
+        /// <summary>
+        /// Toggle the content holder.  Used in the radial menu
+        /// </summary>
         public void toggleForm()
         {
             contentHolder.SetActive(!contentHolder.activeSelf);
         }
 
+        /// <summary>
+        /// Close the form.  Used in the 'X'
+        /// </summary>
         public void closeForm()
         {
             contentHolder.transform.localScale = contentHolder.GetComponent<contentScaler>().sScale;
@@ -96,6 +117,9 @@ namespace HoloToolkit.Unity
             
         }
 
+        /// <summary>
+        /// open form via node
+        /// </summary>
         public void openForm()
         {
 
@@ -105,12 +129,21 @@ namespace HoloToolkit.Unity
 
         }
 
+
+        /// <summary>
+        /// update the amount of fields completed
+        /// </summary>
+        /// <param name="amount"></param>
         public void updateFieldStatus(int amount)
         {
             curFields += amount;
             fieldStatus.text = "Total Fields Completed: " + curFields + "/" + totalFields;
         }
 
+
+        /// <summary>
+        /// Loads non editable data
+        /// </summary>
         public void preloadFormData()
         {
 

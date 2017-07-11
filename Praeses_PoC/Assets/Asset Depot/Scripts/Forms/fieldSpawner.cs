@@ -11,12 +11,19 @@ namespace HoloToolkit.Unity
         public Transform EquipmentDataParent { get; set; }
         public Transform LocationDataParent { get; set; }
         public Transform ExtDataParent { get; set; }
-        public GameObject stringFieldPrefab;
+
+        [Header ("Layout")]
+        [Tooltip ("Field that uses numpad or keypad")]
+        public GameObject valueFieldPrefab;
+        [Tooltip("Field that uses selectable buttons")]
         public GameObject buttonFieldPrefab;
         public Transform fieldStartPos { get; set; }
         Vector3 fieldInitPos;
+        [Tooltip("Distance between fields")]
         public float offsetDist;
+
         public Dictionary<string, GameObject> ActiveFields = new Dictionary<string, GameObject>();
+        [Header("Lists of Fields")]
         public List<GameObject> IFCollection;
         public List<GameObject> EDCollection;
         public List<GameObject> LDCollection;
@@ -147,8 +154,172 @@ namespace HoloToolkit.Unity
 
         }
 
+
+
+        //populate inspection fields, this looks through the definitions item in the JU_databaseMan
+        //we do this because sometimes there are form items that are defined but are left blank or has no value
+        void populateIF()
+        {
+            fieldStartPos.localPosition = fieldInitPos;
+
+
+            int fieldCount = JU_databaseMan.Instance.definitions.InspectionFields.fields.Count;
+            for (int i = 0; i < fieldCount; i++)
+            {
+                //set the amount of fields spawned
+                MasterForm.GetComponent<formController>().totalFields = i+1;
+                MasterForm.GetComponent<formController>().updateFieldStatus(0);
+
+
+                GameObject spawnedField;
+
+                //spawns a button field with multiple options,  this is SVType
+                if (JU_databaseMan.Instance.definitions.InspectionFields.fields[i].FieldType == 1)
+                {
+                    
+                    spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
+
+                    //spawn the button choices
+                    spawnedField.GetComponent<formFieldController>().populateButtons(JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Options.Count);
+
+                    List<string> keyCollection = new List<string>();
+                    foreach(string keyIn in JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Options.Keys)
+                    {
+                        keyCollection.Add(keyIn);
+                       
+                    }
+                    List<int> keyInts = new List<int>();
+                    foreach(string keyStr in keyCollection)
+                    {
+                        int temp = int.Parse(keyStr);
+                        keyInts.Add(temp);
+                    }
+                    //set button values
+                    for (int m = 0; m<keyCollection.Count; m++)
+                    {
+                        spawnedField.GetComponent<formFieldController>().curButtons[m].GetComponent<formButtonController>().buttonText.text = (JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Options[keyCollection[m]]);
+                        spawnedField.GetComponent<formFieldController>().curButtons[m].GetComponent<formButtonController>().buttonIndex = keyInts[m];
+                    }
+                    
+                }
+
+                // true/false
+                else if(JU_databaseMan.Instance.definitions.InspectionFields.fields[i].FieldType == 16)
+                {
+                    spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
+                    spawnedField.GetComponent<formFieldController>().populateButtons(2);
+                    spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonText.text = "yes";
+                    spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonIndex = 1;
+                    spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonText.text = "no";
+                    spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonIndex = 0;
+                }
+                //date
+                else if (JU_databaseMan.Instance.definitions.InspectionFields.fields[i].FieldType == 14)
+                {
+
+                    spawnedField = Instantiate(valueFieldPrefab, transform.position, Quaternion.identity);
+                    spawnedField.GetComponent<formFieldController>().Value.text = System.DateTime.Now.ToString("MM/dd/yyyy");
+
+                }
+                //int value
+                else
+                {
+                    spawnedField = Instantiate(valueFieldPrefab, transform.position, Quaternion.identity);
+                }
+
+                //when values are changed, we want to show that there has been a change
+                spawnedField.GetComponent<formFieldController>().showUpdate = true;
+
+                //set transform values
+                spawnedField.transform.SetParent(FieldInspectionParent);
+                spawnedField.transform.localPosition = fieldStartPos.localPosition;
+                spawnedField.transform.localScale = valueFieldPrefab.transform.localScale;
+                spawnedField.transform.localRotation = valueFieldPrefab.transform.localRotation;
+
+                //reposition field position
+                fieldStartPos.position = new Vector3(fieldStartPos.position.x, fieldStartPos.position.y - offsetDist, fieldStartPos.position.z);
+                
+
+                //set field values
+                spawnedField.GetComponent<formFieldController>().DisplayName.text = JU_databaseMan.Instance.definitions.InspectionFields.fields[i].DisplayName;
+                spawnedField.GetComponent<formFieldController>().trueName = JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Name;
+                ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
+
+                IFCollection.Add(spawnedField);
+            }
+
+            //position the submit button at the bottom
+            GameObject Submit = MasterForm.GetComponent<formController>().Sumbit;
+            Submit.transform.SetParent(FieldInspectionParent);
+            Submit.transform.localPosition = fieldStartPos.localPosition;
+
+            //set the form to open to this tab
+            MasterForm.GetComponent<formController>().goToTab(2);
+        }
+
+        //for populating equipment data
+        void populateED()
+        {
+            fieldStartPos.localPosition = fieldInitPos;
+            int fieldCount = JU_databaseMan.Instance.definitions.EquipmentData.fields.Count;
+            for (int i = 0; i < fieldCount; i++)
+            {
+
+                GameObject spawnedField = Instantiate(valueFieldPrefab, transform.position, Quaternion.identity);
+
+                //set transform values
+                spawnedField.transform.SetParent(EquipmentDataParent);
+                spawnedField.transform.localPosition = fieldStartPos.localPosition;
+                spawnedField.transform.localScale = valueFieldPrefab.transform.localScale;
+                spawnedField.transform.localRotation = valueFieldPrefab.transform.localRotation;
+
+                //reposition field pos
+                fieldStartPos.position = new Vector3(fieldStartPos.position.x, fieldStartPos.position.y - offsetDist, fieldStartPos.position.z);
+
+
+                spawnedField.GetComponent<formFieldController>().DisplayName.text = JU_databaseMan.Instance.definitions.EquipmentData.fields[i].DisplayName;
+                spawnedField.GetComponent<formFieldController>().trueName = JU_databaseMan.Instance.definitions.EquipmentData.fields[i].Name;
+                ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
+                EDCollection.Add(spawnedField);
+
+                spawnedField.SetActive(false);
+            }
+        }
+
+        //for populating location data
+        void populateLD()
+        {
+            fieldStartPos.localPosition = fieldInitPos;
+
+            string[] keys = new string[] { "address1", "address2", "City", "County", "Country", "LocationID", "LocationName", "State", "Zip" };
+
+            foreach (string key in keys)
+            {
+                //create field
+                GameObject spawnedField = Instantiate(valueFieldPrefab, transform.position, Quaternion.identity);
+
+                //set transform values
+                spawnedField.transform.SetParent(LocationDataParent);
+                spawnedField.transform.localPosition = fieldStartPos.localPosition;
+                spawnedField.transform.localScale = valueFieldPrefab.transform.localScale;
+                spawnedField.transform.localRotation = valueFieldPrefab.transform.localRotation;
+                
+                //reposition field pos
+                fieldStartPos.position = new Vector3(fieldStartPos.position.x, fieldStartPos.position.y - offsetDist, fieldStartPos.position.z);
+
+
+                spawnedField.GetComponent<formFieldController>().DisplayName.text = key;
+                spawnedField.GetComponent<formFieldController>().trueName = key;
+                ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
+                LDCollection.Add(spawnedField);
+
+                spawnedField.SetActive(false);
+            }
+        }
+
         //populating extra data, items that are exceptions in the way they are handled on the form....
-        void populateExD() {
+        void populateExD()
+        {
 
             int fieldCount = JU_databaseMan.Instance.definitions.ExtraFields.fields.Count;
             for (int i = 0; i < fieldCount; i++)
@@ -211,144 +382,7 @@ namespace HoloToolkit.Unity
 
         }
 
-        //populate inspection fields, this looks through the definitions item in the JU_databaseMan
-        //we do this because sometimes there are form items that are defined but are left blank or has no value
-        void populateIF()
-        {
-            fieldStartPos.localPosition = fieldInitPos;
-            int fieldCount = JU_databaseMan.Instance.definitions.InspectionFields.fields.Count;
-            for (int i = 0; i < fieldCount; i++)
-            {
-                MasterForm.GetComponent<formController>().totalFields = i+1;
-                MasterForm.GetComponent<formController>().updateFieldStatus(0);
-                GameObject spawnedField;
-                if (JU_databaseMan.Instance.definitions.InspectionFields.fields[i].FieldType == 1)
-                {
-                    
-                    spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
-
-                    spawnedField.GetComponent<formFieldController>().populateButtons(JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Options.Count);
-
-                    List<string> keyCollection = new List<string>();
-                    foreach(string keyIn in JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Options.Keys)
-                    {
-                        keyCollection.Add(keyIn);
-                       
-                    }
-                    List<int> keyInts = new List<int>();
-                    foreach(string keyStr in keyCollection)
-                    {
-                        int temp = int.Parse(keyStr);
-                        keyInts.Add(temp);
-                    }
-                    for (int m = 0; m<keyCollection.Count; m++)
-                    {
-                        spawnedField.GetComponent<formFieldController>().curButtons[m].GetComponent<formButtonController>().buttonText.text = (JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Options[keyCollection[m]]);
-                        spawnedField.GetComponent<formFieldController>().curButtons[m].GetComponent<formButtonController>().buttonIndex = keyInts[m];
-                    }
-                    
-                }
-                else if(JU_databaseMan.Instance.definitions.InspectionFields.fields[i].FieldType == 16)
-                {
-                    spawnedField = Instantiate(buttonFieldPrefab, transform.position, Quaternion.identity);
-                    spawnedField.GetComponent<formFieldController>().populateButtons(2);
-                    spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonText.text = "yes";
-                    spawnedField.GetComponent<formFieldController>().curButtons[0].GetComponent<formButtonController>().buttonIndex = 1;
-                    spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonText.text = "no";
-                    spawnedField.GetComponent<formFieldController>().curButtons[1].GetComponent<formButtonController>().buttonIndex = 0;
-                }
-                else if (JU_databaseMan.Instance.definitions.InspectionFields.fields[i].FieldType == 14)
-                {
-
-                    spawnedField = Instantiate(stringFieldPrefab, transform.position, Quaternion.identity);
-                    spawnedField.GetComponent<formFieldController>().Value.text = System.DateTime.Now.ToString("MM/dd/yyyy");
-
-                }
-                else
-                {
-                    spawnedField = Instantiate(stringFieldPrefab, transform.position, Quaternion.identity);
-                }
-                spawnedField.GetComponent<formFieldController>().showUpdate = true;
-                spawnedField.transform.SetParent(FieldInspectionParent);
-                spawnedField.transform.localPosition = fieldStartPos.localPosition;
-                spawnedField.transform.localScale = stringFieldPrefab.transform.localScale;
-                spawnedField.transform.localRotation = stringFieldPrefab.transform.localRotation;
-                fieldStartPos.position = new Vector3(fieldStartPos.position.x, fieldStartPos.position.y - offsetDist, fieldStartPos.position.z);
-                
-                spawnedField.GetComponent<formFieldController>().DisplayName.text = JU_databaseMan.Instance.definitions.InspectionFields.fields[i].DisplayName;
-                spawnedField.GetComponent<formFieldController>().trueName = JU_databaseMan.Instance.definitions.InspectionFields.fields[i].Name;
-                ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
-
-                IFCollection.Add(spawnedField);
-            }
-
-            GameObject Submit = MasterForm.GetComponent<formController>().Sumbit;
-            Submit.transform.SetParent(FieldInspectionParent);
-            Submit.transform.localPosition = fieldStartPos.localPosition;
-            MasterForm.GetComponent<formController>().goToTab(2);
-        }
-
-        //for populating equipment data
-        void populateED()
-        {
-            fieldStartPos.localPosition = fieldInitPos;
-            int fieldCount = JU_databaseMan.Instance.definitions.EquipmentData.fields.Count;
-            for (int i = 0; i < fieldCount; i++)
-            {
-
-                GameObject spawnedField = Instantiate(stringFieldPrefab, transform.position, Quaternion.identity);
-                spawnedField.transform.SetParent(EquipmentDataParent);
-                spawnedField.transform.localPosition = fieldStartPos.localPosition;
-                spawnedField.transform.localScale = stringFieldPrefab.transform.localScale;
-                spawnedField.transform.localRotation = stringFieldPrefab.transform.localRotation;
-                fieldStartPos.position = new Vector3(fieldStartPos.position.x, fieldStartPos.position.y - offsetDist, fieldStartPos.position.z);
-                spawnedField.GetComponent<formFieldController>().DisplayName.text = JU_databaseMan.Instance.definitions.EquipmentData.fields[i].DisplayName;
-                spawnedField.GetComponent<formFieldController>().trueName = JU_databaseMan.Instance.definitions.EquipmentData.fields[i].Name;
-                ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
-                EDCollection.Add(spawnedField);
-
-                spawnedField.SetActive(false);
-            }
-        }
-
-        //for populating location data
-        void populateLD()
-        {
-            fieldStartPos.localPosition = fieldInitPos;
-
-            string[] keys = new string[] { "address1", "address2", "City", "County", "Country", "LocationID", "LocationName", "State", "Zip" };
-
-            foreach (string key in keys)
-            {
-                GameObject spawnedField = Instantiate(stringFieldPrefab, transform.position, Quaternion.identity);
-                spawnedField.transform.SetParent(LocationDataParent);
-                spawnedField.transform.localPosition = fieldStartPos.localPosition;
-                spawnedField.transform.localScale = stringFieldPrefab.transform.localScale;
-                spawnedField.transform.localRotation = stringFieldPrefab.transform.localRotation;
-                fieldStartPos.position = new Vector3(fieldStartPos.position.x, fieldStartPos.position.y - offsetDist, fieldStartPos.position.z);
-                spawnedField.GetComponent<formFieldController>().DisplayName.text = key;
-                spawnedField.GetComponent<formFieldController>().trueName = key;
-                ActiveFields.Add(spawnedField.GetComponent<formFieldController>().trueName, spawnedField);
-                LDCollection.Add(spawnedField);
-                spawnedField.SetActive(false);
-            }
-        }
 
 
-        public void testSpawn()
-        {
-
-            fieldStartPos.localPosition = fieldInitPos;
-            for (int i = 0; i < 10; i++)
-            {
-                GameObject spawnedField = Instantiate(stringFieldPrefab, transform.position, Quaternion.identity);
-                spawnedField.transform.SetParent(FieldInspectionParent);
-                spawnedField.transform.localPosition = fieldStartPos.localPosition;
-                spawnedField.transform.localScale = stringFieldPrefab.transform.localScale;
-               spawnedField.transform.localRotation = stringFieldPrefab.transform.localRotation;
-                fieldStartPos.position = new Vector3(fieldStartPos.position.x, fieldStartPos.position.y - offsetDist, fieldStartPos.position.z);
-                IFCollection.Add(spawnedField);
-            }
-        }
     }
 }

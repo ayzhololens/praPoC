@@ -166,7 +166,7 @@ namespace HoloToolkit.Unity
             if(spawnedIndex == 3)
             {
                 //violation node, pass it into violation spawner
-                violatoinSpawner.Instance.spawnViolation(spawnedNode);
+                vioControl.Instance.spawnViolation(spawnedNode);
                 mediaManager.Instance.activateMedia();
             }
 
@@ -178,11 +178,9 @@ namespace HoloToolkit.Unity
                 spawnedNode.GetComponent<nodeController>().linkedField = linkedField.gameObject;
                 //activate media to store user and date
                 mediaManager.Instance.activateMedia();
-
-                print(linkedField);
+                
 
                 //link field and node then enable attachment capture
-
                 linkedField.linkedNode = spawnedNode;
                 linkedField.enableAttachmentCapture();
 
@@ -196,8 +194,7 @@ namespace HoloToolkit.Unity
         {
 
             linkedField = curField;
-
-            print("1");
+            
 
         }
 

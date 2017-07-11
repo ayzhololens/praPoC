@@ -9,13 +9,25 @@ namespace HoloToolkit.Unity
 {
     public class mainMenuController : Singleton<mainMenuController> {
 
+
+        [Tooltip ("Content parents")]
         public GameObject[] tabs;
-        public formContent[] preloadedDataFields;
+        int curTab;
+
+        [Tooltip ("Main menu content holder")]
         public GameObject contentHolder;
+
+        [Tooltip ("Objects to load non editable data onto")]
+        public formContent[] preloadedDataFields;
+
+        [Tooltip ("Visual feedback for locate boiler tag sectoin. Located under Hololens Camera")]
         public GameObject alignerIndicator;
         bool startedAlignment;
-        int curTab;
+
+        [Tooltip ("Media player for the tutorial video at the end of the main menu")]
         public MediaPlayer radAnim;
+
+        [Tooltip ("Tap to continue object present after the tutorial video")]
         public GameObject tapToContinue;
         bool videoStarted;
 
@@ -42,6 +54,7 @@ namespace HoloToolkit.Unity
 
         }
 
+        //go to tab and set others inactive
         public void goToTab(int tabIndex)
         {
             for (int i = 0; i < tabs.Length; i++)
@@ -56,6 +69,22 @@ namespace HoloToolkit.Unity
 
         }
 
+
+        public void goBackTab()
+        {
+            if (curTab == 3 || curTab == 4)
+            {
+
+                goToTab(curTab - 2);
+            }
+            else if (curTab != 0)
+            {
+                goToTab(curTab - 1);
+
+            }
+        }
+
+        //populate data into into specific sections
         public void preloadData()
         {
 
@@ -64,12 +93,14 @@ namespace HoloToolkit.Unity
                 preloadedDataFields[i].loadDetails();
             }
         }
+        
 
         public void closeMainMenu()
         {
             contentHolder.SetActive(false);
         }
 
+        //open menu at set position
         public void openMainMenu()
         {
 
@@ -77,7 +108,7 @@ namespace HoloToolkit.Unity
             contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
         }
 
-
+        //start alignment workflow
         public void beginAlignment()
         {
             mediaManager.Instance.setStatusIndicator("Please Locate Boiler Tag");
@@ -86,6 +117,7 @@ namespace HoloToolkit.Unity
             startedAlignment = true;
         }
 
+        //check if  you hit the boiler tag then continue
         void findZone()
         {
             if (GazeManager.Instance.HitObject != null)
@@ -101,6 +133,7 @@ namespace HoloToolkit.Unity
             }
         }
 
+        //audio visual feedback
         void finishAlignment()
         {
             mediaManager.Instance.setStatusIndicator("Success!");
@@ -111,6 +144,8 @@ namespace HoloToolkit.Unity
             Invoke("turnOffAligner", 2);
         }
 
+
+        //turn off indicators and go to next section
         void turnOffAligner()
         {
             openMainMenu();
@@ -118,6 +153,8 @@ namespace HoloToolkit.Unity
             mediaManager.Instance.disableStatusIndicator();
         }
 
+
+        //start tutorial video
         public void completeMainMenu()
         {
             goToTab(7);
@@ -125,6 +162,7 @@ namespace HoloToolkit.Unity
             radAnim.Control.Play();
         }
 
+        //Stop video
         public void stopRad()
         {
             radAnim.Control.Stop();
@@ -136,24 +174,7 @@ namespace HoloToolkit.Unity
         }
 
 
-        void turnOffInd()
-        {
-            mediaManager.Instance.disableStatusIndicator();
-        }
 
-        public void goBackTab()
-        {
-            if (curTab == 3 || curTab == 4)
-            {
-
-                goToTab(curTab - 2);
-            }
-            else if (curTab != 0)
-            {
-                goToTab(curTab - 1);
-
-            }
-        }
 
     }
 }

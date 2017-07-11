@@ -158,7 +158,7 @@ public class addNodeFromJSon : Singleton<addNodeFromJSon> {
         else if (nodeClass.type == 3)// type = 3 violation
         {
 
-            violatoinSpawner.Instance.spawnViolationFromJSON(spawnedNode);
+            vioControl.Instance.spawnViolationFromJSON(spawnedNode);
             nodeSpawner.Instance.spawnMiniNode(spawnedNode, 3);
 
             List<databaseMan.tempComment> tempList = new List<databaseMan.tempComment>();

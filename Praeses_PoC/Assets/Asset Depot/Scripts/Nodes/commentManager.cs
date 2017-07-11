@@ -9,23 +9,34 @@ using RenderHeads.Media.AVProVideo.Demos;
 public class commentManager : MonoBehaviour {
 
     public List<GameObject> activeComments;
-    public int commentCount;
-    public Transform commentParent;
-    public Transform CommmentStartPos;
-    public Transform expandPos;
+
+    [Header ("Comment Prefabs")]
     public GameObject simpleCommentPrefab;
     public GameObject videoCommentPrefab;
     public GameObject photoCommentPrefab;
     GameObject spawnedComment;
+
+    [Header ("Layout")]
+    public Transform commentParent;
+    public Transform CommmentStartPos;
+    public Transform expandPos;
+    [Tooltip ("Distance between comments")]
     public float offsetDist;
+    [Tooltip ("Check to create comments horizontally")]
     public bool xOffset;
+
+
     InputField activeInputField;
+
+
     public bool capturingPhoto { get; set; }
     public bool capturingVideo { get; set; }
     bool recordingEnabled;
     bool recordingInProgress;
     bool photoCaptureEnabled;
 
+
+    [Tooltip ("Secondary manager to add comments to if needed")]
     public commentManager managerOverride;
 
 
@@ -189,9 +200,7 @@ public class commentManager : MonoBehaviour {
 
         }
 
-
-
-        //mediaManager.Instance.activateComment();
+        
 
     }
 
@@ -419,14 +428,5 @@ public class commentManager : MonoBehaviour {
     }
 
 
-
-
-    void fieldActivator()
-    {
-
-        activeComments[commentCount].GetComponent<inputFieldManager>().activateField();
-        commentCount += 1;
-
-
-    }
+    
 }

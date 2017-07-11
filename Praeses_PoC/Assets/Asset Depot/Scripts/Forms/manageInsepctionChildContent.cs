@@ -22,27 +22,14 @@ public class manageInsepctionChildContent : MonoBehaviour {
     {
         for (int i = 1; i < transform.parent.childCount; i++)
         {
-            transform.parent.GetChild(i).GetComponent<manageInsepctionChildContent>().startDownloadTimer();
+            transform.parent.GetChild(i).GetComponent<manageInsepctionChildContent>().CompleteTimer();
         }
-    }
-
-    public void startDownloadTimer()
-    {
-        //if (!hasAnimated)
-        //{
-        //    //SpriteLoader.SetActive(true);
-        //    //SpriteLoader.GetComponent<Animator>().SetTrigger("startDownloadTimer");
-        //    downLoadIcon.SetActive(false);
-        //    Invoke("CompleteTimer", .8f);
-        //    //hasAnimated = true;
-        //}
     }
 
     public void CompleteTimer()
     {
-        //SpriteLoader.SetActive(false);
-        downLoadIcon.SetActive(false);
         completeIcon.SetActive(true);
+        downLoadIcon.SetActive(false);
     }
 
 

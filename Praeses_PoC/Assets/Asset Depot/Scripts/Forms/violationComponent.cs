@@ -7,41 +7,42 @@ namespace HoloToolkit.Unity
 {
     public class violationComponent : MonoBehaviour
     {
-
+        [Tooltip ("Value that gets stored on the violation controller")]
         public string value;
+        [Tooltip ("Text diplay")]
         public Text displayText;
         public InputField[] optionContent;
+        [Tooltip ("Top level violation controller that gets udpated")]
         public violationController linkedViolation;
+        [Tooltip ("Index that gets stored in the violation controller")]
         public int Index;
+
+        [Tooltip ("Check to set the date value")]
         public bool setDate;
 
         // Use this for initialization
         void Start()
         {
+            //Set the future date of when the violation is due.
             if (setDate)
             {
                 optionContent[0].placeholder.GetComponent<Text>().text = System.DateTime.Now.AddDays(180).ToString("MM");
                 optionContent[1].placeholder.GetComponent<Text>().text = System.DateTime.Now.AddDays(180).ToString("dd");
                 optionContent[2].placeholder.GetComponent<Text>().text = System.DateTime.Now.AddDays(180).ToString("yyyy");
 
-                //optionContent.placeholder.GetComponent<Text>().text = System.DateTime.Now.AddDays(180).ToString();
             }
 
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        /// <summary>
+        /// Add value and index to the violation controller then spawn the next section of the violation workflow
+        /// </summary>
         public void setCategory()
         {
             if (linkedViolation.violationData.Count==0)
             {
                 linkedViolation.violationData.Add(value);
                 linkedViolation.violationIndices.Add(Index);
-                violatoinSpawner.Instance.populateSubCategories(linkedViolation.violationIndices[0]);
+                vioControl.Instance.populateSubCategories(linkedViolation.violationIndices[0]);
             }
             else
             {
@@ -53,13 +54,17 @@ namespace HoloToolkit.Unity
             linkedViolation.goToTab(1);
         }
 
+
+        /// <summary>
+        /// Add the subcategory value then spawn the next section of the violation workflor
+        /// </summary>
         public void setSubCategory()
         {
             if (linkedViolation.violationData.Count == 1)
             {
                 linkedViolation.violationData.Add(value);
                 linkedViolation.violationIndices.Add(Index);
-                violatoinSpawner.Instance.populateViolations(linkedViolation.violationIndices[1]);
+                vioControl.Instance.populateViolations(linkedViolation.violationIndices[1]);
             }
             else
             {
@@ -74,6 +79,9 @@ namespace HoloToolkit.Unity
             linkedViolation.goToTab(2);
         }
 
+        /// <summary>
+        /// Add the violation value and index
+        /// </summary>
         public void setViolation()
         {
             if (linkedViolation.violationData.Count == 2)
@@ -96,6 +104,9 @@ namespace HoloToolkit.Unity
 
         }
 
+        /// <summary>
+        /// Add classification value and index
+        /// </summary>
         public void setClassification()
         {
             if (linkedViolation.violationData.Count == 3)
@@ -117,6 +128,9 @@ namespace HoloToolkit.Unity
 
         }
 
+        /// <summary>
+        /// Parse the date from the three content pieces.  Add that to the violation controller
+        /// </summary>
         public void setDueDate()
         { 
             Text linkedText = linkedViolation.violationSectionTitles[5];
@@ -172,6 +186,9 @@ namespace HoloToolkit.Unity
         }
 
 
+        /// <summary>
+        /// Set conditions and requirements
+        /// </summary>
         public void setConditions()
         {
 
@@ -207,49 +224,7 @@ namespace HoloToolkit.Unity
             linkedViolation.goToTab(7);
 
         }
-
-        public void setRequirements()
-        {
-            //Text linkedText = linkedViolation.violationTabButtons[6].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
-            //if (linkedViolation.violationData.Count == 6)
-            //{
-            //    if (optionContent.text.Length == 0)
-            //    {
-            //        linkedViolation.violationData.Add(optionContent.placeholder.GetComponent<Text>().text);
-            //        linkedText.text = optionContent.placeholder.GetComponent<Text>().text;
-            //    }
-            //    else
-            //    {
-
-            //        linkedViolation.violationData.Add(optionContent.text);
-            //        linkedText.text = optionContent.text;
-            //    }
-            //    linkedViolation.violationIndices.Add(Index);
-            //}
-            //else
-            //{
-
-            //    if (optionContent.text.Length == 0)
-            //    {
-            //        linkedViolation.violationData[6] = optionContent.placeholder.GetComponent<Text>().text;
-            //        linkedText.text = optionContent.placeholder.GetComponent<Text>().text;
-            //    }
-            //    else
-            //    {
-
-            //        linkedViolation.violationData[6] = (optionContent.text);
-            //        linkedText.text = optionContent.text;
-            //    }
-
-
-            //    linkedViolation.violationIndices[6] = Index;
-            //}
-            //linkedText.color = Color.white;
-            //linkedViolation.violationIndices.Add(Index);
-            //linkedViolation.violationTabs[6].SetActive(false);
-            //linkedViolation.violationTabs[7].SetActive(true);
-        }
-
+        
 
     }
 }

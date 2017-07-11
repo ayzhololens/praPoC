@@ -7,12 +7,17 @@ using HoloToolkit.Unity.InputModule;
 
 public class submittedViolationController : MonoBehaviour {
 
+
+    [Tooltip ("Top level violation controller")]
     public violationController vioController;
+    [Tooltip ("Prefab for the submitted violation previews")]
     public GameObject submittedVioPrefab;
-    public GameObject vioStatusField;
+    [Tooltip ("Positon for the submitted violation")]
     public Transform submittedVioPos;
+    [Tooltip ("Continue button that gets moved down as more vio previews are added")]
     public Transform goToResolveVioButton;
-    public GameObject resolutionField;
+
+
     vioPreviewComponent vioPreview;
     GameObject spawnedPreview;
     commentManager vioComManager;
@@ -31,23 +36,27 @@ public class submittedViolationController : MonoBehaviour {
 
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
+    /// <summary>
+    /// Called on the actual button that gets pressed when picking a violation resolution
+    /// </summary>
+    /// <param name="index"></param>
     public void setIndex(int index)
     {
         tempIndex = index;
     }
 
+
+    /// <summary>
+    /// Stores the index and resolution name in the violation controller.  Updates the JSON
+    /// </summary>
     public void submit()
     {
 
         vioController.violationData[7] = resName;
         vioController.violationIndices[7] = tempIndex;
-        violatoinSpawner.Instance.successContentHolder.SetActive(true);
-        violatoinSpawner.Instance.successContentHolder.transform.position = this.transform.position;
+        vioControl.Instance.successContentHolder.SetActive(true);
+        vioControl.Instance.successContentHolder.transform.position = this.transform.position;
         databaseMan.Instance.updateVio(vioController);
     }
 
@@ -58,23 +67,35 @@ public class submittedViolationController : MonoBehaviour {
                 index = tempIndex;
             }
 
+
+        //check if there's already a viopreview.  If not, spawn new one
         if (spawnedPreview == null)
         {
+
+            //Set transform values
             Vector3 offset = new Vector3(submittedVioPos.localPosition.x, submittedVioPos.localPosition.y, submittedVioPos.localPosition.z);
             spawnedPreview = Instantiate(submittedVioPrefab, transform.position, Quaternion.identity);
             spawnedPreview.transform.SetParent(submittedVioPos.parent);
             spawnedPreview.transform.localPosition = offset;
             spawnedPreview.transform.localScale = submittedVioPrefab.transform.localScale;
             spawnedPreview.transform.localRotation = submittedVioPrefab.transform.localRotation;
+
+            //resposition the continue button
             goToResolveVioButton.localPosition = new Vector3(goToResolveVioButton.localPosition.x, goToResolveVioButton.localPosition.y - offsetDist, goToResolveVioButton.localPosition.z);
+
+            //Spawn similar previews in the submit inspection page and the view violations section
             vioPreview = spawnedPreview.GetComponent<vioPreviewComponent>();
-            formController.Instance.submitInspection.addVioPreview(index, vioController, vioPreview);
-            viewViolationController.Instance.addVioPreview(index, vioController, vioController.fromJson, vioPreview);
+            formController.Instance.submitInspection.addVioPreview(vioController, vioPreview);
+            viewViolationController.Instance.addVioPreview(vioController, vioController.fromJson, vioPreview);
+
+            //set vio preview components
             vioPreview.vioController = vioController;
             vioPreview.setResolution(index);
             vioPreview.user.text = metaManager.Instance.user;
             vioPreview.date.text = metaManager.Instance.date();
         }
+
+        //if yes then just update the data you turkey 
         else
         {
             vioPreview.setResolution(index);
@@ -83,117 +104,8 @@ public class submittedViolationController : MonoBehaviour {
             vioPreview.updateLinks(index);
         }
 
-
-
-
-
-
-
-
-        //setPreviewComments();
-        //Invoke("setPreviewComments", .5f);
-
         
-
     }
 
-
-    public void updateComManager()
-    {
-        //foreach (GameObject activeComment in vioComManager.activeComments)
-        //{
-        //    Destroy(activeComment);
-        //}
-        //vioComManager.activeComments.Clear();
-
-        //foreach (GameObject activeComment in resolutionField.GetComponent<commentManager>().activeComments)
-        //{
-        //    if (activeComment.GetComponent<commentContents>().isSimple)
-        //    {
-        //        GameObject simpleComment = vioComManager.spawnSimpleCommentFromJSON();
-        //        simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
-        //        simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-        //        simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-
-        //        // resolveComs.Add(simpleComment);
-        //    }
-        //    if (activeComment.GetComponent<commentContents>().isVideo)
-        //    {
-        //        GameObject videoComment = vioComManager.spawnVideoCommentFromJSON(activeComment.GetComponent<commentContents>().filepath);
-        //        videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
-        //        videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-        //        videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-        //        // resolveComs.Add(videoComment);
-        //    }
-        //    if (activeComment.GetComponent<commentContents>().isPhoto)
-        //    {
-        //        GameObject photoComment = vioComManager.spawnPhotoCommentFromJSON();
-        //        photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;
-        //        photoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
-        //        photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-        //        photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-
-        //        //resolveComs.Add(photoComment);
-        //    }
-        //}
-    }
-
-
-
-    public void setResolveFieldComments()
-    {
-
-
-
-        //    List<GameObject> resolveComs = new List<GameObject>();
-        //int sCounter = 0;
-        //int pCounter = 0;
-        //int vCounter = 0;
-        //foreach (GameObject activeComment in resolutionField.GetComponent<commentManager>().activeComments)
-        //{
-        //    Destroy(activeComment);
-        //}
-        //resolutionField.GetComponent<commentManager>().activeComments.Clear();
-
-
-
-        //    foreach (GameObject activeComment in vioController.gameObject.GetComponent<commentManager>().activeComments)
-        //{
-        //    if (activeComment.GetComponent<commentContents>().isSimple)
-        //    {
-        //        sCounter += 1;
-        //        GameObject simpleComment = resolutionField.GetComponent<commentManager>().spawnSimpleCommentFromJSON();
-        //        simpleComment.GetComponent<commentContents>().commentMain.text = activeComment.GetComponent<commentContents>().commentMain.text;
-        //        simpleComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-        //        simpleComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-
-        //       // resolveComs.Add(simpleComment);
-        //    }
-        //    if (activeComment.GetComponent<commentContents>().isVideo)
-        //    {
-        //        vCounter += 1;
-        //        GameObject videoComment = resolutionField.GetComponent<commentManager>().addVideoComment(activeComment);
-        //        videoComment.GetComponent<commentContents>().thumbMat = activeComment.GetComponent<commentContents>().thumbMat;
-        //        videoComment.GetComponent<commentContents>().vidThumbnail = activeComment.GetComponent<commentContents>().vidThumbnail;
-        //        videoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-        //        videoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-        //       // resolveComs.Add(videoComment);
-        //    }
-        //    if (activeComment.GetComponent<commentContents>().isPhoto)
-        //    {
-        //        pCounter += 1;
-        //        GameObject photoComment = resolutionField.GetComponent<commentManager>().spawnPhotoCommentFromJSON();
-        //        photoComment.GetComponent<Renderer>().material.mainTexture = activeComment.GetComponent<Renderer>().material.mainTexture;
-        //        photoComment.GetComponent<commentContents>().filepath = activeComment.GetComponent<commentContents>().filepath;
-        //        photoComment.GetComponent<commentContents>().commentMetaDate.text = activeComment.GetComponent<commentContents>().commentMetaDate.text;
-        //        photoComment.GetComponent<commentContents>().commentMetaUser.text = activeComment.GetComponent<commentContents>().commentMetaUser.text;
-
-        //        //resolveComs.Add(photoComment);
-        //    }
-
-
-        //}
-
-
-    }
+    
 }

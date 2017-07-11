@@ -153,11 +153,11 @@ namespace HoloToolkit.Unity
             }
             if (isViolationNode)
             {
-                spawnedAnnotation.GetComponent<violationNodeController>().spawnViolation();
+                //spawnedAnnotation.GetComponent<violationNodeController>().spawnViolation();
                 annotationManager.Instance.activateMedia();
-                //annotationManager.Instance.stateIndicator.SetActive(false);
-                miniAnnotation.GetComponent<violationNodeController>().parentNode = spawnedAnnotation;
-                spawnedAnnotation.GetComponent<violationNodeController>().miniNode = miniAnnotation;
+                ////annotationManager.Instance.stateIndicator.SetActive(false);
+                //miniAnnotation.GetComponent<violationNodeController>().parentNode = spawnedAnnotation;
+                //spawnedAnnotation.GetComponent<violationNodeController>().miniNode = miniAnnotation;
             }
 
             if (!violationNode)

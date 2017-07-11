@@ -10,32 +10,37 @@ namespace HoloToolkit.Unity
 {
     public class violationController : MonoBehaviour
     {
-        public GameObject contentHolder;
+        [Header ("Data Storage")]
+        [Tooltip ("List of the string values of each violation section")]
         public List<string> violationData;
+        [Tooltip ("List of the int values of each violation section")]
         public List<int> violationIndices;
+        [Tooltip ("Violation Review Component.  Located in Adding Violations > Review")]
+        public violationReview vioReview;
+
+        [Header ("Content Components")]
+        [Tooltip ("Tagalong holder")]
+        public GameObject contentHolder;
+        [Tooltip ("Section Parents")]
         public GameObject[] violationTabs;
+        [Tooltip ("Visual buttons associated with section parents")]
         public GameObject[] violationTabButtons;
+        [Header ("Layout")]
+        public Transform boxStartPos;
         public Text[] violationSectionTitles;
         public InputField violationHeader;
-        public Transform boxStartPos;
         public Transform fieldStartPos;
-        public GameObject linkedNode;
-        public violationReview vioReview;
-        public GameObject linkedPreview;
+
+
+        public GameObject linkedNode { get; set; }
+        public GameObject linkedPreview { get; set; }
         public bool fromJson { get; set; }
 
-        // Use this for initialization
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
 
+        /// <summary>
+        /// Find current tab
+        /// </summary>
         public void checkTab()
         {
             for (int i = 0; i < violationTabs.Length; i++)
@@ -46,7 +51,11 @@ namespace HoloToolkit.Unity
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Visual feedback on current tab and enable it
+        /// </summary>
+        /// <param name="tab"></param> 
         public void goToTab(int tab)
         {
 
@@ -66,203 +75,17 @@ namespace HoloToolkit.Unity
                 {
                     violationTabButtons[i].GetComponent<buttonHightlight>().updateMat();
                     violationTabs[i].SetActive(true);
-                    //debu
                 }
             }
             
         }
-
-        //enablements here
-        #region
-        public void enableCategories()
-        {
-            if(violationData.Count > 0)
-            {
-                violationTabs[0].SetActive(true);
-
-                for (int i = 0; i < violationTabs.Length; i++)
-                {
-                    if (i != 0)
-                    {
-                        if (violationTabs[i].activeSelf)
-                        {
-                            violationTabs[i].SetActive(false);
-                        }
-
-                    }
-                }
-
-            }
-        }
-
-        public void enableSubCategories()
-        {
-            if (violationData.Count > 1)
-            {
-
-                violationTabs[1].SetActive(true);
-
-                for (int i = 0; i < violationTabs.Length; i++)
-                {
-                    if (i != 1)
-                    {
-                        if (violationTabs[i].activeSelf)
-                        {
-                            violationTabs[i].SetActive(false);
-                        }
-
-                    }
-                }
-            }
-        }
-
-        public void enableViolations()
-        {
-
-            if(violationData.Count > 2)
-            {
-
-                violationTabs[2].SetActive(true);
-
-                for (int i = 0; i < violationTabs.Length; i++)
-                {
-                    if (i != 2)
-                    {
-                        if (violationTabs[i].activeSelf)
-                        {
-                            violationTabs[i].SetActive(false);
-                        }
-
-                    }
-                }
-            }
-        }
-
-        public void enableClassification()
-        {
-
-            if(violationData.Count > 3)
-            {
-                violationTabs[3].SetActive(true);
-
-                for (int i = 0; i < violationTabs.Length; i++)
-                {
-                    if (i != 3)
-                    {
-                        if (violationTabs[i].activeSelf)
-                        {
-                            violationTabs[i].SetActive(false);
-                        }
-
-                    }
-                }
-            }
-        }
-
-        public void enableDueDate()
-        {
-            if (violationData.Count > 4)
-            {
-
-                violationTabs[4].SetActive(true);
-
-                for (int i = 0; i < violationTabs.Length; i++)
-                {
-                    if (i != 4)
-                    {
-                        if (violationTabs[i].activeSelf)
-                        {
-                            violationTabs[i].SetActive(false);
-                        }
-
-                    }
-                }
-            }
-        }
-
-        public void enableConditions()
-        {
-            if(violationData.Count > 5)
-            {
-
-                violationTabs[5].SetActive(true);
-
-                for (int i = 0; i < violationTabs.Length; i++)
-                {
-                    if (i != 5)
-                    {
-                        if (violationTabs[i].activeSelf)
-                        {
-                            violationTabs[i].SetActive(false);
-                        }
-
-                    }
-                }
-            }
-        }
-
-        public void enableComments()
-        {
-            if(violationData.Count > 6)
-            {
-                violationTabs[6].SetActive(true);
-
-                for (int i = 0; i < violationTabs.Length; i++)
-                {
-                    if (i != 6)
-                    {
-                        if (violationTabs[i].activeSelf)
-                        {
-                            violationTabs[i].SetActive(false);
-                        }
-
-                    }
-                }
-
-            }
-        }
-
-        public void enableReview()
-        {
-            print("review");
-            if (violationData.Count > 7)
-            {
-
-                violationTabs[7].SetActive(true);
-
-                for (int i = 0; i < violationTabs.Length; i++)
-                {
-                    if (i != 7)
-                    {
-                        if (violationTabs[i].activeSelf)
-                        {
-                            violationTabs[i].SetActive(false);
-                        }
-
-                    }
-                }
-            }
-
-        }
-        #endregion 
-
-        public void openViolation()
-        {
-            contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.0f).transform.position;
-            linkedNode.GetComponent<nodeController>().openNode();
-        }
+        
+        //Tell the associated node to close
         public void closeViolation()
         {
             linkedNode.GetComponent<nodeController>().closeNode();
         }
-
-        public void showTabs(bool active)
-        {
-            for(int i=0; i< violationTabButtons.Length; i++)
-            {
-                violationTabButtons[i].SetActive(active);
-            }
-        }
+        
         
 
 
