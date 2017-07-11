@@ -36,6 +36,7 @@ namespace HoloToolkit.Unity
             photoCaptureObject = null;
 #endif
 
+            
 
 
         }
@@ -50,6 +51,7 @@ namespace HoloToolkit.Unity
         public void CapturePhoto()
         {
 
+            ///set argument to false to hide holograms
 #if !UNITY_EDITOR
             PhotoCapture.CreateAsync(false, OnPhotoCaptureCreated);
 #else
@@ -64,6 +66,8 @@ namespace HoloToolkit.Unity
             photoCaptureObject = captureObject;
             Resolution cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).Last();
             CameraParameters c = new CameraParameters();
+
+            ///set hologram opacity to 0 to hide holograms
             c.hologramOpacity = 0.0f;
             c.cameraResolutionWidth = cameraResolution.width;
             c.cameraResolutionHeight = cameraResolution.height;
@@ -77,12 +81,11 @@ namespace HoloToolkit.Unity
             if (result.success)
             {
                 Resolution cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).Last();
-                filename = string.Format(@"newPhoto"+ index+ ".jpg", Time.time);
+                filename = string.Format("pocPhoto_" + System.DateTime.Now.ToString("MMddyy") + "_" + index + ".jpg", Time.time);
                 filePath = Path.Combine(Application.persistentDataPath , filename);
                 photoCaptureObject.TakePhotoAsync(filePath, PhotoCaptureFileOutputFormat.JPG, OnCapturedPhotoToDisk);
                 
                 
-                //photoCaptureObject.TakePhotoAsync(OnCapturedPhotoToMemory);
                 Invoke("loadPhoto", 1);
 
                 index += 1;

@@ -8,23 +8,33 @@ namespace HoloToolkit.Unity
 {
     public class violationReview : MonoBehaviour {
 
-        [Tooltip ("List of the violation data thats pulled from violationControl")]
+        [Tooltip ("Store the text components for the review here.  Their values will be driven by the top level ")]
         public Text[] violationData;
+        [Tooltip("Store the text components for the submitted vio here.  Their values will be driven by the top level ")]
         public Text[] violationSubmittedData;
+        [Tooltip ("Top level violation controller")]
         public violationController violationControl;
+        [Tooltip ("Holder for the in progress violation")]
         public GameObject submittedViolationHolder;
+        [Tooltip ("Holder for the submitted violation")]
         public GameObject addingViolationHolder;
 
 
-
+        /// <summary>
+        /// Called when a user hits the review screen in the violation workflow.  This grabs data from violationControl and displays it on its text elements
+        /// </summary>
         public void loadReview()
         {
             for(int i=0; i < violationControl.violationData.Count+1; i++)
             {
+                ///For every section (Cat, subcat, classification, ...) grab the data from violationControl and make these text components 
+                ///display that data
                 if(i!= violationControl.violationData.Count)
                 {
                     violationData[i].text = violationControl.violationData[i];
                 }
+                ///When we hit the "notes" section (for comments) we actually will be compiling the amount of comments rather than any data from
+                ///the violation controller
                 else
                 {
                     int sCounter = 0;
@@ -76,27 +86,40 @@ namespace HoloToolkit.Unity
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fromJson"></param>
         public void submitReview(bool fromJson)
         {
 
-
+            ///For every section (Cat, subcat, classification, ...) grab the data from violationControl and make the text components 
+            /// in the submitted section display that data
             for (int i = 0; i < violationControl.violationData.Count + 1; i++)
             {
                 violationSubmittedData[i].text = violationData[i].text;
             }
 
+            ///Store the user and date for the submitted violation
             violationSubmittedData[8].text = metaManager.Instance.user;
             violationSubmittedData[9].text = metaManager.Instance.date();
 
-
+            ///Set display info
             violationControl.goToTab(8);
             violationControl.violationHeader.text = 
                 ("Violation " + violationControl.violationIndices[0].ToString() +"."
                 + violationControl.violationIndices[1].ToString() +"."
                 + violationControl.violationIndices[2].ToString());
+
+            ///Turn on the submitted vio section
             submittedViolationHolder.SetActive(true);
+
+            ///Add the status as a new violation
             violationControl.violationData.Add("New");
             violationControl.violationIndices.Add(0);
+
+            ///Create a violation preview.  This will create similar previews in view violations and submit inspection
             submittedViolationHolder.GetComponent<submittedViolationController>().addPreview(0);
 
 
@@ -107,6 +130,7 @@ namespace HoloToolkit.Unity
 
             violationControl.closeViolation();
             
+            ///if its logged from the user, give feedback and sync to the JSON
             if (!fromJson)
             {
                 vioControl.Instance.successContentHolder.SetActive(true);

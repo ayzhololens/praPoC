@@ -20,15 +20,20 @@ namespace HoloToolkit.Unity
 
         VideoCapture m_VideoCapture = null;
         public bool recording { get; set; }
+        [Tooltip ("Video name")]
         public string filename;
+        [Tooltip ("Video name plus filepath")]
         public string filepath;
+        [Tooltip ("Number of videos recorded")]
         public int vidCounter;
+        [Tooltip ("Videos that have been recorded")]
         public List<string> fileList;
 
 
         // Use this for initialization
         void Start()
         {
+            
             vidCounter = 0;
 #if !UNITY_EDITOR
             m_VideoCapture.Dispose();
@@ -47,14 +52,14 @@ namespace HoloToolkit.Unity
 
         public void startRecordingVideo()
         {
+            ///Change argument to false to hide holograms
 #if !UNITY_EDITOR
             VideoCapture.CreateAsync(false, OnVideoCaptureCreated);
 #endif
             recording = true;
         }
 
-
-
+        
         void OnVideoCaptureCreated(VideoCapture videoCapture)
         {
             if (videoCapture != null)
@@ -65,6 +70,8 @@ namespace HoloToolkit.Unity
                 float cameraFramerate = VideoCapture.GetSupportedFrameRatesForResolution(cameraResolution).OrderByDescending((fps) => fps).First();
 
                 CameraParameters cameraParameters = new CameraParameters();
+
+                ///Set hologram opacity to 0 to hide holograms
                 cameraParameters.hologramOpacity = 0.0f;
                 cameraParameters.frameRate = cameraFramerate;
                 cameraParameters.cameraResolutionWidth = cameraResolution.width;
@@ -86,7 +93,7 @@ namespace HoloToolkit.Unity
         {
             if (result.success)
             {
-                filename = string.Format("videoTest" + vidCounter + ".mp4", Time.time);
+                filename = string.Format("pocVideo_" + System.DateTime.Now.ToString("MMddyy") + "_" + vidCounter + ".mp4", Time.time);
                 filepath = System.IO.Path.Combine(Application.persistentDataPath, filename);
                 if (System.IO.File.Exists(filepath))
                 {

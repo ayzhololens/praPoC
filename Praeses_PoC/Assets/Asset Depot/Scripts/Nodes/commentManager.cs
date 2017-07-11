@@ -320,29 +320,7 @@ public class commentManager : MonoBehaviour {
         audioManager.Instance.setAndPlayAudio(1);
     }
 
-    public void spawnPComment()
-    {
-        fovHider.Instance.toggleFOVHider(false, 1);
 
-        //shift all comments down
-        repositionComments();
-
-        //spawn simple comment
-        spawnedComment = Instantiate(photoCommentPrefab, transform.position, Quaternion.identity);
-        activeComments.Add(spawnedComment);
-
-
-        commentSetup(spawnedComment.GetComponent<commentContents>());
-        spawnedComment.transform.localScale = photoCommentPrefab.transform.localScale;
-
-        //define the comment type
-        commentContents photoContent = spawnedComment.GetComponent<commentContents>();
-        photoContent.isPhoto = true;
-        capturingPhoto = false;
-
-        //photoContent.filepath = mediaManager.Instance.photoRecorder.filePath;
-        //photoContent.loadPhoto();
-    }
 
     public virtual GameObject spawnPhotoComment()
     {

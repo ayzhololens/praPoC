@@ -95,7 +95,7 @@ public class submittedViolationController : MonoBehaviour {
             vioPreview.date.text = metaManager.Instance.date();
         }
 
-        //if yes then just update the data you turkey 
+        //if yes then just update the data 
         else
         {
             vioPreview.setResolution(index);

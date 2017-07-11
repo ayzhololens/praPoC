@@ -124,7 +124,7 @@ namespace HoloToolkit.Unity
                 
                 for (int i = 0; i < GetComponent<commentManager>().activeComments.Count; i++)
                 {
-                    GetComponent<commentManager>().activeComments[i].GetComponent<commentContents>().editButton.SetActive(true);
+                    //GetComponent<commentManager>().activeComments[i].GetComponent<commentContents>().editButton.SetActive(true);
                 }
             }
 
@@ -138,7 +138,7 @@ namespace HoloToolkit.Unity
                 reviewState = false;
                 for (int i = 0; i < GetComponent<commentManager>().activeComments.Count; i++)
                 {
-                    GetComponent<commentManager>().activeComments[i].GetComponent<commentContents>().editButton.SetActive(false);
+                    //GetComponent<commentManager>().activeComments[i].GetComponent<commentContents>().editButton.SetActive(false);
                 }
                 BroadcastMessage("OnFocusExit", SendMessageOptions.DontRequireReceiver);
 
