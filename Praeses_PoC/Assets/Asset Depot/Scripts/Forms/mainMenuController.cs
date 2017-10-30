@@ -113,7 +113,7 @@ namespace HoloToolkit.Unity
 
         void turnOffAligner()
         {
-            openMainMenu();
+            completeMainMenu();
             goToTab(5);
             mediaManager.Instance.disableStatusIndicator();
         }
