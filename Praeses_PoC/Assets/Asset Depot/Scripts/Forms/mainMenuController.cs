@@ -113,22 +113,27 @@ namespace HoloToolkit.Unity
 
         void turnOffAligner()
         {
+            //contentHolder.SetActive(true);
             completeMainMenu();
-            goToTab(5);
             mediaManager.Instance.disableStatusIndicator();
         }
 
         public void completeMainMenu()
         {
-            goToTab(7);
-            videoStarted = true;
-            radAnim.Control.Play();
+            mediaManager.Instance.setStatusIndicator("Say 'Help' for more information");
+            mediaManager.Instance.invokeStatusDisable(4);
+            //goToTab(7);
+            //contentHolder.transform.position = frontHolderInstance.Instance.setFrontHolder(1.5f).transform.position;
+
+            //videoStarted = true;
+            //radAnim.Control.Play();
         }
 
         public void stopRad()
         {
             radAnim.Control.Stop();
             videoStarted = false;
+            goToTab(2);
             tapToContinue.SetActive(false);
             mediaManager.Instance.setStatusIndicator("Say 'Help' for more information");
             mediaManager.Instance.invokeStatusDisable(4);

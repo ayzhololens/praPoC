@@ -108,7 +108,7 @@ Material:
       second: 1
     - first:
         name: _Radius
-      second: 7.709979
+      second: 17.685091
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -133,7 +133,7 @@ Material:
     m_Colors:
     - first:
         name: _Center
-      second: {r: 0.96066046, g: -1.6587968, b: -4.1524334, a: 0}
+      second: {r: 1.134726, g: 0.17416847, b: 1.0522772, a: 0}
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}

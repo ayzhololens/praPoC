@@ -47,18 +47,22 @@ namespace HoloToolkit.Unity
                 {
                     foreach (GameObject comment in node.GetComponent<nodeController>().linkedField.GetComponent<commentManager>().activeComments)
                     {
-                        commentContents com = comment.GetComponent<commentContents>();
-                        if (com.filepath != null && !node.GetComponent<nodeController>().fromJSON)
+                        if(comment!=null)
                         {
-                            if (com.isVideo && File.Exists(Path.Combine(Application.persistentDataPath, com.filepath)))
+                            commentContents com = comment.GetComponent<commentContents>();
+                            if (com.filepath != null && !node.GetComponent<nodeController>().fromJSON)
                             {
-                                File.Delete(Path.Combine(Application.persistentDataPath, com.filepath));
-                            }
-                            else if (com.isPhoto && File.Exists(com.filepath))
-                            {
-                                File.Delete(com.filepath);
+                                if (com.isVideo && File.Exists(Path.Combine(Application.persistentDataPath, com.filepath)))
+                                {
+                                    File.Delete(Path.Combine(Application.persistentDataPath, com.filepath));
+                                }
+                                else if (com.isPhoto && File.Exists(com.filepath))
+                                {
+                                    File.Delete(com.filepath);
+                                }
                             }
                         }
+
                     }
                 }
 
